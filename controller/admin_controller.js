@@ -5,6 +5,7 @@ const moment = require('moment')
 const Account = require('../model/Account')
 const Announcement = require('../model/Announcement')
 
+const Educ_Confirmation = require('../model/Educ_Confirmation')
 const Educ_Appointment = require('../model/Educ_Appointment')
 const Educ_Registration = require('../model/Educ_Registration')
 const Educ_Record = require('../model/Educ_Record')
@@ -532,64 +533,68 @@ module.exports.application_emergency_assistance = async(req, res) => {
 }
 
 module.exports.application_aics_assistance_accept = async(req, res) => {
-    const id = req.params.id;
-    const find = await AICS_Registration.findByIdAndDelete(id)
-    let params = ''
-    if(find.service == 'Medical Assistance'){
-        params = 'application-medical-assistance'
-    }else if(find.service == 'Burial Assistance'){
-        params = 'application-burial-assistance'
-    }else if(find.service == 'Transportation Assistance'){
-        params = 'application-transportation-assistance'
-    }else if(find.service == 'Emergency Shelter Assistance'){
-        params = 'application-emergency-assistance'
-    }
-    const create = await AICS_Record({
-        reference: find.reference,
-        service: find.service,
-        lastname: find.lastname,
-        firstname: find.firstname,
-        middlename: find.middlename,
-        exname: find.exname,
-        fullname: find.fullname,
-        birthdate: find.birthdate,
-        age: find.age,
-        sex: find.sex,
-        contact_number: find.contact_number,
-        civil_status: find.civil_status,
-        email: find.email,
-        beneficiary_relationship: find.beneficiary_relationship,
-        street: find.street,
-        brgy: find.brgy,
-        municipal: find.municipal,
-        province: find.province,
-        fulladdress: `${find.street} ${find.brgy} ${find.municipal} ${find.province}` ,
-        occupation: find.occupation,
-        salary: find.salary,
-        bene_lastname: find.bene_lastname,
-        bene_firstname: find.bene_firstname,
-        bene_middlename: find.bene_middlename,
-        bene_exname: find.bene_exname,
-        bene_birthdate: find.bene_birthdate,
-        bene_age: find.bene_age,
-        bene_sex: find.bene_sex,
-        bene_contact_number: find.bene_contact_number,
-        bene_civil_status: find.bene_civil_status,
-        bene_street: find.bene_street,
-        bene_brgy: find.bene_brgy,
-        bene_municipal: find.bene_municipal,
-        bene_province: find.bene_province,
-        bene_full_address: `${find.bene_street} ${find.bene_brgy} ${find.bene_municipal} ${find.bene_province}`,
-        expiredAt: new Date(currentDate.setSeconds(currentDate.getSeconds()+2))
-    })
-    create.save()
-    .then(() => {
-        console.log(`${create} is completed`)
-        res.redirect(`/a/${params}`)
-    })
-    .catch((err) => {
+    try {
+        const id = req.params.id;
+        const find = await AICS_Registration.findByIdAndDelete(id)
+        let params = ''
+        if(find.service == 'Medical Assistance'){
+            params = 'application-medical-assistance'
+        }else if(find.service == 'Burial Assistance'){
+            params = 'application-burial-assistance'
+        }else if(find.service == 'Transportation Assistance'){
+            params = 'application-transportation-assistance'
+        }else if(find.service == 'Emergency Shelter Assistance'){
+            params = 'application-emergency-assistance'
+        }
+        const create = await AICS_Record({
+            reference: find.reference,
+            service: find.service,
+            lastname: find.lastname,
+            firstname: find.firstname,
+            middlename: find.middlename,
+            exname: find.exname,
+            fullname: find.fullname,
+            birthdate: find.birthdate,
+            age: find.age,
+            sex: find.sex,
+            contact_number: find.contact_number,
+            civil_status: find.civil_status,
+            email: find.email,
+            beneficiary_relationship: find.beneficiary_relationship,
+            street: find.street,
+            brgy: find.brgy,
+            municipal: find.municipal,
+            province: find.province,
+            fulladdress: `${find.street} ${find.brgy} ${find.municipal} ${find.province}` ,
+            occupation: find.occupation,
+            salary: find.salary,
+            bene_lastname: find.bene_lastname,
+            bene_firstname: find.bene_firstname,
+            bene_middlename: find.bene_middlename,
+            bene_exname: find.bene_exname,
+            bene_birthdate: find.bene_birthdate,
+            bene_age: find.bene_age,
+            bene_sex: find.bene_sex,
+            bene_contact_number: find.bene_contact_number,
+            bene_civil_status: find.bene_civil_status,
+            bene_street: find.bene_street,
+            bene_brgy: find.bene_brgy,
+            bene_municipal: find.bene_municipal,
+            bene_province: find.bene_province,
+            bene_full_address: `${find.bene_street} ${find.bene_brgy} ${find.bene_municipal} ${find.bene_province}`,
+        })
+        create.save()
+        .then(() => {
+            console.log(`${create} is completed`)
+            res.redirect(`/a/${params}`)
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+    } catch (err) {
         console.log(err.message)
-    })
+        res.status(404).render('err/notfound')
+    }
 }
 
 module.exports.application_aics_assistance_view = async(req, res) => {
@@ -783,11 +788,12 @@ module.exports.register_transportation_post = async(req, res) => {
 
 module.exports.records_educ_assistance = async(req, res) => {
     const render = await Educ_Record.find({service: 'College Educational Assistance'}).sort({fullname: 1})
+    const date = await Educ_Compile.find().sort({createdAt: -1}).populate('date')
     let counter = 0
     render.forEach(count => {
         counter++
     })
-    res.render('admin/record/educ_record', {render, counter})
+    res.render('admin/record/educ_record', {render, date, counter})
 }
 
 module.exports.records_compile = async(req, res) => {
@@ -838,6 +844,7 @@ module.exports.records_compile = async(req, res) => {
             .then(async() => {
                 console.log(`${create} is added`)
                 await Educ_Record.deleteMany({status: 'completed'})
+                await Educ_Confirmation.deleteMany({status: 'appointment'})
             })
         }else{
             console.log('no data to compile')
@@ -851,23 +858,27 @@ module.exports.records_compile = async(req, res) => {
 }
 
 module.exports.records_educ_list = async(req, res) => {
-    const selected_date = new Date(req.query.selected_date)
-    const select = moment(selected_date).format('MMMM')
     try {
-        let formatted = []
-        const date = await Educ_Compile.find().sort({createdAt: -1}).populate('date')
-        date.forEach(data => {
-            formatted.push(moment(data.createdAt).format('MMMM DD, YYYY'))
+        let data = []
+        const date = await Educ_Compile.find().sort({createdAt: -1})
+        const info = await Educ_Compile.find().sort({createdAt: -1}).populate('list')
+        info.forEach(p => {
+            console.log(p.list)
         })
-        let data = ''
-        if(selected_date == 'Invalid Date'){
-            data = await Educ_Compile.findOne().sort({createdAt: -1})
-            // console.log(data.id)
-        }else{
-            data = await Educ_Compile.findOne({date: select}).sort({createdAt: -1})
-            // console.log(data.id)
-        }
-        res.render('admin/record/educ_list', {formatted, data})
+        // console.log(data)
+        res.render('admin/record/educ_list', {date, data})
+    } catch (err) {
+        console.log(err.message)
+        res.send('err 404')
+    }
+}
+
+module.exports.records_educ_list_id = async(req, res) => {
+    try {
+        const id = req.params.id
+        const date = await Educ_Compile.find().sort({createdAt: -1})
+        const info = await Educ_Compile.findById(id).sort({createdAt: -1})
+        res.render('admin/record/educ_selected_list', {date, info})
     } catch (err) {
         console.log(err.message)
         res.send('err 404')

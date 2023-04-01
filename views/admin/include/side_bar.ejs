@@ -36,8 +36,8 @@
     </script>
     <div class="even-list">
         <table class="table table-dark table-striped" border="1px">
-            <thead style="position: sticky;">
-                <tr style="position: sticky;">
+            <thead>
+                <tr>
                     <th>#</th>
                     <th>Date</th>
                     <th>Quota</th>
@@ -48,7 +48,7 @@
                 <% let counter = 1; let quota = 0 %>
                 <% events.forEach(data => { %>
                     <tr>
-                        <th><%- counter %></th>
+                        <th>Day <%- counter %></th>
                         <td><%- data.event_date %></td>
                         <td><%- data.quota %></td>
                         <td><%- data.remarks %></td>
@@ -56,13 +56,13 @@
                     <% counter++; quota = quota + data.quota %>
                 <% }) %>
             </tbody>
-            <h3>Remaining Quota: <%- quota %></h3>
         </table>
         <% if(events == '') { %>
             <p>No Available Quota</p>
         <% } %>
     </div>
-
+    
+    <h3>Remaining Quota: <%- quota %></h3>
     <!-- <div class="req-div dropdown mt-2" style="display:flex; justify-content:center; align-content: center;">
         <button class="btn btn-secondary dropdown-toggle" style="background-color: #2B7858; color: #fff; border-radius: 5px; border-color:#fff; align-items: center; font-size: 110%; width: 90%; padding: 1%;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Update Requirements

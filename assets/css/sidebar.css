@@ -20,7 +20,7 @@
     margin: 10px;
 }
 .even-list{
-    height: 90vh;
+    height: 60vh;
     overflow: hidden;
     overflow-y: scroll;
     /* background-color: antiquewhite; */

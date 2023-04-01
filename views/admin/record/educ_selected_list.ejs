@@ -14,7 +14,8 @@
             }
             #table tr{
                 text-align: center;
-            }#table td{
+            }
+            #table td{
                 font-size: 0.6rem;
             }
         }
@@ -43,31 +44,6 @@
                                 </ul>
                             </div>
 
-                            <!-- modal ON -->
-                            <!-- <button type="button" id="send_email" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#compile">Send Email</button> -->
-
-                            <!-- modal -->
-                            <!-- <div class="modal fade" id="compile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to send email?</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="/a/records/educ-list" method="POST">
-                                                <div class="form">
-                                                    <label class="form-label" for="password">Confirm Password</label>
-                                                    <input class="form-control" type="password" name="password" id="password" required>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-outline-dark">send email</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </nav>
@@ -89,9 +65,19 @@
                             </thead>
                             <tbody style="background-color: #FAFBFC;">
                                 <% let counter = 1 %>
-                                <% data.forEach(info => { %>
+                                <% info.list.forEach(data => { %>
                                     <tr>
-                                        <td><%- info.firstname %></td>
+                                        <td><%- counter++ %></td>
+                                        <td><%- data.firstname %> <%- data.middlename %> <%- data.lastname %></td>
+                                        <td><%- data.address %></td>
+                                        <td>+63<%- data.contact_number %></td>
+                                        <td>
+                                            <p><%- data.parent_name.mother_name %></p>
+                                            <p><%- data.parent_name.father_name %></p>
+                                        </td>
+                                        <td><%- data.age %></td>
+                                        <td><%- data.sex %></td>
+                                        <td><input type="checkbox" disabled></td>
                                     </tr>
                                 <% }) %>
                             </tbody>
