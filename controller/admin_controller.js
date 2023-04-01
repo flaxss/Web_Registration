@@ -117,7 +117,11 @@ module.exports.edit_post_patch = async(req, res) => {
 }
 // create event
 module.exports.add_event = async(req, res) => {
-    const create = await Event(req.body)
+    const create = await Event({
+        quota: req.body.quota,
+        event_date: req.body.event_date,
+        remarks: req.body.remarks || 'None'
+    })
     console.log(req.body)
     create.save()
     .then(() => {
@@ -808,6 +812,24 @@ module.exports.records_compile = async(req, res) => {
                     age: data.age,
                     sex: data.sex
                 })
+                let response = {
+                    body: {
+                        name: `${data.firstname} ${data.middlename} ${data.lastname}`,
+                        intro: `You may claim your cash assistance`,
+                    }
+                }
+                let mail = MailGenerator.generate(response)
+                let message = {
+                    from: 'support@email.com',
+                    to: data.email,
+                    subject: 'social service',
+                    html: mail
+                }
+                await transporter.sendMail(message)
+                .then((info) => {
+                    console.log('email is successfully generated',info.messageId)
+                })
+                .catch(err => console.log(err.message))
             })
             const create = new Educ_Compile({
                 list: compile
@@ -829,71 +851,27 @@ module.exports.records_compile = async(req, res) => {
 }
 
 module.exports.records_educ_list = async(req, res) => {
-    const year = req.query.year
+    const selected_date = new Date(req.query.selected_date)
+    const select = moment(selected_date).format('MMMM')
     try {
-        const getID = await Educ_Compile.find().sort({createdAt: -1})
-        let date = []
-        getID.forEach(data => {
-            date.push(moment(data.createdAt).format('MMMM DD, YYYY'))
+        let formatted = []
+        const date = await Educ_Compile.find().sort({createdAt: -1}).populate('date')
+        date.forEach(data => {
+            formatted.push(moment(data.createdAt).format('MMMM DD, YYYY'))
         })
-        let list;
-        if(!year){
-            list = await Educ_Compile.find({ "$where": `this.createdAt.getMonth() === ${new Date().getMonth()}` })
-            list.forEach(data => {
-                list = data.list
-            })
+        let data = ''
+        if(selected_date == 'Invalid Date'){
+            data = await Educ_Compile.findOne().sort({createdAt: -1})
+            // console.log(data.id)
         }else{
-            let format = moment(new Date(year)).format('MM') - 1
-            list = await Educ_Compile.find({ "$where": `this.createdAt.getMonth() === ${format}` })
-            list.forEach(data => {
-                list = data.list
-            })
+            data = await Educ_Compile.findOne({date: select}).sort({createdAt: -1})
+            // console.log(data.id)
         }
-
-        res.render('admin/record/educ_list', {getID, date})
+        res.render('admin/record/educ_list', {formatted, data})
     } catch (err) {
         console.log(err.message)
         res.send('err 404')
     }
-}
-
-module.exports.records_educ_list_post = async(req, res) => {
-    let list = await Educ_Compile.find({isEmailed: false})
-    if(await bcrypt.compare(req.body.password, res.locals.user.password)){
-        if(list!=''){
-            list.forEach(async(data) => {
-                console.log(data.list.email)
-                let response = {
-                    body: {
-                        name: `${data.firstname} ${data.middlename} ${data.lastname}`,
-                        intro: `You may claim your cash assistance`,
-                    }
-                }
-                let mail = MailGenerator.generate(response)
-                let message = {
-                    from: 'support@email.com',
-                    to: data.email,
-                    subject: 'social service',
-                    html: mail
-                }
-                await transporter.sendMail(message)
-                .then((info) => {
-                    console.log('email is successfully generated',info.messageId)
-                    if(data.isEmailed == false){
-                        data.isEmailed = true
-                    }
-                    data.save()
-                })
-                .catch(err => console.log(err.message))
-            }) 
-            return res.redirect('/a/records/educ-list')
-        }else{
-            console.log('No List')
-        }
-    }else{
-        console.log('Wrong Password')
-    }
-    res.redirect('/a/records/educ-list')
 }
 
 module.exports.records_aics_list = async(req, res) => {

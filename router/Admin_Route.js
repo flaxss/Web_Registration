@@ -109,7 +109,6 @@ router.post('/register/transportation-assistance/form', admin_controller.registe
 router.get('/records/educational-assistance', admin_controller.records_educ_assistance)
 router.post('/records/compile', admin_controller.records_compile)
 router.get('/records/educ-list', admin_controller.records_educ_list)
-router.post('/records/educ-list', admin_controller.records_educ_list_post)
 router.get('/records/aics-list', admin_controller.records_aics_list)
 router.get('/records/medical-assistance', admin_controller.records_medical_assistance)
 router.get('/records/burial-assistance', admin_controller.records_burial_assistance)

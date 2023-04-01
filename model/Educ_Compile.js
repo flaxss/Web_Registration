@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment')
 
 const educationCompileSchema = new mongoose.Schema({
     list: [{
@@ -48,10 +49,13 @@ const educationCompileSchema = new mongoose.Schema({
             uppercase: true
         },
     }],
-    isEmailed: {
-        type: Boolean,
-        default: false
-    }
+    date: {
+        type: String,
+        default: function(){
+            let today = new Date()
+            return moment(today).format('MMMM')
+        }
+    },
 },{timestamps: true});
 
 const Educ_Compile = mongoose.model('Educ_Compile', educationCompileSchema)

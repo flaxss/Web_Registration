@@ -29,17 +29,17 @@
                             <button class="btn btn-outline-success" onclick="printDiv('printDiv')">Create PDF</button>
 
                             <form action="/a/records/educ-list" method="GET">
-                                <select name="year" id="" required>
-                                    <!-- <option value="" disabled selected>Please Select</option> -->
-                                    <% date.forEach(year => { %>
-                                        <option value="<%- year %>"><%- year %></option>
+                                <select name="selected_date" id="" required>
+                                    <option value="" disabled selected>Please Select</option>
+                                    <% formatted.forEach(data => { %>
+                                        <option value="<%- data %>"><%- data %></option>
                                     <% }) %>
                                 </select>
                                 <button class="btn btn-outline-success">reload</button>
                             </form>
 
                             <!-- modal ON -->
-                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#compile">Send Email</button>
+                            <!-- <button type="button" id="send_email" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#compile">Send Email</button> -->
 
                             <!-- modal -->
                             <div class="modal fade" id="compile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,6 +83,7 @@
                                 </tr>
                             </thead>
                             <tbody style="background-color: #FAFBFC;">
+                                <% let counter = 1 %>
                                 
                             </tbody>
                         </table>

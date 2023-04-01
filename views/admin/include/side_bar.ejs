@@ -18,7 +18,7 @@
                                 <input type="number" name="quota" class="form-control" placeholder="No. of Quota" required>
                                 <input type="date" id="event_date" name="event_date" class="form-control" class="btn btn-primary" required>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" placeholder="remarks" name="remarks" value="None">
+                                    <input type="text" class="form-control" placeholder="remarks" name="remarks">
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-outline-success">Save changes</button>
@@ -45,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% let counter = 1 %>
+                <% let counter = 1; let quota = 0 %>
                 <% events.forEach(data => { %>
                     <tr>
                         <th><%- counter %></th>
@@ -53,9 +53,10 @@
                         <td><%- data.quota %></td>
                         <td><%- data.remarks %></td>
                     </tr>
-                    <% counter++ %>
+                    <% counter++; quota = quota + data.quota %>
                 <% }) %>
             </tbody>
+            <h3>Remaining Quota: <%- quota %></h3>
         </table>
         <% if(events == '') { %>
             <p>No Available Quota</p>

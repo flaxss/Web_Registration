@@ -58,7 +58,7 @@ function format(list){
     return events;
 }
 
-let http_localhost = 'https://nutty-crab-scarf.cyclic.app/'
+let http_localhost = 'http://localhost:3000'
 
 module.exports.home = async(req, res) => {
     const renderPost = await Announcement.find({})
@@ -263,12 +263,24 @@ module.exports.college_assistance_form_post = async(req, res) => {
                 console.log('email is successfully generated',info.messageId)
             })
             // res.redirect(`/college-assistance/${create.id}/preview`)
-            res.send('you are successfully registered! please check your email to confirm your registration.')
+            // res.send('you are successfully registered! please check your email to confirm your registration.')
+            res.redirect(`/college-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.college_assistance_landing = async(req, res) => {
+    const id = req.params.id
+    try {
+        const register = await Educ_Confirmation.findById(id)
+        res.render('user/warning')
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
@@ -539,12 +551,24 @@ module.exports.medical_assistance_form_post = async(req, res) => {
                 console.log('email is successfully generated',info.messageId)
             })
             // res.redirect(`/medical-assistance/${create.id}/preview`)
-            res.send('you are successfully registered! please check your email to confirm your registration.')
+            // res.send('you are successfully registered! please check your email to confirm your registration.')
+            res.redirect(`/medical-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.medical_assistance_landing = async(req, res) => {
+    const id = req.params.id
+    try {
+        const register = await AICS_Confirmation.findById(id)
+        res.render('user/warning')
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
@@ -723,7 +747,8 @@ module.exports.burial_assistance_form_post = async(req, res) => {
                 console.log('email is successfully generated',info.messageId)
             })
             // res.redirect(`/burial-assistance/${create.id}/preview`)
-            res.send('you are successfully registered! please check your email to confirm your registration.')
+            // res.send('you are successfully registered! please check your email to confirm your registration.')
+            res.redirect(`/burial-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
@@ -731,6 +756,18 @@ module.exports.burial_assistance_form_post = async(req, res) => {
         })
     }
 }
+
+module.exports.burial_assistance_landing = async(req, res) => {
+    const id = req.params.id
+    try {
+        const register = await AICS_Confirmation.findById(id)
+        res.render('user/warning')
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
+    }
+}
+
 module.exports.burial_assistance_confirm = async(req, res) => {
     const id = req.params.id
     try {
@@ -908,12 +945,24 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
                 console.log('email is successfully generated',info.messageId)
             })
             // res.redirect(`/burial-assistance/${create.id}/preview`)
-            res.send('you are successfully registered! please check your email to confirm your registration.')
+            // res.send('you are successfully registered! please check your email to confirm your registration.')
+            res.redirect(`/transportation-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.transportation_assistance_landing = async(req, res) => {
+    const id = req.params.id
+    try {
+        const register = await AICS_Confirmation.findById(id)
+        res.render('user/warning')
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
@@ -1088,12 +1137,24 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
                 console.log('email is successfully generated',info.messageId)
             })
             // res.redirect(`/burial-assistance/${create.id}/preview`)
-            res.send('you are successfully registered! please check your email to confirm your registration.')
+            // res.send('you are successfully registered! please check your email to confirm your registration.')
+            res.redirect(`/emergency-shelter-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.emergency_shelter_assistance_landing = async(req, res) => {
+    const id = req.params.id
+    try {
+        const register = await AICS_Confirmation.findById(id)
+        res.render('user/warning')
+    } catch (err) {
+        console.log(err.message)
+        res.status(404).render('err/notfound')
     }
 }
 

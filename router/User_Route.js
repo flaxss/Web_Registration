@@ -9,10 +9,9 @@ const { isActivate } = require('../middleware/auth')
 router.get('/', user_controller.home)
 
 router.get('/college-assistance', isActivate, user_controller.college_assistance)
-
 router.get('/college-assistance/form', isActivate, user_controller.college_assistance_form_get)
-
 router.post('/college-assistance/form', user_controller.college_assistance_form_post)
+router.get('/college-assistance/:id', user_controller.college_assistance_landing)
 
 router.get('/college-assistance/:id/confirm', user_controller.college_assistance_confirm)
 router.get('/college-assistance/:id/preview', user_controller.college_assistance_preview)
@@ -22,6 +21,7 @@ router.post('/college-assistance/:id/update-response', user_controller.college_a
 router.get('/medical-assistance', user_controller.medical_assistance)
 router.get('/medical-assistance/form', user_controller.medical_assistance_form_get)
 router.post('/medical-assistance/form', user_controller.medical_assistance_form_post)
+router.get('/medical-assistance/:id', user_controller.medical_assistance_landing)
 
 router.get('/medical-assistance/:id/confirm', user_controller.medical_assistance_confirm)
 router.get('/medical-assistance/:id/preview', user_controller.medical_assistance_preview)
@@ -31,6 +31,7 @@ router.post('/medical-assistance/:id/update-response', user_controller.medical_a
 router.get('/burial-assistance', user_controller.burial_assistance)
 router.get('/burial-assistance/form', user_controller.burial_assistance_form_get)
 router.post('/burial-assistance/form', user_controller.burial_assistance_form_post)
+router.get('/burial-assistance/:id', user_controller.burial_assistance_landing)
 
 router.get('/burial-assistance/:id/confirm', user_controller.burial_assistance_confirm)
 router.get('/burial-assistance/:id/preview', user_controller.burial_assistance_preview)
@@ -40,6 +41,7 @@ router.post('/burial-assistance/:id/update-response', user_controller.burial_ass
 router.get('/transportation-assistance', user_controller.transportation_assistance)
 router.get('/transportation-assistance/form', user_controller.transportation_assistance_form_get)
 router.post('/transportation-assistance/form', user_controller.transportation_assistance_form_post)
+router.get('/transportation-assistance/:id', user_controller.transportation_assistance_landing)
 
 router.get('/transportation-assistance/:id/confirm', user_controller.transportation_assistance_confirm)
 router.get('/transportation-assistance/:id/preview', user_controller.transportation_assistance_preview)
@@ -49,6 +51,7 @@ router.post('/transportation-assistance/:id/update-response', user_controller.tr
 router.get('/emergency-shelter-assistance', user_controller.emergency_shelter_assistance)
 router.get('/emergency-shelter-assistance/form', user_controller.emergency_shelter_assistance_form_get)
 router.post('/emergency-shelter-assistance/form', user_controller.emergency_shelter_assistance_form_post)
+router.get('/emergency-shelter-assistance/:id', user_controller.emergency_shelter_assistance_landing)
 
 router.get('/emergency-shelter-assistance/:id/confirm', user_controller.emergency_shelter_assistance_confirm)
 router.get('/emergency-shelter-assistance/:id/preview', user_controller.emergency_shelter_assistance_preview)
