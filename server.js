@@ -13,33 +13,33 @@ const PORT = process.env.PORT || 8080;
 // -- credentials --
 
 // -- connect to database --
-const mongoUri = `mongodb://localhost:27017/cswdo_db`
-mongoose.connect(mongoUri)
-    .then((result) => {
-        console.log('Successfully Connected To The Database');
-        app.listen(PORT, () => {
-            console.log(`The server is running on http://localhost:${PORT}`);
-        })
-    })
-    .catch((err) => console.log(err));
+// const mongoUri = `mongodb://localhost:27017/cswdo_db`
+// mongoose.connect(mongoUri)
+//     .then((result) => {
+//         console.log('Successfully Connected To The Database');
+//         app.listen(PORT, () => {
+//             console.log(`The server is running on http://localhost:${PORT}`);
+//         })
+//     })
+//     .catch((err) => console.log(err));
 // -- connect to database --
 
-// const connectDB = async () => {
-//     try {
-//         const conn = await mongoose.connect(process.env.MONGO_URI)
-//         // console.log(`Successfully Connected To The Database ${conn.connection.host}`)
-//         console.log(`Successfully Connected To The Database`)
-//     } catch (err) {
-//         console.log(err.message)
-//         process.exit(1)
-//     }
-// }
-// connectDB()
-// .then(() => {
-//     app.listen(PORT, () => {
-//         console.log(`The server is running on http://localhost:${PORT}`);
-//     })
-// })
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI)
+        // console.log(`Successfully Connected To The Database ${conn.connection.host}`)
+        console.log(`Successfully Connected To The Database`)
+    } catch (err) {
+        console.log(err.message)
+        process.exit(1)
+    }
+}
+connectDB()
+.then(() => {
+    app.listen(PORT, () => {
+        console.log(`The server is running on http://localhost:${PORT}`);
+    })
+})
 
 // parse request
 app.use(express.urlencoded({extended: false}));
