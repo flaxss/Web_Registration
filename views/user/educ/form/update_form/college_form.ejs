@@ -1,0 +1,356 @@
+<%- include('../../../include/header') %>
+<title>College Educational Assistance</title>
+  <script>
+    $(function() {
+        $('#datepicker').datetimepicker();
+    });
+  </script>
+</head>
+<body>
+    <%- include('../../../include/nav') %>
+    <main>
+        <div class="container my-2 p-2">
+            <h1 class="text-center">College Educational Assistance</h1>
+            <form class="container-xl bg-light p-2" action="/college-assistance/<%- appointment.id %>/update-response" method="POST">
+                <h4>I. PERSONAL INFORMATION</h4>
+                <div class="row mb-3 g-1">
+                    <input type="text" name="service" value="College Educational Assistance" hidden>
+                    <input type="text" name="reference" value="<%- appointment.reference %>" hidden>
+                    <div class="col-md-3">  
+                        <label for="lastname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control textOnly" id="lastname" placeholder="Last name" aria-label="Last name" name="lastname" required value="<%- appointment.lastname %>">
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="firstname" class="form-label">First Name</label>
+                        <input type="text" class="form-control textOnly" id="firstname" placeholder="First name" aria-label="First name" name="firstname" required value="<%- appointment.firstname %>">
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="middlename" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control textOnly" id="middlename" placeholder="Middle name" aria-label="Middle name" name="middlename" value="<%- appointment.middlename %>"> 
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="extensionname" class="form-label">Extension Name</label>
+                        <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="exname" value="<%- appointment.exname %>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" placeholder="Email Address" name="email" required value="<%- appointment.email %>">
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <label for="appointment_data" class="form-label">Date of Appointment</label>
+                        <input type="date" id="appointment_data" class="form-control" placeholder="Appointment Date" name="appointment_date" required readonly value="<%- formatted %>">
+                    </div> -->
+                    <div class="col-md-6">
+                        <label for="appointment_data" class="form-label">Date of Appointment</label>
+                        <input type="date" id="appointment_data" class="form-control" placeholder="Appointment Date" name="appointment_date" required readonly value="<%- appointment.event_date %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="residential-address" class="form-label">Residential Address</label>
+                    </div>
+                    <div class="col-md-3 ">
+                        <input type="text" class="form-control" id="residential-address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="r_street" required value="<%- appointment.r_street %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="residentialaddress" placeholder="Barangay" aria-label="Barangay" name="r_brgy" required value="<%- appointment.r_brgy %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="residential-address" placeholder="Municipality/City" aria-label="Municipality/City" name="r_municipal" required value="<%- appointment.r_municipal %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="residential-address" placeholder="Province" aria-label="Province" name="r_province" required value="<%- appointment.r_province %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="present-address" class="form-label">Present Address</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="p_street" required value="<%- appointment.p_street %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="present-address" placeholder="Barangay" aria-label="Barangay" name="p_brgy" required value="<%- appointment.p_brgy %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="present-address" placeholder="Municipality/City" aria-label="Municipality/City" name="p_municipal" required value="<%- appointment.p_municipal %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="present-address" placeholder="Province" aria-label="Province" name="p_province" required value="<%- appointment.p_province %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">  
+                        <label for="birthdate" class="form-label">Birthdate</label>
+                        <input type="date" class="form-control" id="birthdate " name="date_of_birth" required value="<%- appointment.date_of_birth %>">
+                    </div>
+                    <div class="col-md-5">  
+                        <label for="birthplace" class="form-label">Place of Birthdate</label>
+                        <input type="text" class="form-control" id="birthplace" name="place_of_birth" required value="<%- appointment.place_of_birth %>">
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="citizenship" class="form-label">Citizenship</label>
+                        <input type="text" class="form-control textOnly" id="citizenship" name="citizenship" required value="<%- appointment.citizenship %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">  
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" name="age" required value="<%- appointment.age %>">
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="select_sex" class="form-label">Sex</label>
+                        <div class="form-control" id="select_sex">
+                            <input type="radio" id="male" name="sex" value="Male" required>
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" class="ms-3" name="sex" value="Female" required>
+                            <label for="female">Female</label> 
+                        </div>
+                        <script>
+                            let sex = '<%- appointment.sex %>'
+                            if(sex === 'MALE'){
+                                document.getElementById('male').checked = true
+                            }else{
+                                document.getElementById('female').checked = true
+                            }
+                        </script>
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="civil-status" class="form-label">Civil Status</label>
+                        <div class="form-control">
+                            <div class="form">
+                                <input type="radio" id="single" name="civil_status" value="single" required>
+                                <label for="single">Single</label>    
+                                <input type="radio" id="widow/er" class="ms-4" name="civil_status" value="widow/er" required>
+                                <label for="widow/er">Widow/er</label>
+                            </div>
+                            <input type="radio" id="married" name="civil_status" value="married" required>
+                            <label for="married">Married</label>
+                            <input type="radio" id="other" class="ms-3" name="civil_status" value="other" required>
+                            <label for="other">Other</label>
+                        </div>
+                    </div>
+                    <script>
+                        let civil_status = '<%- appointment.civil_status %>'
+                        if(civil_status == 'single'){
+                            document.getElementById('single').checked = true
+                        }else if(civil_status == 'widow/er'){
+                            document.getElementById('widow/er').checked = true
+                        }else if(civil_status == 'married'){
+                            document.getElementById('married').checked = true
+                        }else if(civil_status == 'other'){
+                            document.getElementById('other').checked = true
+                        }
+                    </script>
+                    <div class="col-md-3">
+                        <label for="contact-number" class="form-label">Contact Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text">+63</span>
+                            <input type="tel" class="form-control" id="contact-number " minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" name="contact_number" required value="<%- appointment.contact_number %>">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h4>II. FAMILY BACKGROUND</h4>
+                <div class="row mb-3">
+                    <div >
+                        <label for="spouse" class="form-label">Spouse If Applicable</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-lastname" placeholder="Last Name" aria-label="Last Name" name="spouse_lname" value="<%- appointment.spouse_lname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-firstname" placeholder="First Name" aria-label="First Name" name="spouse_fname" value="<%- appointment.spouse_fname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-middlename" placeholder="Middle Name" aria-label="Middle Name" name="spouse_mname" value="<%- appointment.spouse_mname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="spouse_exname" value="<%- appointment.spouse_exname %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"> 
+                        <label for="spouse-occupation" class="form-label">Occupation</label>
+                        <input type="text" id="spouse-occupation" class="form-control textOnly" name="spouse_occupation" value="<%- appointment.spouse_occupation %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="mother" class="form-label">Mother's Name</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="mother-lastname" placeholder="Last Name" aria-label="Last Name" name="mother_lname" value="<%- appointment.mother_lname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="mother-firstname" placeholder="First Name" aria-label="First Name" name="mother_fname" value="<%- appointment.mother_fname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="mother-middlename" placeholder="Middle Name" aria-label="Middle Name" name="mother_mname" value="<%- appointment.mother_mname %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"> 
+                        <label for="mother-occupation" class="form-label">Occupation</label>
+                        <input type="text" id="mother-occupation" class="form-control textOnly" name="mother_occupation" value="<%- appointment.mother_occupation %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="father" class="form-label">Father's Name</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-lastname" placeholder="Last Name" aria-label="Last Name" name="father_lname" value="<%- appointment.father_lname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-firstname" placeholder="First Name" aria-label="First Name" name="father_fname" value="<%- appointment.father_fname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-middlename" placeholder="Middle Name" aria-label="Middle Name" name="father_mname" value="<%- appointment.father_mname %>">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="father_exname" value="<%- appointment.father_exname %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-13"> 
+                        <label for="father-occupation" class="form-label">Occupation</label>
+                        <input type="text" id="father-occupation" class="form-control textOnly" name="father_occupation" value="<%- appointment.father_occupation %>">
+                    </div>
+                </div>
+                <br>
+                <h4>III. EDUCATIONAL BACKGROUND</h4>
+                <div class="row mb-3">
+                    <div >
+                        <label for="elementary" class="form-label">Elementary</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="e-school-name" placeholder="Name of School" aria-label="Name of School" name="e_name_of_school" required value="<%- appointment.elementary.name_of_school %>">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="e-school-year" placeholder="School Year" aria-label="School Year" name="e_school_year" required value="<%- appointment.elementary.school_year %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="secondary" class="form-label">Secondary</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="s-school-name" placeholder="Name of School" aria-label="Name of School" name="s_name_of_school" required value="<%- appointment.secondary.name_of_school %>">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="s-school-year" placeholder="School Year" aria-label="School Year" name="s_school_year" required value="<%- appointment.secondary.school_year %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="vocational" class="form-label">Vocational</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="v-school-name" placeholder="Name of School" aria-label="Name of School" name="v_name_of_school" value="<%- appointment.vocational.name_of_school %>">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="v-school-year" placeholder="School Year" aria-label="School Year" name="v_school_year" value="<%- appointment.vocational.school_year %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="college" class="form-label">College</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="c-school-name" placeholder="Name of School" aria-label="Name of School" name="c_name_of_school" required value="<%- appointment.college.name_of_school %>">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="c-school-year" placeholder="School Year" aria-label="School Year" name="c_school_year" required value="<%- appointment.college.school_year %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"> 
+                        <label for="degree-course" class="form-label">Degree/Course</label>
+                        <input type="text" id="degree-course" class="form-control textOnly" name="course" required value="<%- appointment.course %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-7"> 
+                        <label for="yearlevel" class="form-label">Year Level</label>
+                        <div class="form-control">
+                            <input type="radio" id="1st" name="year_level" value="1st" required>
+                            <label for="1st">1st</label>
+                            <input type="radio" id="2nd" class="ms-5" name="year_level" value="2nd" required>
+                            <label for="2nd">2nd</label>
+                            <input type="radio" id="3rd" class="ms-5" name="year_level" value="3rd" required>
+                            <label for="3rd">3rd</label>
+                            <input type="radio" id="4th" class="ms-5" name="year_level" value="4th" required> 
+                            <label for="4th">4th</label>
+                            <input type="radio" id="5th" class="ms-5" name="year_level" value="5th" required>
+                            <label for="5th">5th</label>
+                        </div>
+                        <script>
+                            let year_level = '<%- appointment.year_level %>'
+                            if(year_level == '1st'){
+                                document.getElementById('1st').checked = true
+                            }else if(year_level == '2nd'){
+                                document.getElementById('2nd').checked = true
+                            }else if(year_level == '3rd'){
+                                document.getElementById('3rd').checked = true
+                            }else if(year_level == '4th'){
+                                document.getElementById('4th').checked = true
+                            }else if(year_level == '5th'){
+                                document.getElementById('5th').checked = true
+                            }
+                        </script>
+                    </div>
+                    <div class="col-md-5"> 
+                        <label for="degree-course" class="form-label">Semester</label>
+                        <div class="form-control">
+                            <input type="radio" id="1st_sem" name="sem" value="1st" required>
+                            <label for="1st_sem">1st</label>    
+                            <input type="radio" id="2nd_sem" class="ms-5" name="sem"value="2nd" required>
+                            <label for="2nd_sem">2nd</label>
+                            <input type="radio" id="3rd_sem" class="ms-5" name="sem" value="3rd" required>
+                            <label for="3rd_sem">3rd</label>
+                        </div>
+                        <script>
+                            let sem = '<%- appointment.sem %>'
+                            if(sem == '1st'){
+                                document.getElementById('1st_sem').checked = true
+                            }else if(sem == '2nd'){
+                                document.getElementById('2nd_sem').checked = true
+                            }else if(sem == '3rd'){
+                                document.getElementById('3rd_sem').checked = true
+                            }
+                        </script>
+                    </div>
+                </div>
+                <br>
+                <h4>IV. CHARACTER REFERENCE</h4>
+                <div class="row mb-3 text-center">
+                    <div class="col-md-4">  
+                        <label for="cr-name" class="form-label">Name</label>
+                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="1" value="<%- appointment.char_ref_name[0] %>">
+                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="2" value="<%- appointment.char_ref_name[1] %>">
+                    </div>
+                    <div class="col-md-4">  
+                        <label for="cr-address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="1" value="<%- appointment.char_ref_add[0] %>">
+                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="2" value="<%- appointment.char_ref_add[1] %>">
+                    </div>
+                    <div class="col-md-4">  
+                        <label for="cr-contact" class="form-label">Contact Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text">+63</span>
+                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="1" maxlength="9" onkeypress="return isNumberKey(event)" value="<%- appointment.char_ref_num[0] %>">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">+63</span>
+                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="2" maxlength="9" onkeypress="return isNumberKey(event)" value="<%- appointment.char_ref_num[1] %>">
+                        </div>
+                    </div>
+                </div>
+                <button class="form-control btn btn-success">submit</button>
+            </form>
+        </div>
+    </main>
+    <%- include('../../../include/footer') %>
+</body>
+</html>

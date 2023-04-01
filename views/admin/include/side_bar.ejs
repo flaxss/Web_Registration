@@ -1,0 +1,81 @@
+<div class="side-bar">
+    <div class="create-event">
+        <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#create-post">Post Announcement</button>
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#add-event">
+            Create Event
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="add-event" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Event</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/a/add-event" method="POST" class="input-group">
+                            <div class="col-md-12">
+                                <input type="number" name="quota" class="form-control" placeholder="No. of Quota" required>
+                                <input type="date" id="event_date" name="event_date" class="form-control" class="btn btn-primary" required>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" placeholder="remarks" name="remarks" value="None">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-outline-success">Save changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById("event_date").setAttribute("min", today);
+    </script>
+    <div class="even-list">
+        <table class="table table-dark table-striped" border="1px">
+            <thead style="position: sticky;">
+                <tr style="position: sticky;">
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Quota</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let counter = 1 %>
+                <% events.forEach(data => { %>
+                    <tr>
+                        <th><%- counter %></th>
+                        <td><%- data.event_date %></td>
+                        <td><%- data.quota %></td>
+                        <td><%- data.remarks %></td>
+                    </tr>
+                    <% counter++ %>
+                <% }) %>
+            </tbody>
+        </table>
+        <% if(events == '') { %>
+            <p>No Available Quota</p>
+        <% } %>
+    </div>
+
+    <!-- <div class="req-div dropdown mt-2" style="display:flex; justify-content:center; align-content: center;">
+        <button class="btn btn-secondary dropdown-toggle" style="background-color: #2B7858; color: #fff; border-radius: 5px; border-color:#fff; align-items: center; font-size: 110%; width: 90%; padding: 1%;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Update Requirements
+        </button>
+        <ul class="dropdown-menu" style="background-color: #569e80; color: #fff; border-radius: 5px; border-color:#fff; align-items: center; font-size: 110%; width: 90%; padding: 1%;" >
+            <li><a class="dropdown-item" href="/a/requirements-college">College Educational Assistance</a></li>
+            <li><a class="dropdown-item" href="/a/requirements-medical">Medical Assistance</a></li>
+            <li><a class="dropdown-item" href="/a/requirements-burial">Burial Assistance</a></li>
+            <li><a class="dropdown-item" href="/a/requirements-traspo">Trasportation Assistance</a></li>
+            <li><a class="dropdown-item" href="/a/requirements-emergency">Emergency Shelter Assistance</a></li>
+        </ul>
+    </div> -->
+    
+    <!-- <div class="calendar">
+        <div id='calendar'></div>
+    </div> -->
+</div>

@@ -1,0 +1,252 @@
+<%- include('../include/header') %>
+    <title>Preview</title>
+    <link rel="stylesheet" href="/css/med-temp.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById("download")
+            .addEventListener("click", () => {
+                const invoice = this.document.getElementById("pdf-form");
+                console.log(invoice);
+                console.log(window);
+                var opt = {
+                    margin: -0.029,
+                    filename: 'myfile.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
+                };
+                html2pdf().from(invoice).set(opt).save();
+            })
+        }
+    </script>
+</head>
+<body>
+    <%- include('../include/nav') %>
+    <div style=" text-align: center;">
+        <button  id="download"> download pdf</button>
+    </div>
+    <form action="" class="page" size="A4" id="">
+        <img src="/img/temp-banner.PNG" alt="" style="margin-top: 2%">
+        <div class="even-col" >
+            <div class="col">
+                <label for="date">Petsa Ngayon<br><i>(Date Today)</i></label>
+                <input type="date" name="date" size="15">
+            </div>
+            <div class="col">
+                <label for="time">Oras ng Pagpasok<br><i>(Time of Entry)</i></label>
+                <input type="time" name="time" size="15">
+            </div>
+            <div class="col">
+                <label for="bilang">Bilang ng<br>Kliyente</label>
+                <input type="number" name="bilang" size="15">
+            </div>
+        </div>
+        <h2>IMPORMASYON UKOL SA KLIYENTE (Client's Indentifying Information)</h2>
+        <div class="even-col" >
+            PANGALAN:<br>(Name)
+            <div class="col-name" >
+                <input type="text" name="lastname" size="19"><br>
+                <label for="lastname">Apelyido<br>(Last Name)</label>
+            </div>        
+            <div class="col-name">
+                <input type="text" name="firstname" size="19"><br>
+                <label for="firstname">Unang Pangalan<br>(First Name)</label>
+            </div>
+            <div class="col-name">
+                <input type="text" name="middlename" size="19"><br>
+                <label for="middlename">Gitnang Pangalan<br>(Middle Name)</label>
+            </div>
+            <div class="col-name">
+                <input type="text" name="extensionname" size="13"><br>
+                <label for="extensionname">Extension Name<br><br></label>
+            </div>
+        </div>
+        <br>
+        <div class="even-col">
+            PETSA NG <br> KAPANGANAKAN: <br>(Birthday)
+            <div class="col-age">
+                <input type="date" id="birthdate">
+            </div>
+            <center style="margin-left: 5%;">EDAD  <br>(Age):</center>
+            <div class="col-age" style="margin-right: 2%;">
+                    <input type="number" id="age" size="5">
+            </div>
+            KASARIAN<br> (Sex)
+            <div class="col-age">
+                <div>
+                    <input type="checkbox" id="sex"> Male <br>
+                    <input type="checkbox" id="sex"> Female
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="even-col">
+            CONTACT NUMBER:
+            <div class="col-contact">
+                <input type="number" id="contact">
+            </div>
+            Status Sibil <br> (Civil Status):
+            <div class="col-contact">
+            <input type="checkbox" name="single" value="single"> Single
+            <input type="checkbox" name="married" value="married"> Married <br>
+            <input type="checkbox" name="widow" value="widow"> Widow/er
+            <input type="checkbox" name="other" value="other"> Other
+            </div>
+        </div>
+        <br>
+        <div class="even-col">
+            Relasyon sa Benepisyaryo:<br> (Relationship to Beneficiary)
+            <div class="benef">
+                <input type="text" name="relationship" size="73">
+            </div>
+        </div>
+        <br>
+        <div class="even-col" >
+            TIRAHAN:<br>(Address)
+            <div class="col-name" >
+                <input type="text" id="street" size="17"><br>
+                <label for="street">No./Street/Purok</label>
+            </div>        
+            <div class="col-name">
+                <input type="text" id="barangay" size="17"><br>
+                <label for="barangay">Barangay</label>
+            </div>
+            <div class="col-name">
+                <input type="text" id="middlename" size="17"><br>
+                <label for="middlename">Municipal/City</label>
+            </div>
+            <div class="col-name">
+                <input type="text" id="province" size="17"><br>
+                <label for="province">Province</label>
+            </div>
+        </div>
+        <br>
+        <div class="even-col">
+            Trabaho: <br>(Occupation)
+            <div class="col-occupation">
+                <input type="text" id="occupation" size="50">
+            </div>
+            Sweldo: <br> (Salary) 
+            <div class="col-occupation">
+                <input class="in" type="number" id="salary" size="50">
+            </div>
+        </div>
+        <br>
+        <h2>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Indentifying Information)</h2>
+        <div class="even-col" >
+            PANGALAN:<br>(Name)
+            <div class="col-name" >
+                <input type="text" name="lastname" size="19"><br>
+                <label for="lastname">Apelyido<br>(Last Name)</label>
+            </div>        
+            <div class="col-name">
+                <input type="text" name="firstname" size="19"><br>
+                <label for="firstname">Unang Pangalan<br>(First Name)</label>
+            </div>
+            <div class="col-name">
+                <input type="text" name="middlename" size="19"><br>
+                <label for="middlename">Gitnang Pangalan<br>(Middle Name)</label>
+            </div>
+            <div class="col-name">
+                <input type="text" name="extensionname" size="13"><br>
+                <label for="extensionname">Extension Name<br><br></label>
+            </div>
+        </div>
+        <br>
+        <div class="even-col">
+            PETSA NG <br> KAPANGANAKAN: <br>(Birthday)
+            <div class="col-age">
+                <input type="date" id="birthdate">
+            </div>
+            <center style="margin-left: 5%;">EDAD  <br>(Age):</center>
+            <div class="col-age" style="margin-right: 2%;">
+                    <input type="number" id="age" size="5">
+            </div>
+            KASARIAN<br> (Sex)
+            <div class="col-age">
+                <div>
+                    <input type="checkbox" id="sex"> Male <br>
+                    <input type="checkbox" id="sex"> Female
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="even-col">
+            CONTACT NUMBER:
+            <div class="col-contact">
+                <input type="number" id="contact">
+            </div>
+            Status Sibil <br> (Civil Status):
+            <div class="col-contact">
+            <input type="checkbox" name="single" value="single"> Single
+            <input type="checkbox" name="married" value="married"> Married <br>
+            <input type="checkbox" name="widow" value="widow"> Widow/er
+            <input type="checkbox" name="other" value="other"> Other
+            </div>
+        </div>
+        <br>
+        <div class="even-col" >
+            TIRAHAN:<br>(Address)
+            <div class="col-name" >
+                <input type="text" id="street" size="17"><br>
+                <label for="street">No./Street/Purok</label>
+            </div>        
+            <div class="col-name">
+                <input type="text" id="barangay" size="17"><br>
+                <label for="barangay">Barangay</label>
+            </div>
+            <div class="col-name">
+                <input type="text" id="middlename" size="17"><br>
+                <label for="middlename">Municipal/City</label>
+            </div>
+            <div class="col-name">
+                <input type="text" id="province" size="17"><br>
+                <label for="province">Province</label>
+            </div>
+        </div>
+        <br>
+        <h2>KOMPOSISYON NG PAMILYA:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pangalan</th>
+                    <th>Edad</th>
+                    <th>Trabaho</th>
+                    <th>Buwanang Sahod</th>
+                </tr>
+                <tr>
+                    <td>1.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</body>
+</html>

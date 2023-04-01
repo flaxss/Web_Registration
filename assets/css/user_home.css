@@ -1,0 +1,108 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+  main{
+    /* min-height: 100vh; */
+  }
+  .content{
+      background-image: url("/img/slider1.png");
+      /* height: 100dvh; */
+      height: 91.5vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  .events{
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-color: rgb(181, 230, 181);
+  }
+  
+  /* First Content/ */
+  .title-p{
+      font-family: fantasy;
+      font-size: 2.5rem;
+      /* background-color: #496250; */
+  }
+  .content-p{
+      font-family: calibri;
+      font-size: 1.39rem;
+      /* background-color: #8fd3a1; */
+      padding: 1% 9% 1% 9%;
+  }
+  .content-btn-div{
+      height: 20%;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .content-btn{
+      font-size: 1.5rem;
+      padding: 8px 50px 15px 50px;
+  }
+  @media(max-width: 1000px){
+      .title-p{
+          font-size: 1.8rem;
+      }
+      .content-p{
+          font-size: .8rem;
+      }
+      .content-btn{
+          font-size: 1rem;
+      }
+      .content-btn{
+          padding: 4px 25px 7px 25px;
+      }
+  }
+  /* bug in college form */
+  /* .row{
+      position: relative;
+      width: 100.8%;
+      height: 25%;
+  } */
+  .details{
+      padding: 2%;
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 8%;
+      padding-right: 8%;
+      text-align: justify;
+      /* background:  rgb(101, 138, 101); */
+      background-color: #e9f3ec;
+  }
+  .details p{
+      position: relative;
+      margin-bottom: 10px;
+      /* padding:2%; */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical ;
+      overflow: hidden;
+  }
+  #details.active p{
+      display: block;
+  }
+  .time{
+      padding-top: 2%;
+      text-align: center;
+      align-items: center;
+      /* background:  rgb(133, 175, 133); */
+  }
+  #span::before{
+      content: 'show more';
+      color: aliceblue;
+      cursor: pointer;
+  }
+  #details.active #span::before{
+      content: 'show less';
+  }
+  
+  /* .container {
+      max-width: 1120px;
+      width: 100%;
+      padding: 40px 0;
+    } */
+  
+  

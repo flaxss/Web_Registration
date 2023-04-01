@@ -1,0 +1,365 @@
+<%- include('../../../include/header') %>
+    <title>Burial Assistance</title>
+</head>
+<body>
+    <%- include('../../../include/nav') %>
+    <main>
+        <div class="container my-2 p-2">
+            <h1 class="text-center">Update Response</h1>
+            <div class="main-content">
+                <form class="container-xl bg-light p-2" action="/transportation-assistance/<%- find.id %>/update-response" method="POST">
+                    <h4>IMPORMASYON UKOL SA KLIYENTE (Client's Identifying Information)</h4>
+                    <div class="row mb-3 g-1">
+                        <input type="text" name="service" value="<%- find.service %>" hidden>
+                        <input type="text" name="reference" value="<%- find.reference %>" hidden>
+                        <div class="col-md-3">  
+                            <label for="lastname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="lastname" required value="<%- find.lastname %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="firstname" class="form-label">First Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="firstname" required value="<%- find.firstname %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="middlename" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="middlename" value="<%- find.middlename %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="extensionname" class="form-label">Extension Name</label>
+                            <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="exname" value="<%- find.exname %>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">  
+                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control" id="birthdate" name="birthdate" required value="<%- find.birthdate %>">
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" required value="<%- find.age %>">
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="sex" class="form-label">Sex</label>
+                            <div class="form-control">
+                                <input type="radio" id="male" value="male" name="sex" required>
+                                <label for="male">Male</label> 
+                                <input type="radio" id="female" class="ms-3" value="female" name="sex" required>
+                                <label for="female">Female</label>
+                            </div>
+                            <script>
+                                let sex = '<%- find.sex %>'
+                                if(sex == 'MALE'){
+                                    document.getElementById('male').checked = true;
+                                    document.getElementById('female').checked = false;
+                                }else{
+                                    document.getElementById('female').checked = true;
+                                    document.getElementById('male').checked = false;
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">  
+                            <label for="contact-number" class="form-label">Contact Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+63</span>
+                                <input type="number" class="form-control" id="contact-number" name="contact_number" minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" required value="<%- find.contact_number %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">  
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="e.g. juandelacruz@gmail.com" required value="<%- find.email %>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="civil-status" class="form-label">Civil Status</label>
+                            <div class="form-control">
+                                <input type="radio" id="Single" name="civil_status" value="Single" required> Single    
+                                <input type="radio" id="Widow/er" class="ms-4" name="civil_status" value="Widow/er" required> Widow/er<br>
+                                <input type="radio" id="Married" name="civil_status" value="Married" required> Married
+                                <input type="radio" id="Other" class="ms-3" name="civil_status" value="Other" required> Other
+                            </div>
+                        </div>
+                        <script>
+                            let status = '<%- find.civil_status %>'
+                            if(status == 'Single'){
+                                document.getElementById('Single').checked = true
+                            }else if(status == 'Widow/er'){
+                                document.getElementById('Widow/er').checked = true
+                            }else if(status == 'Married'){
+                                document.getElementById('Married').checked = true
+                            }else if(status == 'Other'){
+                                document.getElementById('Other').checked = true
+                            }
+                        </script>
+                        <div class="col-md-6"> 
+                            <label for="relationship" class="form-label">Relationship to Beneficiary</label>
+                            <input type="text" id="relationship" class="form-control textOnly" name="beneficiary_relationship" value="<%- find.beneficiary_relationship %>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div >
+                            <label for="address" class="form-label">Address</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="street" required value="<%- find.street %>">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="barangay" aria-label="Barangay" name="brgy" required>
+                                <!-- <option value="" selected>-- Barangay --</option> -->
+                                <option value="" disabled selected>-- Barangay --</option>
+                                <option id="Aguado" value="Aguado">Aguado</option>
+                                <option id="Cabezas" value="Cabezas">Cabezas</option>
+                                <option id="Cabuco" value="Cabuco">Cabuco</option>
+                                <option id="Conchu" value="Conchu">Conchu</option>
+                                <option id="de Ocampo" value="de Ocampo">de Ocampo</option>
+                                <option id="Gregorio" value="Gregorio">Gregorio</option>
+                                <option id="Inocencio" value="Inocencio">Inocencio</option>
+                                <option id="Lallana" value="Lallana">Lallana</option>
+                                <option id="Lapidario" value="Lapidario">Lapidario</option>
+                                <option id="Luciano" value="Luciano">Luciano</option>
+                                <option id="Osorio" value="Osorio">Osorio</option>
+                                <option id="Perez" value="Perez">Perez</option>
+                                <option id="San Agustin" value="San Agustin">San Agustin</option>
+                            </select>
+                            <script>
+                                let barangay = '<%- find.brgy %>'
+                                if(barangay == 'Aguado'){
+                                    document.getElementById('Aguado').selected = true
+                                }else if(barangay == 'Cabezas'){
+                                    document.getElementById('Cabezas').selected = true
+                                }else if(barangay == 'Cabuco'){
+                                    document.getElementById('Cabuco').selected = true
+                                }else if(barangay == 'Conchu'){
+                                    document.getElementById('Conchu').selected = true
+                                    console.log(document.getElementById('Conchu').selected = true)
+                                }else if(barangay == 'de Ocampo'){
+                                    document.getElementById('de Ocampo').selected = true
+                                }else if(barangay == 'Gregorio'){
+                                    document.getElementById('Gregorio').selected = true
+                                }else if(barangay == 'Inocencio'){
+                                    document.getElementById('Inocencio').selected = true
+                                }else if(barangay == 'Lallana'){
+                                    document.getElementById('Lallana').selected = true
+                                }else if(barangay == 'Lapidario'){
+                                    document.getElementById('Lapidario').selected = true
+                                }else if(barangay == 'Luciano'){
+                                    document.getElementById('Luciano').selected = true
+                                }else if(barangay == 'Osorio'){
+                                    document.getElementById('Osorio').selected = true
+                                }else if(barangay == 'Perez'){
+                                    document.getElementById('Perez').selected = true
+                                }else if(barangay == 'San Agustin'){
+                                    document.getElementById('San Agustin').selected = true
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="municipality" aria-label="Municipality/City" name="municipal">
+                                <option value="Trece Martires City">Trece Martires City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="province" aria-label="Province" name="province">
+                                <option value="Cavite">Cavite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">  
+                            <label for="occupation" class="form-label">Occupation</label>
+                            <input type="text" class="form-control textOnly" id="occupation" name="occupation" required value="<%- find.occupation %>">
+                        </div>
+                        <div class="col-md-6">  
+                            <label for="salary" class="form-label">Salary</label>
+                            <input type="number" class="form-control" id="salary" name="salary" required value="<%- find.salary %>">
+                        </div>
+                    </div>
+                    <br><br>
+                    <h4>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Identifying Information)</h4>
+                    <div class="row mb-3">
+                        <div class="col-md-3">  
+                            <label for="lastname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required value="<%- find.bene_lastname %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="firstname" class="form-label">First Name</label>
+                            <input type="text" class="form-control textOnly" id="firstname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required value="<%- find.bene_firstname %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="middlename" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename" value="<%- find.bene_middlename %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="extensionname" class="form-label">Extension Name</label>
+                            <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="bene_exname" value="<%- find.bene_exname %>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">  
+                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control" id="birthdate" name="bene_birthdate" required value="<%- find.bene_birthdate %>">
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age " name="bene_age" required value="<%- find.bene_age %>">
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="sex" class="form-label">Sex</label>
+                            <div class="form-control">
+                                <input type="radio" id="bene_male" name="bene_sex" value="Male" required> Male
+                                <input type="radio" id="bene_female" class="ms-3" name="bene_sex" value="Female" required> Female
+                            </div>
+                            <script>
+                                let bene_sex = '<%- find.bene_sex %>'
+                                if(bene_sex == 'MALE'){
+                                    document.getElementById('bene_male').checked = true
+                                }else{
+                                    document.getElementById('bene_female').checked = true
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">  
+                            <label for="contact-number" class="form-label">Contact Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+63</span>
+                                <input type="tel" class="form-control" id="contact-number " name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required value="<%- find.bene_contact_number %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">  
+                            <label for="civil-status" class="form-label">Civil Status</label>
+                            <div class="form-control">
+                                <input type="radio" id="bene_Single" name="bene_civil_status" value="Single" required> Single    
+                                <input type="radio" id="bene_Widow/er" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
+                                <input type="radio" id="bene_Married" name="bene_civil_status" value="Married" required> Married
+                                <input type="radio" id="bene_Other" class="ms-3" name="bene_civil_status" value="Other" required> Other
+                            </div>
+                            <script>
+                                let bene_status = '<%- find.bene_civil_status %>'
+                                if(bene_status == 'Single'){
+                                    document.getElementById('bene_Single').checked = true
+                                }else if(bene_status == 'Widow/er'){
+                                    document.getElementById('bene_Widow/er').checked = true
+                                }else if(bene_status == 'Married'){
+                                    document.getElementById('bene_Married').checked = true
+                                }else if(bene_status == 'Other'){
+                                    document.getElementById('bene_Other').checked = true
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div >
+                            <label for="address" class="form-label">Address</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required value="<%- find.bene_street %>">
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <input type="text" class="form-control" id="address" placeholder="Barangay" aria-label="Barangay"> -->
+                            <select class="form-control" id="barangay" aria-label="Barangay" name="bene_brgy" required>
+                                <!-- <option value="" selected>-- Barangay --</option> -->
+                                <option value="" disabled selected>-- Barangay --</option>
+                                <option id="bene_Aguado" value="Aguado">Aguado</option>
+                                <option id="bene_Cabezas" value="Cabezas">Cabezas</option>
+                                <option id="bene_Cabuco" value="Cabuco">Cabuco</option>
+                                <option id="bene_Conchu" value="Conchu">Conchu</option>
+                                <option id="bene_de Ocampo" value="de Ocampo">de Ocampo</option>
+                                <option id="bene_Gregorio" value="Gregorio">Gregorio</option>
+                                <option id="bene_Inocencio" value="Inocencio">Inocencio</option>
+                                <option id="bene_Lallana" value="Lallana">Lallana</option>
+                                <option id="bene_Lapidario" value="Lapidario">Lapidario</option>
+                                <option id="bene_Luciano" value="Luciano">Luciano</option>
+                                <option id="bene_Osorio" value="Osorio">Osorio</option>
+                                <option id="bene_Perez" value="Perez">Perez</option>
+                                <option id="bene_San Agustin" value="San Agustin">San Agustin</option>
+                            </select>
+                            <script>
+                                let bene_barangay = '<%- find.bene_brgy %>'
+                                if(bene_barangay == 'Aguado'){
+                                    document.getElementById('bene_Aguado').selected = true
+                                }else if(bene_barangay == 'Cabezas'){
+                                    document.getElementById('bene_Cabezas').selected = true
+                                }else if(bene_barangay == 'Cabuco'){
+                                    document.getElementById('bene_Cabuco').selected = true
+                                }else if(bene_barangay == 'Conchu'){
+                                    document.getElementById('bene_Conchu').selected = true
+                                }else if(bene_barangay == 'de Ocampo'){
+                                    document.getElementById('bene_de Ocampo').selected = true
+                                }else if(bene_barangay == 'Gregorio'){
+                                    document.getElementById('bene_Gregorio').selected = true
+                                }else if(bene_barangay == 'Inocencio'){
+                                    document.getElementById('bene_Inocencio').selected = true
+                                }else if(bene_barangay == 'Lallana'){
+                                    document.getElementById('bene_Lallana').selected = true
+                                }else if(bene_barangay == 'Lapidario'){
+                                    document.getElementById('bene_Lapidario').selected = true
+                                }else if(bene_barangay == 'Luciano'){
+                                    document.getElementById('bene_Luciano').selected = true
+                                }else if(bene_barangay == 'Osorio'){
+                                    document.getElementById('bene_Osorio').selected = true
+                                }else if(bene_barangay == 'Perez'){
+                                    document.getElementById('bene_Perez').selected = true
+                                }else if(bene_barangay == 'San Agustin'){
+                                    document.getElementById('bene_San Agustin').selected = true
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="municipality" aria-label="Municipality/City" name="bene_municipal">
+                                <option value="Trece Martires City" selected>Trece Martires City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="province" aria-label="Province" name="bene_province">
+                                <option value="Cavite" selected>Cavite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <h4>KOMPOSISYON NG PAMILYA</h4>
+                    <div class="row mb-3 text-center">
+                        <div class="col-md-4">  
+                            <label for="c-name" class="form-label">Name</label>
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="1" value="<%- find.family_name[0] %>">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="2" value="<%- find.family_name[1] %>">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="3" value="<%- find.family_name[2] %>">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="4" value="<%- find.family_name[3] %>">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="5" value="<%- find.family_name[4] %>">
+                        </div>
+                        <div class="col-md-2">  
+                            <label for="c-age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="1" value="<%- find.family_age[0] %>">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="2" value="<%- find.family_age[1] %>">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="3" value="<%- find.family_age[2] %>">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="4" value="<%- find.family_age[3] %>">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="5" value="<%- find.family_age[4] %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="c-occupation" class="form-label">Occupation</label>
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="1" value="<%- find.family_occupation[0] %>">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="2" value="<%- find.family_occupation[1] %>">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="3" value="<%- find.family_occupation[2] %>">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="4" value="<%- find.family_occupation[3] %>">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="5" value="<%- find.family_occupation[4] %>">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="c-salary" class="form-label">Monthly Salary</label>
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="1" value="<%- find.family_salary[0] %>">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="2" value="<%- find.family_salary[1] %>">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="3" value="<%- find.family_salary[2] %>">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="4" value="<%- find.family_salary[3] %>">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="5" value="<%- find.family_salary[4] %>">
+                        </div>
+                    </div>
+                    <button type="submit" class="form-control btn btn-success">submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <%- include('../../../include/footer') %>
+</body>
+</html>

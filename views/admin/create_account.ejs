@@ -1,0 +1,50 @@
+<%- include('include/head') %> 
+    <title>Create Account</title>
+</head>
+<body>
+    <main class="main">
+        <%- include('include/nav_link') %> 
+        <div class="create-acc-main-content">
+            <nav class="navbar bg-body-tertiary p-0">
+                <div class="px-4 w-100">
+                    <span style="font-size: 1.5rem; font-weight: bold;">Create Account</span>
+                </div>
+            </nav>
+            <div style=" width: 100%; height: 80vh; display:flex; justify-content: center;">
+                <form class="form-control " style="width: 50%; height: 80vh;display:flex; justify-content: center;" action="/a/create-account" method="POST">
+                    <div style="width: 90%;">
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="firstname">First Name</label>
+                            <input class="form-control" type="text" name="firstname" id="firstname">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="middlename">Middle Name</label>
+                            <input class="form-control" type="text" name="middlename" id="middlename">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="lastname">Last Name</label>
+                            <input class="form-control" type="text" name="lastname" id="lastname">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="contact">Contact</label>
+                            <input class="form-control" type="text" name="contact" id="contact">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <button type="submit" class="form-control btn btn-success" onclick="warning()">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- footer -->
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<%- include('include/head') %> 
+    <title>Application</title>
+</head>
+<body>
+    <main class="main">
+        <%- include('include/nav_link') %> 
+        <div class="main-content">
+            <div class="content-table">
+                <%- include('include/application_search') %>
+                <div class="table-responsive">
+                    <!-- <span class="col-md-2 bg-light text-center nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create Application</span>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="/a/application/college/form">College Educational Assistance</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/a/application/medical/form">Medical Assistance</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/a/application/burial/form">Burial Assistance</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/a/application/transportation/form">Transportation Assistance</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/a/application/emergency/form">Emergency Shelter Assistance</a>
+                        </li>
+                    </ul>
+                    <hr class="mb-4"> -->
+                    <div class="table-div">
+                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
+                            <thead style="background-color: #EEF1F6;">
+                                <tr class="table-responsive align-middle">
+                                    <th>Social Service</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Reference</th>
+                                    <th>Contact Number</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #FAFBFC;">
+                                <% find.forEach(info => { %>
+                                    <tr>
+                                        <td><%- info.service %></td>
+                                        <td>
+                                            <% if(info.service == 'College Educational Assistance') { %>
+                                                <%- info.firstname %> <%- info.middlename %> <%- info.lastname %>
+                                            <% }else{ %>
+                                                <%- info.bene_firstname %> <%- info.bene_middlename %> <%- info.bene_lastname %>
+                                            <% } %>
+                                        </td>
+                                        <td><%- info.status %></td>
+                                        <td><%- info.reference %></td>
+                                        <td><%- info.contact_number %></td>
+                                        <td><%- info.email %></td>
+                                        <% if(info.service == 'College Educational Assistance') { %>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a onclick="accept()" href="/a/application/educational-assistance/<%- info.id %>/accept" class="btn btn-success">accept</a>
+                                                    <a href="/a/application/educational-assistance/<%- info.id %>/update" class="btn btn-primary">update</a>
+                                                    <form action="/a/application/educational-assistance/<%- info.id %>/archive?_method=PATCH" method="POST" class="btn-group">
+                                                        <button class="btn btn-warning">archive</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        <% }else{ %>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a onclick="accept()" href="/a/application/aics-assistance/<%- info.id %>/accept" class="btn btn-success">accept</a>
+                                                    <a href="/a/application/aics-assistance/<%- info.id %>/update" class="btn btn-primary">update</a>
+                                                    <form action="/a/application/aics-assistance/<%- info.id %>/archive?_method=PATCH" method="POST" class="btn-group">
+                                                        <button class="btn btn-warning">archive</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        <% } %>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <% if(find == false) { %>
+                            <p class="text-center">Not Found</p>
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<%- include('../../include/header') %>
+<title>College Educational Assistance</title>
+
+    <!-- asterisk -->
+    <style>
+        .required {
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <%- include('../../include/nav') %>
+    <main>
+        <div class="container my-2 p-2">
+            <h1 class="text-center">College Educational Assistance</h1>
+            <form class="container-xl bg-light p-2 needs-validation" novalidate action="/college-assistance/form" method="POST">
+                <h4>I. PERSONAL INFORMATION</h4>
+                <div class="row mb-3 g-1">
+                    <div class="col-md-3">  
+                        <label for="lastname" class="form-label">Last Name<span class="required">*</span></label>
+                        <input type="text" class="form-control textOnly" id="lastname" placeholder="eg. Dela Cruz" name="lastname" required>
+                        <div class="invalid-feedback">
+                            Please enter your last name.
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="firstname" class="form-label">First Name<span class="required">*</span></label>
+                        <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" name="firstname" required>
+                        <div class="invalid-feedback">
+                            Please enter your first name.
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="middlename" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g Santos"  name="middlename">
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="extensionname" class="form-label">Extension Name</label>
+                        <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." name="exname">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Email Address<span class="required">*</span></label>
+                        <input type="email" class="form-control" placeholder="e.g. juandelacruz@gmail.com" name="email" required>
+                        <div class="invalid-feedback">
+                            Please enter your valid email address.
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <label for="appointment_date" class="form-label">Select Date of Appointment</label>
+                        <input type="date" id="appointment_data" class="form-control" placeholder="Appointment Date" name="appointment_date" required>
+                    </div> -->
+                    <div class="col-md-6">
+                        <label for="appointment_date" class="form-label">Select Date of Appointment<span class="required">*</span></label>
+                        <select name="event_date" id="" class="form-control" required>
+                            <option value="" disabled selected>Please Select Date</option>
+                            <% events.forEach(data => { %>
+                                <div class="input-group">
+                                    <option value="<%- data.event_date %>" class="form-control">
+                                        <span><%- data.event_date %></span>
+                                        <span>remaining slot <%- data.quota %></span>
+                                    </option>
+                                </div>
+                            <% }) %>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select an appointment date.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="residential-address" class="form-label">Residential Address<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-3 ">
+                        <input type="text" class="form-control" id="residential-address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="r_street" required>
+                        <div class="invalid-feedback">
+                            Please enter your No./Street/Purok.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="residentialaddress" aria-label="Barangay" name="r_brgy" required>
+                            <option value="" disabled selected>-- Barangay --</option>
+                            <option value="Aguado">Aguado</option>
+                            <option value="Cabezas">Cabezas</option>
+                            <option value="Cabuco">Cabuco</option>
+                            <option value="Conchu">Conchu</option>
+                            <option value="de Ocampo">de Ocampo</option>
+                            <option value="Gregorio">Gregorio</option>
+                            <option value="Inocencio">Inocencio</option>
+                            <option value="Lallana">Lallana</option>
+                            <option value="Lapidario">Lapidario</option>
+                            <option value="Luciano">Luciano</option>
+                            <option value="Osorio">Osorio</option>
+                            <option value="Perez">Perez</option>
+                            <option value="San Agustin">San Agustin</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select your barangay.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="residential-address" aria-label="Municipality/City" name="r_municipal">
+                            <option value="Trece Martires City">Trece Martires City</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="residential-address" aria-label="Province" name="r_province">
+                            <option value="Cavite">Cavite</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="present-address" class="form-label">Present Address<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="p_street" required>
+                        <div class="invalid-feedback">
+                            Please enter your No./Street/Purok.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="present-address" aria-label="Barangay" name="p_brgy" required>
+                            <option value="" disabled selected>-- Barangay --</option>
+                            <option value="Aguado">Aguado</option>
+                            <option value="Cabezas">Cabezas</option>
+                            <option value="Cabuco">Cabuco</option>
+                            <option value="Conchu">Conchu</option>
+                            <option value="de Ocampo">de Ocampo</option>
+                            <option value="Gregorio">Gregorio</option>
+                            <option value="Inocencio">Inocencio</option>
+                            <option value="Lallana">Lallana</option>
+                            <option value="Lapidario">Lapidario</option>
+                            <option value="Luciano">Luciano</option>
+                            <option value="Osorio">Osorio</option>
+                            <option value="Perez">Perez</option>
+                            <option value="San Agustin">San Agustin</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select your barangay.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="present-address" aria-label="Municipality/City" name="p_municipal">
+                            <option value="Trece Martires City">Trece Martires City</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="present-address" aria-label="Province" name="p_province">
+                            <option value="Cavite">Cavite</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">  
+                        <label for="birthdate" class="form-label">Birthdate<span class="required">*</span></label>
+                        <input type="date" class="form-control" id="birthdate " name="date_of_birth" required>
+                        <div class="invalid-feedback">
+                            Please select your birthdate.
+                        </div>
+                    </div>
+                    <div class="col-md-5">  
+                        <label for="birthplace" class="form-label">Place of Birthdate<span class="required">*</span></label>
+                        <input type="text" class="form-control" id="birthplace" name="place_of_birth" required>
+                        <div class="invalid-feedback">
+                            Please enter your place of birth.
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="citizenship" class="form-label">Citizenship<span class="required">*</span></label>
+                        <input type="text" class="form-control textOnly" id="citizenship" name="citizenship" required>
+                        <div class="invalid-feedback">
+                            Please enter your citizenship.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">  
+                        <label for="age" class="form-label">Age<span class="required">*</span></label>
+                        <input type="number" class="form-control" min="0" id="age" name="age" required>
+                        <div class="invalid-feedback">
+                            Please enter your age.
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="select_sex" class="form-label">Sex<span class="required">*</span></label>
+                        <div class="form-control" id="select_sex" required>
+                            <input type="radio" id="male" name="sex" value="Male" required>
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" class="ms-3" name="sex" value="Female" required>
+                            <label for="female">Female</label> 
+                            <div class="invalid-feedback">
+                                Please select your sex.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <label for="civil-status" class="form-label">Civil Status<span class="required">*</span></label>
+                        <div class="form-control">
+                            <div class="form">
+                                <input type="radio" id="single" name="civil_status" value="single" required>
+                                <label for="single">Single</label>    
+                                <input type="radio" id="widow/er" class="ms-4" name="civil_status" value="widow/er" required>
+                                <label for="widow/er">Widow/er</label>
+                            </div>
+                            <input type="radio" id="married" name="civil_status" value="married" required>
+                            <label for="married">Married</label>
+                            <input type="radio" id="other" class="ms-3" name="civil_status" value="other" required>
+                            <label for="other">Other</label>
+                            <div class="invalid-feedback">
+                                Please select your civil status.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text">+63</span>
+                            <input type="tel" class="form-control" id="contact-number " minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" name="contact_number" required>
+                            <div class="invalid-feedback">
+                                Please enter your valid contact number.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h4>II. FAMILY BACKGROUND</h4>
+                <div class="row mb-3">
+                    <div >
+                        <label for="spouse" class="form-label">Spouse If Applicable</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-lastname" placeholder="Last Name" aria-label="Last Name" name="spouse_lname" >
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-firstname" placeholder="First Name" aria-label="First Name" name="spouse_fname" >
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-middlename" placeholder="Middle Name" aria-label="Middle Name" name="spouse_mname" >
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="spouse-extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="spouse_exname">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"> 
+                        <label for="spouse-occupation" class="form-label">Occupation</label>
+                        <input type="text" id="spouse-occupation" class="form-control textOnly" name="spouse_occupation">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="mother" class="form-label">Mother's Name<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="mother-lastname" placeholder="Last Name" aria-label="Last Name" name="mother_lname" >
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="mother-firstname" placeholder="First Name" aria-label="First Name" name="mother_fname">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="mother-middlename" placeholder="Middle Name" aria-label="Middle Name" name="mother_mname">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"> 
+                        <label for="mother-occupation" class="form-label">Occupation</label>
+                        <input type="text" id="mother-occupation" class="form-control textOnly" name="mother_occupation">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="father" class="form-label">Father's Name<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-lastname" placeholder="Last Name" aria-label="Last Name" name="father_lname">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-firstname" placeholder="First Name" aria-label="First Name" name="father_fname">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-middlename" placeholder="Middle Name" aria-label="Middle Name" name="father_mname">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control textOnly" id="father-extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="father_exname">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-13"> 
+                        <label for="father-occupation" class="form-label">Occupation</label>
+                        <input type="text" id="father-occupation" class="form-control textOnly" name="father_occupation">
+                    </div>
+                </div>
+                <br>
+                <h4>III. EDUCATIONAL BACKGROUND</h4>
+                <div class="row mb-3">
+                    <div >
+                        <label for="elementary" class="form-label">Elementary<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="e-school-name" placeholder="Name of School" aria-label="Name of School" name="e_name_of_school" required>
+                        <div class="invalid-feedback">
+                            Please enter your elementary school.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="e-school-year" placeholder="Year Graduated" aria-label="School Year" name="e_school_year" required>
+                        <div class="invalid-feedback">
+                            Please enter year graduated.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="secondary" class="form-label">Secondary<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="s-school-name" placeholder="Name of High School You Graduatedaria-label="Name of School" name="s_name_of_school" required>
+                        <div class="invalid-feedback">
+                            Please enter the name of school.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="s-school-year" placeholder="Year Graduated" aria-label="School Year" name="s_school_year" required>
+                        <div class="invalid-feedback">
+                            Please enter year graduated.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="vocational" class="form-label">Vocational</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="v-school-name" placeholder="Name of School" aria-label="Name of School" name="v_name_of_school">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="v-school-year" placeholder="Year Graduated" aria-label="School Year" name="v_school_year">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="college" class="form-label">College<span class="required">*</span></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control textOnly" id="c-school-name" placeholder="Name of School" aria-label="Name of School" name="c_name_of_school" required>
+                        <div class="invalid-feedback">
+                            Please enter your school university.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="c-school-year" placeholder="Year Graduated" aria-label="School Year" name="c_school_year" required>
+                        <div class="invalid-feedback">
+                            Please enter year graduated.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"> 
+                        <label for="degree-course" class="form-label">Degree/Course<span class="required">*</span></label>
+                        <input type="text" id="degree-course" class="form-control textOnly" name="course" required>
+                        <div class="invalid-feedback">
+                            Please enter your degree/course.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-7"> 
+                        <label for="yearlevel" class="form-label">Year Level<span class="required">*</span></label>
+                        <div class="form-control">
+                            <input type="radio" id="1st" name="year_level" value="1st" required>
+                            <label for="1st">1st</label>
+                            <input type="radio" id="2nd" class="ms-5" name="year_level" value="2nd" required>
+                            <label for="2nd">2nd</label>
+                            <input type="radio" id="3rd" class="ms-5" name="year_level" value="3rd" required>
+                            <label for="3rd">3rd</label>
+                            <input type="radio" id="4th" class="ms-5" name="year_level" value="4th" required> 
+                            <label for="4th">4th</label>
+                            <input type="radio" id="5th" class="ms-5" name="year_level" value="5th" required>
+                            <label for="5th">5th</label>
+                            <div class="invalid-feedback">
+                                Please select your year level.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5"> 
+                        <label for="degree-course" class="form-label">Semester<span class="required">*</span></label>
+                        <div class="form-control">
+                            <input type="radio" id="1st_sem" name="sem" value="1st" required>
+                            <label for="1st_sem">1st</label>    
+                            <input type="radio" id="2nd_sem" class="ms-5" name="sem"value="2nd" required>
+                            <label for="2nd_sem">2nd</label>
+                            <input type="radio" id="3rd_sem" class="ms-5" name="sem" value="3rd" required>
+                            <label for="3rd_sem">3rd</label>
+                            <div class="invalid-feedback">
+                                Please select semester.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h4>IV. CHARACTER REFERENCE</h4>
+                <div class="row mb-3 text-center">
+                    <div class="col-md-4">  
+                        <label for="cr-name" class="form-label">Name</label>
+                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="1">
+                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="2">
+                    </div>
+                    <div class="col-md-4">  
+                        <label for="cr-address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="1">
+                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="2">
+                    </div>
+                    <!-- <div class="col-md-4">  
+                        <label for="cr-contact" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="1" maxlength="9" onkeypress="return isNumberKey(event)">
+                        <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="2" maxlength="9" onkeypress="return isNumberKey(event)">
+                    </div> -->
+                    <div class="col-md-4">  
+                        <label for="cr-contact" class="form-label">Contact Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text">+63</span>
+                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="1" maxlength="9" onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">+63</span>
+                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="2" maxlength="9" onkeypress="return isNumberKey(event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                      <label class="form-check-label" for="invalidCheck">
+                        Agree to terms and conditions.
+                      </label>
+                      <div class="invalid-feedback">
+                        You must agree before submitting.
+                      </div>
+                    </div>
+                </div>
+                <button class="form-control btn btn-success">submit</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- form validation -->
+    <script>
+        (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                alert("Please fill out all the required information.");
+            }
+            form.classList.add('was-validated')
+            }, false)
+        })
+        })()
+    </script>
+    <%- include('../../include/footer') %>
+</body>
+</html>

@@ -1,0 +1,62 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    width: 100%;
+    height: 100%;
+    background:rgb(204,204,204);
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.page{
+    background: #ffffff;
+    display: block;
+    margin: 3px auto 3px auto;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: .75em;
+}
+.page[size="A4"] {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+.image img{
+    height: 100%;
+    width: 100%;
+}
+.picture2x2{
+    border-left: 2px solid #000;
+    border-bottom: 1px solid rgb(158, 157, 157);
+    background-color:  rgb(158, 157, 157);
+    text-align: center; font-size: 2rem;
+    color: #fff;
+}
+.oath{
+    text-indent: 5rem;
+    margin: 2% 3% 0% 3%;
+    text-align: justify;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.imgg{
+    height: 85px;
+}
+.imgg img{
+    height: 100%;
+}
+@media(max-width: 1000px){
+    .page{
+        font-size: .77rem;
+    }
+    .picture2x2{
+        font-size: .9rem;
+    }
+    .imgg{
+        height: 75px;
+    }
+    .imgg img{
+        height: 100%;
+    }
+}

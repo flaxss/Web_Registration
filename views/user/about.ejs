@@ -1,0 +1,49 @@
+<%- include('include/header') %>
+    <title>About</title>
+    <style>
+        main{
+            /* background-color: aqua; */
+            height: 91.5vh;
+        }
+        .mapping{
+            height: 91.5vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(168, 185, 185);
+        }
+        #map {
+            width: 35vw;
+            min-width: 90%;
+            height: 60vh;
+        }
+    </style>
+    
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsMh1ez5P5I8rTbJDelGvaWNY6t_hlEt4&callback=initMap">
+    </script>
+</head>
+<body>
+    <%- include('include/nav') %>
+    <main>
+        <div class="mapping">
+            <div class="map" id="map"></div>
+        </div>
+        <div class="m_v">
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, iusto facilis sint placeat unde quod officiis excepturi obcaecati esse modi dolorum nostrum nemo ducimus, distinctio maiores perspiciatis repellendus rem! Aperiam repellendus, quia fugit praesentium impedit incidunt beatae ullam, perspiciatis ut ducimus nostrum nisi nam maxime voluptatibus!
+            </div>
+        </div>
+    </main>
+    <%- include('include/footer') %>
+    <script>
+        function initMap(){
+            let trece = {lat: 14.2866478, lng: 120.861378}
+            let map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 15, center: trece}
+            );
+            let marker = new google.maps.Marker({position: trece, map: map})
+        }
+    </script>
+</body>
+</html>

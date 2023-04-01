@@ -1,0 +1,24 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.container{
+    /* background-color: aqua; */
+}
+.content{
+    background-color: aqua;
+}
+/* .create_post{
+    background-color: aquamarine;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+}
+.view-post{
+    background-color: blueviolet;
+    width: 100%;
+} */

@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: roboto ,iranyekan;;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(rgba(33,33,33,.9)100%,rgba(72,72,72,.9)100%),url(/img/err_bg.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-color: #F2F2F2;
+    border-radius: 2%;
+}
+p{
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}

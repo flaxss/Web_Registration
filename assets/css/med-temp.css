@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    background:rgb(204,204,204);
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.page{
+    background: #ffffff;
+    display: block;
+    margin: 3px auto 3px auto;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+    overflow-x: hidden;
+}
+img{
+    width: 100%
+}
+form{
+    font-size: .7rem;
+    font-family: Arial;
+}
+.even-col{
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.even-col .col{
+    display: flex;
+    flex-basis: 100%;
+    padding: 1%;
+}
+.even-col .col input {
+    margin-left:10px;
+}
+h2{
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: medium;
+}
+.col-name{
+    flex-basis: 100%;
+    margin-left: 2px;
+    align-self: center;
+    text-align: center;
+}
+.col-age{
+    margin-left: 5%;
+}
+.col-contact{
+    margin-right: 10%;
+    margin-left: 5%;
+}
+.benef{
+    display: flex;
+    margin-left: 2%;
+}
+.col-occupation{
+    display: flex;
+    margin-left: 1%;
+    margin-right: 3%;
+}
+.col-occupation input.in{
+    margin-left: 5%;
+}
+table, td, th {
+    border: 1px solid rgb(42, 42, 42);
+  }
+table{
+    width: 90%;
+    border-collapse: collapse;
+    margin-left: 5%;
+}

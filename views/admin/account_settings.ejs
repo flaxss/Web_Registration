@@ -1,0 +1,47 @@
+    <%- include('include/head') %>
+    <link rel="stylesheet" href="/css/account.css">
+    <title>Account Setting</title>
+</head>
+<body> 
+    <main class="main">
+        <%- include('include/nav_link') %>
+        <div class="main-content">
+            <div class="container-fluid acc-con">
+                <div class="acc-heading">
+                    <p class="acc-heading-p">Profile Setting</p>
+                </div>
+                <div class="acc-content d-flex" style="justify-content: space-around;">
+                    <div class="acc-content-l" >
+                        <div class="acc-img">
+                            <img class="img" src="/<%- user.img_name %>" alt="" >
+                        </div>
+                        <div class="acc-upload">
+                            <form class="acc-upload-form" action="/a/settings/<%- user.id %>?_method=PATCH" method="POST" enctype="multipart/form-data" >
+                                <input class="form-control" type="file" name="image" accept="image/*" required style="width: 70%">
+                                <button class="button-upload" type="submit" >upload</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div class="acc-content-r">
+                        <form action="" method="POST" style="padding-top: 10%;" >
+                            <div class="input-size" >
+                                <label for="">First Name</label>
+                                <input class="form-control border border-success" type="text" value="<%- user.firstname %>" aria-label="readonly input example"style="width: 50%" readonly>
+                            </div>
+                            <div class="input-size">
+                                <label for="">Middle Name</label>
+                                <input class="form-control border border-success" type="text" value="<%- user.middlename %> " aria-label="readonly input example"style="width: 50%" readonly>
+                            </div>
+                            <div class="input-size">
+                                <label for="">Last Name</label>
+                                <input class="form-control border border-success" type="text" value="<%- user.lastname %>  " aria-label="readonly input example"style="width: 50%" readonly>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

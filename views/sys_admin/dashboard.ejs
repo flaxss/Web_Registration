@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <form action="/sys-logout" method="POST">
+        <button>logout</button>
+    </form>
+    <form action="/create-account" method="POST">
+        <div>
+            <label for="firstname">firstname</label>
+            <input type="text" name="firstname" id="firstname" required>
+        </div>
+        <div>
+            <label for="middlename">middlename</label>
+            <input type="text" name="middlename" id="middlename" required>
+        </div>
+        <div>
+            <label for="lastname">lastname</label>
+            <input type="text" name="lastname" id="lastname" required>
+        </div>
+        <div>
+            <label for="contact">contact number</label>
+            <input type="text" name="contact" id="contact" required>
+        </div>
+        <div>
+            <label for="email">email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="password">password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div>
+            <select name="accountType" id="">
+                <option value="staff">staff</option>
+                <option value="admin">admin</option>
+            </select>
+        </div>
+        <button>create account</button>
+    </form>
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>email</th>
+                <th>password</th>
+                <th>account type</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% accounts.forEach(info => { %>
+                <tr>
+                    <td><%- info.email %></td>
+                    <td><%- info.password %></td>
+                    <td><%- info.accountType %></td>
+                    <td>
+                        <form action="/delete-account/<%- info.id %>?_method=DELETE" method="POST">
+                            <button>delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

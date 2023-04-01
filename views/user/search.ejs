@@ -1,0 +1,59 @@
+<%- include('include/header') %>
+    <title>Search</title>
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+    <main>
+        <div class="content" style="height: 100vh;">
+            <div id="myModal" class="modal fade" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h5 class="modal-title text-white">Result</h5>
+                            <a href="/" class="text-decoration-none text-white">&times;</a>
+                        </div>
+                        <div class="modal-body">
+                            <% if(result != null) { %>
+                            <table class="table responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                        <th>
+                                            <% if(result.status == 'pending') { %>
+                                            <% }else if(result.status == 'completed'){ %>
+                                                Wait until
+                                            <% } %>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td><%- result.service %></td>
+                                            <td><%- result.status %></td>
+                                            <td>
+                                                <% if(result.status == 'pending') { %>
+
+                                                <% }else if(result.status == 'completed'){ %>
+                                                    <%- format %>
+                                                <% } %>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <% } else { %>
+                                <p class="text-center">not found</p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#myModal").modal('show');
+            });
+        </script>
+    </main>
+</body>
+</html>

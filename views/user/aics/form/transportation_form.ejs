@@ -1,0 +1,263 @@
+<%- include('../../include/header') %>
+    <title>Transportation Assistance</title>
+</head>
+<body>
+    <%- include('../../include/nav') %>
+    <main>
+        <div class="container my-2 p-2">
+            <h1 class="text-center">Transportation Assistance Registration Form</h1>
+            <div class="main-content">
+                <form action="/transportation-assistance/form" method="POST" class="container-xl bg-light">
+                    <h4>IMPORMASYON UKOL SA KLIYENTE (Client's Identifying Information)</h4>
+                    <div class="row mb-3 g-1">
+                        <input type="text" name="service" value="Transportation Assistance" hidden>
+                        <div class="col-md-3">  
+                            <label for="lastname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="lastname" required>
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="firstname" class="form-label">First Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="firstname" required>
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="middlename" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="middlename">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="extensionname" class="form-label">Extension Name</label>
+                            <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="exname">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">  
+                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" required>
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="sex" class="form-label">Sex</label>
+                            <div class="form-control">
+                                <input type="radio" id="male" value="male" name="sex" required>
+                                <label for="male">Male</label> 
+                                <input type="radio" id="female" class="ms-3" value="female" name="sex" required>
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">  
+                            <label for="contact-number" class="form-label">Contact Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+63</span>
+                                <input type="tel" class="form-control" id="contact-number" name="contact_number" minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">  
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="e.g. juandelacruz@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="civil-status" class="form-label">Civil Status</label>
+                            <div class="form-control">
+                                <input type="radio" id="civil-status" name="civil_status" value="Single" required> Single    
+                                <input type="radio" id="civil-status" class="ms-4" name="civil_status" value="Widow/er" required> Widow/er<br>
+                                <input type="radio" id="civil-status" name="civil_status" value="Married" required> Married
+                                <input type="radio" id="civil-status" class="ms-3" name="civil_status" value="Other" required> Other
+                            </div>
+                        </div>
+                        <div class="col-md-6"> 
+                            <label for="relationship" class="form-label">Relationship to Beneficiary</label>
+                            <input type="text" id="relationship" class="form-control textOnly" name="beneficiary_relationship">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div >
+                            <label for="address" class="form-label">Address</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="street" required>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="barangay" aria-label="Barangay" name="brgy" required>
+                                <!-- <option value="" selected>-- Barangay --</option> -->
+                                <option value="" disabled selected>-- Barangay --</option>
+                                <option value="Aguado">Aguado</option>
+                                <option value="Cabezas">Cabezas</option>
+                                <option value="Cabuco">Cabuco</option>
+                                <option value="Conchu">Conchu</option>
+                                <option value="de Ocampo">de Ocampo</option>
+                                <option value="Gregorio">Gregorio</option>
+                                <option value="Inocencio">Inocencio</option>
+                                <option value="Lallana">Lallana</option>
+                                <option value="Lapidario">Lapidario</option>
+                                <option value="Luciano">Luciano</option>
+                                <option value="Osorio">Osorio</option>
+                                <option value="Perez">Perez</option>
+                                <option value="San Agustin">San Agustin</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="municipality" aria-label="Municipality/City" name="municipal">
+                                <option value="Trece Martires City">Trece Martires City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="province" aria-label="Province" name="province">
+                                <option value="Cavite">Cavite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">  
+                            <label for="occupation" class="form-label">Occupation</label>
+                            <input type="text" class="form-control textOnly" id="occupation" name="occupation" required>
+                        </div>
+                        <div class="col-md-6">  
+                            <label for="salary" class="form-label">Salary</label>
+                            <input type="number" class="form-control" id="salary" name="salary" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <h4>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Identifying Information)</h4>
+                    <div class="row mb-3">
+                        <div class="col-md-3">  
+                            <label for="lastname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required>
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="firstname" class="form-label">First Name</label>
+                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required>
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="middlename" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="extensionname" class="form-label">Extension Name</label>
+                            <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="bene_exname">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">  
+                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control" id="birthdate" name="bene_birthdate" required>
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age " name="bene_age" required>
+                        </div>
+                        <div class="col-md-4">  
+                            <label for="sex" class="form-label">Sex</label>
+                            <div class="form-control">
+                                <input type="radio" id="sex" name="bene_sex" value="Male" required> Male
+                                <input type="radio" id="sex" class="ms-3" name="bene_sex" value="Female" required> Female
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">  
+                            <label for="contact-number" class="form-label">Contact Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+63</span>
+                                <input type="tel" class="form-control" id="contact-number " name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">  
+                            <label for="civil-status" class="form-label">Civil Status</label>
+                            <div class="form-control">
+                                <input type="radio" id="civil-status" name="bene_civil_status" value="Single" required> Single    
+                                <input type="radio" id="civil-status" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
+                                <input type="radio" id="civil-status" name="bene_civil_status" value="Married" required> Married
+                                <input type="radio" id="civil-status" class="ms-3" name="bene_civil_status" value="Other" required> Other
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div >
+                            <label for="address" class="form-label">Address</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <input type="text" class="form-control" id="address" placeholder="Barangay" aria-label="Barangay"> -->
+                            <select class="form-control" id="barangay" aria-label="Barangay" name="bene_brgy" required>
+                                <!-- <option value="" selected>-- Barangay --</option> -->
+                                <option value="" disabled selected>-- Barangay --</option>
+                                <option value="Aguado">Aguado</option>
+                                <option value="Cabezas">Cabezas</option>
+                                <option value="Cabuco">Cabuco</option>
+                                <option value="Conchu">Conchu</option>
+                                <option value="de Ocampo">de Ocampo</option>
+                                <option value="Gregorio">Gregorio</option>
+                                <option value="Inocencio">Inocencio</option>
+                                <option value="Lallana">Lallana</option>
+                                <option value="Lapidario">Lapidario</option>
+                                <option value="Luciano">Luciano</option>
+                                <option value="Osorio">Osorio</option>
+                                <option value="Perez">Perez</option>
+                                <option value="San Agustin">San Agustin</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <input type="text" class="form-control" id="address" placeholder="Municipality/City" aria-label="Municipality/City"> -->
+                            <select class="form-control" id="municipality" aria-label="Municipality/City" name="bene_municipal">
+                                <option value="Trece Martires City" selected>Trece Martires City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <input type="text" class="form-control" id="address" placeholder="Province" aria-label="Province"> -->
+                            <select class="form-control" id="province" aria-label="Province" name="bene_province">
+                                <option value="Cavite" selected>Cavite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <h4>KOMPOSISYON NG PAMILYA</h4>
+                    <div class="row mb-3 text-center">
+                        <div class="col-md-4">  
+                            <label for="c-name" class="form-label">Name</label>
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="1">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="2">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="3">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="4">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="5">
+                        </div>
+                        <div class="col-md-2">  
+                            <label for="c-age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="1">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="2">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="3">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="4">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="5">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="c-occupation" class="form-label">Occupation</label>
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="1">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="2">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="3">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="4">
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="5">
+                        </div>
+                        <div class="col-md-3">  
+                            <label for="c-salary" class="form-label">Monthly Salary</label>
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="1">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="2">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="3">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="4">
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="5">
+                        </div>
+                    </div>
+                    <button type="submit" class="form-control btn btn-success">submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <%- include('../../include/footer') %>
+</body>
+</html>

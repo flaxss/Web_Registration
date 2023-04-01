@@ -1,0 +1,269 @@
+<%- include('../../include/header') %>
+    <title>Preview</title>
+    <link rel="stylesheet" href="/css/educ-temp.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById("download")
+                .addEventListener("click", () => {
+                    const invoice = this.document.getElementById("pdf-form");
+                    console.log(invoice);
+                    console.log(window);
+                    var opt = {
+                        margin: -0.5,
+                        filename: 'myfile.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
+                    };
+                    html2pdf().from(invoice).set(opt).save();
+                })
+        }
+    </script>
+</head>
+<body>
+    <%- include('../../include/nav') %>
+    <button id="download"> download pdf</button>
+    <div class="page" size="A4" id="pdf-form">
+        <form action="" >
+            <div style="border-style: solid; margin: 2%; border-width: 0.5px">
+                <div style="display:flex">
+                    <div style=" width: 71.4%; border-right: solid; border-width: 0.5px;">
+                        <img src="/img/educ-banner.PNG" alt="">
+                    </div>
+                    <div style="background-color:  rgb(158, 157, 157); width: 28.6%;"></div>
+                </div>
+                <div style="display: flex;">
+                    <div style="background-color: rgb(158, 157, 157); width: 71.4%; border-color: #000; border-right: solid; border-width: 0.5px; font-weight: bold;">
+                        I. PERSONAL INFORMATION
+                    </div>
+                    <div style="background-color:  rgb(158, 157, 157); width: 28.6%;"></div>
+                </div>
+                <table>
+                    <tr>
+                        <td rowspan="2" style="width: 20%; border-top: none">NAME:</td>
+                        <td style="border-right: 2px solid white; border-top: none; text-align:center"><%- find.lastname %></td>
+                        <td style="border-right: 2px solid white; border-top: none; text-align:center"><%- find.firstname %></td>
+                        <td style="border-top: none; text-align:center"><%- find.middlename %></td>
+                        <td rowspan="1" style="width: 28.5%; border-top: none; background-color: rgb(158, 157, 157);"></td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td style="border: 0.5px solid #000; border-right: 1px solid white;">Last Name</td>
+                        <td style="border: 0.5px solid #000; border-right: 1px solid white;">First Name</td>
+                        <td style="border: 0.5px solid #000;">Middle Name</td>
+                        <td style="border-bottom: 0.5px solid #000; text-align: left; background-color: rgb(158, 157, 157) ;">CONTROL NO:</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td style="width: 20%; border-top:white;">RESIDENTIAL ADDRESS:</td>
+                        <td style=" border-top:white;"><%- find.r_full_address %></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td style="width: 20%">PRESENT ADDRESS:</td>
+                        <td><%- find.p_full_address %></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td style="width: 35%;">
+                            DATE OF BIRTH: 
+                            <br>
+                            <span><%- find.date_of_birth %></span>
+                        </td>
+                        <td>
+                            PLACE OF BIRTH: 
+                            <br>
+                            <span><%- find.place_of_birth %></span>
+                        </td>
+                        <td>
+                            CITIZENSHIP: 
+                            <br>
+                            <span><%- find.citizenship %></span>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td style="width:20%">
+                            AGE: <span><%- find.age %></span>
+                        </td>
+                        <td style="width: 15%;">
+                            SEX: <span><%- find.sex %></span>
+                        </td>
+                        <td style="width: 36.7%;">
+                            CIVIL STATUS: <span><%- find.civil_status %></span>
+                        </td>
+                        <td style="width: 28.3%;">
+                            CONATCT NO. <span><%- find.contact_number %></span>
+                        </td>
+                    </tr>
+                </table>
+                <div style="background-color: rgb(158, 157, 157); font-weight: bold; border-color: #000;">
+                    II. FAMILY BACKGROUND
+                </div>
+                <table >
+                    <tr>
+                        <td rowspan="2" style="width: 20%; border-top: none">SPOUSE IF APPLICABLE:</td>
+                        <td style="border-right: 1px solid white; border-top: none; text-align:center;"><%- find.spouse_lname %></td>
+                        <td style="border-right: 1px solid white; border-top: none; text-align:center;"><%- find.spouse_fname %></td>
+                        <td style="border-top: none; text-align:center;"><%- find.spouse_mname %></td>
+                        <td rowspan="2"  style="width:25%; border-top: none">OCCUPATION <br> <%- find.spouse_occupation %></td>
+                    </tr>
+                    <tr style="text-align:center">
+                        <td style="border-right: 1px solid white;">Last Name</td>
+                        <td style="border-right: 1px solid white;">First Name</td>
+                        <td>Middle Name</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="width: 20%">MOTHER'S NAME</td>
+                        <td style="border-right: 1px solid white; text-align:center;"><%- find.mother_lname %></td>
+                        <td style="border-right: 1px solid white; text-align:center;"><%- find.mother_fname %></td>
+                        <td style="text-align: center;"><%- find.mother_mname %></td>
+                        <td rowspan="2"  style="width:25%">OCCUPATION <br> <%- find.mother_occupation %></td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td style="border-right: 1px solid white;">Last Name</td>
+                        <td style="border-right: 1px solid white;">First Name</td>
+                        <td>Middle Name</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="width: 20%">FATHER'S NAME</td>
+                        <td style="border-right: 1px solid white; text-align: center;">Regencia</td>
+                        <td style="border-right: 1px solid white; text-align: center;">Jefferson</td>
+                        <td style="text-align: center;">Molato</td>
+                        <td rowspan="2"  style="width:25%">OCCUPATION <br> Mechanical Engineer</td>
+                    </tr>
+                    <tr style="text-align:center">
+                        <td style="border: 0.5px solid #000; border-right: 0.5px solid white;">Last Name</td>
+                        <td style="border: 0.5px solid #000; border-right: 0.5px solid white;">First Name</td>
+                        <td style="border: 0.5px solid #000;">Middle Name</td>
+                    </tr>
+                </table>
+                <div  style="background-color: rgb(158, 157, 157); border-color: #000; font-weight: bold; font-size: 15px;">
+                    III. EDUCATIONAL BACKGROUND
+                </div>
+                <table>
+                    <tr>
+                        <th style="width:20%">LEVEL</th>
+                        <th>NAME OF SCHOOL</th>
+                        <th style="width:25%">SCHOOL YEAR</th>
+                    </tr>
+                    <tr >
+                        <td style="text-align: center;">ELEMENTARY</td>
+                        <td>Bitin Elementary School</td>
+                        <td>2011</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">SECONDARY</td>
+                        <td>Bitin Elementary School</td>
+                        <td>2018</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">VOCATIONAL</td>
+                        <td>Bitin Elementary School</td>
+                        <td>2020</td>
+                    </tr>
+                    <tr style="border-bottom: 0.5px solid black;">
+                        <td style="text-align: center;">COLLEGE</td>
+                        <td>Bitin Elementary School</td>
+                        <td>2023</td>
+                    </tr>
+                </table>
+                <table >
+                    <tr >
+                        DEGREE/COURSE (Write in Full)
+                        <br>
+                        &emsp;&emsp;BSIT
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="yearlevel">Year Level: </label>
+                            <input type="checkbox" readonly> 1st   
+                            <input type="checkbox" > 2nd
+                            <input type="checkbox" > 3rd
+                            <input type="checkbox" > 4th
+                            <input type="checkbox" > 5th
+                            &emsp; &emsp;
+                            <label for="degree-course" class="form-label">Semester:</label>
+                            <input type="checkbox" id="civil-status" > 1st    
+                            <input type="checkbox" id="civil-status" class="ms-5"> 2nd
+                            <input type="checkbox" id="civil-status" class="ms-5"> 3rd
+                        </td>
+                    </tr>
+                </table>
+                <div style="background-color: rgb(158, 157, 157); border-color: #000; font-weight: bold;">
+                    IV. CHARACTER REFERENCE
+                </div>
+                <table>
+                    <tr>
+                        <th style="width:40%">NAME</th>
+                        <th>ADDRESS</th>
+                        <th style="width:25%">TEL NO.</th>
+                    </tr>
+                    <tr>
+                        <td>1 Jefferson Regencia</td>
+                        <td>Bitin Bay Laguna</td>
+                        <td>09215534301</td>
+                    </tr>
+                    <tr>
+                        <td>2 Jefferson Regencia</td>
+                        <td>Bitin Bay Laguna</td>
+                        <td>09215534301</td>
+                    </tr>
+                </table>
+                <div class="border">
+                    <div>
+                        <p>I declare under oath that this Personal Data Sheet has been accomplished by me, and is a true, correct and complete statement pursuant to the provisions of pertinent laws, rules and regulations of the Republic of the Philippines.</p>
+                    </div>
+                </div>
+                <div style="display: flex; ">
+                    <div class="signature" >
+                        <p>_____________________________________ <br>
+                            Signature over Printed Name </p>
+                    </div>
+                    <div class="signature">
+                        <p>_________________ <br> Date </p>
+                    </div>
+                </div>
+                <div class="border" >
+                    Assesment:
+                </div>
+                <div class="border" >
+                    <h1 style="font-weight: bold; font-size: 15px;">Remarks:</h1>
+                    <br><br>
+                    
+                    Assessed by: _____________________________________
+                    <div style="text-indent: 10rem;">
+
+                    Signature over Printed Name
+                    </div>
+                </div>
+                <br><br>
+                <div style="display: flex; ">
+                    <div style="display: flex; text-align: center;">
+                        <div style="text-indent: 4rem;">
+                             Certified by: &emsp;
+                        </div>
+                            NORA N. DELOS SANTOS <br>
+                            CSWDO Officer 
+                    </div>
+                    <div style="display: flex; ">
+                        <div style="text-indent: 3rem" >
+                             Approved by: &emsp;
+                        </div>
+                             GEMMA BUENA-LUBIGAN
+                            <br>&emsp;&emsp;&emsp;
+                            City Mayor
+                            
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

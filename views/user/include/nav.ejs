@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
+  <div class="container-fluid p-2" style="background-color: #1b9a43;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="/">HOME</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ASSISTANCE</a>
+          <ul class="dropdown-menu mt-2">
+            <li><a class="dropdown-item" href="/burial-assistance">Burial Assistance</a></li>
+            <li><a class="dropdown-item" href="/college-assistance">College Educational Assistance</a></li>
+            <li><a class="dropdown-item" href="/emergency-shelter-assistance">Emergency Shelter Assistance</a></li>
+            <li><a class="dropdown-item" href="/medical-assistance">Medical Assistance</a></li>
+            <li><a class="dropdown-item" href="/transportation-assistance">Transportation Assistance</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="/about">ABOUT US</a>
+        </li>
+      </ul>
+      <form class="form col-md-4 d-flex" role="search" action="/search" method="GET">
+        <div class="input-group">
+          <input class="form-control" type="search" name="result" required placeholder="enter reference number" aria-label="Search">
+          <select class="form-select" name="service" aria-label="Default select example" required>
+            <option value="" disabled selected>Please Choose</option>
+            <option value="Burial Assistance">Burial Assistance</option>
+            <option value="Emergency Shelter Assistance">Emergency Shelter Assistance</option>
+            <option value="Medical Assistance">Medical Assistance</option>
+            <option value="Transportation Assistance">Transportation Assistance</option>
+          </select>
+          <button class="btn btn-success" type="submit">Track</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

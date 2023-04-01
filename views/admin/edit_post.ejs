@@ -1,0 +1,25 @@
+<%- include('include/head') %> 
+    <title>Edit</title>
+</head>
+<body>
+    <main class="main">
+        <%- include('include/nav_link') %>
+        <div class="main-content">
+            <div class="content-home">
+                <div class="create_post form form col-lg">
+                    <form action="/a/<%- findPost.id %>/edit-post?_method=PATCH" method="POST" class="form">
+                        <div class="form-control">
+                            <textarea class="form-control" type="text" name="header" placeholder="Header" required><%- findPost.header %></textarea>
+                        </div>
+                        <div class="form-control">
+                            <textarea class="form-control" name="post" id="" cols="50" rows="10" placeholder="Content" required><%- findPost.post %></textarea>
+                        </div>
+                        <button type="submit" class="form-control btn btn-light">update post</button>
+                    </form>
+                </div>
+            </div>
+            <%- include('include/side_bar') %>
+        </div>
+    </main>
+</body>
+</html>

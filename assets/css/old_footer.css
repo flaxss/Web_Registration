@@ -1,0 +1,47 @@
+div#footer .data{
+    padding: 100px 100px;
+    padding-bottom: 20px;
+    background-image: url('/img/footercover.png');
+    background-size: cover;
+    background-position: center;
+}
+div#footer .text {
+    font-family: "Roboto-Regular";
+    font-size: 30px;
+    color: #0054a6;
+    margin-bottom: 11px;
+    
+}
+div#footer .contact-details ul {
+    list-style: none;
+    padding: 0px;
+}
+div#footer .contact-details ul li {
+    padding-left: 50px;
+    font-size: 20px;
+    margin-bottom: 5px;
+    background-position: 3px 3px;
+    font-family: "Roboto-Regular";
+}
+
+div#footer .contact-details ul li.location {
+    background-image: url('/img/location.png');
+    background-repeat: no-repeat;
+}
+div#footer .contact-details ul li.phone {
+background-image: url('/img/phone-footer.png');
+background-repeat: no-repeat;
+}
+div#footer .contact-details ul li.email {
+background-image: url('/img/email.png');
+background-repeat: no-repeat;
+}
+
+div#footer .footer-text {
+    text-align: center;
+    background-color: #0b7928;
+    color: white;
+    font-family: Roboto-Regular;
+    padding: 12px;
+    font-size: 15px;
+}

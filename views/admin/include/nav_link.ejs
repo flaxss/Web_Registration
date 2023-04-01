@@ -1,0 +1,78 @@
+<nav class="navbar navigation-bar navbar-expand-lg" style="background-color: #2B7858;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse me-2 ms-2" id="navbarSupportedContent" style="text-align: center;">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item ms-2 me-2">
+                    <a class="nav-link active text-white" aria-current="page" href="/a">Home</a>
+                </li>
+                <li class="nav-item ms-2 me-2">
+                    <a class="nav-link text-white" href="/a/appointment">Appointment</a>
+                </li>
+                <li class="nav-item ms-2 me-2 dropdown">
+                    <!-- <a class="nav-link text-white" href="/a/application">Application</a> -->
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Application List</a>
+                    <ul class="dropdown-menu mt-2">
+                        <li><a class="dropdown-item" href="/a/application-burial-assistance">Burial Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/application-educ-assistance">College Educational Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/application-emergency-assistance">Emergency Shelter Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/application-medical-assistance">Medical Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/application-transportation-assistance">Trasportation Assistance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ms-2 me-2 dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Registration</a>
+                    <ul class="dropdown-menu mt-2">
+                        <li><a class="dropdown-item" href="/a/register/burial-assistance/form">Burial Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/register/emergency-shelter-assistance/form">Emergency Shelter Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/register/medical-assistance/form">Medical Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/register/transportation-assistance/form">Trasportation Assistance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ms-2 me-2 dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Records</a>
+                    <ul class="dropdown-menu mt-2">
+                        <li><a class="dropdown-item" href="/a/records/burial-assistance">Burial Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/records/educational-assistance">College Educational Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/records/emergency-shelter-assistance">Emergency Shelter Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/records/medical-assistance">Medical Assistance</a></li>
+                        <li><a class="dropdown-item" href="/a/records/transportation-assistance">Trasportation Assistance</a></li>
+                    </ul>
+                </li>
+                <% if(user.accountType != 'staff') { %>
+                    <li class="nav-item ms-2 me-2">
+                        <a class="nav-link text-white" href="/a/accounts">Accounts</a>
+                    </li>
+                <% } %>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item ms-2 me-2">
+                    <span class="collapse navbar-collapse nav-link text-white"><%- user.firstname %> <%- user.middlename %> <%- user.lastname %></span>
+                </li>
+                <li class="nav-item ms-2 me-2 dropdown">
+                    <span class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+                        <i class="bi bi-gear"></i>
+                    </span>
+                    <ul class="dropdown-menu mt-2" style="left: -100px; text-align: center;">
+                        <li><img src="/<%- user.img_name %>" alt="asd" style="border-radius: 50%; width: 50px; height: 50px;"></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/a/settings">My Profile</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Password</a></li> -->
+                        <li>
+                            <form class="d-flex" action="/logout" method="POST">
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script src="/js/bootstrap.bundle.min.js"></script>

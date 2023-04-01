@@ -1,0 +1,176 @@
+<%- include('include/header') %>
+<title>Home</title>
+</head>
+<body>
+    <%- include('include/nav') %>
+    <main>
+        <div class="content " >
+            <div style="background-color: rgba(0, 0, 0, 0.5); height: 100dvh;">
+                <div style=" height: 91.5vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
+                    <div>
+                        <div>
+                            <p class="title-p text-light text-shadow-lg ">City Social Welfare and Development</p>
+                        </div>
+                        <div >
+                            <p class="content-p text-light">The city government of Trece Martires provide assistance to individuals and/or families who are indigent, vulnerable, disadvantaged or are otherwise in crisis situation base on the assesment of Social Workers that will alleviate poverty and empower them for an improved quality of life.</p>
+                        </div>
+                        <div class="content-btn-div">
+                            <a href="/about">
+                                <button class="content-btn btn btn-outline-light rounded-5 ">More Info</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- cards -->
+        <div class="container-fluid mt-0 " style="background-color: #e9f3ec; height: 100vh">
+            <h1 class="text-center fw-bold py-5 mdisplay-5">Services</h1>
+            <div class="container swiper">
+                <div class="slide-container" >
+                    <div class="card-wrapper swiper-wrapper">
+                        <div class="card swiper-slide shadow">
+                            <div class="card-body" >
+                                <div class="card-img" >
+                                    <img src="img/dp.png" alt="">
+                                </div>
+                                <div class="slide-card-title">
+                                    <span class="text-center">Educational Assistance</span>
+                                </div>
+                                <div class="slide-card-content ">
+                                    <span>The assistance given to eligible students helps defray school expenses and/or the cost of sending students/children to school. This includes school fees, supplies, project allowances, and other related expenses.</span>
+                                    
+                                </div>
+                                <div class="seemore-button">
+                                    <a class="seemore-button-a btn text-light" style="background-color: #1b9a43;" href="/college-assistance" >See More...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card swiper-slide shadow" style="width: 18rem; height: 60vh; ">
+                            <div class="card-body">
+                                <div class="card-img" >
+                                    <img src="img/dp.png" alt="">
+                                </div>
+                                <div class="slide-card-title">
+                                    <span class="text-center">Medical Assistance</span>
+                                </div>
+                                <div class="slide-card-content ">
+                                    <span>The assistance to help shoulder hospitalization expenses, cost of medicines and other medical treatment or processes and provision of assistance device. Other medical expenses such as professional fees may be covered.</span>
+                                </div>
+                                <div class="seemore-button">
+                                    <a class="seemore-button-a btn text-light" style="background-color: #1b9a43;" href="/medical-assistance" >See More...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card swiper-slide shadow " style="width: 18rem; height: 60vh;">
+                            <div class="card-body">
+                                <div class="card-img" >
+                                    <img src="img/dp.png" alt="">
+                                </div>
+                                <div class="slide-card-title">
+                                    <span class="text-center">Burial Assistance</span>
+                                </div>
+                                <div class="slide-card-content ">
+                                    <span>The assistance to defray funeral and other related expenses in bringing the remains of the deceased to their provinces.</span>
+                                </div>
+                                <div class="seemore-button">
+                                    <a class="seemore-button-a btn text-light" style="background-color: #1b9a43;" href="/burial-assistance">See More...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card swiper-slide shadow " style="width: 18rem; height: 60vh;">
+                            <div class="card-body">
+                                <div class="card-img" >
+                                    <img src="img/dp.png" alt="">
+                                </div>
+                                <div class="slide-card-title">
+                                    <span class="text-center">Transportation Assistance</span>
+                                </div>
+                                <div class="slide-card-content ">
+                                    <span>The assistance for the purchase or payment of transportation ticket to enable them to return to their home province permanently, strandees due to typoon, victims of illegal recruitment and victim of pick pocket.</span>
+                                </div>
+                                <div class="seemore-button">
+                                    <a class="seemore-button-a btn text-light" style="background-color: #1b9a43;" href="/transportation-assistance">See More...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card swiper-slide shadow " style="width: 18rem; height: 60vh; ">
+                            <div class="card-body">
+                                <div class="card-img" >
+                                    <img src="img/dp.png" alt="">
+                                </div>
+                                <div class="slide-card-title">
+                                    <span class="text-center">Emergency Shelter Assistance</span>
+                                </div>
+                                <div class="slide-card-content ">
+                                    <span>This is provided to client who are victims of natural or man-made disaster where houses are either partially or totally damaged, fire victims.</span>
+                                </div>
+                                <div class="seemore-button">
+                                    <a class="seemore-button-a btn text-light" style="background-color: #1b9a43;" href="/emergency-shelter-assistance" >See More...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-5 ">
+                    <div class="swiper-button-next swiper-navBtn "></div>
+                    <div class="swiper-button-prev swiper-navBtn"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- annnouncement -->
+        <div class="main-content mb-3" style=" padding: 10px; height: fit-content;">
+            <!-- announcement -->
+            <h4 style="text-align: center; font-size: 1.5rem;" class="mt-3 mb-4">Announcement</h4>
+            <div class="ann-row" >
+            <% let counter = 0 %>
+            <% renderPost.forEach(data => { %>
+                <div class="row d-flex" style="width: 98%; margin: auto; margin: 1%;">
+                    <div class="time col-md-4" style="background-color: #269c4c;;">
+                        <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                            <h2 style="color: white; font-size: 1.5rem; font-weight: bold; "><%- formatted[counter].day %></h2> 
+                            <h2 style="color: white; font-size: 1.5rem; font-weight: bold; "><%- formatted[counter].month %></h2> 
+                            <!-- <span>01 </span> <span>January</span>  -->
+                        </div>
+                    </div>
+                    <div id="details" class="details col-md-8">
+                        <h3 style="font-size: 1rem;"><strong>Magandang Araw, Treceño!</strong>
+                            <p style="font-size: .8rem;">
+                                <%- data.header %>
+
+                                <%- data.post %>
+                                <!-- Sa mga Solo Parent ng Trece Martires City na nagnanais na magparehistro, narito po ang mga kategorya at kinakailangang dokumento.
+    
+                                *Maaari po kayong magtungo sa inyong Barangay Hall at hanapin ang inyong Solo Parent President, para sa pagsusumite ng application form at dokumento at karagdagan impormasyon o klaripikasyon ukol sa Updates on the Implementation of RA 11861 o ang "Expanded Solo Parents Welfare Act of 2022".
+    
+                                Solo Parent Application Form link:
+                                http://bitly.ws/Ah6Z
+    
+                                Sa mga Solo Parent ng Trece Martires City na nagnanais na magparehistro, narito po ang mga kategorya at kinakailangang dokumento.
+    
+                                *Maaari po kayong magtungo sa inyong Barangay Hall at hanapin ang inyong Solo Parent President, para sa pagsusumite ng application form at dokumento at karagdagan impormasyon o klaripikasyon ukol sa Updates on the Implementation of RA 11861 o ang "Expanded Solo Parents Welfare Act of 2022".
+    
+                                Solo Parent Application Form link:
+                                http://bitly.ws/Ah6Z -->
+                            </p>
+                        </h3>
+                        <!-- <a href="/announcement/<%- data.id %>" style="width: 100%; text-align: end; text-decoration: none; color: black;">see more</a> -->
+                    </div>
+                </div>
+                <% counter++ %>
+            <% }) %>
+            <% if(renderPost == false) { %>
+                <div>
+                    <p>asdf</p>
+                </div>
+            <% } %>
+        </div>
+    </main>
+    <%- include('include/footer') %>
+    
+    <script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/slider_script.js"></script>
+</body>
+</html>

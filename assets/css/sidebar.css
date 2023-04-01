@@ -1,0 +1,28 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.side-bar{
+    height: 90dvh;
+    width: 35vw;
+    /* background-color: rgb(103, 128, 119); */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* font-size: 15px; */
+}
+.create-event{
+    /* background-color: aqua; */
+    /* padding: 10px; */
+    /* height: 50vh; */
+    /* overflow: hidden; */
+    margin: 10px;
+}
+.even-list{
+    height: 90vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    /* background-color: antiquewhite; */
+    margin: 10px;
+}

@@ -1,0 +1,55 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.main{
+    display: block;
+    min-width: 540px;
+}
+nav{
+    height: fit-content;
+    min-height: 10vh;
+}
+.main .main-content{
+    width: 100%;
+    height: 90vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+/* homepage */
+.main .main-content .content-home{
+    /* background-color: aqua; */
+    width: 65vw;
+    height: 90vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.main .main-content .content-home .table-div{
+    /* background-color: aquamarine; */
+    width: 100%;
+    height: 80vh;
+    font-size: 0.9em;
+}
+.content-home form input{
+    font-size: 0.9em;
+}
+.content-home form h4{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+/* appointment / application */
+.main .main-content .content-table{
+    /* background-color: aquamarine; */
+    /* width: 65%; */
+    width: 100%;
+    height: 90vh;
+    font-size: 0.9em;
+}
+.main .main-content .content-table .table-div{
+    /* background-color: rgb(73, 42, 87); */
+    height: 80vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}

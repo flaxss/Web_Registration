@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Login</title>
+</head>
+<body style="background-color: #edf5e8;">
+    <div class="container d-flex min-vh-100 justify-content-center align-items-center" >
+        <div class="d-flex card p-3 " style="background-color: #3b552b; width: 400px; border-radius: 5%; border-color: transparent;">
+            <h1 class=" text-light text-3xl text-center p-4" style="font-weight: bold;">LOGIN</h1>
+            <% if(success == false && message != '') { %>
+                <div class="alert alert-danger" role="alert">
+                    <%- message %>
+                </div>
+            <% } %>
+            <form class=" p-3 " action="/tmc-login" method="POST">
+                <div class="px-2">
+                    <!-- <label for="email" class="hide">Email</label> -->
+                    <input type="email" name="email" id="email" placeholder="Email address" class="form-control w-100 mb-4" style="background-color: #edf5e8; padding: 3%; ">
+                    <!-- error handling -->
+                </div>
+                <div class=" px-2">
+                    <!-- <label for="password" class="sr-only">Password</label> -->
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control w-100 " style="background-color: #edf5e8;  padding: 3%;"> 
+                    <!-- error handling -->
+                </div>
+                <div class="p-2 mb-2" >
+                    <div >
+                        <a href="/password-reset" class="text-light ">Forgot your password?</a>
+                    </div>
+                </div>
+                <div class="p-2 d-flex justify-content-center align-items-center ">
+                    <button type="submit" class="btn w-100 border-transparent " style="background-color:#edf5e8;  ">
+                        login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-text" _msthash="193856" _msttexthash="3498391" 
+        style="position:fixed;
+        bottom:0%;
+        width: 100%;;
+        text-align: center;
+        background-color: #3b552b;
+        color: white;
+        font-family: Roboto-Regular;
+        padding: 12px;
+        font-size: 15px;" >
+                Ⓒ 2020. City Government of Trece Martires City. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<%- include('../include/head') %> 
+    <title>Application</title>
+    <style>
+        @media print{
+            @page {size: landscape}
+        }
+        @media print{
+            #table{
+                padding: 0px;
+                margin: 0px;
+                border: none;
+                visibility: visible;
+                font-size: 0.8rem;
+            }
+            #table tr{
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <%- include('../include/nav_link') %> 
+        <div class="main-content">
+            <div class="content-table">
+                <nav class="navbar bg-body-tertiary p-0">
+                    <div class="container-fluid row flex-md-row form-control-lg pe-0" style="width: 100%;">
+                        <div class="col-md-6 d-flex justify-content-between">
+                            <button class="btn btn-outline-success" onclick="printDiv('printDiv')">generate</button>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <!-- <button class="btn btn-outline-success" onclick="printDiv('printDiv')">generate</button> -->
+                        </div>
+                    </div>
+                </nav>
+                <div class="table-div">
+                    <div class="table-responsive" id="printDiv">
+                        <thead><h1 class="text-center">AICS</h1></thead>
+                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
+                            <thead style="background-color: #EEF1F6;">
+                                <tr class="table-responsive align-middle">
+                                    <th>#</th>
+                                    <th>Client Name</th>
+                                    <th>Beneficiary</th>
+                                    <th>Sex</th>
+                                    <th>Address</th>
+                                    <th>Contact Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #FAFBFC;">
+                                <% let count = 1 %>
+                                <% render.forEach(info => { %>
+                                    <tr>
+                                        <th><%- count++ %></th>
+                                        <td><%- info.client_name %></td>
+                                        <td><%- info.beneficiary_name %></td>
+                                        <td><%- info.sex %></td>
+                                        <td><%- info.address %></td>
+                                        <td>+63<%- info.contact_number %></td>
+                                        <td><%- info.email %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <% if(render == false) { %>
+                            <p class="text-center">No Record</p>
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+        </div>
+    </main>
+</body>
+<script>
+    function printDiv(divTable) {
+        var printContents = document.getElementById(divTable).innerHTML;
+        var originalContents = document.body.outerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+</html>

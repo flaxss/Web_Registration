@@ -1,0 +1,57 @@
+<%- include('include/head') %> 
+    <title>Appointment</title>
+</head>
+<body>
+    <main class="main">
+        <%- include('include/nav_link') %>
+        <div class="main-content">
+            <div class="content-table">
+                <%- include('include/appointment_search') %>
+                <div class="table-div">
+                    <div class="table-responsive">
+                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
+                            <thead style="background-color: #EEF1F6;">
+                                <tr class="table-responsive align-middle">
+                                    <th scope="col">Social Service</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Date of Appointment</th>
+                                    <th scope="col">Reference</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #FAFBFC;">
+                                <% renderAppointment.forEach((info) => { %>
+                                    <tr class="table-responsive align-middle">
+                                        <td scope="row"><%- info.service %></td>
+                                        <td scope="row"><%- info.firstname %> <%- info.middlename %> <%- info.lastname %></td>
+                                        <td scope="row"><%- info.status %> </td>
+                                        <td scope="row"><%- info.event_date %></td>
+                                        <td scope="row"><%- info.reference %> </td>
+                                        <td scope="row">
+                                            <div class="btn-group" role="group">
+                                                <form action="/a/appointment/<%- info._id %>/accept" method="POST" class="btn-group">
+                                                    <button type="submit" onclick="accept()" class="btn btn-outline-success">accept</button>
+                                                </form>
+                                                <a href="/a/appointment/<%- info._id %>/view" class="btn btn-outline-primary">view</a>
+                                                <a href="/a/appointment/<%- info._id %>/update" class="btn btn-outline-warning">update</a>
+                                                <form action="/a/appointment/<%- info._id %>/reject?_method=DELETE" method="POST" class="btn-group">
+                                                    <button type="submit" onclick="reject()" class="btn btn-outline-danger">reject</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                        <% if(renderAppointment == false) { %>
+                            <p class="text-center">No Appointment</p>
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+            <!-- sideba=r -->
+        </div>
+    </main>
+  </body>
+</html>

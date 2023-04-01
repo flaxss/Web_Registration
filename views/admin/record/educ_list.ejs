@@ -1,0 +1,106 @@
+<%- include('../include/head') %> 
+    <title>List</title>
+    <style>
+        @media print{
+            @page {size: landscape}
+        }
+        @media print{
+            #table{
+                padding: 0px;
+                margin: 0px;
+                border: none;
+                visibility: visible;
+                font-size: 0.8rem;
+            }
+            #table tr{
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <%- include('../include/nav_link') %> 
+        <div class="main-content">
+            <div class="content-table">
+                <nav class="navbar bg-body-tertiary p-0">
+                    <div class="container-fluid row d-flex justify-content-between flex-md-row form-control-lg pe-0" style="width: 100%;">
+                        <div class="col-md-12 d-flex justify-content-between">
+                            <button class="btn btn-outline-success" onclick="printDiv('printDiv')">Create PDF</button>
+
+                            <form action="/a/records/educ-list" method="GET">
+                                <select name="year" id="" required>
+                                    <!-- <option value="" disabled selected>Please Select</option> -->
+                                    <% date.forEach(year => { %>
+                                        <option value="<%- year %>"><%- year %></option>
+                                    <% }) %>
+                                </select>
+                                <button class="btn btn-outline-success">reload</button>
+                            </form>
+
+                            <!-- modal ON -->
+                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#compile">Send Email</button>
+
+                            <!-- modal -->
+                            <div class="modal fade" id="compile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to send email?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/a/records/educ-list" method="POST">
+                                                <div class="form">
+                                                    <label class="form-label" for="password">Confirm Password</label>
+                                                    <input class="form-control" type="password" name="password" id="password" required>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-outline-dark">send email</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="table-div">
+                    <div class="table-responsive" id="printDiv">
+                        <h1 class="text-center">COLLEGE EDUCATIONAL ASSISTANCE</h1>
+                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
+                            <thead style="background-color: #EEF1F6;">
+                                <tr class="table-responsive align-middle">
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Contact Number</th>
+                                    <th>Parent Name</th>
+                                    <th>Age</th>
+                                    <th>Sex</th>
+                                    <th>Claimed</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #FAFBFC;">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- </form> -->
+                </div>
+            </div>
+            <!-- footer -->
+        </div>
+    </main>
+</body>
+<script>
+    function printDiv(divTable) {
+        var printContents = document.getElementById(divTable).innerHTML;
+        var originalContents = document.body.outerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+</html>

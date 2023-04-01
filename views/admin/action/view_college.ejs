@@ -1,0 +1,307 @@
+<%- include('../include/head') %>
+<title>Preview</title>
+<link rel="stylesheet" href="/css/educ-temp.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script>
+    window.onload = function () {
+        document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("pdf-form");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: -0.029,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+    }
+</script>
+</head>
+<body>
+    <main class="main">
+        <%- include('../include/nav_link') %>
+        <div class="main-content">
+            <div class="container">
+                <!-- <nav class="navbar bg-body-tertiary p-0">
+                    <h1>Registration Form</h1>
+                </nav> -->
+                <div style=" text-align: center;">
+                    <button id="download"> download pdf</button>
+                </div>
+                <form action="" class="page" size="A4" id="pdf-form">
+                    <div style="margin: 2%; border: 2px solid #000 ">
+                        <table>
+                            <tr>
+                                <td colspan="4" class="image">
+                                    <img src="/img/educ-banner.PNG" alt="">
+                                </td>
+                                <td class="picture2x2"> 2x2
+                                </td>
+                            </tr>
+                            <tr >
+                                <td colspan="4" style="font-weight: bold; border-top: 1px solid #000; background-color: rgb(158, 157, 157);" >I. PERSONAL INFORMATION</td>
+                                <td style="border-left: 2px solid #000; border-bottom: 1px solid rgb(158, 157, 157); background-color:  rgb(158, 157, 157);">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="width: 20%;  border-right: 1px solid #000; border-bottom: 1px solid #000;">NAME:</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center "><%- find.lastname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center"><%- find.firstname %></td>
+                                <td style="border-bottom: 1px solid #000; text-align:center"><%- find.middlename %></td>
+                                <td rowspan="1" style="width: 28.5%; border-left: 2px solid #000;  background-color: rgb(158, 157, 157);"></td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">First Name</td>
+                                <td style="border-bottom: 1px solid #000;">Middle Name</td>
+                                <td style="border-bottom: 2px solid #000; border-left: 2px solid #000; text-align: left; background-color: rgb(158, 157, 157) ; border-top: 2px solid #000">CONTROL NO:</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;border-bottom: 1px solid #000; border-right: 1px solid #000;">RESIDENTIAL ADDRESS:</td>
+                                <td colspan="4" style="border-bottom: 1px solid #000;"><%- find.r_street %> <%- find.r_brgy %> <%- find.r_municipal %> <%- find.r_province %></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%; border-bottom: 1px solid #000; border-right: 1px solid #000;">PRESENT ADDRESS:</td>
+                                <td colspan="4" style=" border-bottom: 1px solid #000;"><%- find.p_street %> <%- find.p_brgy %> <%- find.p_municipal %> <%- find.p_province %></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">
+                                    DATE OF BIRTH: 
+                                    <br>
+                                    <%- date_of_birth %>
+                                </td>
+                                <td colspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">
+                                    PLACE OF BIRTH: 
+                                    <br>
+                                    <%- find.place_of_birth %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000;">
+                                    CITIZENSHIP: 
+                                    <br>
+                                    <%- find.citizenship %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #000;">AGE: <%- find.age %></td>
+                                <td style="border-right: 1px solid #000;">SEX: <%- find.sex %></td>
+                                <td colspan="2" style="border-right: 1px solid #000;">CIVIL STATUS: <%- find.civil_status %></td>
+                                <td>CONATCT NO. +63<%- find.contact_number %></td>
+                            </tr>              
+                        </table>
+                        <table >
+                            <tr >
+                                <td colspan="5" style="font-weight:bold; border-top: 1px solid #000;  background-color: rgb(158, 157, 157);" >II. FAMILY BACKGROUND</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="width: 20%; border-bottom: 1px solid #000; border-right: 1px solid #000;">SPOUSE IF APPLICABLE:</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.spouse_lname %> <%- find.spouse_exname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.spouse_fname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.spouse_mname %></td>
+                                <td rowspan="2"  style="width:25%; border-bottom: 1px solid #000; ">OCCUPATION</td>
+                            </tr>
+                            <tr style="text-align:center">
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; ">First Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Middle Name</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">MOTHER'S NAME</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.mother_lname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.mother_fname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;"><%- find.mother_mname %></td>
+                                <td rowspan="2"  style="border-bottom: 1px solid #000; ">OCCUPATION</td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">First Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Middle Name</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">FATHER'S NAME</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.father_lname %> <%- find.father_exname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.father_fname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;"><%- find.father_mname %></td>
+                                <td rowspan="2"  style=" border-bottom: 1px solid #000;">OCCUPATION</td>
+                            </tr>
+                            <tr style="text-align:center">
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">First Name</td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Middle Name</td>
+                            </tr>
+                        </table>
+                        <table >
+                            <tr >
+                                <td colspan="5" style="font-weight: bold; background-color: rgb(158, 157, 157);" >III. EDUCATIONAL BACKGROUND</td>
+                            </tr>
+                            <tr style="text-align: center;  border-bottom: 1px solid #000; ">
+                                <th style="width:20%; border-right: 1px solid #000;">LEVEL</th>
+                                <th style="border-right: 1px solid #000;">NAME OF SCHOOL</th>
+                                <th style="width:25%">SCHOOL YEAR</th>
+                            </tr>
+                            <tr style=" border-bottom: 1px solid #000;">
+                                <td style="text-align: center; border-right: 1px solid #000;">ELEMENTARY</td>
+                                <td style="border-right: 1px solid #000;"><%- find.elementary.name_of_school %></td>
+                                <td><%- find.elementary.school_year %></td>
+                            </tr>
+                            <tr style=" border-bottom: 1px solid #000;">
+                                <td style="text-align: center; border-right: 1px solid #000;">SECONDARY</td>
+                                <td style="border-right: 1px solid #000;" ><%- find.secondary.name_of_school %></td>
+                                <td><%- find.secondary.school_year %></td>
+                            </tr>
+                            <tr style=" border-bottom: 1px solid #000;">
+                                <td style="text-align: center; border-right: 1px solid #000;">VOCATIONAL</td>
+                                <td style="border-right: 1px solid #000;"><%- find.vocational.name_of_school %></td>
+                                <td><%- find.vocational.school_year %></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid black;">
+                                <td style="text-align: center; border-right: 1px solid #000;">COLLEGE</td>
+                                <td style="border-right: 1px solid #000;"><%- find.college.name_of_school %></td>
+                                <td><%- find.college.school_year %></td>
+                            </tr>
+                            <tr >
+                                <td colspan="3" >
+                                    DEGREE/COURSE (Write in Full)
+                                    <br>
+                                    -
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" >
+                                    <div style="display: flex; ">
+                                        <div style="width: 50%;">
+                                            <label for="yearlevel">Year Level: </label>
+                                            <input type="checkbox" id="year_1st" class="ms-3" disabled> 1st    
+                                            <input type="checkbox" id="year_2nd" class="ms-3" disabled> 2nd
+                                            <input type="checkbox" id="year_3rd" class="ms-3" disabled> 3rd
+                                            <input type="checkbox" id="year_4th" class="ms-3" disabled> 4th
+                                            <input type="checkbox" id="year_5th" class="ms-3" disabled> 5th
+                                        </div>
+                                        <script>
+                                            let year = '<%- find.year_level %>'
+                                            if(year == '1st'){
+                                                document.getElementById('year_1st').checked = true
+                                            }else if(year == '2nd'){
+                                                document.getElementById('year_2nd').checked = true
+                                            }else if(year == '3rd'){
+                                                document.getElementById('year_3rd').checked = true
+                                            }else if(year == '4th'){
+                                                document.getElementById('year_4th').checked = true
+                                            }else if(year == '5th'){
+                                                document.getElementById('year_5th').checked = true
+                                            } 
+                                        </script>
+                                        <div style="width: 50%;">
+                                            <label for="degree-course" class="form-label">Semester:</label>
+                                            <input type="checkbox" id="sem_1st" class="ms-3" disabled> 1st    
+                                            <input type="checkbox" id="sem_2nd" class="ms-3" disabled> 2nd
+                                            <input type="checkbox" id="sem_3rd" class="ms-3" disabled> 3rd
+                                        </div>
+                                        <script>
+                                            let sem = '<%- find.sem %>'
+                                            if(sem == '1st'){
+                                                document.getElementById('sem_1st').checked = true
+                                            }else if(sem == '2nd'){
+                                                document.getElementById('sem_2nd').checked = true
+                                            }else if(sem == '3rd'){
+                                                document.getElementById('sem_3rd').checked = true
+                                            }
+                                        </script>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr >
+                                <td colspan="5" style="font-weight: bold; border-top: 1px solid #000; background-color: rgb(158, 157, 157);" >III. IV. CHARACTER REFERENCE</td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <th style="width:38%; border-bottom: 1px solid black; border-right: 1px solid black;">NAME</th>
+                                <th style="border-bottom: 1px solid black; border-right: 1px solid black;">ADDRESS</th>
+                                <th style="width:25%; border-bottom: 1px solid black;">TEL NO.</th>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: 1px solid black; border-right: 1px solid black;">1. <%- find.char_ref_name[0] %></td>
+                                <td style="border-bottom: 1px solid black; border-right: 1px solid black;"><%- find.char_ref_add[0] %></td>
+                                <td style="width:25%; border-bottom: 1px solid black;"><%- find.char_ref_num[0] %></td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid black;">2. <%- find.char_ref_name[1] %></td>
+                                <td style="border-right: 1px solid black;"><%- find.char_ref_add[1] %></td>
+                                <td><%- find.char_ref_num[1] %></td>
+                            </tr>
+                        </table>
+                        <div style="border-top: solid;  border-width: 1px; width: 100%; display: flex; margin-bottom: 5%;" >
+                            <div>
+                                <p class="oath">I declare under oath that this Personal Data Sheet has been accomplished by me, and is a true, correct and complete statement pursuant to the provisions of pertinent laws, rules and regulations of the Republic of the Philippines.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; text-align: center; margin-bottom: 2%">
+                            <table>
+                                <tr>
+                                    <td style="width: 15%; border:none;"> </td>
+                                    <td style="width: 30%; border:none; border-top: solid; border-width: 1.5px;">Signature over Printed Name</td>
+                                    <td style="width: 15%; border:none;" ></td>
+                                    <td style="width: 20%; border:none; border-top: solid; border-width: 1.5px;">Date</td>
+                                    <td style="width: 20%; border:none;"></td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                        <div style="border-top: solid; border-width: 2px; font-weight: bold; padding-bottom: 1%;  padding-top: 1%; " >
+                            Assesment:
+                        </div>
+                        <div style="border-top: solid; border-width: 2px; margin-bottom: 30px;" >
+                            <span style="font-weight: bold">Remarks:</span>
+                            <div style="width: 100%; margin-top: 2%;">Assessed by:</div>
+                            <table>
+                                <tr>
+                                    <td style="width: 7%;"></td>
+                                    <td style="width: 25%; text-align:center; border-top: 1px solid #000;">Signature over Printed Name</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="display: flex; margin-bottom: 2%;">
+                            <table>
+                                <tr>
+                                    <td style="text-align: center;  border: none;">Certified by:  <span style="font-weight: bold">NORA N. DELOS SANTOS </span></td>
+                                    <td style="text-align: center;  border: none;">Approved by: <span style="font-weight: bold">GEMMA BUENA-LUBIGAN</span></td>
+                                </tr>
+                                <tr style="text-align: center; ">
+                                    <td style="border: none; text-indent: 50px">  CSWDO Officer</td>
+                                    <td style="border: none; text-indent: 50px">  City Mayor</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="border-top: solid; border-width: 2px;">
+                            <span style="font-weight: bold; ">Requirements:</span>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="list-style: none; display: flex; width:100%">
+                                    <div style="width:60%; margin-left: 2%;">
+                                        <li>___ 2x2 Picture</li>
+                                        <li>___ Registration Form (Certified True Copy)</li>
+                                        <li>___ General Intake Sheet from CSWDO</li>
+                                        <li>___ Letter addressed to the City Mayor</li>
+                                    </div>
+                                    <div style="width: 40%;">
+                                        <li>___ Barangay Clearance</li>
+                                        <li>___ Voter's Certification Comelec or Voter's stub with any Government</li>
+                                    </div>
+                                </div>
+                                <div class="imgg">
+                                    <img src="/img/intakeSheetFooter.PNG" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- side-bar -->
+        </div>
+    </main>
+  </body>
+</html>
