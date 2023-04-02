@@ -67,7 +67,7 @@ let MailGenerator = new Mailgen({
 // home
 module.exports.admin_home = async(req, res) => {
     const events = await Event.find().sort({nonFormat: 1})
-    const renderPost = await Announcement.find()
+    const renderPost = await Announcement.find().sort({createdAt: -1})
     res.render('admin/home', {renderPost, events})
 }
 
