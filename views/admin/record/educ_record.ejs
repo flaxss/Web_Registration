@@ -27,13 +27,10 @@
             <div class="content-table">
                 <nav class="navbar bg-body-tertiary p-0">
                     <div class="container-fluid row form-control-lg pe-0" style="width: 100%;">
-                        <div class="col-md-6 d-flex justify-content-between align-items-center">
-                            <span>Current Records: <%- counter %></span>
-                        </div>
-                        <div class="col-md-6 d-flex justify-content-end">
+                        <div class="col-md-6 d-flex ">
+                            <a href="/a/records/educ-list" class="btn btn-outline-success">List</a>
 
-                            <button type="button" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#compile">Compile</button>
-
+                            <button type="button" id="compile_btn" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#compile">Compile</button>
                             <div class="modal fade" id="compile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -55,7 +52,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/a/records/educ-list" class="btn btn-outline-success">List</a>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <span>Current Record/s: <%- counter %></span>
                         </div>
                     </div>
                 </nav>
@@ -102,4 +101,12 @@
         </div>
     </main>
 </body>
+<script>
+    let btn = '<%- render %>'
+    if(btn == false) {
+        document.getElementById('compile_btn').disabled = true
+    }else if(btn == true){
+        document.getElementById('compile_btn').disabled = false
+    }
+</script>
 </html>

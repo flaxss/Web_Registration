@@ -58,8 +58,8 @@ function format(list){
     return events;
 }
 
-// let http_localhost = 'http://localhost:3000'
-let http_localhost = 'https://nutty-crab-scarf.cyclic.app'
+let http_localhost = 'http://localhost:3000'
+// let http_localhost = 'https://nutty-crab-scarf.cyclic.app'
 
 module.exports.home = async(req, res) => {
     const renderPost = await Announcement.find({})

@@ -863,7 +863,7 @@ module.exports.records_educ_list = async(req, res) => {
         const date = await Educ_Compile.find().sort({createdAt: -1})
         const info = await Educ_Compile.find().sort({createdAt: -1}).populate('list')
         info.forEach(p => {
-            console.log(p.list)
+            // console.log(p.list)
         })
         // console.log(data)
         res.render('admin/record/educ_list', {date, data})
@@ -886,12 +886,23 @@ module.exports.records_educ_list_id = async(req, res) => {
 }
 
 module.exports.records_aics_list = async(req, res) => {
-    const render = await AICS_Compile.find()
-    let counter = 0
-    render.forEach(count => {
-        counter++
-    })
-    res.render('admin/record/aics_list', {render, counter})
+    const {month, year} = req.query
+    let render;
+    if(!month && !year){
+        render = await AICS_Compile.find()
+    }else{
+        let selected_date = new Date(`${year} ${month} 01`)
+        let next_date = new Date(selected_date)
+        next_date.setMonth(next_date.getMonth() + 1)
+        console.log(selected_date, next_date)
+        render = await AICS_Compile.find({
+            createdAt: {
+                $gte: selected_date,
+                $lt: next_date
+            }
+        })
+    }
+    res.render('admin/record/aics_list', {render})
 }
 
 module.exports.records_medical_assistance = async(req, res) => {
