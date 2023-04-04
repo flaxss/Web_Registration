@@ -1,10 +1,11 @@
 <%- include('../../../include/header') %>
 <title>College Educational Assistance</title>
-  <script>
-    $(function() {
-        $('#datepicker').datetimepicker();
-    });
-  </script>
+    <style>
+        .required {
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
     <%- include('../../../include/nav') %>
@@ -324,26 +325,37 @@
                 </div>
                 <br>
                 <h4>IV. CHARACTER REFERENCE</h4>
-                <div class="row mb-3 text-center">
-                    <div class="col-md-4">  
-                        <label for="cr-name" class="form-label">Name</label>
-                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="1" value="<%- appointment.char_ref_name[0] %>">
-                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="2" value="<%- appointment.char_ref_name[1] %>">
+                <div class="row mb-3">
+                    <div >
+                        <label for="cr-name" class="form-label">Character Reference no. 1</label>
                     </div>
-                    <div class="col-md-4">  
-                        <label for="cr-address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="1" value="<%- appointment.char_ref_add[0] %>">
-                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="2" value="<%- appointment.char_ref_add[1] %>">
+                    <div class="col-md-4 mb-1">
+                        <input type="text" class="form-control textOnly mb-1" id="cr-name" name="char_ref_name" placeholder="Full Name" value="<%- appointment.char_ref_name[0] %>">
                     </div>
-                    <div class="col-md-4">  
-                        <label for="cr-contact" class="form-label">Contact Number</label>
-                        <div class="input-group">
+                    <div class="col-md-4 mb-1">
+                        <input type="text" class="form-control mb-1" id="cr-address" name="char_ref_add" placeholder="Address" value="<%- appointment.char_ref_add[0] %>">
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <div class="input-group mb-1">
                             <span class="input-group-text">+63</span>
-                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="1" maxlength="9" onkeypress="return isNumberKey(event)" value="<%- appointment.char_ref_num[0] %>">
+                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" maxlength="10" onkeypress="return isNumberKey(event)" value="<%- appointment.char_ref_num[0] %>">
                         </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div >
+                        <label for="cr-name" class="form-label">Character Reference no. 2</label>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <input type="text" class="form-control textOnly" id="cr-name" name="char_ref_name" placeholder="Full Name" value="<%- appointment.char_ref_name[1] %>">
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <input type="text" class="form-control" id="cr-address" name="char_ref_add" placeholder="Address" value="<%- appointment.char_ref_add[1] %>">
+                    </div>
+                    <div class="col-md-4 mb-1">
                         <div class="input-group">
                             <span class="input-group-text">+63</span>
-                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" placeholder="2" maxlength="9" onkeypress="return isNumberKey(event)" value="<%- appointment.char_ref_num[1] %>">
+                            <input type="tel" class="form-control" id="cr-contact" name="char_ref_num" maxlength="10" onkeypress="return isNumberKey(event)" value="<%- appointment.char_ref_num[1] %>">
                         </div>
                     </div>
                 </div>

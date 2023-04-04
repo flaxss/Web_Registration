@@ -17,24 +17,6 @@ const nodemailer = require('nodemailer')
 const { json } = require('express')
 const Educ_Registration = require('../model/Educ_Registration')
 
-// generate email and password to connect with node mailer
-let config = {
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
-    }
-}
-// user and generate a template for the email
-let transporter = nodemailer.createTransport(config)
-let MailGenerator = new Mailgen({
-    theme: 'default',
-    product: {
-        name: 'CSWD OFFICE',
-        link: 'https://mailgen.js'
-    }
-})
-
 // parse date
 function dateFormat(date){
     let day = moment(date).format('DD')
@@ -58,8 +40,80 @@ function format(list){
     return events;
 }
 
-// let http_localhost = 'http://localhost:3000'
-let http_localhost = 'https://nutty-crab-scarf.cyclic.app'
+let http_localhost = 'http://localhost:3000'
+// let http_localhost = 'https://nutty-crab-scarf.cyclic.app'
+
+// generate email and password to connect with node mailer
+let config = {
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+    }
+}
+// user and generate a template for the email
+let transporter = nodemailer.createTransport(config)
+let MailGenerator = new Mailgen({
+    theme: 'default',
+    product: {
+        name: 'CSWD OFFICE',
+        link: `${http_localhost}`
+    }
+})
+
+function messageResponse(fullname, link, email){
+    let response = {
+        body: {
+            name: fullname.toUpperCase(),
+            intro: 'Please confirm your registration by clicking the <b>Confirm</b> button',
+            action: {
+                instruction: ``,
+                button: {
+                    color: '#22BC66', // Optional action button color
+                    text: 'CONFIRM',
+                    link: link
+                },
+            },
+            outro: 'Important Note! After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon). Note that you can edit your information once!'
+        }
+    }
+    let mail = MailGenerator.generate(response)
+    let message = {
+        from: 'support@email.com',
+        to: email,
+        subject: 'social service',
+        html: mail
+    }
+    return message;
+}
+
+function messageUpdate(fullname, service, reference, prev_link, up_link, email){
+    let response = {
+        body: {
+            name: fullname,
+            intro: `Congrats! You are successfully registered to <b>${service}</b> here is your reference number: ${reference}
+            Click the link
+            <a href="${prev_link}">here</a>
+            to Download the Intake Sheet`,
+            action: {
+                instruction: `If your information is incorrect, you may edit your response here: `,
+                button: {
+                    color: '#22BC66',
+                    text: 'update response',
+                    link: up_link
+                },
+            },
+        }
+    }
+    let mail = MailGenerator.generate(response)
+    let message = {
+        from: 'support@email.com',
+        to: email,
+        subject: 'social service',
+        html: mail
+    }
+    return message;
+}
 
 module.exports.home = async(req, res) => {
     const renderPost = await Announcement.find({})
@@ -238,27 +292,9 @@ module.exports.college_assistance_form_post = async(req, res) => {
                     await Event.findByIdAndDelete(data.id)
                 }
             })
-            let response = {
-                body: {
-                    name: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-                    intro: `Congrats! You are successfully registered ${create.reference}`,
-                    action: {
-                        instruction: `If your information is incorrect, you may edit your response here: `,
-                        button: {
-                            color: '#22BC66', // Optional action button color
-                            text: 'CONFIRM',
-                            link: `${http_localhost}/college-assistance/${create.id}/confirm`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: req.body.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const link = `${http_localhost}/college-assistance/${create.id}/confirm`
+            const message = messageResponse(fullname, link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -355,30 +391,12 @@ module.exports.college_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created`)
-            let response = {
-                body: {
-                    name: `${create.firstname} ${create.middlename} ${create.lastname}`,
-                    intro: `Congrats! You are successfully registered here is your reference number: ${create.reference}
-                    Please click the link
-                    <a href="${http_localhost}/college-assistance/${create.id}/preview">here</a>
-                    to download the form`,
-                    action: {
-                        instruction: `If your information is incorrect, you may edit your response here: `,
-                        button: {
-                            color: '#22BC66',
-                            text: 'update response',
-                            link: `${http_localhost}/college-assistance/${create.id}/update-response`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: create.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const service = create.service
+            const reference = create.reference
+            const prev_link = `${http_localhost}/college-assistance/${create.id}/preview`
+            const up_link = `${http_localhost}/college-assistance/${create.id}/update-response`
+            const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -526,27 +544,9 @@ module.exports.medical_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            let response = {
-                body: {
-                    name: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-                    intro: `Please confirm your registration by clicking the confirm button`,
-                    action: {
-                        instruction: 'Please confirm your registration by clicking the confirm button',
-                        button: {
-                            color: '#22BC66',
-                            text: 'CONFIRM',
-                            link: `${http_localhost}/medical-assistance/${create.id}/confirm`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: req.body.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const link = `${http_localhost}/medical-assistance/${create.id}/confirm`
+            const message = messageResponse(fullname, link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -618,30 +618,12 @@ module.exports.medical_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            let response = {
-                body: {
-                    name: `${create.firstname} ${create.middlename} ${create.lastname}`,
-                    intro: `Congrats! You are successfully registered here is your reference number: ${create.reference}
-                    Please click the link
-                    <a href="${http_localhost}/medical-assistance/${create.id}/preview">here</a>
-                    to download the form`,
-                    action: {
-                        instruction: `If your information is incorrect, you may edit your response here: `,
-                        button: {
-                            color: '#22BC66',
-                            text: 'update response',
-                            link: `${http_localhost}/medical-assistance/${create.id}/update-response`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: create.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const service = create.service
+            const reference = create.reference
+            const prev_link = `${http_localhost}/medical-assistance/${create.id}/preview`
+            const up_link = `${http_localhost}/medical-assistance/${create.id}/update-response`
+            const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -722,27 +704,9 @@ module.exports.burial_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            let response = {
-                body: {
-                    name: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-                    intro: `Please confirm your registration by clicking the confirm button`,
-                    action: {
-                        instruction: 'Please confirm your registration by clicking the confirm button',
-                        button: {
-                            color: '#22BC66',
-                            text: 'CONFIRM',
-                            link: `${http_localhost}/burial-assistance/${create.id}/confirm`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: req.body.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const link = `${http_localhost}/burial-assistance/${create.id}/confirm`
+            const message = messageResponse(fullname, link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -814,31 +778,12 @@ module.exports.burial_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            let response = {
-                body: {
-                    name: `${create.firstname} ${create.middlename} ${create.lastname}`,
-                    intro: 
-                    `Congrats! You are successfully registered here is your reference number: ${create.reference}
-                    Please click the link
-                    <a href="${http_localhost}/burial-assistance/${create.id}/preview">here</a>
-                    to download the form`,
-                    action: {
-                        instruction: `If your information is incorrect, you may edit your response here: `,
-                        button: {
-                            color: '#22BC66',
-                            text: 'update response',
-                            link: `${http_localhost}/burial-assistance/${create.id}/update-response`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: create.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const service = create.service
+            const reference = create.reference
+            const prev_link = `${http_localhost}/burial-assistance/${create.id}/preview`
+            const up_link = `${http_localhost}/burial-assistance/${create.id}/update-response`
+            const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -920,27 +865,9 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            let response = {
-                body: {
-                    name: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-                    intro: `Please confirm your registration by clicking the confirm button`,
-                    action: {
-                        instruction: 'Please confirm your registration by clicking the confirm button',
-                        button: {
-                            color: '#22BC66',
-                            text: 'CONFIRM',
-                            link: `${http_localhost}/transportation-assistance/${create.id}/confirm`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: req.body.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const link = `${http_localhost}/transportation-assistance/${create.id}/confirm`
+            const message = messageResponse(fullname, link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -1012,30 +939,12 @@ module.exports.transportation_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            let response = {
-                body: {
-                    name: `${create.firstname} ${create.middlename} ${create.lastname}`,
-                    intro: `Congrats! You are successfully registered here is your reference number: ${create.reference}
-                    Please click the link
-                    <a href="${http_localhost}/transportation-assistance/${create.id}/preview">here</a>
-                    to download the form`,
-                    action: {
-                        instruction: `If your information is incorrect, you may edit your response here: `,
-                        button: {
-                            color: '#22BC66',
-                            text: 'update response',
-                            link: `${http_localhost}/transportation-assistance/${create.id}/update-response`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: create.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const service = create.service
+            const reference = create.reference
+            const prev_link = `${http_localhost}/transportation-assistance/${create.id}/preview`
+            const up_link = `${http_localhost}/transportation-assistance/${create.id}/update-response`
+            const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -1112,27 +1021,9 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            let response = {
-                body: {
-                    name: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-                    intro: `Please confirm your registration by clicking the confirm button`,
-                    action: {
-                        instruction: 'Please confirm your registration by clicking the confirm button',
-                        button: {
-                            color: '#22BC66',
-                            text: 'CONFIRM',
-                            link: `${http_localhost}/emergency-shelter-assistance/${create.id}/confirm`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: req.body.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const link = `${http_localhost}/emergency-shelter-assistance/${create.id}/confirm`
+            const message = messageResponse(fullname, link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
@@ -1204,30 +1095,12 @@ module.exports.emergency_shelter_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            let response = {
-                body: {
-                    name: `${create.firstname} ${create.middlename} ${create.lastname}`,
-                    intro: `Congrats! You are successfully registered here is your reference number: ${create.reference}
-                    Please click the link
-                    <a href="${http_localhost}/emergency-shelter-assistance/${create.id}/preview">here</a>
-                    to download the form`,
-                    action: {
-                        instruction: `If your information is incorrect, you may edit your response here: `,
-                        button: {
-                            color: '#22BC66',
-                            text: 'update response',
-                            link: `${http_localhost}/emergency-shelter-assistance/${create.id}/update-response`
-                        },
-                    },
-                }
-            }
-            let mail = MailGenerator.generate(response)
-            let message = {
-                from: 'support@email.com',
-                to: create.email,
-                subject: 'social service',
-                html: mail
-            }
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const service = create.service
+            const reference = create.reference
+            const prev_link = `${http_localhost}/emergency-shelter-assistance/${create.id}/preview`
+            const up_link = `${http_localhost}/emergency-shelter-assistance/${create.id}/update-response`
+            const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
