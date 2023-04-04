@@ -1,5 +1,13 @@
 <%- include('../../include/header') %>
     <title>Burial Assistance</title>
+
+    <!-- asterisk -->
+    <style>
+        .required {
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
     <%- include('../../include/nav') %>
@@ -7,20 +15,26 @@
         <div class="container my-2 p-2">
             <h1 class="text-center">Burial Assistance Registration Form</h1>
             <div class="main-content">
-                <form class="container-xl bg-light p-2" action="/burial-assistance/form" method="POST" >
+                <form class="container-xl bg-light p-2 needs-validation" novalidate action="/burial-assistance/form" method="POST" >
                     <h4>IMPORMASYON UKOL SA KLIYENTE (Client's Identifying Information)</h4>
                     <div class="row mb-3 g-1">
                         <input type="text" name="service" value="Burial Assistance" hidden>
                         <div class="col-md-3">  
-                            <label for="lastname" class="form-label">Last Name</label>
+                            <label for="lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="lastname" required>
+                            <div class="invalid-feedback">
+                            Please enter your last name.
+                        </div>
                         </div>
                         <div class="col-md-3">  
-                            <label for="firstname" class="form-label">First Name</label>
+                            <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="firstname" required>
+                            <div class="invalid-feedback">
+                                Please enter your first name.
+                            </div>
                         </div>
                         <div class="col-md-3">  
-                            <label for="middlename" class="form-label">Middle Name</label>
+                            <label for="middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
                             <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="middlename">
                         </div>
                         <div class="col-md-3">  
@@ -30,57 +44,78 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-4">  
-                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <label for="birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
                             <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                            <div class="invalid-feedback">
+                                Please select your birthdate.
+                            </div>
                         </div>
                         <div class="col-md-4">  
-                            <label for="age" class="form-label">Age</label>
+                            <label for="age" class="form-label">Edad (Age)<span class="required">*</span></label>
                             <input type="number" class="form-control" id="age" name="age" required>
+                            <div class="invalid-feedback">
+                                Please enter your age.
+                            </div>
                         </div>
                         <div class="col-md-4">  
-                            <label for="sex" class="form-label">Sex</label>
+                            <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
                             <div class="form-control">
                                 <input type="radio" id="male" value="male" name="sex" required>
                                 <label for="male">Male</label> 
                                 <input type="radio" id="female" class="ms-3" value="female" name="sex" required>
                                 <label for="female">Female</label>
+                                <div class="invalid-feedback">
+                                    Please select your sex.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">  
-                            <label for="contact-number" class="form-label">Contact Number</label>
+                            <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">+63</span>
                                 <input type="tel" class="form-control" id="contact-number" name="contact_number" minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" required>
+                                <div class="invalid-feedback">
+                                    Please enter your valid contact number.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">  
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label">Email<span class="required">*</span></label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="e.g. juandelacruz@gmail.com" required>
+                            <div class="invalid-feedback">
+                                Please enter your valid email address.
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="civil-status" class="form-label">Civil Status</label>
+                            <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
                             <div class="form-control">
                                 <input type="radio" id="civil-status" name="civil_status" value="Single" required> Single    
                                 <input type="radio" id="civil-status" class="ms-4" name="civil_status" value="Widow/er" required> Widow/er<br>
                                 <input type="radio" id="civil-status" name="civil_status" value="Married" required> Married
                                 <input type="radio" id="civil-status" class="ms-3" name="civil_status" value="Other" required> Other
+                                <div class="invalid-feedback">
+                                    Please select your civil status.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6"> 
-                            <label for="relationship" class="form-label">Relationship to Beneficiary</label>
+                            <label for="relationship" class="form-label">Relasyon sa Benepisyaryo (Relationship to Beneficiary)<span class="required">*</span></label>
                             <input type="text" id="relationship" class="form-control textOnly" name="beneficiary_relationship">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div >
-                            <label for="address" class="form-label">Address</label>
+                            <label for="address" class="form-label">Tirahan (Address)<span class="required">*</span></label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="street" required>
+                            <div class="invalid-feedback">
+                                Please enter your No./Street/Purok.
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <select class="form-control" id="barangay" aria-label="Barangay" name="brgy" required>
@@ -100,6 +135,9 @@
                                 <option value="Perez">Perez</option>
                                 <option value="San Agustin">San Agustin</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Please select your barangay.
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <select class="form-control" id="municipality" aria-label="Municipality/City" name="municipal">
@@ -114,11 +152,11 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">  
-                            <label for="occupation" class="form-label">Occupation</label>
+                            <label for="occupation" class="form-label">Trabaho (Occupation)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="occupation" name="occupation" required>
                         </div>
                         <div class="col-md-6">  
-                            <label for="salary" class="form-label">Salary</label>
+                            <label for="salary" class="form-label">Sweldo (Salary)<span class="required">*</span></label>
                             <input type="number" class="form-control" id="salary" name="salary" required>
                         </div>
                     </div>
@@ -126,15 +164,18 @@
                     <h4>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Identifying Information)</h4>
                     <div class="row mb-3">
                         <div class="col-md-3">  
-                            <label for="lastname" class="form-label">Last Name</label>
+                            <label for="lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required>
+                            <div class="invalid-feedback">
+                                Please enter Beneficiary's last name.
+                            </div>
                         </div>
                         <div class="col-md-3">  
-                            <label for="firstname" class="form-label">First Name</label>
+                            <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required>
                         </div>
                         <div class="col-md-3">  
-                            <label for="middlename" class="form-label">Middle Name</label>
+                            <label for="middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
                             <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename">
                         </div>
                         <div class="col-md-3">  
@@ -144,15 +185,15 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-4">  
-                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <label for="birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
                             <input type="date" class="form-control" id="birthdate" name="bene_birthdate" required>
                         </div>
                         <div class="col-md-4">  
-                            <label for="age" class="form-label">Age</label>
+                            <label for="age" class="form-label">Edad (Age)<span class="required">*</span></label>
                             <input type="number" class="form-control" id="age " name="bene_age" required>
                         </div>
                         <div class="col-md-4">  
-                            <label for="sex" class="form-label">Sex</label>
+                            <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
                             <div class="form-control">
                                 <input type="radio" id="sex" name="bene_sex" value="Male" required> Male
                                 <input type="radio" id="sex" class="ms-3" name="bene_sex" value="Female" required> Female
@@ -161,14 +202,14 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">  
-                            <label for="contact-number" class="form-label">Contact Number</label>
+                            <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">+63</span>
                                 <input type="tel" class="form-control" id="contact-number " name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required>
                             </div>
                         </div>
                         <div class="col-md-6">  
-                            <label for="civil-status" class="form-label">Civil Status</label>
+                            <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
                             <div class="form-control">
                                 <input type="radio" id="civil-status" name="bene_civil_status" value="Single" required> Single    
                                 <input type="radio" id="civil-status" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
@@ -179,7 +220,7 @@
                     </div>
                     <div class="row mb-3">
                         <div >
-                            <label for="address" class="form-label">Address</label>
+                            <label for="address" class="form-label">Tirahan (Address)<span class="required">*</span></label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required>
@@ -219,45 +260,121 @@
                     </div>
                     <br><br>
                     <h4>KOMPOSISYON NG PAMILYA</h4>
-                    <div class="row mb-3 text-center">
+                    <div>
+                        <label for="">Family Members</label>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="">I.</label>
                         <div class="col-md-4">  
-                            <label for="c-name" class="form-label">Name</label>
-                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="1">
-                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="2">
-                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="3">
-                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="4">
-                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="5">
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
                         </div>
                         <div class="col-md-2">  
-                            <label for="c-age" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="1">
-                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="2">
-                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="3">
-                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="4">
-                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="5">
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
                         </div>
-                        <div class="col-md-3">  
-                            <label for="c-occupation" class="form-label">Occupation</label>
-                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="1">
-                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="2">
-                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="3">
-                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="4">
-                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="5">
+                        <div class="col-md-3"> 
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
                         </div>
-                        <div class="col-md-3">  
-                            <label for="c-salary" class="form-label">Monthly Salary</label>
-                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="1">
-                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="2">
-                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="3">
-                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="4">
-                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="5">
+                        <div class="col-md-3"> 
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
                         </div>
                     </div>
-                    <button type="submit" class="form-control btn btn-success">submit</button>
+                    <div class="row mb-3">
+                        <label for="">II.</label>
+                        <div class="col-md-4">  
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
+                        </div>
+                        <div class="col-md-2">  
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="">III.</label>
+                        <div class="col-md-4">  
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
+                        </div>
+                        <div class="col-md-2">  
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="">IV.</label>
+                        <div class="col-md-4">  
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
+                        </div>
+                        <div class="col-md-2">  
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="">V.</label>
+                        <div class="col-md-4">  
+                            <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
+                        </div>
+                        <div class="col-md-2">  
+                            <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
+                        </div>
+                        <div class="col-md-3"> 
+                            <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions.
+                          </label>
+                          <div class="invalid-feedback">
+                            You must agree before submitting.
+                          </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-control btn btn-success">Submit</button>
+
                 </form>
             </div>
         </div>
     </main>
+    <!-- form validation -->
+    <script>
+        (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                alert("Please fill out all the required information.");
+            }
+            else{
+                alert("Are you sure you want to submit this form?");
+            }
+            form.classList.add('was-validated')
+            }, false)
+        })
+        })()
+    </script>
     <%- include('../../include/footer') %>
 </body>
 </html>
