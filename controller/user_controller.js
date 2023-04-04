@@ -1167,7 +1167,7 @@ module.exports.search = async (req, res) => {
     console.log(service)
     let format = ''
     let result;
-    result = await AICS_Registration.findOne(
+    result = await Educ_Confirmation.findOne(
         {
             $or: [
                 {reference: reference, service: service},
@@ -1176,8 +1176,8 @@ module.exports.search = async (req, res) => {
         }
     )
     if(result == null){
-        console.log('not found in aics registration')
-        result = await AICS_Record.findOne(
+        console.log('not found in educ confirmation')
+        result = await Educ_Appointment.findOne(
             {
                 $or: [
                     {reference: reference, service: service},
@@ -1186,11 +1186,51 @@ module.exports.search = async (req, res) => {
             }
         )
         if(result == null){
-            format = ''
-            console.log('not found in aics records')
+            console.log('not found in educ appointment')
+            result = await Educ_Registration.findOne(
+                {
+                    $or: [
+                        {reference: reference, service: service},
+                        // {fullname: {$regex: reference}, service: service}
+                    ]
+                }
+            )
+            if(result == null){
+                console.log('not found in educ registration')
+                result = await AICS_Registration.findOne(
+                    {
+                        $or: [
+                            {reference: reference, service: service},
+                            // {fullname: {$regex: reference}, service: service}
+                        ]
+                    }
+                )
+                if(result == null){
+                    console.log('not found in aics registration')
+                    result = await AICS_Record.findOne(
+                        {
+                            $or: [
+                                {reference: reference, service: service},
+                                // {fullname: {$regex: reference}, service: service}
+                            ]
+                        }
+                    )
+                    if(result == null){
+                        format = ''
+                        console.log('not found in aics records')
+                    }else{
+                        format = moment(result.expiredAt).format('MMMM DD, YYYY')
+                    }
+                }else{
+                    console.log(`${reference} is found ${result}`)
+                }
+            }else{
+                console.log(`${reference} is found ${result}`)
+            }
         }else{
-            format = moment(result.expiredAt).format('MMMM DD, YYYY')
+            console.log(`${reference} is found ${result}`)
         }
+        
     }else{
         console.log(`${reference} is found ${result}`)
     }

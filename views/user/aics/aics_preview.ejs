@@ -1,6 +1,6 @@
-<%- include('../include/header') %>
+<%- include('../../include/header') %>
     <title>Preview</title>
-    <link rel="stylesheet" href="/css/med-temp.css">
+    <link rel="stylesheet" href="/css/educ-temp.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script>
         window.onload = function () {
@@ -22,231 +22,252 @@
     </script>
 </head>
 <body>
-    <%- include('../include/nav') %>
+    <%- include('../../include/nav') %>
     <div style=" text-align: center;">
-        <button  id="download"> download pdf</button>
+        <button id="download"> download pdf</button>
     </div>
-    <form action="" class="page" size="A4" id="">
-        <img src="/img/temp-banner.PNG" alt="" style="margin-top: 2%">
-        <div class="even-col" >
-            <div class="col">
-                <label for="date">Petsa Ngayon<br><i>(Date Today)</i></label>
-                <input type="date" name="date" size="15">
-            </div>
-            <div class="col">
-                <label for="time">Oras ng Pagpasok<br><i>(Time of Entry)</i></label>
-                <input type="time" name="time" size="15">
-            </div>
-            <div class="col">
-                <label for="bilang">Bilang ng<br>Kliyente</label>
-                <input type="number" name="bilang" size="15">
-            </div>
-        </div>
-        <h2>IMPORMASYON UKOL SA KLIYENTE (Client's Indentifying Information)</h2>
-        <div class="even-col" >
-            PANGALAN:<br>(Name)
-            <div class="col-name" >
-                <input type="text" name="lastname" size="19"><br>
-                <label for="lastname">Apelyido<br>(Last Name)</label>
-            </div>        
-            <div class="col-name">
-                <input type="text" name="firstname" size="19"><br>
-                <label for="firstname">Unang Pangalan<br>(First Name)</label>
-            </div>
-            <div class="col-name">
-                <input type="text" name="middlename" size="19"><br>
-                <label for="middlename">Gitnang Pangalan<br>(Middle Name)</label>
-            </div>
-            <div class="col-name">
-                <input type="text" name="extensionname" size="13"><br>
-                <label for="extensionname">Extension Name<br><br></label>
-            </div>
-        </div>
-        <br>
-        <div class="even-col">
-            PETSA NG <br> KAPANGANAKAN: <br>(Birthday)
-            <div class="col-age">
-                <input type="date" id="birthdate">
-            </div>
-            <center style="margin-left: 5%;">EDAD  <br>(Age):</center>
-            <div class="col-age" style="margin-right: 2%;">
-                    <input type="number" id="age" size="5">
-            </div>
-            KASARIAN<br> (Sex)
-            <div class="col-age">
+    <form action="" class="page" size="A4" id="pdf-form">
+        <div style="margin: 2%; border: 2px solid #000 ">
+            <table>
+                <tr>
+                    <td colspan="4" class="image">
+                        <img src="/img/educ-banner.PNG" alt="">
+                    </td>
+                    <td class="picture2x2"> 2x2
+                    </td>
+                </tr>
+                <tr >
+                    <td colspan="4" style="font-weight: bold; border-top: 1px solid #000; background-color: rgb(158, 157, 157);" >I. PERSONAL INFORMATION</td>
+                    <td style="border-left: 2px solid #000; border-bottom: 1px solid rgb(158, 157, 157); background-color:  rgb(158, 157, 157);">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="width: 20%;  border-right: 1px solid #000; border-bottom: 1px solid #000;">NAME:</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center ">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center">-</td>
+                    <td style="border-bottom: 1px solid #000; text-align:center">-</td>
+                    <td rowspan="1" style="width: 28.5%; border-left: 2px solid #000;  background-color: rgb(158, 157, 157);"></td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">First Name</td>
+                    <td style="border-bottom: 1px solid #000;">Middle Name</td>
+                    <td style="border-bottom: 2px solid #000; border-left: 2px solid #000; text-align: left; background-color: rgb(158, 157, 157) ; border-top: 2px solid #000">CONTROL NO:</td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;border-bottom: 1px solid #000; border-right: 1px solid #000;">RESIDENTIAL ADDRESS:</td>
+                    <td colspan="4" style="border-bottom: 1px solid #000;"></td>
+                </tr>
+                <tr>
+                    <td style="width: 20%; border-bottom: 1px solid #000; border-right: 1px solid #000;">PRESENT ADDRESS:</td>
+                    <td colspan="4" style=" border-bottom: 1px solid #000;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">
+                        DATE OF BIRTH: 
+                        <br>
+                        -
+                    </td>
+                    <td colspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">
+                        PLACE OF BIRTH: 
+                        <br>
+                        -
+                    </td>
+                    <td style="border-bottom: 1px solid #000;">
+                        CITIZENSHIP: 
+                        <br>
+                        -
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-right: 1px solid #000;">AGE:</td>
+                    <td style="border-right: 1px solid #000;">SEX:</td>
+                    <td colspan="2" style="border-right: 1px solid #000;">CIVIL STATUS:</td>
+                    <td>CONATCT NO.</td>
+                </tr>              
+            </table>
+            <table >
+                <tr >
+                    <td colspan="5" style="font-weight:bold; border-top: 1px solid #000;  background-color: rgb(158, 157, 157);" >II. FAMILY BACKGROUND</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="width: 20%; border-bottom: 1px solid #000; border-right: 1px solid #000;">SPOUSE IF APPLICABLE:</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td rowspan="2"  style="width:25%; border-bottom: 1px solid #000; ">OCCUPATION</td>
+                </tr>
+                <tr style="text-align:center">
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; ">First Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Middle Name</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">MOTHER'S NAME</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;">-</td>
+                    <td rowspan="2"  style="border-bottom: 1px solid #000; ">OCCUPATION</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">First Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Middle Name</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">FATHER'S NAME</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">-</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;">-</td>
+                    <td rowspan="2"  style=" border-bottom: 1px solid #000;">OCCUPATION</td>
+                </tr>
+                <tr style="text-align:center">
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Last Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">First Name</td>
+                    <td style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Middle Name</td>
+                </tr>
+            </table>
+            <table >
+                <tr >
+                    <td colspan="5" style="font-weight: bold; background-color: rgb(158, 157, 157);" >III. EDUCATIONAL BACKGROUND</td>
+                </tr>
+                <tr style="text-align: center;  border-bottom: 1px solid #000; ">
+                    <th style="width:20%; border-right: 1px solid #000;">LEVEL</th>
+                    <th style="border-right: 1px solid #000;">NAME OF SCHOOL</th>
+                    <th style="width:25%">SCHOOL YEAR</th>
+                </tr>
+                <tr style=" border-bottom: 1px solid #000;">
+                    <td style="text-align: center; border-right: 1px solid #000;">ELEMENTARY</td>
+                    <td style="border-right: 1px solid #000;"></td>
+                    <td></td>
+                </tr>
+                <tr style=" border-bottom: 1px solid #000;">
+                    <td style="text-align: center; border-right: 1px solid #000;">SECONDARY</td>
+                    <td style="border-right: 1px solid #000;" ></td>
+                    <td></td>
+                </tr>
+                <tr style=" border-bottom: 1px solid #000;">
+                    <td style="text-align: center; border-right: 1px solid #000;">VOCATIONAL</td>
+                    <td style="border-right: 1px solid #000;"></td>
+                    <td></td>
+                </tr>
+                <tr style="border-bottom: 1px solid black;">
+                    <td style="text-align: center; border-right: 1px solid #000;">COLLEGE</td>
+                    <td style="border-right: 1px solid #000;"></td>
+                    <td></td>
+                </tr>
+                <tr >
+                    <td colspan="3" >
+                        DEGREE/COURSE (Write in Full)
+                        <br>
+                        -
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" >
+                        <div style="display: flex; ">
+                            <div style="width: 50%;">
+                                <label for="yearlevel">Year Level: </label>
+                                <input type="checkbox" class="ms-3"> 1st    
+                                <input type="checkbox" class="ms-3"> 2nd
+                                <input type="checkbox" class="ms-3"> 3rd
+                                <input type="checkbox" class="ms-3"> 4th
+                                <input type="checkbox" class="ms-3"> 5th
+                            </div>
+                            <div style="width: 50%;">
+                                <label for="degree-course" class="form-label">Semester:</label>
+                                <input type="checkbox" class="ms-3"> 1st    
+                                <input type="checkbox" class="ms-3"> 2nd
+                                <input type="checkbox" class="ms-3"> 3rd
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr >
+                    <td colspan="5" style="font-weight: bold; border-top: 1px solid #000; background-color: rgb(158, 157, 157);" >III. IV. CHARACTER REFERENCE</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <th style="width:38%; border-bottom: 1px solid black; border-right: 1px solid black;">NAME</th>
+                    <th style="border-bottom: 1px solid black; border-right: 1px solid black;">ADDRESS</th>
+                    <th style="width:25%; border-bottom: 1px solid black;">TEL NO.</th>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 1px solid black; border-right: 1px solid black;">1</td>
+                    <td style="border-bottom: 1px solid black; border-right: 1px solid black;"></td>
+                    <td style="width:25%; border-bottom: 1px solid black;"></td>
+                </tr>
+                <tr>
+                    <td style="border-right: 1px solid black;">2</td>
+                    <td style="border-right: 1px solid black;"></td>
+                    <td></td>
+                </tr>
+            </table>
+            <div style="border-top: solid;  border-width: 1px; width: 100%; display: flex; margin-bottom: 5%;" >
                 <div>
-                    <input type="checkbox" id="sex"> Male <br>
-                    <input type="checkbox" id="sex"> Female
+                    <p class="oath">I declare under oath that this Personal Data Sheet has been accomplished by me, and is a true, correct and complete statement pursuant to the provisions of pertinent laws, rules and regulations of the Republic of the Philippines.</p>
+                </div>
+            </div>
+            <div style="display: flex; text-align: center; margin-bottom: 2%">
+                <table>
+                    <tr>
+                        <td style="width: 15%; border:none;"> </td>
+                        <td style="width: 30%; border:none; border-top: solid; border-width: 1.5px;">Signature over Printed Name</td>
+                        <td style="width: 15%; border:none;" ></td>
+                        <td style="width: 20%; border:none; border-top: solid; border-width: 1.5px;">Date</td>
+                        <td style="width: 20%; border:none;"></td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div style="border-top: solid; border-width: 2px; font-weight: bold; padding-bottom: 1%;  padding-top: 1%; " >
+                Assesment:
+            </div>
+            <div style="border-top: solid; border-width: 2px; margin-bottom: 30px;" >
+                <span style="font-weight: bold">Remarks:</span>
+                <div style="width: 100%; margin-top: 2%;">Assessed by:</div>
+                <table>
+                    <tr>
+                        <td style="width: 7%;"></td>
+                        <td style="width: 25%; text-align:center; border-top: 1px solid #000;">Signature over Printed Name</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="display: flex; margin-bottom: 2%;">
+                <table>
+                    <tr>
+                        <td style="text-align: center;  border: none;">Certified by:  <span style="font-weight: bold">NORA N. DELOS SANTOS </span></td>
+                        <td style="text-align: center;  border: none;">Approved by: <span style="font-weight: bold">GEMMA BUENA-LUBIGAN</span></td>
+                    </tr>
+                    <tr style="text-align: center; ">
+                        <td style="border: none; text-indent: 50px">  CSWDO Officer</td>
+                        <td style="border: none; text-indent: 50px">  City Mayor</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="border-top: solid; border-width: 2px;">
+                <span style="font-weight: bold; ">Requirements:</span>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="list-style: none; display: flex; width:100%">
+                        <div style="width:60%; margin-left: 2%;">
+                            <li>___ 2x2 Picture</li>
+                            <li>___ Registration Form (Certified True Copy)</li>
+                            <li>___ General Intake Sheet from CSWDO</li>
+                            <li>___ Letter addressed to the City Mayor</li>
+                        </div>
+                        <div style="width: 40%;">
+                            <li>___ Barangay Clearance</li>
+                            <li>___ Voter's Certification Comelec or Voter's stub with any Government</li>
+                        </div>
+                    </div>
+                    <div class="imgg">
+                        <img src="/img/intakeSheetFooter.PNG" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="even-col">
-            CONTACT NUMBER:
-            <div class="col-contact">
-                <input type="number" id="contact">
-            </div>
-            Status Sibil <br> (Civil Status):
-            <div class="col-contact">
-            <input type="checkbox" name="single" value="single"> Single
-            <input type="checkbox" name="married" value="married"> Married <br>
-            <input type="checkbox" name="widow" value="widow"> Widow/er
-            <input type="checkbox" name="other" value="other"> Other
-            </div>
-        </div>
-        <br>
-        <div class="even-col">
-            Relasyon sa Benepisyaryo:<br> (Relationship to Beneficiary)
-            <div class="benef">
-                <input type="text" name="relationship" size="73">
-            </div>
-        </div>
-        <br>
-        <div class="even-col" >
-            TIRAHAN:<br>(Address)
-            <div class="col-name" >
-                <input type="text" id="street" size="17"><br>
-                <label for="street">No./Street/Purok</label>
-            </div>        
-            <div class="col-name">
-                <input type="text" id="barangay" size="17"><br>
-                <label for="barangay">Barangay</label>
-            </div>
-            <div class="col-name">
-                <input type="text" id="middlename" size="17"><br>
-                <label for="middlename">Municipal/City</label>
-            </div>
-            <div class="col-name">
-                <input type="text" id="province" size="17"><br>
-                <label for="province">Province</label>
-            </div>
-        </div>
-        <br>
-        <div class="even-col">
-            Trabaho: <br>(Occupation)
-            <div class="col-occupation">
-                <input type="text" id="occupation" size="50">
-            </div>
-            Sweldo: <br> (Salary) 
-            <div class="col-occupation">
-                <input class="in" type="number" id="salary" size="50">
-            </div>
-        </div>
-        <br>
-        <h2>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Indentifying Information)</h2>
-        <div class="even-col" >
-            PANGALAN:<br>(Name)
-            <div class="col-name" >
-                <input type="text" name="lastname" size="19"><br>
-                <label for="lastname">Apelyido<br>(Last Name)</label>
-            </div>        
-            <div class="col-name">
-                <input type="text" name="firstname" size="19"><br>
-                <label for="firstname">Unang Pangalan<br>(First Name)</label>
-            </div>
-            <div class="col-name">
-                <input type="text" name="middlename" size="19"><br>
-                <label for="middlename">Gitnang Pangalan<br>(Middle Name)</label>
-            </div>
-            <div class="col-name">
-                <input type="text" name="extensionname" size="13"><br>
-                <label for="extensionname">Extension Name<br><br></label>
-            </div>
-        </div>
-        <br>
-        <div class="even-col">
-            PETSA NG <br> KAPANGANAKAN: <br>(Birthday)
-            <div class="col-age">
-                <input type="date" id="birthdate">
-            </div>
-            <center style="margin-left: 5%;">EDAD  <br>(Age):</center>
-            <div class="col-age" style="margin-right: 2%;">
-                    <input type="number" id="age" size="5">
-            </div>
-            KASARIAN<br> (Sex)
-            <div class="col-age">
-                <div>
-                    <input type="checkbox" id="sex"> Male <br>
-                    <input type="checkbox" id="sex"> Female
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="even-col">
-            CONTACT NUMBER:
-            <div class="col-contact">
-                <input type="number" id="contact">
-            </div>
-            Status Sibil <br> (Civil Status):
-            <div class="col-contact">
-            <input type="checkbox" name="single" value="single"> Single
-            <input type="checkbox" name="married" value="married"> Married <br>
-            <input type="checkbox" name="widow" value="widow"> Widow/er
-            <input type="checkbox" name="other" value="other"> Other
-            </div>
-        </div>
-        <br>
-        <div class="even-col" >
-            TIRAHAN:<br>(Address)
-            <div class="col-name" >
-                <input type="text" id="street" size="17"><br>
-                <label for="street">No./Street/Purok</label>
-            </div>        
-            <div class="col-name">
-                <input type="text" id="barangay" size="17"><br>
-                <label for="barangay">Barangay</label>
-            </div>
-            <div class="col-name">
-                <input type="text" id="middlename" size="17"><br>
-                <label for="middlename">Municipal/City</label>
-            </div>
-            <div class="col-name">
-                <input type="text" id="province" size="17"><br>
-                <label for="province">Province</label>
-            </div>
-        </div>
-        <br>
-        <h2>KOMPOSISYON NG PAMILYA:</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Pangalan</th>
-                    <th>Edad</th>
-                    <th>Trabaho</th>
-                    <th>Buwanang Sahod</th>
-                </tr>
-                <tr>
-                    <td>1.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5.</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </thead>
-        </table>
     </form>
 </body>
 </html>

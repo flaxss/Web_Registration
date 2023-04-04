@@ -22,19 +22,39 @@
           <a class="nav-link text-white" aria-current="page" href="/about">ABOUT US</a>
         </li>
       </ul>
-      <form class="form col-md-4 d-flex" role="search" action="/search" method="GET">
-        <div class="input-group">
-          <select class="form-select" name="service" aria-label="Default select example" required>
-            <option value="" disabled selected>Please Choose</option>
-            <option value="Burial Assistance">Burial Assistance</option>
-            <option value="Emergency Shelter Assistance">Emergency Shelter Assistance</option>
-            <option value="Medical Assistance">Medical Assistance</option>
-            <option value="Transportation Assistance">Transportation Assistance</option>
-          </select>
-          <input class="form-control" type="search" name="result" required placeholder="enter reference number" aria-label="Search">
-          <button class="btn btn-success" type="submit">Track</button>
+      
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Track
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Track Your Application</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="form col-md-12" role="search" action="/search" method="GET">
+                <select class="form-select" name="service" aria-label="Default select example" required>
+                  <option value="" disabled selected>Please Choose</option>
+                  <option value="Burial Assistance">Burial Assistance</option>
+                  <option value="College Educational Assistance">College Educational Assistance</option>
+                  <option value="Emergency Shelter Assistance">Emergency Shelter Assistance</option>
+                  <option value="Medical Assistance">Medical Assistance</option>
+                  <option value="Transportation Assistance">Transportation Assistance</option>
+                </select>
+                <input class="form-control mt-2 mb-2" type="search" name="result" required placeholder="enter reference number" aria-label="Search">
+                <div class="modal-footer">
+                  <button class="btn btn-primary">Proceed</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </nav>

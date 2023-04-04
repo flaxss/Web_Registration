@@ -7,8 +7,8 @@
   }
   .content{
       background-image: url("/img/slider1.png");
-      /* height: 100dvh; */
-      height: 91.5vh;
+      height: 100dvh;
+      /* height: 91.5vh; */
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

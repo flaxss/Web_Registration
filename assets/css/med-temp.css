@@ -13,10 +13,13 @@ body{
     margin: 3px auto 3px auto;
     position: relative;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 0.7em;
 }
 .page[size="A4"] {
-    width: 21cm;
-    height: 29.7cm;
+    /* width: 21cm;
+    height: 29.7cm; */
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
 }
 img{
@@ -39,10 +42,10 @@ form{
 .even-col .col input {
     margin-left:10px;
 }
-h2{
-    padding-left: 5%;
-    padding-right: 5%;
+.headtitle{
     font-size: medium;
+    font-weight: bold;
+    background-color:  rgb(158, 157, 157);
 }
 .col-name{
     flex-basis: 100%;
@@ -69,11 +72,16 @@ h2{
 .col-occupation input.in{
     margin-left: 5%;
 }
-table, td, th {
+.komposisyon, .tr-kom {
     border: 1px solid rgb(42, 42, 42);
   }
 table{
     width: 90%;
     border-collapse: collapse;
     margin-left: 5%;
+}
+@media(max-width: 1000px){
+    .page{
+        font-size: .6rem;
+    }
 }
