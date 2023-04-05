@@ -74,7 +74,7 @@ function messageResponse(fullname, link, email){
                     link: link
                 },
             },
-            outro: 'Important Note! After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon).'
+            outro: '<b>Important Note!</b> After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon).'
         }
     }
     let mail = MailGenerator.generate(response)
@@ -103,7 +103,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
                     link: up_link
                 },
             },
-            outro: 'Note that you can edit your information once!'
+            outro: '<b>IMPORTANT NOTE</b> YOU CAN EDIT YOU RESPONSE ONCE ONLY!'
         }
     }
     let mail = MailGenerator.generate(response)
