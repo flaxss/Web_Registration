@@ -103,7 +103,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
                     link: up_link
                 },
             },
-            outro: '<b>IMPORTANT NOTE</b> YOU CAN EDIT YOU RESPONSE ONCE ONLY!'
+            outro: '<b>Important Note!</b> You can edit your response once only!'
         }
     }
     let mail = MailGenerator.generate(response)
