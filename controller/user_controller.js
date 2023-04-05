@@ -40,8 +40,8 @@ function format(list){
     return events;
 }
 
-// let http_localhost = 'http://localhost:3000'
-let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
+let http_localhost = 'http://localhost:3000'
+// let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
 
 // generate email and password to connect with node mailer
 let config = {
@@ -99,7 +99,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
                 instruction: `If your information is incorrect, you may edit your response here: `,
                 button: {
                     color: '#22BC66',
-                    text: 'update response',
+                    text: 'UPDATE RESPONSE',
                     link: up_link
                 },
             },
