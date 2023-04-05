@@ -803,7 +803,9 @@ module.exports.burial_assistance_preview = async(req, res) => {
     try {
         const find = await AICS_Registration.findById(id)
         if(find){
-            return res.render('user/aics/aics_preview', {find})
+            const formatted = moment(find.birthdate).format('MMMM DD, YYYY')
+            const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
+            return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
             // return res.send('successfully registered')
         }
         res.status(404).render('err/notfound')
@@ -963,7 +965,9 @@ module.exports.transportation_assistance_preview = async(req, res) => {
     try {
         const find = await AICS_Registration.findById(id)
         if(find){
-            res.render('user/aics/aics_preview', {find})
+            const formatted = moment(find.birthdate).format('MMMM DD, YYYY')
+            const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
+            return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
             // return res.send('successfully registered')
         }
         res.status(404).render('err/notfound')
@@ -1119,7 +1123,9 @@ module.exports.emergency_shelter_assistance_preview = async(req, res) => {
     try {
         const find = await AICS_Registration.findById(id)
         if(find){
-            res.render('user/aics/aics_preview', {find})
+            const formatted = moment(find.birthdate).format('MMMM DD, YYYY')
+            const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
+            return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
             // return res.send('successfully registered')
         }
         res.status(404).render('err/notfound')

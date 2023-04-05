@@ -10,6 +10,7 @@ const Educ_Appointment = require('../model/Educ_Appointment')
 const Educ_Registration = require('../model/Educ_Registration')
 const Educ_Record = require('../model/Educ_Record')
 const Educ_Compile = require('../model/Educ_Compile')
+const AICS_Confirmation = require('../model/AICS_Confirmation')
 const AICS_Registration = require('../model/AICS_Registration')
 const AICS_Record = require('../model/AICS_Record')
 const AICS_Compile = require('../model/AICS_Compile')
@@ -598,7 +599,20 @@ module.exports.application_aics_assistance_accept = async(req, res) => {
 }
 
 module.exports.application_aics_assistance_view = async(req, res) => {
-    res.send('asdf')
+    const id = req.params.id
+    try {
+        const find = await AICS_Registration.findById(id)
+        if(find){
+            const formatted = moment(find.birthdate).format('MMMM DD, YYYY')
+            const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
+            return res.render('admin/form/aics_preview', {find, formatted, bene_formatted})
+        }else{
+            return res.status(404).render('err/notfound')
+        }
+    }catch(err){
+        console.log(err.message)
+        res.status(404).render('err/notfound')
+    }
 }
 
 module.exports.application_aics_assistance_get = async(req, res) => {
@@ -682,13 +696,19 @@ module.exports.register_burial_get = (req, res) => {
 
 module.exports.register_burial_post = async(req, res) => {
     const body = req.body;
+    const isConfirmed = await AICS_Confirmation.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(),
+        bene_middlename: req.body.bene_middlename.toUpperCase(),
+        bene_lastname: req.body.bene_lastname.toUpperCase(),
+        bene_exname: req.body.bene_exname.toUpperCase()
+    })
     const isRegistered = await AICS_Registration.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(),
         bene_middlename: req.body.bene_middlename.toUpperCase(),
         bene_lastname: req.body.bene_lastname.toUpperCase(),
         bene_exname: req.body.bene_exname.toUpperCase()
     })
-    if(!isRegistered){
+    if(!isRegistered && !isConfirmed){
         const create = await AICS_Registration(body)
         create.save()
         .then(() => {
@@ -709,13 +729,19 @@ module.exports.register_medical_get = (req, res) => {
 
 module.exports.register_medical_post = async(req, res) => {
     const body = req.body;
+    const isConfirmed = await AICS_Confirmation.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(),
+        bene_middlename: req.body.bene_middlename.toUpperCase(),
+        bene_lastname: req.body.bene_lastname.toUpperCase(),
+        bene_exname: req.body.bene_exname.toUpperCase()
+    })
     const isRegistered = await AICS_Registration.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(),
         bene_middlename: req.body.bene_middlename.toUpperCase(),
         bene_lastname: req.body.bene_lastname.toUpperCase(),
         bene_exname: req.body.bene_exname.toUpperCase()
     })
-    if(!isRegistered){
+    if(!isRegistered && !isConfirmed){
         const create = await AICS_Registration(body)
         create.save()
         .then(() => {
@@ -736,13 +762,19 @@ module.exports.register_emergency_get = (req, res) => {
 
 module.exports.register_emergency_post = async(req, res) => {
     const body = req.body;
+    const isConfirmed = await AICS_Confirmation.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(),
+        bene_middlename: req.body.bene_middlename.toUpperCase(),
+        bene_lastname: req.body.bene_lastname.toUpperCase(),
+        bene_exname: req.body.bene_exname.toUpperCase()
+    })
     const isRegistered = await AICS_Registration.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(),
         bene_middlename: req.body.bene_middlename.toUpperCase(),
         bene_lastname: req.body.bene_lastname.toUpperCase(),
         bene_exname: req.body.bene_exname.toUpperCase()
     })
-    if(!isRegistered){
+    if(!isRegistered && !isConfirmed){
         const create = await AICS_Registration(body)
         create.save()
         .then(() => {
@@ -763,13 +795,19 @@ module.exports.register_transportation_get = (req, res) => {
 
 module.exports.register_transportation_post = async(req, res) => {
     const body = req.body;
+    const isConfirmed = await AICS_Confirmation.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(),
+        bene_middlename: req.body.bene_middlename.toUpperCase(),
+        bene_lastname: req.body.bene_lastname.toUpperCase(),
+        bene_exname: req.body.bene_exname.toUpperCase()
+    })
     const isRegistered = await AICS_Registration.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(),
         bene_middlename: req.body.bene_middlename.toUpperCase(),
         bene_lastname: req.body.bene_lastname.toUpperCase(),
         bene_exname: req.body.bene_exname.toUpperCase()
     })
-    if(!isRegistered){
+    if(!isRegistered && !isConfirmed){
         const create = await AICS_Registration(body)
         create.save()
         .then(() => {
