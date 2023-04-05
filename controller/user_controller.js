@@ -94,7 +94,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
             intro: `Congrats! You are successfully registered to <b>${service}</b> here is your reference number: ${reference}
             Click the link
             <a href="${prev_link}">here</a>
-            to Download the Intake Sheet`,
+            to Download the Intake Sheet. If you want to update your response. Click the <b>UPDATE-RESPONSE</b>`,
             action: {
                 instruction: `If your information is incorrect, you may edit your response here: `,
                 button: {
