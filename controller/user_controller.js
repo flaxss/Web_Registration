@@ -40,8 +40,8 @@ function format(list){
     return events;
 }
 
-let http_localhost = 'http://localhost:3000'
-// let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
+// let http_localhost = 'http://localhost:3000'
+let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
 
 // generate email and password to connect with node mailer
 let config = {
