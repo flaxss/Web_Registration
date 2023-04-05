@@ -41,7 +41,7 @@ function format(list){
 }
 
 let http_localhost = 'http://localhost:3000'
-// let http_localhost = 'https://nutty-crab-scarf.cyclic.app'
+// let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
 
 // generate email and password to connect with node mailer
 let config = {
@@ -74,7 +74,7 @@ function messageResponse(fullname, link, email){
                     link: link
                 },
             },
-            outro: 'Important Note! After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon). Note that you can edit your information once!'
+            outro: 'Important Note! After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon).'
         }
     }
     let mail = MailGenerator.generate(response)
@@ -103,6 +103,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
                     link: up_link
                 },
             },
+            outro: 'Note that you can edit your information once!'
         }
     }
     let mail = MailGenerator.generate(response)

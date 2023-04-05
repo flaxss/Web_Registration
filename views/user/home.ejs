@@ -2,25 +2,78 @@
 <title>Home</title>
 </head>
 <body>
-    <%- include('include/nav') %>
+    <!-- <div style="position: sticky; width: 100%; z-index: 2;"> -->
+        <%- include('include/nav') %>
+    <!-- </div> -->
     <main>
         <div class="content " >
-            <div style="background-color: rgba(0, 0, 0, 0.5); height: 100dvh;">
-                <div style=" height: 91.5vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
-                    <div>
-                        <div>
-                            <p class="title-p text-light text-shadow-lg ">City Social Welfare and Development</p>
-                        </div>
-                        <div >
-                            <p class="content-p text-light">The city government of Trece Martires provide assistance to individuals and/or families who are indigent, vulnerable, disadvantaged or are otherwise in crisis situation base on the assesment of Social Workers that will alleviate poverty and empower them for an improved quality of life.</p>
-                        </div>
-                        <div class="content-btn-div">
-                            <a href="/about">
-                                <button class="content-btn btn btn-outline-light rounded-5 ">More Info</button>
-                            </a>
+            <div id="carouselExampleAutoplaying" class="carousel slide z-index-1" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="d-block W-100" style=" background-color: rgba(0, 0, 0, 0.5); height: 100vh;">
+                        <div style=" height: 91.5vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
+                            <div>
+                                <div>
+                                    <p class="title-p text-light text-shadow-lg ">City Social Welfare and Development</p>
+                                </div>
+                                <div >
+                                    <p class="content-p text-light">The city government of Trece Martires provide assistance to individuals and/or families who are indigent, vulnerable, disadvantaged or are otherwise in crisis situation base on the assesment of Social Workers that will alleviate poverty and empower them for an improved quality of life.</p>
+                                </div>
+                                <div class="content-btn-div">
+                                    <a href="/about">
+                                        <button class="content-btn btn btn-outline-light rounded-5 ">Contact Us</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                  </div>
+                  <div class="carousel-item" >
+                    <div class="d-block w-100 " style="background-color: rgba(0, 0, 0, 0.5); height: 100vh;">
+                        <div style=" height: 91.5vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
+                            <div style="background-color: rgba(0, 0, 0, 0.3); width: 80vw; height: 70vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
+                                <div>
+                                    <div>
+                                        <p class="title-p text-light text-shadow-lg ">VISION</p>
+                                    </div>
+                                    <div >
+                                        <p class="content-p text-light">A Society where poor, vulnerable and disadvantaged individuals, families and communities are empowered for an improved quality of life of Treceños.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item z-index-0" >
+                    <div class="d-block w-100" style="background-color: rgba(0, 0, 0, 0.5); height: 100vh;">
+                        <div style="height: 91.5vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
+                            <div style="background-color: rgba(0, 0, 0, 0.3); width: 80vw; height: 70vh; display:flex; align-items:center; justify-content:center; text-align: center; ">
+                                <div>
+                                    <div>
+                                        <p class="title-p text-light text-shadow-lg ">MISSION</p>
+                                    </div>
+                                    <div >
+                                        <p class="content-p text-light">To provide social protection and promote the welfare of the vulnerable and disadvantaged individuals, family and community that will contribute to poverty alleviation and empowerment through social welfare development policies, programs and projects and services implemented with or through barangay councils, NGO’s, GO’s, PO’s, and other members of the civil society.
+
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                  </div>
                 </div>
+                <button class="carousel-control-prev" style="color: #1b9a43; width: 10%;" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" style="color: #1b9a43; width: 10%;" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
         <!-- cards -->
@@ -167,6 +220,7 @@
                 </div>
             <% } %>
         </div>
+        
     </main>
     <%- include('include/footer') %>
     
