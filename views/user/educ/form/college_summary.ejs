@@ -1,0 +1,18 @@
+<%- include('../../include/header') %>
+    <title>Summary</title>
+</head>
+<body>
+    <%- include('../../include/nav') %>
+    <main>
+        <div class="container bg-light" style="height: 100vh;">
+            <h1>Summary</h1>
+            
+            <%- formData.firstname %>
+            <form action="/college-assistance/summary" method="POST">
+                <button>Submit</button>
+            </form>
+        </div>
+    </main>
+    <%- include('../../include/footer') %>
+</body>
+</html>

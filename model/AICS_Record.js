@@ -83,7 +83,7 @@ const aicsRecordSchema = new mongoose.Schema({
         type: String,
     },
     salary: {
-        type: Number,
+        type: String,
     },
     bene_lastname: {
         type: String,

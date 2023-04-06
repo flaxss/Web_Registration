@@ -33,15 +33,16 @@
 
                             <div class="dropdown mx-2">
                                 <span class="btn btn-outline-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Date</span>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/a/records/educ-list/">All</a></li>
-                                    <% date.forEach(data => { %>
-                                        <li><a class="dropdown-item" href="/a/records/educ-list/<%- data.id %>"><%- data.createdAt %></a></li>
-                                    <% }) %>
-                                    <% if(date == '') { %>
-                                        <li>No list</li>
-                                    <% } %>
-                                </ul>
+                                <% if(date == '') { %>
+                                    <li>No list</li>
+                                <% }else{ %>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/a/records/educ-list/">All</a></li>
+                                        <% date.forEach(data => { %>
+                                            <li><a class="dropdown-item" href="/a/records/educ-list/<%- data.id %>"><%- data.createdAt %></a></li>
+                                        <% }) %>
+                                    </ul>
+                                <% } %>
                             </div>
 
                         </div>

@@ -141,6 +141,8 @@ module.exports.college_assistance_form_get = async(req, res) => {
     res.render('user/educ/form/college_form', {events})
 }
 
+var formData;
+
 module.exports.college_assistance_form_post = async(req, res) => {
     const {
         lastname,
@@ -283,6 +285,8 @@ module.exports.college_assistance_form_post = async(req, res) => {
             char_ref_add,
             char_ref_num,
         })
+        // formData = create
+        // res.redirect('/college-assistance/summary')
         create.save()
         .then(async() => {
             console.log(`${create} is created`)
@@ -300,8 +304,6 @@ module.exports.college_assistance_form_post = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
-            // res.redirect(`/college-assistance/${create.id}/preview`)
-            // res.send('you are successfully registered! please check your email to confirm your registration.')
             res.redirect(`/college-assistance/${create.id}`)
         })
         .catch(err => {
@@ -310,6 +312,48 @@ module.exports.college_assistance_form_post = async(req, res) => {
         })
     }
 }
+// summary ng form
+module.exports.college_assistance_summary_get = async(req, res) => {
+    if(formData){
+        // console.log(formData)
+        res.render('user/educ/form/college_summary', {formData})
+    }else{
+        res.status(404).render('err/notfound')
+    }
+}
+
+module.exports.college_assistance_summary_post = async(req, res) => {
+    if(formData){
+        const create = formData
+        create.save()
+        .then(async() => {
+            console.log(`${create} is created`)
+            await Event.findOneAndUpdate({event_date: create.event_date}, {$inc: {quota: -1}})
+            const event = await Event.find().populate('quota')
+            event.forEach(async(data) => {
+                if(data.quota <= 0){
+                    await Event.findByIdAndDelete(data.id)
+                }
+            })
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const link = `${http_localhost}/college-assistance/${create.id}/confirm`
+            const message = messageResponse(fullname, link, create.email)
+            await transporter.sendMail(message)
+            .then((info) => {
+                console.log('email is successfully generated',info.messageId)
+            })
+            formData = '' // reset to aviod duplicate
+            res.redirect(`/college-assistance/${create.id}`)
+        })
+        .catch(err => {
+            console.log(err.message)
+            res.status(404).render('err/notfound')
+        })
+    }else{
+        res.status(404).render('err/notfound')
+    }
+}
+// summary ng form
 
 module.exports.college_assistance_landing = async(req, res) => {
     const id = req.params.id
@@ -318,7 +362,7 @@ module.exports.college_assistance_landing = async(req, res) => {
         res.render('user/warning')
     } catch (err) {
         console.log(err.message)
-            res.status(404).render('err/notfound')
+        res.status(404).render('err/notfound')
     }
 }
 

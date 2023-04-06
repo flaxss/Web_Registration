@@ -8,8 +8,10 @@ const { isActivate } = require('../middleware/auth')
 
 router.get('/', user_controller.home)
 
-router.get('/college-assistance', user_controller.college_assistance)
+router.get('/college-assistance', isActivate, user_controller.college_assistance)
 router.get('/college-assistance/form', isActivate, user_controller.college_assistance_form_get)
+router.get('/college-assistance/summary', user_controller.college_assistance_summary_get)
+router.post('/college-assistance/summary', user_controller.college_assistance_summary_post)
 router.post('/college-assistance/form', user_controller.college_assistance_form_post)
 router.get('/college-assistance/:id', user_controller.college_assistance_landing)
 

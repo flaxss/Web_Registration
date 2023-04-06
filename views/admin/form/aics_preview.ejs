@@ -23,8 +23,8 @@
 </head>
 <body>
     <%- include('../include/nav_link') %>
-    <div style=" text-align: center;">
-        <button  id="download"> download pdf</button>
+    <div style="text-align: center;">
+        <button  id="download">Download PDF</button>
     </div>
     <form action="" class="page" size="A4" id="pdf-form">
         <img src="/img/temp-banner.PNG" alt="" style="margin-top: 2%">
@@ -80,9 +80,17 @@
                 <td style="width: 10%;border: 1px solid #000"><%- find.age %></td>
                 <td style="width: 8%; padding-left: 3%;">KASARIAN <br> (Sex):</td>
                 <td style="width: 5%;">
-                    <input type="checkbox" id="sex"> Male <br>
-                    <input type="checkbox" id="sex"> Female
+                    <input type="checkbox" id="male" disabled> Male <br>
+                    <input type="checkbox" id="female" disabled> Female
                 </td>
+                <script>
+                    let sex = '<%- find.sex %>'
+                    if(sex == 'MALE'){
+                        document.getElementById('male').checked = true
+                    }else if(sex == 'FEMALE'){
+                        document.getElementById('female').checked = true
+                    }
+                </script>
             </tr>
         </table>
         <br>
@@ -92,14 +100,26 @@
                 <td style="width: 25%; border: 1px solid #000;">+63<%- find.contact_number %></td>
                 <td style="width: 30%; padding-left: 7%;">Status Sibil (Civil Status):</td>
                 <td style="width: 10%;">
-                    <input type="checkbox" name="single" value="single"> Single <br>
-                    <input type="checkbox" name="married" value="married"> Married
+                    <input type="checkbox" id="single" name="single" value="single" disabled> Single <br>
+                    <input type="checkbox" id="married" name="married" value="married" disabled> Married
                 </td>
                 <td>
-                    <input type="checkbox" name="widow" value="widow"> Widow/er <br>
-                    <input type="checkbox" name="other" value="other"> Other
+                    <input type="checkbox" id="widow" name="widow" value="widow" disabled> Widow/er <br>
+                    <input type="checkbox" id="other" name="other" value="other" disabled> Other
                 </td>
             </tr>
+            <script>
+                let civil_status = '<%- find.civil_status %>'
+                if(civil_status == 'Single'){
+                    document.getElementById('single').checked = true
+                }else if(civil_status == 'Married'){
+                    document.getElementById('married').checked = true
+                }if(civil_status == 'Widow/er'){
+                    document.getElementById('widow').checked = true
+                }if(civil_status == 'Other'){
+                    document.getElementById('Other').checked = true
+                }
+            </script>
         </table>
         <br>
         <table>
@@ -172,9 +192,17 @@
                 <td style="width: 10%;border: 1px solid #000"><%- find.bene_age %></td>
                 <td style="width: 8%; padding-left: 3%;">KASARIAN <br> (Sex):</td>
                 <td style="width: 5%;">
-                    <input type="checkbox" id="sex"> Male <br>
-                    <input type="checkbox" id="sex"> Female
+                    <input type="checkbox" id="bene_male" disabled> Male <br>
+                    <input type="checkbox" id="bene_female" disabled> Female
                 </td>
+                <script>
+                    let bene_sex = '<%- find.bene_sex %>'
+                    if(bene_sex == 'MALE'){
+                        document.getElementById('bene_male').checked = true
+                    }else if(bene_sex == 'FEMALE'){
+                        document.getElementById('bene_female').checked = true
+                    }
+                </script>
             </tr>
         </table>
         <br>
@@ -184,14 +212,26 @@
                 <td style="width: 25%; border: 1px solid #000;">+63<%- find.bene_contact_number %></td>
                 <td style="width: 30%; padding-left: 7%;">Status Sibil (Civil Status):</td>
                 <td style="width: 10%;">
-                    <input type="checkbox" name="single" value="single"> Single <br>
-                    <input type="checkbox" name="married" value="married"> Married
+                    <input type="checkbox" id="bene_single" name="single" value="single" disabled> Single <br>
+                    <input type="checkbox" id="bene_married" name="married" value="married" disabled> Married
                 </td>
                 <td>
-                    <input type="checkbox" name="widow" value="widow"> Widow/er <br>
-                    <input type="checkbox" name="other" value="other"> Other
+                    <input type="checkbox" id="bene_widow" name="widow" value="widow" disabled> Widow/er <br>
+                    <input type="checkbox" id="bene_other" name="other" value="other" disabled> Other
                 </td>
             </tr>
+            <script>
+                let bene_civil_status = '<%- find.bene_civil_status %>'
+                if(bene_civil_status == 'Single'){
+                    document.getElementById('bene_single').checked = true
+                }else if(bene_civil_status == 'Married'){
+                    document.getElementById('bene_married').checked = true
+                }else if(bene_civil_status == 'Widow/er'){
+                    document.getElementById('bene_widow').checked = true
+                }else if(bene_civil_status == 'Other'){
+                    document.getElementById('bene_other').checked = true
+                }
+            </script>
         </table>
         <br>
         <table>

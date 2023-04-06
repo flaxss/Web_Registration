@@ -149,8 +149,18 @@
                                 <input type="text" class="form-control textOnly" id="occupation" name="occupation" required>
                             </div>
                             <div class="col-md-6">  
-                                <label for="salary" class="form-label">Sweldo (Salary)<span class="required">*</span></label>
-                                <input type="number" class="form-control" id="salary" name="salary" required>
+                                <label for="salary" class="form-label">Buwanang Sweldo (Monthly Salary)<span class="required">*</span></label>
+                                <!-- <input type="number" class="form-control" id="salary" name="salary" required> -->
+                                <select class="form-control" id="salary" name="salary" required>
+                                    <option disabled selected>Please Select</option>
+                                    <option value="0-10,000">10,000 or Less</option>
+                                    <option value="10,000-20,000">10,000 - 20,000</option>
+                                    <option value="10,000-20,000">20,000 - 30,000</option>
+                                    <option value="30,000-50,000">30,000 - 50,000</option>
+                                    <option value="30,000-50,000">50,000 - 100,000</option>
+                                    <option value="30,000-50,000">100,000 and Above</option>
+                                    <option value="prefer not to say">Prefer not to say</option>
+                                </select>
                             </div>
                         </div>
                         <br><br>

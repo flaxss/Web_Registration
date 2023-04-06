@@ -28,21 +28,6 @@ router.get('/*', requireAuth, checkUser)
 router.post('/*', checkUser)
 router.patch('/*', checkUser)
 
-// auto-create option 
-const Option = require('../model/Option')
-async function option(){
-    const option = await Option.find()
-    if(option == ''){
-        const isActivte = await Option({
-            option: 'activate'
-        })
-        isActivte.save()
-        .then(() => console.log(`${isActivte}`,'created'))
-        .catch(err => console.log(err.message))
-    }
-}
-option()
-
 router.get('/', admin_controller.admin_home)
 
 router.post('/post-announcement', admin_controller.create_post)
@@ -132,5 +117,20 @@ router.patch('/settings/:id', upload.single('image'), admin_controller.settings_
 
 router.get('/search-appointment', admin_controller.search_appointment)
 router.get('/search-application', admin_controller.search_application)
+
+// auto-create option 
+const Option = require('../model/Option')
+async function option(){
+    const option = await Option.find()
+    if(option == ''){
+        const isActivte = await Option({
+            option: 'activate'
+        })
+        isActivte.save()
+        .then(() => console.log(`${isActivte}`,'created'))
+        .catch(err => console.log(err.message))
+    }
+}
+// option()
 
 module.exports = router;

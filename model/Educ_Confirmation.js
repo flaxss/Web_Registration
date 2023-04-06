@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const educationConfirmSchema = new mongoose.Schema({
     status: {
         type: String,
-        default: 'appointment'
+        default: 'to confirm'
     },
     reference: {
         type: String,

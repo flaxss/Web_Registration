@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const aicsConfirmationSchema = new mongoose.Schema({
     status: {
         type: String,
-        default: 'pending'
+        default: 'to confirm'
     },
     reference: {
         type: String,

@@ -20,22 +20,24 @@ const Option = require('../model/Option');
 async function expiryDate(){
     let today = new Date();
     let expired = await AICS_Record.find({expiredAt: {$lt: today}})
-    expired.forEach(async(data) => {
-        const list = new AICS_Compile({
-            service: data.service,
-            client_name: `${data.firstname} ${data.middlename} ${data.lastname} ${data.exname}`,
-            beneficiary_name: `${data.bene_firstname} ${data.bene_middlename} ${data.bene_lastname} ${data.bene_exname}`,
-            sex: data.bene_sex,
-            address: data.bene_full_address,
-            contact_number: data.bene_contact_number,
-            email: data.email,
+    if(expired != ''){
+        expired.forEach(async(data) => {
+            const list = new AICS_Compile({
+                service: data.service,
+                client_name: `${data.firstname} ${data.middlename} ${data.lastname} ${data.exname}`,
+                beneficiary_name: `${data.bene_firstname} ${data.bene_middlename} ${data.bene_lastname} ${data.bene_exname}`,
+                sex: data.bene_sex,
+                address: data.bene_full_address,
+                contact_number: data.bene_contact_number,
+                email: data.email,
+            })
+            list.save()
+            await AICS_Record.deleteMany({expiredAt: {$lt: today}})
+            console.log(list)
         })
-        list.save()
-        await AICS_Record.deleteMany({expiredAt: {$lt: today}})
-        console.log(list)
-    })
+    }
 }
-expiryDate()
+// expiryDate()
 
 // parse date
 const {dateFormat} = require('../middleware/parseDate')
@@ -901,9 +903,12 @@ module.exports.records_educ_list = async(req, res) => {
         const date = await Educ_Compile.find().sort({createdAt: -1})
         const info = await Educ_Compile.find().sort({createdAt: -1}).populate('list')
         info.forEach(p => {
-            // console.log(p.list)
+            p.list.forEach(a => {
+                // console.log(a)
+                data.push(a)
+            })
         })
-        // console.log(data)
+        console.log(info.length)
         res.render('admin/record/educ_list', {date, data})
     } catch (err) {
         console.log(err.message)
