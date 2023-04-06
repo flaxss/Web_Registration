@@ -359,7 +359,7 @@ module.exports.college_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await Educ_Confirmation.findById(id)
-        res.render('user/warning')
+        res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
         res.status(404).render('err/notfound')

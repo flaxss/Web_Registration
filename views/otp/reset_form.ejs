@@ -5,20 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>Document</title><style>
+        img.background {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+        }
+      </style>
 </head>
 <body>
-    <form action="/reset/<%- user.id %>" method="POST">
-        <div>
-            <label for="">New Password</label>
-            <input type="password" id="new_password" name="new_password" required onkeyup="checkPasswords()">
+    <img class="background" src="/img/slider1.png" alt="bg">
+    <div  style="position: absolute; z-index: 2; height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center;  ">
+        <div class="container d-flex justify-content-center align-items-center" style="padding: 3%; height: fit-content; width: 40%; border-radius: 20px; border: 1px solid #1b9a43; background-color: rgba(0, 0, 0, 0.5);">
+                    <form action="/reset/<%- user.id %>" method="POST" style="width: 100%">
+                        <div>
+                            <!-- <label for="">New Password</label> -->
+                            <input type="password" id="new_password" name="new_password" placeholder="NEW PASSWORD" required onkeyup="checkPasswords()" style="height: 8vh; width: 100%; margin-top:1px; border: 1px solid #1b9a43; text-align: center;">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <!-- <label for="">Confirm Password</label> -->
+                            <input type="password" id="confirm_password" name="confirm_password" placeholder="CONFIRM PASSWORD" required onkeyup="checkPasswords()" style="height: 8vh; width: 100%; margin-top:1px; border: 1px solid #1b9a43; text-align: center;">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <button id="updatePasswordButton" disabled style="height: 8vh; width: 100%; background-color:  #1b9a43; color: #fff; border: none;">RESET PASSWORD</button>
+                        </div>
+                        
+                    </form>
         </div>
-        <div>
-            <label for="">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" required onkeyup="checkPasswords()">
-        </div>
-        <button id="updatePasswordButton" disabled>Reset Password</button>
-    </form>
+    </div>
     <script>
         function checkPasswords(){
             const newPassword = document.getElementById('new_password')
