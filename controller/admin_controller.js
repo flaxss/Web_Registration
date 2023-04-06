@@ -902,17 +902,19 @@ module.exports.records_educ_list = async(req, res) => {
         let data = []
         const date = await Educ_Compile.find().sort({createdAt: -1})
         const info = await Educ_Compile.find().sort({createdAt: -1}).populate('list')
-        info.forEach(p => {
-            p.list.forEach(a => {
-                // console.log(a)
-                data.push(a)
+        if(info != ''){
+            info.forEach(p => {
+                p.list.forEach(a => {
+                    data.push(a)
+                })
             })
-        })
-        console.log(info.length)
+        }else{
+            data = info
+        }
         res.render('admin/record/educ_list', {date, data})
     } catch (err) {
         console.log(err.message)
-        res.send('err 404')
+        res.status(404).render('err/notfound')
     }
 }
 
@@ -924,7 +926,7 @@ module.exports.records_educ_list_id = async(req, res) => {
         res.render('admin/record/educ_selected_list', {date, info})
     } catch (err) {
         console.log(err.message)
-        res.send('err 404')
+        res.status(404).render('err/notfound')
     }
 }
 
