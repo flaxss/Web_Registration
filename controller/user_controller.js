@@ -611,7 +611,7 @@ module.exports.medical_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
-        res.render('user/warning')
+        res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
             res.status(404).render('err/notfound')
@@ -771,7 +771,7 @@ module.exports.burial_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
-        res.render('user/warning')
+        res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
             res.status(404).render('err/notfound')
@@ -934,7 +934,7 @@ module.exports.transportation_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
-        res.render('user/warning')
+        res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
             res.status(404).render('err/notfound')
@@ -1092,7 +1092,7 @@ module.exports.emergency_shelter_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
-        res.render('user/warning')
+        res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
         res.status(404).render('err/notfound')

@@ -172,8 +172,36 @@
                             <input type="text" class="form-control textOnly" id="occupation" name="occupation" required value="<%- find.occupation %>">
                         </div>
                         <div class="col-md-6">  
-                            <label for="salary" class="form-label">Salary</label>
-                            <input type="number" class="form-control" id="salary" name="salary" required value="<%- find.salary %>">
+                            <label for="salary" class="form-label">Buwanang Sweldo (Monthly Salary)<span class="required">*</span></label>
+                            <!-- <input type="number" class="form-control" id="salary" name="salary" required> -->
+                            <select class="form-control" id="salary" name="salary" required>
+                                <option disabled selected>Please Select</option>
+                                <option id="1" value="0-10,000">10,000 or Less</option>
+                                <option id="2" value="10,000-20,000">10,000 - 20,000</option>
+                                <option id="3" value="20,000-30,000">20,000 - 30,000</option>
+                                <option id="4" value="30,000-50,000">30,000 - 50,000</option>
+                                <option id="5" value="50,000-100,000">50,000 - 100,000</option>
+                                <option id="6" value="100,000 and Above">100,000 and Above</option>
+                                <option id="7" value="prefer not to say">Prefer not to say</option>
+                            </select>
+                            <script>
+                                let salary = '<%- find.salary %>'
+                                if(salary == '0-10,000'){
+                                    document.getElementById('1').selected = true
+                                }else if(salary == '10,000-20,000'){
+                                    document.getElementById('2').selected = true
+                                }else if(salary == '20,000-30,000'){
+                                    document.getElementById('3').selected = true
+                                }else if(salary == '30,000-50,000'){
+                                    document.getElementById('4').selected = true
+                                }else if(salary == '50,000-100,000'){
+                                    document.getElementById('5').selected = true
+                                }else if(salary == '100,000 and Above'){
+                                    document.getElementById('6').selected = true
+                                }else if(salary == 'prefer not to say'){
+                                    document.getElementById('7').selected = true
+                                }
+                            </script>
                         </div>
                     </div>
                     <br><br>
