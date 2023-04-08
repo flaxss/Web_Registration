@@ -245,7 +245,6 @@ module.exports.college_assistance_form_post = async(req, res) => {
                     await Event.findByIdAndDelete(data.id)
                 }
             })
-            res.redirect(`/college-assistance/${create.id}`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const link = `${http_localhost}/college-assistance/${create.id}/confirm`
             const message = messageResponse(fullname, link, create.email)
@@ -253,6 +252,7 @@ module.exports.college_assistance_form_post = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/college-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
@@ -389,7 +389,6 @@ module.exports.college_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created`)
-            res.redirect(`/college-assistance/${create.id}/preview`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const service = create.service
             const reference = create.reference
@@ -400,6 +399,7 @@ module.exports.college_assistance_confirm = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/college-assistance/${create.id}/preview`)
         })
         .catch(err => {
             console.log(err.message)
@@ -545,7 +545,6 @@ module.exports.medical_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            res.redirect(`/medical-assistance/${create.id}`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const link = `${http_localhost}/medical-assistance/${create.id}/confirm`
             const message = messageResponse(fullname, link, create.email)
@@ -553,6 +552,7 @@ module.exports.medical_assistance_form_post = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/medical-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
@@ -620,7 +620,6 @@ module.exports.medical_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            res.redirect(`/medical-assistance/${create.id}/preview`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const service = create.service
             const reference = create.reference
@@ -631,6 +630,7 @@ module.exports.medical_assistance_confirm = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/medical-assistance/${create.id}/preview`)
         })
     } catch (err) {
         console.log(err.message)
@@ -709,7 +709,6 @@ module.exports.burial_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            res.redirect(`/burial-assistance/${create.id}`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const link = `${http_localhost}/burial-assistance/${create.id}/confirm`
             const message = messageResponse(fullname, link, create.email)
@@ -717,6 +716,7 @@ module.exports.burial_assistance_form_post = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/burial-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
@@ -784,7 +784,6 @@ module.exports.burial_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            res.redirect(`/burial-assistance/${create.id}/preview`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const service = create.service
             const reference = create.reference
@@ -795,6 +794,7 @@ module.exports.burial_assistance_confirm = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/burial-assistance/${create.id}/preview`)
         })
     }catch(err) {
         console.log(err.message)
@@ -874,7 +874,6 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            res.redirect(`/transportation-assistance/${create.id}`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const link = `${http_localhost}/transportation-assistance/${create.id}/confirm`
             const message = messageResponse(fullname, link, create.email)
@@ -882,6 +881,7 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/transportation-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
@@ -949,7 +949,6 @@ module.exports.transportation_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            res.redirect(`/transportation-assistance/${create.id}/preview`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const service = create.service
             const reference = create.reference
@@ -960,6 +959,7 @@ module.exports.transportation_assistance_confirm = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/transportation-assistance/${create.id}/preview`)
         })
     }catch(err) {
         console.log(err.message)
@@ -1034,7 +1034,6 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is registered`)
-            res.redirect(`/emergency-shelter-assistance/${create.id}`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const link = `${http_localhost}/emergency-shelter-assistance/${create.id}/confirm`
             const message = messageResponse(fullname, link, create.email)
@@ -1042,6 +1041,7 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/emergency-shelter-assistance/${create.id}`)
         })
         .catch(err => {
             console.log(err.message)
@@ -1109,7 +1109,6 @@ module.exports.emergency_shelter_assistance_confirm = async(req, res) => {
         create.save()
         .then(async() => {
             console.log(`${create} is created and confirmed`)
-            res.redirect(`/emergency-shelter-assistance/${create.id}/preview`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const service = create.service
             const reference = create.reference
@@ -1120,6 +1119,7 @@ module.exports.emergency_shelter_assistance_confirm = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
+            res.redirect(`/emergency-shelter-assistance/${create.id}/preview`)
         })
     }catch(err) {
         console.log(err.message)
