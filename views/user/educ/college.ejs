@@ -27,6 +27,13 @@
             </div>
         </div>
     </main>
+    <script>
+        let response = '<%- response %>'
+        console.log(response)
+        if(response == 'registered'){
+            alert('Already Registered')
+        }
+    </script>
     <%- include('../include/footer') %>
 </body>
 </html>

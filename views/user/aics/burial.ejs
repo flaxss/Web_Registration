@@ -39,6 +39,13 @@
             <img src="/img/step4.png" alt="" style="aspect-ratio: 2/1; width: 90%; margin: 20px 0px;"> -->
         </div>
     </main>
+    <script>
+        let response = '<%- response %>'
+        console.log(response)
+        if(response == 'registered'){
+            alert('Already Registered')
+        }
+    </script>
     <%- include('../include/footer') %>
 </body>
 </html>

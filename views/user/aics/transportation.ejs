@@ -17,7 +17,7 @@
                 <li><a href="/transportation-assistance/form">General Intake Sheet (Register and Download)</a></li>
                 <li>Barangay Clearance/Barangay Certificate and Barangay Indigency (1 original) </li>
                 <li>Any VAlid ID of the client (much better if they have ID addressed to their province) (bring original and 1 photocopy)</li>
-                <li>Police blotter (victim of illigal re cruitment, victims of pick pockets, strandees during typoon (1 original)</li>
+                <li>Police blotter (victim of illegal recruitment, victims of pick pockets, strandees during typoon (1 original)</li>
                 <li>Personal Letter of Request for Burial/Funeral Assistance Addressed to Mayor.</li>
                 <li>General Intake Sheet (CSWDO Form) and Certificate of Eligibility (1 original)</li>
             </ul>
@@ -28,6 +28,13 @@
             </div>
         </div>
     </main>
+    <script>
+        let response = '<%- response %>'
+        console.log(response)
+        if(response == 'registered'){
+            alert('Already Registered')
+        }
+    </script>
     <%- include('../include/footer') %>
 </body>
 </html>

@@ -53,7 +53,7 @@ let transporter = nodemailer.createTransport(config)
 let MailGenerator = new Mailgen({
     theme: 'default',
     product: {
-        name: 'CSWD OFFICE',
+        name: `CSWD`,
         link: `${http_localhost}`
     }
 })
@@ -128,8 +128,10 @@ module.exports.home = async(req, res) => {
 }
 
 module.exports.college_assistance = (req, res) => {
-    res.render('user/educ/college')
+    res.render('user/educ/college', {response})
 }
+
+let response = ''
 
 module.exports.college_assistance_form_get = async(req, res) => {
     const list = await Event.find().sort({nonFormat: 1})
@@ -152,17 +154,18 @@ module.exports.college_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`already registered in ${isConfirmed.service}`)
-        res.send('already registered')
-        // res.redirect('/college-assistance')
+        response = 'registered'
+        res.redirect('/college-assistance')
     }else if(isAppointed){
         console.log(`already registered in ${isAppointed.service}`)
-        res.send('already registered')
-        // res.redirect('/college-assistance')
+        response = 'registered'
+        res.redirect('/college-assistance')
     }else if(isRegistered){
         console.log(`already registered in ${isRegistered.service}`)
-        res.send('already registered')
-        // res.redirect('/college-assistance')
+        response = 'registered'
+        res.redirect('/college-assistance')
     }else{
+        response = ''
         const slot = await Event.findOne({event_date: req.body.event_date})
         if(!slot){
             return res.send("<p>We're sorry, but the remaining slot is already occupied. Please try again later.</p>")
@@ -514,7 +517,7 @@ module.exports.college_assistance_update_post = async(req, res) => {
 }
 
 module.exports.medical_assistance = (req, res) => {
-    res.render('user/aics/medical')
+    res.render('user/aics/medical', {response})
 }
 module.exports.medical_assistance_form_get = (req, res) => {
     res.render('user/aics/form/medical_form')
@@ -522,18 +525,22 @@ module.exports.medical_assistance_form_get = (req, res) => {
 module.exports.medical_assistance_form_post = async(req, res) => {
     const body = req.body;
     console.log(body)
-    let isConfirmed = await AICS_Confirmation.findOne({
+    const isConfirmed = await AICS_Confirmation.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
-    let isRegistered = await AICS_Registration.findOne({bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
+    const isRegistered = await AICS_Registration.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
+        response = 'registered'
         res.redirect('/medical-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
+        response = 'registered'
         res.redirect('/medical-assistance')
     }else{
+        response = ''
         const create = await AICS_Confirmation(body)
         create.save()
         .then(async() => {
@@ -677,7 +684,7 @@ module.exports.medical_assistance_update_post = async(req, res) => {
 }
 
 module.exports.burial_assistance = (req, res) => {
-    res.render('user/aics/burial')
+    res.render('user/aics/burial', {response})
 }
 module.exports.burial_assistance_form_get = (req, res) => {
     res.render('user/aics/form/burial_form')
@@ -691,9 +698,11 @@ module.exports.burial_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
+        response = 'registered'
         res.redirect('/burial-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
+        response = 'registered'
         res.redirect('/burial-assistance')
     }else{
         const create = await AICS_Confirmation(body)
@@ -838,7 +847,7 @@ module.exports.burial_assistance_update_post = async(req, res) => {
 }
 
 module.exports.transportation_assistance = (req, res) => {
-    res.render('user/aics/transportation')
+    res.render('user/aics/transportation', {response})
 }
 
 module.exports.transportation_assistance_form_get = (req, res) => {
@@ -854,9 +863,11 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
+        response = 'registered'
         res.redirect('/transportation-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
+        response = 'registered'
         res.redirect('/transportation-assistance')
     }else{
         const create = await AICS_Confirmation(body)
@@ -999,7 +1010,7 @@ module.exports.transportation_assistance_update_post = async(req, res) => {
 }
 
 module.exports.emergency_shelter_assistance = (req, res) => {
-    res.render('user/aics/emergency')
+    res.render('user/aics/emergency', {response})
 }
 module.exports.emergency_shelter_assistance_form_get = (req, res) => {
     res.render('user/aics/form/emergency_form')
@@ -1012,9 +1023,11 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
+        response = 'registered'
         res.redirect('/emergency-shelter-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
+        response = 'registered'
         res.redirect('/emergency-shelter-assistance')
     }else{
         const create = await AICS_Confirmation(body)
