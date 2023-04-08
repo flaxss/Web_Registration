@@ -10,11 +10,8 @@ const Event = require('../model/Event')
 const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 
-const fs = require('fs');
-
 const Mailgen = require('mailgen')
 const nodemailer = require('nodemailer')
-const { json } = require('express')
 const Educ_Registration = require('../model/Educ_Registration')
 
 // parse date
@@ -144,58 +141,6 @@ module.exports.college_assistance_form_get = async(req, res) => {
 var formData;
 
 module.exports.college_assistance_form_post = async(req, res) => {
-    const {
-        lastname,
-        firstname,
-        middlename,
-        exname,
-        email,
-        // appointment_date,
-        event_date,
-        r_street,
-        r_brgy,
-        r_municipal,
-        r_province,
-        p_street,
-        p_brgy,
-        p_municipal,
-        p_province,
-        date_of_birth,
-        place_of_birth,
-        citizenship,
-        age,
-        sex,
-        civil_status,
-        contact_number,
-        spouse_lname,
-        spouse_fname,
-        spouse_mname,
-        spouse_exname,
-        spouse_occupation,
-        mother_lname,
-        mother_fname,
-        mother_mname,
-        mother_occupation,
-        father_lname,
-        father_fname,
-        father_mname,
-        father_exname,
-        father_occupation,
-        e_name_of_school,
-        e_school_year,
-        s_name_of_school,
-        s_school_year,
-        v_name_of_school,
-        v_school_year,
-        c_name_of_school,
-        c_school_year,
-        course,
-        year_level,
-        sem,
-        char_ref_name,
-        char_ref_add,
-        char_ref_num
-    } = req.body;
     const isConfirmed = await Educ_Confirmation.findOne({
         firstname: req.body.firstname.toUpperCase(), middlename: req.body.middlename.toUpperCase(), lastname: req.body.lastname.toUpperCase(), exname: req.body.exname.toUpperCase()
     })
@@ -224,66 +169,66 @@ module.exports.college_assistance_form_post = async(req, res) => {
         }
         const create = await Educ_Confirmation({
             service: 'College Educational Assistance',
-            lastname,
-            firstname,
-            middlename,
-            exname,
-            email,
+            lastname: req.body.lastname,
+            firstname: req.body.firstname,
+            middlename: req.body.middlename,
+            exname: req.body.exname,
+            email: req.body.email,
             // appointment_date,
-            event_date,
-            r_street,
-            r_brgy,
-            r_municipal,
-            r_province,
-            r_full_address: `${r_street}, ${r_brgy}, ${r_municipal}, ${r_province}`,
-            p_street,
-            p_brgy,
-            p_municipal,
-            p_province,
-            p_full_address: `${p_street}, ${p_brgy}, ${p_municipal}, ${p_province}`,
-            date_of_birth,
-            place_of_birth,
-            citizenship,
-            age,
-            sex,
-            civil_status,
-            contact_number: contact_number,
-            spouse_lname,
-            spouse_fname,
-            spouse_mname,
-            spouse_exname,
-            spouse_occupation,
-            mother_lname,
-            mother_fname,
-            mother_mname,
-            mother_occupation,
-            father_lname,
-            father_fname,
-            father_mname,
-            father_exname,
-            father_occupation,
+            event_date: req.body.event_date,
+            r_street: req.body.r_street,
+            r_brgy: req.body.r_brgy,
+            r_municipal: req.body.r_municipal,
+            r_province: req.body.r_province,
+            r_full_address: `${req.body.r_street}, ${req.body.r_brgy}, ${req.body.r_municipal}, ${req.body.r_province}`,
+            p_street: req.body.p_street,
+            p_brgy: req.body.p_brgy,
+            p_municipal: req.body.p_municipal,
+            p_province: req.body.p_province,
+            p_full_address: `${req.body.p_street}, ${req.body.p_brgy}, ${req.body.p_municipal}, ${req.body.p_province}`,
+            date_of_birth: req.body.date_of_birth,
+            place_of_birth: req.body.place_of_birth,
+            citizenship: req.body.citizenship,
+            age: req.body.age,
+            sex: req.body.sex,
+            civil_status: req.body.civil_status,
+            contact_number: req.body.contact_number,
+            spouse_lname: req.body.spouse_lname,
+            spouse_fname: req.body.spouse_fname,
+            spouse_mname: req.body.spouse_mname,
+            spouse_exname: req.body.spouse_exname,
+            spouse_occupation: req.body.spouse_occupation,
+            mother_lname: req.body.mother_lname,
+            mother_fname: req.body.mother_fname,
+            mother_mname: req.body.mother_mname,
+            mother_occupation: req.body.mother_occupation,
+            father_lname: req.body.father_lname,
+            father_fname: req.body.father_fname,
+            father_mname: req.body.father_mname,
+            father_exname: req.body.father_exname,
+            father_occupation: req.body.father_occupation,
             elementary: {
-                name_of_school: e_name_of_school,
-                school_year: e_school_year,
+                name_of_school: req.body.e_name_of_school,
+                school_year: req.body.e_school_year,
             },
             secondary: {
-                name_of_school: s_name_of_school,
-                school_year: s_school_year
+                name_of_school: req.body.s_name_of_school,
+                school_year: req.body.s_school_year
             },
             vocational: {
-                name_of_school: v_name_of_school,
-                school_year: v_school_year
+                name_of_school: req.body.v_name_of_school,
+                school_year: req.body.v_school_year
             },
             college: {
-                name_of_school: c_name_of_school,
-                school_year: c_school_year
+                name_of_school: req.body.c_name_of_school,
+                school_year: req.body.c_school_year
             },
-            course,
-            year_level,
-            sem,
-            char_ref_name,
-            char_ref_add,
-            char_ref_num,
+            course: req.body.course,
+            year_level: req.body.year_level,
+            sem: req.body.sem,
+            char_ref_name: req.body.char_ref_name,
+            char_ref_add: req.body.char_ref_add,
+            char_ref_num: req.body.char_ref_num,
         })
         // formData = create
         // res.redirect('/college-assistance/summary')
@@ -359,6 +304,9 @@ module.exports.college_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await Educ_Confirmation.findById(id)
+        if(!register){
+            return res.status(404).render('err/notfound')
+        }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
@@ -385,10 +333,12 @@ module.exports.college_assistance_confirm = async(req, res) => {
             r_brgy: confirm.r_brgy,
             r_municipal: confirm.r_municipal,
             r_province: confirm.r_province,
+            r_full_address: config.r_full_address,
             p_street: confirm.p_street,
             p_brgy: confirm.p_brgy,
             p_municipal: confirm.p_municipal,
             p_province: confirm.p_province,
+            p_full_address: config.p_full_address,
             date_of_birth: confirm.date_of_birth,
             place_of_birth: confirm.place_of_birth,
             citizenship: confirm.citizenship,
@@ -492,7 +442,6 @@ module.exports.college_assistance_update_post = async(req, res) => {
     const id = req.params.id
     console.log(req.body)
     try {
-        const appoitnemnt = await Educ_Appointment.findByIdAndDelete(id)
         const create = await Educ_Appointment({
             service: req.body.service,
             reference: req.body.reference,
@@ -501,7 +450,6 @@ module.exports.college_assistance_update_post = async(req, res) => {
             middlename: req.body.middlename,
             exname: req.body.exname,
             email: req.body.email,
-            // appointment_date: appoitnemnt.appointment_date,
             r_street: req.body.r_street,
             r_brgy: req.body.r_brgy,
             r_municipal: req.body.r_municipal,
@@ -611,6 +559,9 @@ module.exports.medical_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
+        if(!register){
+            return res.status(404).render('err/notfound')
+        }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
@@ -771,6 +722,9 @@ module.exports.burial_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
+        if(!register){
+            return res.status(404).render('err/notfound')
+        }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
@@ -934,6 +888,9 @@ module.exports.transportation_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
+        if(!register){
+            return res.status(404).render('err/notfound')
+        }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
@@ -1092,6 +1049,9 @@ module.exports.emergency_shelter_assistance_landing = async(req, res) => {
     const id = req.params.id
     try {
         const register = await AICS_Confirmation.findById(id)
+        if(!register){
+            return res.status(404).render('err/notfound')
+        }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)

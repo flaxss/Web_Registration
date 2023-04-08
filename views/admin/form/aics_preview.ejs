@@ -22,438 +22,444 @@
     </script>
 </head>
 <body>
-    <%- include('../include/nav_link') %>
-    <div style="text-align: center;">
-        <button  id="download">Download PDF</button>
-    </div>
-    <form action="" class="page" size="A4" id="pdf-form">
-        <img src="/img/temp-banner.PNG" alt="" style="margin-top: 2%">
-        <div style="font-size: 1rem; font-weight: bold; text-align: center; margin-bottom: 2%;">CRISIS INTERVENTION UNIT</div>
-        <table style="margin-bottom: 1%;">
-            <tr>
-                <td style="width: 12%;">Petsa Ngayon</td>
-                <td rowspan="2" style="border: 1px solid #000 ;width: 15%;"></td>
-                <td style="width: 25%; padding-left: 10%;">Oras ng Pagpasok</td>
-                <td rowspan="2" style="border: 1px solid #000 ;width: 15%;"></td>
-                <td style="width: 20%; padding-left: 10%;">Bilang ng</td>
-                <td rowspan="2" style="border: 1px solid #000 ;width: 15%;"></td>
-            </tr>
-            <tr>
-                <td>(Date Today)</td>
-                <td style="padding-left: 10%;">(Time of Entry)</td>
-                <td style="padding-left: 10%;">Kliyente</td>
-            </tr>
-        </table>
-        
-        
-        <table>
-            <tr>
-                <td colspan="5" class="headtitle">IMPORMASYON UKOL SA KLIYENTE (Client's Indentifying Information)</td>
-            </tr>
-            <tr>
-                <td style="height: .5vh;"></td>
-            </tr>
-            <tr>
-                <td style="width: 8%;">PANGALAN:<br>(Name)</td>
-                <td style="width: 25%; border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.lastname %></td>
-                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.firstname %></td>
-                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.middlename %></td>
-                <td style="border: 1px solid #000; border-left: none; text-align: center;"><%- find.exname %></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td style="text-align: center;">Apelyido<br>(Last Name)</td>
-                <td style="text-align: center;">Unang Pangalan<br>(First Name)</td>
-                <td style="text-align: center;">Gitnang Pangalan<br>(Middle Name)</td>
-                <td style="text-align: center;">Extension Name</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td style="width: 12%;">PETSA NG KAPANGANAKAN: (Birthday)</td>
-                <td  style="width: 15%; border: 1px solid #000"><%- formatted %></td>
-                <td style="width: 5%; padding-left: 3%;">EDAD<br>(Age):</td>
-                <td style="width: 10%;border: 1px solid #000"><%- find.age %></td>
-                <td style="width: 8%; padding-left: 3%;">KASARIAN <br> (Sex):</td>
-                <td style="width: 5%;">
-                    <input type="checkbox" id="male" disabled> Male <br>
-                    <input type="checkbox" id="female" disabled> Female
-                </td>
-                <script>
-                    let sex = '<%- find.sex %>'
-                    if(sex == 'MALE'){
-                        document.getElementById('male').checked = true
-                    }else if(sex == 'FEMALE'){
-                        document.getElementById('female').checked = true
-                    }
-                </script>
-            </tr>
-        </table>
-        <br>
-        <table>
-            <tr>
-                <td style="width: 20%;">CONTACT NUMBER:</td>
-                <td style="width: 25%; border: 1px solid #000;">+63<%- find.contact_number %></td>
-                <td style="width: 30%; padding-left: 7%;">Status Sibil (Civil Status):</td>
-                <td style="width: 10%;">
-                    <input type="checkbox" id="single" name="single" value="single" disabled> Single <br>
-                    <input type="checkbox" id="married" name="married" value="married" disabled> Married
-                </td>
-                <td>
-                    <input type="checkbox" id="widow" name="widow" value="widow" disabled> Widow/er <br>
-                    <input type="checkbox" id="other" name="other" value="other" disabled> Other
-                </td>
-            </tr>
-            <script>
-                let civil_status = '<%- find.civil_status %>'
-                if(civil_status == 'Single'){
-                    document.getElementById('single').checked = true
-                }else if(civil_status == 'Married'){
-                    document.getElementById('married').checked = true
-                }if(civil_status == 'Widow/er'){
-                    document.getElementById('widow').checked = true
-                }if(civil_status == 'Other'){
-                    document.getElementById('Other').checked = true
-                }
-            </script>
-        </table>
-        <br>
-        <table>
-            <tr>
-                <td>Relasyon sa Benepisyaryo:<br> (Relationship to Beneficiary)</td>
-                <td style="width: 80%; border: 1px solid #000"><%- find.beneficiary_relationship %></td>
-            </tr>
-        </table>
-        <br>
-        <table>
-            <tr>
-                <td rowspan="2" style="width: 10%;">TIRAHAN:<br>(Address)</td>
-                <td style="border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.street %></td>
-                <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.brgy %></td>
-                <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.municipal %></td>
-                <td style="border:1px solid #000; border-left: none; text-align: center;"><%- find.province %></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="text-align: center;">No./Street/Purok</td>
-                <td style="text-align: center;">Barangay</td>
-                <td style="text-align: center;">Municipal/City</td>
-                <td style="text-align: center;">Province</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        <br>
-        <table>
-            <tr>
-                <td style="width: 10%;">Trabaho: <br>(Occupation)</td>
-                <td style="width: 40%; border: 1px solid #000"><%- find.occupation %></td>
-                <td style="width: 10; padding-left: 3%;">Sweldo: <br> (Salary) </td>
-                <td style="width: 40%; border: 1px solid #000"><%- find.salary %></td>
-            </tr>
-        </table>
-        <br>
-        <table>
-            <tr >
-                <td colspan="5" class="headtitle" >IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Indentifying Information)</td>
-            </tr>
-            <tr>
-                <td style="height: .5vh;"></td>
-            </tr>
-            <tr>
-                <td style="width: 8%;">PANGALAN:<br>(Name)</td>
-                <td style="width: 25%; border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.bene_lastname %></td>
-                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.bene_firstname %></td>
-                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.bene_middlename %></td>
-                <td style="border: 1px solid #000; border-left: none; text-align: center;"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td style="text-align: center;">Apelyido<br>(Last Name)</td>
-                <td style="text-align: center;">Unang Pangalan<br>(First Name)</td>
-                <td style="text-align: center;">Gitnang Pangalan<br>(Middle Name)</td>
-                <td style="text-align: center;">Extension Name</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td style="width: 12%;">PETSA NG KAPANGANAKAN: (Birthday)</td>
-                <td  style="width: 15%; border: 1px solid #000"><%- bene_formatted %></td>
-                <td style="width: 5%; padding-left: 3%;">EDAD<br>(Age):</td>
-                <td style="width: 10%;border: 1px solid #000"><%- find.bene_age %></td>
-                <td style="width: 8%; padding-left: 3%;">KASARIAN <br> (Sex):</td>
-                <td style="width: 5%;">
-                    <input type="checkbox" id="bene_male" disabled> Male <br>
-                    <input type="checkbox" id="bene_female" disabled> Female
-                </td>
-                <script>
-                    let bene_sex = '<%- find.bene_sex %>'
-                    if(bene_sex == 'MALE'){
-                        document.getElementById('bene_male').checked = true
-                    }else if(bene_sex == 'FEMALE'){
-                        document.getElementById('bene_female').checked = true
-                    }
-                </script>
-            </tr>
-        </table>
-        <br>
-        <table>
-            <tr>
-                <td style="width: 20%;">CONTACT NUMBER:</td>
-                <td style="width: 25%; border: 1px solid #000;">+63<%- find.bene_contact_number %></td>
-                <td style="width: 30%; padding-left: 7%;">Status Sibil (Civil Status):</td>
-                <td style="width: 10%;">
-                    <input type="checkbox" id="bene_single" name="single" value="single" disabled> Single <br>
-                    <input type="checkbox" id="bene_married" name="married" value="married" disabled> Married
-                </td>
-                <td>
-                    <input type="checkbox" id="bene_widow" name="widow" value="widow" disabled> Widow/er <br>
-                    <input type="checkbox" id="bene_other" name="other" value="other" disabled> Other
-                </td>
-            </tr>
-            <script>
-                let bene_civil_status = '<%- find.bene_civil_status %>'
-                if(bene_civil_status == 'Single'){
-                    document.getElementById('bene_single').checked = true
-                }else if(bene_civil_status == 'Married'){
-                    document.getElementById('bene_married').checked = true
-                }else if(bene_civil_status == 'Widow/er'){
-                    document.getElementById('bene_widow').checked = true
-                }else if(bene_civil_status == 'Other'){
-                    document.getElementById('bene_other').checked = true
-                }
-            </script>
-        </table>
-        <br>
-        <table>
-            <tr>
-                <td rowspan="2" style="width: 10%;">TIRAHAN:<br>(Address)</td>
-                <td style="border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.bene_street %></td>
-                <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.bene_brgy %></td>
-                <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.bene_municipal %></td>
-                <td style="border:1px solid #000; border-left: none; text-align: center;"><%- find.bene_province %></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="text-align: center;">No./Street/Purok</td>
-                <td style="text-align: center;">Barangay</td>
-                <td style="text-align: center;">Municipal/City</td>
-                <td style="text-align: center;">Province</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        <br>
-        <table class="Komposisyon">
-            <thead>
-                <tr>
-                    <td >KOMPOSISYON NG PAMILYA:</td>
-                </tr>
-                <tr class="tr-kom" style="text-align: center;">
-                    <th style="width: 30%; border-right: 1px solid #000;">Pangalan</th>
-                    <th style="width: 15%; border-right: 1px solid #000;">Edad</th>
-                    <th style="width: 30%; border-right: 1px solid #000;">Trabaho</th>
-                    <th style="width: 25%;">Buwanang Sahod</th>
-                </tr>
-                <tr class="tr-kom">
-                    <td style=" border-right: 1px solid #000;">1. <%- find.family_name[0] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_age[0] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_occupation[0] %></td>
-                    <td><%- find.family_salary[0] %></td>
-                </tr>
-                <tr class="tr-kom">
-                    <td style=" border-right: 1px solid #000;">2. <%- find.family_name[1] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_age[1] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_occupation[1] %></td>
-                    <td><%- find.family_salary[1] %></td>
-                </tr>
-                <tr class="tr-kom">
-                    <td style=" border-right: 1px solid #000;">3. <%- find.family_name[2] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_age[2] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_occupation[2] %></td>
-                    <td><%- find.family_salary[2] %></td>
-                </tr>
-                <tr class="tr-kom">
-                    <td style=" border-right: 1px solid #000;">4. <%- find.family_name[3] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_age[3] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_occupation[3] %></td>
-                    <td><%- find.family_salary[3] %></td>
-                </tr>
-                <tr class="tr-kom">
-                    <td style=" border-right: 1px solid #000;">5. <%- find.family_name[4] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_age[4] %></td>
-                    <td style=" border-right: 1px solid #000;"><%- find.family_occupation[4] %></td>
-                    <td><%- find.family_salary[4] %></td>
-                </tr>
-            </thead>
-        </table>
-        <table style="margin-top: 20%">
-            <tr>
-                <td colspan="4" style="font-size: 1rem; font-weight: bold; text-align: center; padding-bottom: 2%;">CRISIS INTERVENTION UNIT</td> </tr>
-            <tr>
-                <td style="width: 20%;">CLIENT'S CATEGORYS</td>
-                <td style="width: 30%; height: 4vh; border: 1px solid #000"></td>
-                <td style="width: 20%; text-align: center;"> Sub-Category</td>
-                <td style="width: 30%;height: 4vh; border: 1px solid #000"></td>
-            </tr>
-            <tr>
-                <td style="height: .5vh;"></td>
-            </tr>
-            <tr>
-                <td style="width: 15%;">BENEFICIARY'S CATEGORYS</td>
-                <td style="width: 35%; height: 4vh; border: 1px solid #000"></td>
-                <td style="width: 15%; text-align: center;"> Sub-Category</td>
-                <td style="width: 35%;height: 4vh; border: 1px solid #000"></td>
-            </tr>
-            <tr>
-                <td colspan="4" style="padding-top:1%; padding-bottom:1%">ASSESSMENT (use additional sheets as necessary)</td>
-            </tr>
-            <tr >
-                <td colspan="4" style=" border: 1px solid #000;">
-                    PROBLEM/S PRESENTED:
-                    <p style="height: 20vh;"></p>
-                </td>
-            </tr>
-            <tr>
-                <td style="height: .5vh;"></td>
-            </tr>
-            <tr >
-                <td colspan="4" style=" border: 1px solid #000;">
-                    SOCIAL WORKER'S ASSESSMENT:
-                    <p style="height: 20vh;"></p>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td colspan="3" style="padding-top:1%; padding-bottom:1%">RECOMMENDED SERVICES AND ASSISTANCE</td>
-            </tr>
-            <tr style="display: flex;">
-                <td style="width: 33.33%; display: flex; align-items: center;">
-                    <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
-                    Psychosocial Support
-                </td>
-                <td style="width: 33.33%; display: flex; align-items: center;">
-                    <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
-                    Legal Assistance
-                </td>
-                <td style="width: 33.33%; display: flex; align-items: center;">
-                    <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
-                    Referral (Specify)
-                </td>
-            </tr>
-            <tr>
-                <td style="height: .5vh;"></td>
-            </tr>
-            <tr>
-                <td style="width: 33.33%; display: flex; align-items: center;">
-                    <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
-                    Financial Assistance
-                </td>
-            </tr>
-            <tr>
-                <td style="height: 1vh;"></td>
-            </tr>
-        </table>
-        <table>
-            <tr class="tr-kom" style="font-weight: bold; text-align: center;">
-                <td style="width: 20%; border-right: 1px solid #000"></td>
-                <td style="width: 20%; border-right: 1px solid #000">PURPOSE</td>
-                <td style="width: 20%; border-right: 1px solid #000">AMOUNT OF ASSISTANCE</td>
-                <td style="width: 20%; border-right: 1px solid #000">MODE OF ASSISTANCE</td>
-                <td style="width: 20%">FUND SOURCE</td>
-            </tr>
-            <tr class="tr-kom">
-                <td style="border-right: 1px solid #000">Medical Needs</td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td></td>
-            </tr>
-            <tr class="tr-kom">
-                <td style="border-right: 1px solid #000">Burial Needs</td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td></td>
-            </tr>
-            <tr class="tr-kom">
-                <td style="border-right: 1px solid #000">Transportation Needs</td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td></td>
-            </tr>
-            <tr class="tr-kom">
-                <td style="border-right: 1px solid #000">Educational Supports</td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td></td>
-            </tr>
-            <tr class="tr-kom">
-                <td style="border-right: 1px solid #000">Food Subsidy Supports</td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td></td>
-            </tr>
-            <tr class="tr-kom">
-                <td style="border-right: 1px solid #000">Non-Food Items</td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td style="border-right: 1px solid #000"></td>
-                <td></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td style="width: 25%; padding-left: 2%; padding-top: 2%;">Interviewed by:</td>
-                <td style="width: 7%"></td>
-                <td style="width: 25%; padding-left: 2%; padding-top: 2%;">Reviewed and Approved by:</td>
-                <td style="width: 7%;"></td>
-                <td style="width: 24%;"></td>
-                <td style="width: 1%"></td>
-                <td style="width: 11%;"></td>
-            </tr>
-            <tr>
-                <td style="height: 10vh;"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td rowspan="2"> <div style="width: 100%; height: 15vh; border: 1px solid #000"></div></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td style="border-bottom: 1px solid #000"></td>
-                <td></td>
-                <td style="border-bottom: 1px solid #000; font-weight: bold;">NORA N. DELOS SANTOS, RSW</td>
-                <td></td>
-                <td style="border-bottom: 1px solid #000"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td >Name and Signature of Social Worker</td>
-                <td></td>
-                <td >City Social Welfare snd Dev't Officer</td>
-                <td></td>
-                <td >Name and Signature of Client</td>
-                <td></td>
-                <td >Thumb Mark</td>
-            </tr>
-        </table>
-    </form>
+    <main class="main">
+        <%- include('../include/nav_link') %>
+        <div class="main-content">
+            <div class="container">
+                <div style="text-align: center;">
+                    <button id="download" class="btn btn-success">Download PDF</button>
+                </div>
+                <form action="" class="page" size="A4" id="pdf-form">
+                    <img src="/img/temp-banner.PNG" alt="" style="margin-top: 2%">
+                    <div style="font-size: 1rem; font-weight: bold; text-align: center; margin-bottom: 2%;">CRISIS INTERVENTION UNIT</div>
+                    <table style="margin-bottom: 1%;">
+                        <tr>
+                            <td style="width: 12%;">Petsa Ngayon</td>
+                            <td rowspan="2" style="border: 1px solid #000 ;width: 15%;"></td>
+                            <td style="width: 25%; padding-left: 10%;">Oras ng Pagpasok</td>
+                            <td rowspan="2" style="border: 1px solid #000 ;width: 15%;"></td>
+                            <td style="width: 20%; padding-left: 10%;">Bilang ng</td>
+                            <td rowspan="2" style="border: 1px solid #000 ;width: 15%;"></td>
+                        </tr>
+                        <tr>
+                            <td>(Date Today)</td>
+                            <td style="padding-left: 10%;">(Time of Entry)</td>
+                            <td style="padding-left: 10%;">Kliyente</td>
+                        </tr>
+                    </table>
+                    
+                    
+                    <table>
+                        <tr>
+                            <td colspan="5" class="headtitle">IMPORMASYON UKOL SA KLIYENTE (Client's Indentifying Information)</td>
+                        </tr>
+                        <tr>
+                            <td style="height: .5vh;"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 8%;">PANGALAN:<br>(Name)</td>
+                            <td style="width: 25%; border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.lastname %></td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.firstname %></td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.middlename %></td>
+                            <td style="border: 1px solid #000; border-left: none; text-align: center;"><%- find.exname %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: center;">Apelyido<br>(Last Name)</td>
+                            <td style="text-align: center;">Unang Pangalan<br>(First Name)</td>
+                            <td style="text-align: center;">Gitnang Pangalan<br>(Middle Name)</td>
+                            <td style="text-align: center;">Extension Name</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td style="width: 12%;">PETSA NG KAPANGANAKAN: (Birthday)</td>
+                            <td  style="width: 15%; border: 1px solid #000"><%- formatted %></td>
+                            <td style="width: 5%; padding-left: 3%;">EDAD<br>(Age):</td>
+                            <td style="width: 10%;border: 1px solid #000"><%- find.age %></td>
+                            <td style="width: 8%; padding-left: 3%;">KASARIAN <br> (Sex):</td>
+                            <td style="width: 5%;">
+                                <input type="checkbox" id="male" disabled> Male <br>
+                                <input type="checkbox" id="female" disabled> Female
+                            </td>
+                            <script>
+                                let sex = '<%- find.sex %>'
+                                if(sex == 'MALE'){
+                                    document.getElementById('male').checked = true
+                                }else if(sex == 'FEMALE'){
+                                    document.getElementById('female').checked = true
+                                }
+                            </script>
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td style="width: 20%;">CONTACT NUMBER:</td>
+                            <td style="width: 25%; border: 1px solid #000;">+63<%- find.contact_number %></td>
+                            <td style="width: 30%; padding-left: 7%;">Status Sibil (Civil Status):</td>
+                            <td style="width: 10%;">
+                                <input type="checkbox" id="single" name="single" value="single" disabled> Single <br>
+                                <input type="checkbox" id="married" name="married" value="married" disabled> Married
+                            </td>
+                            <td>
+                                <input type="checkbox" id="widow" name="widow" value="widow" disabled> Widow/er <br>
+                                <input type="checkbox" id="other" name="other" value="other" disabled> Other
+                            </td>
+                        </tr>
+                        <script>
+                            let civil_status = '<%- find.civil_status %>'
+                            if(civil_status == 'Single'){
+                                document.getElementById('single').checked = true
+                            }else if(civil_status == 'Married'){
+                                document.getElementById('married').checked = true
+                            }if(civil_status == 'Widow/er'){
+                                document.getElementById('widow').checked = true
+                            }if(civil_status == 'Other'){
+                                document.getElementById('Other').checked = true
+                            }
+                        </script>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td>Relasyon sa Benepisyaryo:<br> (Relationship to Beneficiary)</td>
+                            <td style="width: 80%; border: 1px solid #000"><%- find.beneficiary_relationship %></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td rowspan="2" style="width: 10%;">TIRAHAN:<br>(Address)</td>
+                            <td style="border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.street %></td>
+                            <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.brgy %></td>
+                            <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.municipal %></td>
+                            <td style="border:1px solid #000; border-left: none; text-align: center;"><%- find.province %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">No./Street/Purok</td>
+                            <td style="text-align: center;">Barangay</td>
+                            <td style="text-align: center;">Municipal/City</td>
+                            <td style="text-align: center;">Province</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td style="width: 10%;">Trabaho: <br>(Occupation)</td>
+                            <td style="width: 40%; border: 1px solid #000"><%- find.occupation %></td>
+                            <td style="width: 10; padding-left: 3%;">Sweldo: <br> (Salary) </td>
+                            <td style="width: 40%; border: 1px solid #000"><%- find.salary %></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr >
+                            <td colspan="5" class="headtitle" >IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Indentifying Information)</td>
+                        </tr>
+                        <tr>
+                            <td style="height: .5vh;"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 8%;">PANGALAN:<br>(Name)</td>
+                            <td style="width: 25%; border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.bene_lastname %></td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.bene_firstname %></td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center;"><%- find.bene_middlename %></td>
+                            <td style="border: 1px solid #000; border-left: none; text-align: center;"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: center;">Apelyido<br>(Last Name)</td>
+                            <td style="text-align: center;">Unang Pangalan<br>(First Name)</td>
+                            <td style="text-align: center;">Gitnang Pangalan<br>(Middle Name)</td>
+                            <td style="text-align: center;">Extension Name</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td style="width: 12%;">PETSA NG KAPANGANAKAN: (Birthday)</td>
+                            <td  style="width: 15%; border: 1px solid #000"><%- bene_formatted %></td>
+                            <td style="width: 5%; padding-left: 3%;">EDAD<br>(Age):</td>
+                            <td style="width: 10%;border: 1px solid #000"><%- find.bene_age %></td>
+                            <td style="width: 8%; padding-left: 3%;">KASARIAN <br> (Sex):</td>
+                            <td style="width: 5%;">
+                                <input type="checkbox" id="bene_male" disabled> Male <br>
+                                <input type="checkbox" id="bene_female" disabled> Female
+                            </td>
+                            <script>
+                                let bene_sex = '<%- find.bene_sex %>'
+                                if(bene_sex == 'MALE'){
+                                    document.getElementById('bene_male').checked = true
+                                }else if(bene_sex == 'FEMALE'){
+                                    document.getElementById('bene_female').checked = true
+                                }
+                            </script>
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td style="width: 20%;">CONTACT NUMBER:</td>
+                            <td style="width: 25%; border: 1px solid #000;">+63<%- find.bene_contact_number %></td>
+                            <td style="width: 30%; padding-left: 7%;">Status Sibil (Civil Status):</td>
+                            <td style="width: 10%;">
+                                <input type="checkbox" id="bene_single" name="single" value="single" disabled> Single <br>
+                                <input type="checkbox" id="bene_married" name="married" value="married" disabled> Married
+                            </td>
+                            <td>
+                                <input type="checkbox" id="bene_widow" name="widow" value="widow" disabled> Widow/er <br>
+                                <input type="checkbox" id="bene_other" name="other" value="other" disabled> Other
+                            </td>
+                        </tr>
+                        <script>
+                            let bene_civil_status = '<%- find.bene_civil_status %>'
+                            if(bene_civil_status == 'Single'){
+                                document.getElementById('bene_single').checked = true
+                            }else if(bene_civil_status == 'Married'){
+                                document.getElementById('bene_married').checked = true
+                            }else if(bene_civil_status == 'Widow/er'){
+                                document.getElementById('bene_widow').checked = true
+                            }else if(bene_civil_status == 'Other'){
+                                document.getElementById('bene_other').checked = true
+                            }
+                        </script>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td rowspan="2" style="width: 10%;">TIRAHAN:<br>(Address)</td>
+                            <td style="border:1px solid #000; border-right: none; text-align: center; height: 5vh;"><%- find.bene_street %></td>
+                            <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.bene_brgy %></td>
+                            <td style="border-top:1px solid #000; border-bottom:1px solid #000; text-align: center;"><%- find.bene_municipal %></td>
+                            <td style="border:1px solid #000; border-left: none; text-align: center;"><%- find.bene_province %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">No./Street/Purok</td>
+                            <td style="text-align: center;">Barangay</td>
+                            <td style="text-align: center;">Municipal/City</td>
+                            <td style="text-align: center;">Province</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="Komposisyon">
+                        <thead>
+                            <tr>
+                                <td >KOMPOSISYON NG PAMILYA:</td>
+                            </tr>
+                            <tr class="tr-kom" style="text-align: center;">
+                                <th style="width: 30%; border-right: 1px solid #000;">Pangalan</th>
+                                <th style="width: 15%; border-right: 1px solid #000;">Edad</th>
+                                <th style="width: 30%; border-right: 1px solid #000;">Trabaho</th>
+                                <th style="width: 25%;">Buwanang Sahod</th>
+                            </tr>
+                            <tr class="tr-kom">
+                                <td style=" border-right: 1px solid #000;">1. <%- find.family_name[0] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_age[0] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_occupation[0] %></td>
+                                <td><%- find.family_salary[0] %></td>
+                            </tr>
+                            <tr class="tr-kom">
+                                <td style=" border-right: 1px solid #000;">2. <%- find.family_name[1] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_age[1] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_occupation[1] %></td>
+                                <td><%- find.family_salary[1] %></td>
+                            </tr>
+                            <tr class="tr-kom">
+                                <td style=" border-right: 1px solid #000;">3. <%- find.family_name[2] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_age[2] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_occupation[2] %></td>
+                                <td><%- find.family_salary[2] %></td>
+                            </tr>
+                            <tr class="tr-kom">
+                                <td style=" border-right: 1px solid #000;">4. <%- find.family_name[3] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_age[3] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_occupation[3] %></td>
+                                <td><%- find.family_salary[3] %></td>
+                            </tr>
+                            <tr class="tr-kom">
+                                <td style=" border-right: 1px solid #000;">5. <%- find.family_name[4] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_age[4] %></td>
+                                <td style=" border-right: 1px solid #000;"><%- find.family_occupation[4] %></td>
+                                <td><%- find.family_salary[4] %></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table style="margin-top: 20%">
+                        <tr>
+                            <td colspan="4" style="font-size: 1rem; font-weight: bold; text-align: center; padding-bottom: 2%;">CRISIS INTERVENTION UNIT</td> </tr>
+                        <tr>
+                            <td style="width: 20%;">CLIENT'S CATEGORYS</td>
+                            <td style="width: 30%; height: 4vh; border: 1px solid #000"></td>
+                            <td style="width: 20%; text-align: center;"> Sub-Category</td>
+                            <td style="width: 30%;height: 4vh; border: 1px solid #000"></td>
+                        </tr>
+                        <tr>
+                            <td style="height: .5vh;"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">BENEFICIARY'S CATEGORYS</td>
+                            <td style="width: 35%; height: 4vh; border: 1px solid #000"></td>
+                            <td style="width: 15%; text-align: center;"> Sub-Category</td>
+                            <td style="width: 35%;height: 4vh; border: 1px solid #000"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="padding-top:1%; padding-bottom:1%">ASSESSMENT (use additional sheets as necessary)</td>
+                        </tr>
+                        <tr >
+                            <td colspan="4" style=" border: 1px solid #000;">
+                                PROBLEM/S PRESENTED:
+                                <p style="height: 20vh;"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: .5vh;"></td>
+                        </tr>
+                        <tr >
+                            <td colspan="4" style=" border: 1px solid #000;">
+                                SOCIAL WORKER'S ASSESSMENT:
+                                <p style="height: 20vh;"></p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td colspan="3" style="padding-top:1%; padding-bottom:1%">RECOMMENDED SERVICES AND ASSISTANCE</td>
+                        </tr>
+                        <tr style="display: flex;">
+                            <td style="width: 33.33%; display: flex; align-items: center;">
+                                <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
+                                Psychosocial Support
+                            </td>
+                            <td style="width: 33.33%; display: flex; align-items: center;">
+                                <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
+                                Legal Assistance
+                            </td>
+                            <td style="width: 33.33%; display: flex; align-items: center;">
+                                <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
+                                Referral (Specify)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: .5vh;"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 33.33%; display: flex; align-items: center;">
+                                <div style=" width: 5vh; height: 5vh; border: 1px solid #000; margin-right: 2%"></div>
+                                Financial Assistance
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 1vh;"></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr class="tr-kom" style="font-weight: bold; text-align: center;">
+                            <td style="width: 20%; border-right: 1px solid #000"></td>
+                            <td style="width: 20%; border-right: 1px solid #000">PURPOSE</td>
+                            <td style="width: 20%; border-right: 1px solid #000">AMOUNT OF ASSISTANCE</td>
+                            <td style="width: 20%; border-right: 1px solid #000">MODE OF ASSISTANCE</td>
+                            <td style="width: 20%">FUND SOURCE</td>
+                        </tr>
+                        <tr class="tr-kom">
+                            <td style="border-right: 1px solid #000">Medical Needs</td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tr-kom">
+                            <td style="border-right: 1px solid #000">Burial Needs</td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tr-kom">
+                            <td style="border-right: 1px solid #000">Transportation Needs</td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tr-kom">
+                            <td style="border-right: 1px solid #000">Educational Supports</td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tr-kom">
+                            <td style="border-right: 1px solid #000">Food Subsidy Supports</td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tr-kom">
+                            <td style="border-right: 1px solid #000">Non-Food Items</td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td style="border-right: 1px solid #000"></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td style="width: 25%; padding-left: 2%; padding-top: 2%;">Interviewed by:</td>
+                            <td style="width: 7%"></td>
+                            <td style="width: 25%; padding-left: 2%; padding-top: 2%;">Reviewed and Approved by:</td>
+                            <td style="width: 7%;"></td>
+                            <td style="width: 24%;"></td>
+                            <td style="width: 1%"></td>
+                            <td style="width: 11%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 10vh;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td rowspan="2"> <div style="width: 100%; height: 15vh; border: 1px solid #000"></div></td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <td style="border-bottom: 1px solid #000"></td>
+                            <td></td>
+                            <td style="border-bottom: 1px solid #000; font-weight: bold;">NORA N. DELOS SANTOS, RSW</td>
+                            <td></td>
+                            <td style="border-bottom: 1px solid #000"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <td >Name and Signature of Social Worker</td>
+                            <td></td>
+                            <td >City Social Welfare snd Dev't Officer</td>
+                            <td></td>
+                            <td >Name and Signature of Client</td>
+                            <td></td>
+                            <td >Thumb Mark</td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

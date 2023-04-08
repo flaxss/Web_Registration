@@ -1,53 +1,5 @@
 <%- include('include/head') %>
-<script src="/js/index.global.min.js"></script>
-    <script>
-      let event = [
-        {
-          title: 'appointment',
-          start: new Date('2023-03-23'),
-        },
-        {
-          title: 'appointment',
-          start: new Date('2023-03-23'),
-        },
-        {
-          title: 'appointment',
-          start: new Date('2023-03-23'),
-        },
-        {
-          title: 'appointment',
-          start: new Date('2023-03-14'),
-        },
-        {
-          title: 'appointment',
-          start: new Date('2023-03-05'),
-        },
-        {
-          title: 'appointment',
-          start: new Date('2023-03-20'),
-        }
-      ]
-        document.addEventListener('DOMContentLoaded', function() {
-          const calendarEl = document.getElementById('calendar')
-          const calendar = new FullCalendar.Calendar(calendarEl, {
-            timeZone: 'UTC',
-            events: function(info, successCallback, failureCallback){
-
-            },
-            events: 'https://fullcalendar.io/api/demo-feeds/events.json',
-            events: event,
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            initialView: 'dayGridMonth',
-            eventColor: '#378006',
-            aspectRatio: 1
-          })
-          calendar.render()
-        })
-    </script>
+<!-- <script src="/js/index.global.min.js"></script> -->
     <title>Admin | Home</title>
 </head>
 <body>

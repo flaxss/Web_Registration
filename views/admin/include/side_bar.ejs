@@ -15,7 +15,7 @@
                     <div class="modal-body">
                         <form action="/a/add-event" method="POST" class="input-group">
                             <div class="col-md-12">
-                                <input type="number" name="quota" class="form-control" placeholder="No. of Quota" required>
+                                <input type="number" name="quota" class="form-control" placeholder="No. of Quota" required max="400">
                                 <input type="date" id="event_date" name="event_date" class="form-control" class="btn btn-primary" required>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control" placeholder="remarks" name="remarks">
@@ -30,10 +30,6 @@
             </div>
         </div>
     </div>
-    <script>
-        var today = new Date().toISOString().split('T')[0];
-        document.getElementById("event_date").setAttribute("min", today);
-    </script>
     <div class="even-list">
         <table class="table table-dark table-striped" border="1px">
             <thead>
@@ -61,22 +57,20 @@
             <p>No Available Quota</p>
         <% } %>
     </div>
-    
     <h3>Remaining Quota: <%- quota %></h3>
-    <!-- <div class="req-div dropdown mt-2" style="display:flex; justify-content:center; align-content: center;">
-        <button class="btn btn-secondary dropdown-toggle" style="background-color: #2B7858; color: #fff; border-radius: 5px; border-color:#fff; align-items: center; font-size: 110%; width: 90%; padding: 1%;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Update Requirements
-        </button>
-        <ul class="dropdown-menu" style="background-color: #569e80; color: #fff; border-radius: 5px; border-color:#fff; align-items: center; font-size: 110%; width: 90%; padding: 1%;" >
-            <li><a class="dropdown-item" href="/a/requirements-college">College Educational Assistance</a></li>
-            <li><a class="dropdown-item" href="/a/requirements-medical">Medical Assistance</a></li>
-            <li><a class="dropdown-item" href="/a/requirements-burial">Burial Assistance</a></li>
-            <li><a class="dropdown-item" href="/a/requirements-traspo">Trasportation Assistance</a></li>
-            <li><a class="dropdown-item" href="/a/requirements-emergency">Emergency Shelter Assistance</a></li>
-        </ul>
-    </div> -->
-    
-    <!-- <div class="calendar">
-        <div id='calendar'></div>
-    </div> -->
 </div>
+<script>
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("event_date").setAttribute("min", today);
+</script>
+<script>
+    var dateInput = document.getElementById("event_date");
+    // Disable the 15th of each month
+    dateInput.addEventListener("input", function() {
+    var dateValue = new Date(dateInput.value);
+        if (dateValue.getDate() === 15) {
+            dateInput.value = "";
+            alert("Sorry, you cannot select the 15th of the month.");
+        }
+    });
+</script>
