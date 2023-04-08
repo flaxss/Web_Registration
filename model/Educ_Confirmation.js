@@ -109,45 +109,56 @@ const educationConfirmSchema = new mongoose.Schema({
         type: Number
     },
     spouse_lname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     spouse_fname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     spouse_mname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     spouse_exname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     spouse_occupation: {
         type: String
     },
 
     mother_lname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     mother_fname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     mother_mname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     mother_occupation: {
         type: String
     },
     
     father_lname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     father_fname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     father_mname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     father_exname: {
-        type: String
+        type: String,
+        uppercase: true
     },
     father_occupation: {
         type: String

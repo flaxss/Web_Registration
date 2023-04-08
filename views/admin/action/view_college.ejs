@@ -95,9 +95,27 @@
                             </tr>
                             <tr>
                                 <td rowspan="2" style="width: 20%; border-bottom: 1px solid #000; border-right: 1px solid #000;">SPOUSE IF APPLICABLE:</td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.spouse_lname %> <%- find.spouse_exname %></td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.spouse_fname %></td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.spouse_mname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <% if (find.spouse_lname !== '') { %>
+                                        <%- find.spouse_lname %>
+                                    <% }else { %>
+                                        -
+                                    <% } %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <% if (find.spouse_fname !== '') { %>
+                                        <%- find.spouse_fname %>
+                                    <% }else { %>
+                                        -
+                                    <% } %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <% if (find.spouse_mname !== '') { %>
+                                        <%- find.spouse_mname %>
+                                    <% }else { %>
+                                        -
+                                    <% } %>
+                                </td>
                                 <td rowspan="2"  style="width:25%; border-bottom: 1px solid #000; ">OCCUPATION</td>
                             </tr>
                             <tr style="text-align:center">
