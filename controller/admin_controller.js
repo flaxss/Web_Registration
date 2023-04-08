@@ -37,7 +37,22 @@ async function expiryDate(){
         })
     }
 }
-// expiryDate()
+expiryDate()
+
+
+// auto-create option 
+async function option(){
+    const option = await Option.find()
+    if(option == ''){
+        const isActivte = await Option({
+            option: 'activate'
+        })
+        isActivte.save()
+        .then(() => console.log(`${isActivte}`,'created'))
+        .catch(err => console.log(err.message))
+    }
+}
+option()
 
 // parse date
 const {dateFormat} = require('../middleware/parseDate')
@@ -126,7 +141,7 @@ module.exports.add_event = async(req, res) => {
         event_date: req.body.event_date,
         remarks: req.body.remarks || 'None'
     })
-    console.log(req.body)
+    // console.log(req.body)
     create.save()
     .then(() => {
         res.redirect('/a')
@@ -162,7 +177,7 @@ module.exports.appointment_deactivate = async(req, res) => {
 module.exports.appointment_reject = async(req, res) => {
     try {
         const reject = await Educ_Appointment.findByIdAndDelete(req.params.id)
-        console.log(reject)
+        // console.log(reject)
         res.redirect('/a/appointment')
     } catch (err) {
         console.log(err.message)
@@ -173,7 +188,7 @@ module.exports.appointment_view = async(req, res) => {
     try {
         const id = req.params.id;
         const find = await Educ_Appointment.findById(id);
-        console.log(find)
+        // console.log(find)
         let date_of_birth = moment(find.date_of_birth).format('MMMM DD, YYYY')
         res.render('admin/action/view_college', {find, date_of_birth})
     } catch (err) {
@@ -197,7 +212,7 @@ module.exports.appointment_update_get = async(req, res) => {
 module.exports.appointment_update_post = async(req, res) => {
     const id = req.params.id
     const body = req.body
-    console.log(body)
+    // console.log(body)
     const update = await Educ_Appointment.findByIdAndUpdate(id, {
         reference: body.reference,
         service: body.service,
@@ -258,6 +273,9 @@ module.exports.appointment_update_post = async(req, res) => {
         course: body.course,
         year_level: body.year_level,
         sem: body.sem,
+        char_ref_name: body.char_ref_name,
+        char_ref_add: body.char_ref_add,
+        char_ref_num: body.char_ref_num,
     }, {new: true})
     res.redirect('/a/appointment')
 }
@@ -445,7 +463,7 @@ module.exports.application_educ_assistance_update_get = async(req, res) => {
 module.exports.application_educ_assistance_update_patch = async(req, res) => {
     const id = req.params.id;
     const body = req.body
-    console.log(req.body)
+    // console.log(req.body)
     const update = await Educ_Registration.findByIdAndUpdate(id, {
         reference: body.reference,
         service: body.service,
@@ -504,6 +522,9 @@ module.exports.application_educ_assistance_update_patch = async(req, res) => {
         course: body.course,
         year_level: body.year_level,
         sem: body.sem,
+        char_ref_name: body.char_ref_name,
+        char_ref_add: body.char_ref_add,
+        char_ref_num: body.char_ref_num,
     }, {new: true})
     res.redirect('/a/application-educ-assistance')
 }
