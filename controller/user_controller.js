@@ -88,10 +88,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
     let response = {
         body: {
             name: fullname,
-            intro: `Congrats! You are successfully registered to <b>${service}</b> here is your reference number: ${reference}
-            Click the link
-            <a href="${prev_link}">here</a>
-            to Download the Intake Sheet. If you want to update your response. Click the <b>UPDATE-RESPONSE</b>`,
+            intro: `Congrats! Registered kana sa <b>${service}</b>. Ito and iyong reference number: ${reference} na maaari mong magamit upang matrack mo ang proseso ng iyong Application. Maaari mo ring i-download ang iyong intake sheet mula sa link na ito. <a href="${prev_link}">here</a>. Kung gusto mo naman i-update ang iyong response. Pindutin ang  <b>UPDATE-RESPONSE</b>.`,
             action: {
                 instruction: `If your information is incorrect, you may edit your response here: `,
                 button: {
@@ -100,7 +97,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
                     link: up_link
                 },
             },
-            outro: '<b>Important Note!</b> You can edit your response once only!'
+            outro: '<b>Paalala!</b>, isang beses mo lang maaaring i-update ang iyong impormasyon.'
         }
     }
     let mail = MailGenerator.generate(response)
@@ -1176,6 +1173,7 @@ module.exports.about = (req, res) => {
 module.exports.search = async (req, res) => {
     // res.send(req.query.result)
     let reference = (req.query.result).split('-').join('');
+    reference = reference.split(' ').join('');
     reference = reference.toUpperCase()
     let { service } = req.query;
     console.log(reference)
