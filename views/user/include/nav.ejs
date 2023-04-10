@@ -46,7 +46,7 @@
                   <option value="Medical Assistance">Medical Assistance</option>
                   <option value="Transportation Assistance">Transportation Assistance</option>
                 </select>
-                <input class="form-control mt-2 mb-2" type="search" name="result" required placeholder="enter reference number" aria-label="Search">
+                <input class="form-control mt-2 mb-2" type="search" onkeypress="return isNumberKey(event)" maxlength="17" name="result" required placeholder="enter reference number" aria-label="Search">
                 <div class="modal-footer">
                   <button class="btn btn-primary">Proceed</button>
                 </div>
