@@ -38,7 +38,6 @@ function format(list){
 }
 
 // let http_localhost = 'http://localhost:3000'
-// let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
 let http_localhost = 'tmc-cash-assistance-test.cyclic.app'
 
 // user and generate a template for the email
