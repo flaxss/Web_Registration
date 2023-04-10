@@ -74,6 +74,7 @@ router.patch('/application/aics-assistance/:id/archive', admin_controller.applic
 router.get('/application-archive', admin_controller.application_archives)
 router.patch('/application-educ-archive/:id', admin_controller.application_educ_archives_restore)
 router.delete('/application-educ-archive/:id', admin_controller.application_educ_archives_delete)
+
 router.patch('/application-aics-archive/:id', admin_controller.application_aics_archives_restore)
 router.delete('/application-aics-archive/:id', admin_controller.application_aics_archives_delete)
 

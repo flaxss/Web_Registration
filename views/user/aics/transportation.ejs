@@ -4,30 +4,39 @@
 </head>
 <body>
     <%- include('../include/nav') %>
-    <main class="req-main">
-        <h1 class="req-title">Transportation Assistance</h1>
-        <div>
-            <p class="req-definition">Assistance for the purchase or payment of transportation ticket to enable them to return to their home province permanently, strandees due to typoon, victims of illegal recruitment and victim of pick pocket.</p>
-            
-        </div>
-        <div class="req-list">
-            <h2 class="req-list-title">List of Requirements</h2>
-            <ul>
-                <!-- <li>Get Intake sheet? get through this link -> <a class="btn btn-success" href="/u/medical-assistance/form">here</a></li> -->
-                <li><a href="/transportation-assistance/form">General Intake Sheet (Register and Download)</a></li>
-                <li>Barangay Clearance/Barangay Certificate and Barangay Indigency (1 original) </li>
-                <li>Any VAlid ID of the client (much better if they have ID addressed to their province) (bring original and 1 photocopy)</li>
-                <li>Police blotter (victim of illegal recruitment, victims of pick pockets, strandees during typoon (1 original)</li>
-                <li>Personal Letter of Request for Burial/Funeral Assistance Addressed to Mayor.</li>
-                <li>General Intake Sheet (CSWDO Form) and Certificate of Eligibility (1 original)</li>
-            </ul>
-        </div>
-        <div>
+    <main class="req-main mt-2 mb-2">
+        <div class="container" style="height: fit-content;">
+            <h1 class="req-title">Transportation Assistance</h1>
             <div>
-                <!-- <button class="btn btn-primary">Proceed</button> -->
+                <p class="req-definition">Assistance for the purchase or payment of transportation ticket to enable them to return to their home province permanently, strandees due to typoon, victims of illegal recruitment and victim of pick pocket.</p>
+            </div>
+            <div class="req-list">
+                <h2 class="req-list-title">List of Requirements</h2>
+                <ul>
+                    <!-- <li>Get Intake sheet? get through this link -> <a class="btn btn-success" href="/u/medical-assistance/form">here</a></li> -->
+                    <li><a href="/transportation-assistance/form">General Intake Sheet (Register and Download)</a></li>
+                    <li>Barangay Clearance/Barangay Certificate and Barangay Indigency (1 original) </li>
+                    <li>Any VAlid ID of the client (much better if they have ID addressed to their province) (bring original and 1 photocopy)</li>
+                    <li>Police blotter (victim of illegal recruitment, victims of pick pockets, strandees during typoon (1 original)</li>
+                    <li>Personal Letter of Request for Burial/Funeral Assistance Addressed to Mayor.</li>
+                    <li>General Intake Sheet (CSWDO Form) and Certificate of Eligibility (1 original)</li>
+                </ul>
+            </div>
+            <a href="/transportation-assistance/form">
+                <button class="btn btn-primary">Proceed</button>
+            </a>
+        </div>
+        <hr>
+        <div>
+            <h3>How to Apply?</h3>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae modi enim, dolor asperiores ea quo repellendus quaerat id temporibus ipsa harum assumenda sunt! Libero asperiores velit odit sed ab tempora culpa, delectus amet rem suscipit natus. Dolorem molestias ab blanditiis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae modi enim, dolor asperiores ea quo repellendus quaerat id temporibus ipsa harum assumenda sunt! Libero asperiores velit odit sed ab tempora culpa, delectus amet rem suscipit natus. Dolorem molestias ab blanditiis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae modi enim, dolor asperiores ea quo repellendus quaerat id temporibus ipsa harum assumenda sunt! Libero asperiores velit odit sed ab tempora culpa, delectus amet rem suscipit natus. Dolorem molestias ab blanditiis.</p>
             </div>
         </div>
     </main>
+    <%- include('../include/footer') %>
     <script>
         let response = '<%- response %>'
         console.log(response)
@@ -35,6 +44,5 @@
             alert('Already Registered')
         }
     </script>
-    <%- include('../include/footer') %>
 </body>
 </html>

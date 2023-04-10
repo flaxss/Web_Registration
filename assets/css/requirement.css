@@ -35,15 +35,15 @@
         width: 90%;
     }
     .req-title{
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
-    .req-definition{
+    /* .req-definition{
         font-size: .8rem;
-    }
-    .req-list-title{
+    } */
+    /* .req-list-title{
         font-size: 1rem;
-    }
-    .req-list{
+    } */
+    /* .req-list{
         font-size: .8rem;
-    }
+    } */
 }

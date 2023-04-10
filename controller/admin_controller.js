@@ -678,7 +678,18 @@ module.exports.application_aics_assistance_patch = async(req, res) => {
 module.exports.application_aics_assistance_archive = async (req, res) => {
     const id = req.params.id;
     const registration = await AICS_Registration.findByIdAndUpdate(id, {isArchive: true}, {new: true})
-    res.redirect('/a/application-burial-assistance')
+    console.log(registration)
+    let params = ''
+    if(registration.service == 'Medical Assistance'){
+        params = 'application-medical-assistance'
+    }else if(registration.service == 'Burial Assistance'){
+        params = 'application-burial-assistance'
+    }else if(registration.service == 'Transportation Assistance'){
+        params = 'application-transportation-assistance'
+    }else if(registration.service == 'Emergency Shelter Assistance'){
+        params = 'application-emergency-assistance'
+    }
+    res.redirect(`/a/${params}`)
 }
 
 // archive restore and remove
