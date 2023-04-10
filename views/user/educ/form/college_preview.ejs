@@ -25,10 +25,12 @@
     <%- include('../../include/nav') %>
     <div class="container">
         <div class="alert alert-success mt-2" role="alert">
-            <span>Congrats! <h2><%- find.firstname %> <%- find.middlename %> <%- find.lastname %></h2> Registered kana sa <%- find.service %>, maaari mo ng i-Download ang iyong Intake Sheet</span>
+            <h1>Congrats! <img src="/img/vector_confetti.png" alt="" style="width: 10%;"></h1>
+            <h2><%- find.firstname %> <%- find.middlename %> <%- find.lastname %></h2>
+            <span>Registered kana sa <%- find.service %>, maaari mo ng i-Download ang iyong Intake Sheet</span>
         </div>
         <div style="text-align: center;">
-            <button id="download" class="btn btn-success">Download PDF</button>
+            <button id="download" class="btn btn-primary mb-2">Download</button>
         </div>
         <form action="" class="page" size="A4" id="pdf-form">
             <div style="margin: 2%; border: 2px solid #000 ">

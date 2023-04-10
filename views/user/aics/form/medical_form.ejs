@@ -5,6 +5,19 @@
             color: red;
             margin-left: 5px;
         }
+        .loading {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -13,7 +26,7 @@
         <div class="container my-2 p-2">
             <h1 class="text-center">Medical Assistance Registration Form</h1>
             <div class="main-content">
-                <form action="/medical-assistance/form" method="POST" class="container-xl bg-light p-2 needs-validation" novalidate>
+                <form action="/medical-assistance/form" method="POST" id="form" onload="hideLoading()" class="container-xl bg-light p-2 needs-validation" novalidate>
                     <h4>IMPORMASYON UKOL SA KLIYENTE (Client's Identifying Information)</h4>
                     <div class="row mb-3 g-1">
                         <input type="text" name="service" value="Medical Assistance" hidden>
@@ -359,10 +372,14 @@
                     </div>
                     <button type="submit" class="form-control btn btn-success">Submit</button>
                 </form>
+                <div class="loader">
+                    <div id="loading" class="loading" style="display: none;"></div>
+                </div>
             </div>
         </div>
     </main>
     <!-- form validation -->
+    <%- include('../../include/footer') %>
     <script>
         (() => {
         'use strict'
@@ -382,6 +399,15 @@
         })
         })()
     </script>
-    <%- include('../../include/footer') %>
+    <!-- loading script -->
+    <script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+            // document.getElementById('form').style.filter = "blur(10px);"
+        }
+        function hideLoading() {
+            document.getElementById("loading").style.display = "none";
+        }
+    </script>
 </body>
 </html>

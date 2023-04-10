@@ -11,11 +11,13 @@
             justify-content: center;
             align-items: center;
             background-color: rgb(168, 185, 185);
+            /* box-shadow: rgba(0, 0, 0, 0.5); */
         }
         #map {
             width: 35vw;
             min-width: 90%;
             height: 60vh;
+            box-shadow: rgba(0, 0, 0, 1);
         }
     </style>
     
@@ -29,16 +31,11 @@
         <div class="mapping">
             <div class="map" id="map"></div>
         </div>
-        <div class="m_v">
-            <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, iusto facilis sint placeat unde quod officiis excepturi obcaecati esse modi dolorum nostrum nemo ducimus, distinctio maiores perspiciatis repellendus rem! Aperiam repellendus, quia fugit praesentium impedit incidunt beatae ullam, perspiciatis ut ducimus nostrum nisi nam maxime voluptatibus!
-            </div>
-        </div>
     </main>
     <%- include('include/footer') %>
     <script>
         function initMap(){
-            let trece = {lat: 14.2866478, lng: 120.861378}
+            let trece = {lat: 14.28136, lng: 120.870382} // trece city hall
             let map = new google.maps.Map(
                 document.getElementById('map'), {zoom: 15, center: trece}
             );

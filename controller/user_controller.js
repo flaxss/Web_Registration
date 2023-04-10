@@ -38,17 +38,17 @@ function format(list){
 }
 
 // let http_localhost = 'http://localhost:3000'
-let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
+// let http_localhost = 'https://tmc-cash-assistance.cyclic.app'
+let http_localhost = 'tmc-cash-assistance-test'
 
-// generate email and password to connect with node mailer
-let config = {
+// user and generate a template for the email
+const config = {
     service: 'gmail',
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
     }
 }
-// user and generate a template for the email
 let transporter = nodemailer.createTransport(config)
 let MailGenerator = new Mailgen({
     theme: 'default',
@@ -76,9 +76,9 @@ function messageResponse(fullname, link, email){
     }
     let mail = MailGenerator.generate(response)
     let message = {
-        from: 'support@email.com',
+        from: 'TMC-CSDWO <support@email.com>',
         to: email,
-        subject: 'social service',
+        subject: 'Email confirmation for your Cash Assistance',
         html: mail
     }
     return message;
@@ -88,7 +88,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
     let response = {
         body: {
             name: fullname,
-            intro: `Congrats! Registered kana sa <b>${service}</b>. Ito and iyong reference number: ${reference} na maaari mong magamit upang matrack mo ang proseso ng iyong Application. Maaari mo ring i-download ang iyong intake sheet mula sa link na ito. <a href="${prev_link}">here</a>. Kung gusto mo naman i-update ang iyong response. Pindutin ang  <b>UPDATE-RESPONSE</b>.`,
+            intro: `Congrats! Registered kana sa <b>${service}</b>. Ito and iyong reference number: ${reference} na maaari mong magamit upang matrack mo ang proseso ng iyong Application. Maaari mo ring i-download ang iyong intake sheet mula sa link na ito. <a href="${prev_link}">${prev_link}</a>. Kung gusto mo naman i-update ang iyong response. Pindutin ang  <b>UPDATE-RESPONSE</b>.`,
             action: {
                 instruction: `If your information is incorrect, you may edit your response here: `,
                 button: {
@@ -102,9 +102,9 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
     }
     let mail = MailGenerator.generate(response)
     let message = {
-        from: 'support@email.com',
+        from: 'TMC-CSDWO <support@email.com>',
         to: email,
-        subject: 'social service',
+        subject: 'Update Response / Downloadable General Intake Sheet',
         html: mail
     }
     return message;

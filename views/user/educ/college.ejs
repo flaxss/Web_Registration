@@ -4,29 +4,39 @@
 </head>
 <body>
     <%- include('../include/nav') %>
-    <main class="req-main">
-        <h1 class="req-title">College Educational Assistance</h1>
-        <div>
-            <p class="req-definition">A form of assistance given to eligible students to help defray school expenses and/or cost of sending students/children to school such as school fees, supplies, projects, allowance and other related expenses.</p>
-        </div>
-        <div class="req-list">
-            <h2 class="req-list-title">List of Requirements</h2>
-            <ul>
-                <li><a class="" href="/college-assistance/form">General Intake Sheet (Register and Download)</a></li>
-                <li>Personal Letter of Request Addressed to the Mayor.</li>
-                <li>Copy of Registration Form - for the current semester as proof they are enrolled (bring original and 1 photocopy).</li>
-                <li>Certificate of Grades from the Previous Semester Duly Signed by the College Registrar with dry seal (1 original)</li>
-                <li>Barangay Clearance with dry seal (1 original)</li>
-                <li>Certificate of Indigency (1 original)</li>
-                <li>Validated School ID (Bring 1 photocopy)</li>
-            </ul>
-        </div>
-        <div>
+    <main class="req-main mt-2 mb-2">
+        <div class="container" style="height: fit-content;">
+            <h1 class="req-title">College Educational Assistance</h1>
             <div>
-                <!-- <button class="btn btn-primary">Proceed</button> -->
+                <p class="req-definition">A form of assistance given to eligible students to help defray school expenses and/or cost of sending students/children to school such as school fees, supplies, projects, allowance and other related expenses.</p>
+            </div>
+            <div class="req-list">
+                <h2 class="req-list-title">List of Requirements</h2>
+                <ul>
+                    <li><a class="" href="/college-assistance/form">General Intake Sheet (Register and Download)</a></li>
+                    <li>Personal Letter of Request Addressed to the Mayor.</li>
+                    <li>Copy of Registration Form - for the current semester as proof they are enrolled (bring original and 1 photocopy).</li>
+                    <li>Certificate of Grades from the Previous Semester Duly Signed by the College Registrar with dry seal (1 original)</li>
+                    <li>Barangay Clearance with dry seal (1 original)</li>
+                    <li>Certificate of Indigency (1 original)</li>
+                    <li>Validated School ID (Bring 1 photocopy)</li>
+                </ul>
+            </div>
+            <a href="/college-assistance/form">
+                <button class="btn btn-primary">Proceed</button>
+            </a>
+        </div>
+        <hr>
+        <div>
+            <h3>How to Apply?</h3>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae modi enim, dolor asperiores ea quo repellendus quaerat id temporibus ipsa harum assumenda sunt! Libero asperiores velit odit sed ab tempora culpa, delectus amet rem suscipit natus. Dolorem molestias ab blanditiis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae modi enim, dolor asperiores ea quo repellendus quaerat id temporibus ipsa harum assumenda sunt! Libero asperiores velit odit sed ab tempora culpa, delectus amet rem suscipit natus. Dolorem molestias ab blanditiis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae modi enim, dolor asperiores ea quo repellendus quaerat id temporibus ipsa harum assumenda sunt! Libero asperiores velit odit sed ab tempora culpa, delectus amet rem suscipit natus. Dolorem molestias ab blanditiis.</p>
             </div>
         </div>
     </main>
+    <%- include('../include/footer') %>
     <script>
         let response = '<%- response %>'
         console.log(response)
@@ -34,6 +44,5 @@
             alert('Already Registered')
         }
     </script>
-    <%- include('../include/footer') %>
 </body>
 </html>

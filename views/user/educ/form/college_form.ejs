@@ -1,11 +1,25 @@
 <%- include('../../include/header') %>
 <title>College Educational Assistance</title>
-
     <!-- asterisk -->
     <style>
+        /* required */
         .required {
             color: red;
             margin-left: 5px;
+        }
+        /* loader */
+        .loading {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 
@@ -15,7 +29,7 @@
     <main>
         <div class="container my-2 p-2">
             <h1 class="text-center">College Educational Assistance</h1>
-            <form class="container-xl bg-light p-2 needs-validation" novalidate action="/college-assistance/form" method="POST">
+            <form class="container-xl bg-light p-2 needs-validation" id="form" onload="hideLoading()" novalidate action="/college-assistance/form" method="POST">
                 <h4>I. PERSONAL INFORMATION</h4>
                 <div class="row mb-3 g-1">
                     <div class="col-md-3">  
@@ -447,31 +461,43 @@
                       </div>
                     </div>
                 </div>
-                <button id="submit" class="form-control btn btn-success">Submit</button>
+                <button id="submit" class="form-control btn btn-success" onclick="showLoading()">Submit</button>
             </form>
+            <div class="loader">
+                <div id="loading" class="loading" style="display: none;"></div>
+            </div>
         </div>
     </main>
 
     <!-- form validation -->
     <script>
         (() => {
-        'use strict'
-        const forms = document.querySelectorAll('.needs-validation')
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-                alert("Please fill out all the required information.");
-            }
-            else{
-                alert("Are you sure you want to submit this form?");
-            }
-            form.classList.add('was-validated')
-            }, false)
-        })
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        alert("Please fill out all the required information.");
+                    }
+                    else{
+                        alert("Are you sure you want to submit this form?");
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
         })()
     </script>
+    <!-- loading script -->
     <%- include('../../include/footer') %>
+    <script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+        }
+        function hideLoading() {
+            document.getElementById("loading").style.display = "none";
+        }
+    </script>
 </body>
 </html>
