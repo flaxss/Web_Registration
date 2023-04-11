@@ -1086,11 +1086,7 @@ module.exports.accounts_delete = async(req, res) => {
         console.log(err.message)
     }
 }
-
-module.exports.create_account_get = (req, res) => {
-    res.render('admin/create_account')
-}
-
+// create account
 module.exports.create_account_post = async(req, res) => {
     const {firstname, middlename, lastname, contact, email, password} = req.body;
     const create = await Account({

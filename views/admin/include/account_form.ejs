@@ -1,0 +1,43 @@
+<div class="modal fade" id="createAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Account</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-control "  action="/a/create-account" method="POST">
+                    <div class="col-md-12">
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="firstname">First Name</label>
+                            <input class="form-control" type="text" name="firstname" id="firstname">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="middlename">Middle Name</label>
+                            <input class="form-control" type="text" name="middlename" id="middlename">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="lastname">Last Name</label>
+                            <input class="form-control" type="text" name="lastname" id="lastname">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="contact">Contact</label>
+                            <input class="form-control" type="text" name="contact" id="contact">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <button type="submit" class="form-control btn btn-success" onclick="warning()">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

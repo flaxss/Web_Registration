@@ -14,35 +14,15 @@
                         </div>
                         <div class="modal-body table">
                             <% if(result != null) { %>
-                            <table class="table responsive">
-                                <thead>
-                                    <tr>
-                                        <th>Service</th>
-                                        <th>Status</th>
-                                        <th>
-                                            <% if(result.status == 'pending') { %>
-                                            <% }else if(result.status == 'completed'){ %>
-                                                Wait until
-                                            <% } %>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        <tr>
-                                            <td><%- result.service %></td>
-                                            <td><%- result.status %></td>
-                                            <td>
-                                                <% if(result.status == 'pending') { %>
-
-                                                <% }else if(result.status == 'completed'){ %>
-                                                    <%- format %>
-                                                <% } %>
-                                            </td>
-                                        </tr>
-                                </tbody>
-                            </table>
+                                <h2>Found!</h2>
+                                <p>You are registered to <b><%- result.service %></b></p>
+                                <p>Status: <b><%- result.status.toUpperCase() %></b></p>
+                                <% if(result.status == 'completed'){ %>
+                                    <p>You are not eligible to register until <b><%- format %></b></p>
+                                <% } %>
                             <% } else { %>
-                                <p class="text-center">not found</p>
+                                <p class="text-center">The reference number does not exist. You may check our website and choose which service you want to apply for.</p>
+                                <p class="text-center"><b>Note!</b>you can check your email for confirmation if you already submitted your information</p>
                             <% } %>
                         </div>
                     </div>

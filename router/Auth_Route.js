@@ -11,7 +11,8 @@ const dotenv = require('dotenv');
 dotenv.config({path: 'config.env'});
 const secret = process.env.SECRET_KEY;
 
-const maxAge = 3 * 24 * 60 * 60; // 3 days
+// const maxAge = 3 * 24 * 60 * 60; // 3 days
+const maxAge = 24 * 60 * 60; // 1 days
 // const maxAge = 60 * 60; //1 hour
 // const maxAge = 1 * 60; // 1 minute
 const createToken = (id) => {

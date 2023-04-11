@@ -11,9 +11,9 @@
         else{
             alert("Are you sure you want to submit this form?");
             document.getElementById("loading").style.display = "block";
-            document.getElementById('nav').style.filter = 'blur(5px)';
-            document.getElementById('form').style.filter = 'blur(5px)';
-            document.getElementById('footer').style.filter = 'blur(5px)';
+            document.getElementById('nav').style.filter = 'blur(3px)';
+            document.getElementById('form').style.filter = 'blur(3px)';
+            document.getElementById('footer').style.filter = 'blur(3px)';
         }
         form.classList.add('was-validated')
         }, false)

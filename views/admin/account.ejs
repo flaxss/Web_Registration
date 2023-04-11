@@ -7,7 +7,8 @@
         <div class="main-content">
             <div class="content-table">
                 <nav class="navbar bg-body-tertiary p-0">
-                    <a href="/a/create-account" class="btn btn-outline-success mx-2">create account</a>
+                    <button type="button" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#createAccount">Create Account</button>
+                    <%- include('include/account_form') %> 
                     <a href="/a/account-archive" class="btn btn-outline-danger mx-2">account archive</a>
                 </nav>
                 <div class="table-responsive">

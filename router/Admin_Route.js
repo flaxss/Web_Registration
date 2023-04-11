@@ -110,7 +110,6 @@ router.patch('/accounts/:id/archive', admin_controller.accounts_archive)
 router.patch('/accounts/:id/restore', admin_controller.accounts_restore)
 router.delete('/accounts/:id/delete', admin_controller.accounts_delete)
 
-router.get('/create-account', admin_controller.create_account_get)
 router.post('/create-account', admin_controller.create_account_post)
 
 router.get('/settings', admin_controller.settings)

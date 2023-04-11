@@ -118,43 +118,45 @@
                         <input type="checkbox" id="myCheck" onclick="myFunction()" name="same">
                         <label for="same">Same as Residential Address.</label> 
                     </div>
-                    <div id="show" style="display:block">
-                        <div class="col-md-3 mb-1">
-                            <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="p_street" required>
-                            <div class="invalid-feedback">
-                                Please enter your No./Street/Purok/Subdivision.
+                    <div id="show" style="display: block">
+                        <div class="d-flex row">
+                            <div class="col-md-3 mb-1">
+                                <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="p_street" required>
+                                <div class="invalid-feedback">
+                                    Please enter your No./Street/Purok/Subdivision.
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 mb-1">
-                            <select class="form-control" id="present-address" aria-label="Barangay" name="p_brgy" required>
-                                <option value="" disabled selected>-- Barangay --</option>
-                                <option value="Aguado">Aguado</option>
-                                <option value="Cabezas">Cabezas</option>
-                                <option value="Cabuco">Cabuco</option>
-                                <option value="Conchu">Conchu</option>
-                                <option value="de Ocampo">de Ocampo</option>
-                                <option value="Gregorio">Gregorio</option>
-                                <option value="Inocencio">Inocencio</option>
-                                <option value="Lallana">Lallana</option>
-                                <option value="Lapidario">Lapidario</option>
-                                <option value="Luciano">Luciano</option>
-                                <option value="Osorio">Osorio</option>
-                                <option value="Perez">Perez</option>
-                                <option value="San Agustin">San Agustin</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select your barangay.
+                            <div class="col-md-3 mb-2">
+                                <select class="form-control" id="present-address" aria-label="Barangay" name="p_brgy" required>
+                                    <option value="" disabled selected>-- Barangay --</option>
+                                    <option value="Aguado">Aguado</option>
+                                    <option value="Cabezas">Cabezas</option>
+                                    <option value="Cabuco">Cabuco</option>
+                                    <option value="Conchu">Conchu</option>
+                                    <option value="de Ocampo">de Ocampo</option>
+                                    <option value="Gregorio">Gregorio</option>
+                                    <option value="Inocencio">Inocencio</option>
+                                    <option value="Lallana">Lallana</option>
+                                    <option value="Lapidario">Lapidario</option>
+                                    <option value="Luciano">Luciano</option>
+                                    <option value="Osorio">Osorio</option>
+                                    <option value="Perez">Perez</option>
+                                    <option value="San Agustin">San Agustin</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select your barangay.
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 mb-1">
-                            <select class="form-control" id="present-address" aria-label="Municipality/City" name="p_municipal">
-                                <option value="Trece Martires City">Trece Martires City</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-control" id="present-address" aria-label="Province" name="p_province">
-                                <option value="Cavite">Cavite</option>
-                            </select>
+                            <div class="col-md-3 mb-1">
+                                <select class="form-control" id="present-address" aria-label="Municipality/City" name="p_municipal">
+                                    <option value="Trece Martires City">Trece Martires City</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" id="present-address" aria-label="Province" name="p_province">
+                                    <option value="Cavite">Cavite</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
