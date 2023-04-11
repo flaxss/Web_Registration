@@ -16,47 +16,47 @@
             <div class="main-content">
                 <form action="/medical-assistance/form" method="POST" id="form" onload="hideLoading()" class="container-xl bg-light p-2 needs-validation" novalidate>
                     <h4>IMPORMASYON UKOL SA KLIYENTE (Client's Identifying Information)</h4>
-                    <div class="row mb-3 g-1">
-                        <input type="text" name="service" value="Medical Assistance" hidden>
-                        <div class="col-md-3">  
+                    <div class="row mb-1">
+                        <input type="text" name="service" value="Burial Assistance" hidden>
+                        <div class="col-md-3 mb-2">  
                             <label for="lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="lastname" required>
                             <div class="invalid-feedback">
                             Please enter your last name.
                         </div>
                         </div>
-                        <div class="col-md-3">  
+                        <div class="col-md-3 mb-2">  
                             <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="firstname" required>
                             <div class="invalid-feedback">
                                 Please enter your first name.
                             </div>
                         </div>
-                        <div class="col-md-3">  
+                        <div class="col-md-3 mb-2">  
                             <label for="middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
                             <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="middlename">
                         </div>
-                        <div class="col-md-3">  
+                        <div class="col-md-3 mb-2">  
                             <label for="extensionname" class="form-label">Extension Name</label>
                             <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="exname">
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4">  
+                    <div class="row">
+                        <div class="col-md-4 mb-2">  
                             <label for="birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
                             <input type="date" class="form-control" id="birthdate" name="birthdate" required>
                             <div class="invalid-feedback">
                                 Please select your birthdate.
                             </div>
                         </div>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-2">  
                             <label for="age" class="form-label">Edad (Age)<span class="required">*</span></label>
                             <input type="number" class="form-control" id="age" name="age" required>
                             <div class="invalid-feedback">
                                 Please enter your age.
                             </div>
                         </div>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-2">  
                             <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
                             <div class="form-control">
                                 <input type="radio" id="male" value="male" name="sex" required>
@@ -69,8 +69,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">  
+                    <div class="row mb-1">
+                        <div class="col-md-6 mb-2">  
                             <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">+63</span>
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">  
+                        <div class="col-md-6 mb-2">  
                             <label for="email" class="form-label">Email<span class="required">*</span></label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="e.g. juandelacruz@gmail.com" required>
                             <div class="invalid-feedback">
@@ -88,8 +88,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
                             <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
                             <div class="form-control">
                                 <input type="radio" id="civil-status" name="civil_status" value="Single" required> Single    
@@ -101,22 +101,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6"> 
+                        <div class="col-md-6 mb-2"> 
                             <label for="relationship" class="form-label">Relasyon sa Benepisyaryo (Relationship to Beneficiary)<span class="required">*</span></label>
                             <input type="text" id="relationship" class="form-control textOnly" name="beneficiary_relationship">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <div >
                             <label for="address" class="form-label">Tirahan (Address)<span class="required">*</span></label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-1" >
                             <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="street" required>
                             <div class="invalid-feedback">
                                 Please enter your No./Street/Purok.
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-1">
                             <select class="form-control" id="barangay" aria-label="Barangay" name="brgy" required>
                                 <!-- <option value="" selected>-- Barangay --</option> -->
                                 <option value="" disabled selected>-- Barangay --</option>
@@ -138,7 +138,7 @@
                                 Please select your barangay.
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-1">
                             <select class="form-control" id="municipality" aria-label="Municipality/City" name="municipal">
                                 <option value="Trece Martires City">Trece Martires City</option>
                             </select>
@@ -149,12 +149,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">  
+                    <div class="row ">
+                        <div class="col-md-6 mb-2">  
                             <label for="occupation" class="form-label">Trabaho (Occupation)<span class="required">*</span></label>
                             <input type="text" class="form-control textOnly" id="occupation" name="occupation" required>
                         </div>
-                        <div class="col-md-6">  
+                        <div class="col-md-6 mb-4">  
                             <label for="salary" class="form-label">Buwanang Sweldo (Monthly Salary)<span class="required">*</span></label>
                             <!-- <input type="number" class="form-control" id="salary" name="salary" required> -->
                             <select class="form-control" id="salary" name="salary" required>
@@ -169,181 +169,185 @@
                             </select>
                         </div>
                     </div>
-                    <br><br>
                     <h4>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Identifying Information)</h4>
-                    <div class="row mb-3">
-                        <div class="col-md-3">  
-                            <label for="lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
-                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required>
-                            <div class="invalid-feedback">
-                                Please enter Beneficiary's last name.
+                    <div class="mb-3">
+                        <input type="checkbox" name="same" id="myCheck" onclick="myFunction()">
+                        <label for="same">Parehas ng sa Kliyente (Same as Client).</label> 
+                    </div>
+                    <div id="show" style="display:block">
+                        <div class="row">
+                            <div class="col-md-3 mb-2">  
+                                <label for="lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
+                                <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required>
+                                <div class="invalid-feedback">
+                                    Please enter Beneficiary's last name.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-2">  
+                                <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
+                                <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required>
+                            </div>
+                            <div class="col-md-3 mb-2">  
+                                <label for="middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
+                                <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename">
+                            </div>
+                            <div class="col-md-3 mb-2">  
+                                <label for="extensionname" class="form-label">Extension Name</label>
+                                <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="bene_exname">
                             </div>
                         </div>
-                        <div class="col-md-3">  
-                            <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
-                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required>
+                        <div class="row">
+                            <div class="col-md-4 mb-2">  
+                                <label for="birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
+                                <input type="date" class="form-control" id="birthdate" name="bene_birthdate" required>
+                            </div>
+                            <div class="col-md-4 mb-2">  
+                                <label for="age" class="form-label">Edad (Age)<span class="required">*</span></label>
+                                <input type="number" class="form-control" id="age " name="bene_age" required>
+                            </div>
+                            <div class="col-md-4 mb-2">  
+                                <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
+                                <div class="form-control">
+                                    <input type="radio" id="sex" name="bene_sex" value="Male" required> Male
+                                    <input type="radio" id="sex" class="ms-3" name="bene_sex" value="Female" required> Female
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-3">  
-                            <label for="middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
-                            <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename">
+                        <div class="row ">
+                            <div class="col-md-6 mb-2">  
+                                <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">+63</span>
+                                    <input type="tel" class="form-control" id="contact-number " name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">  
+                                <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
+                                <div class="form-control">
+                                    <input type="radio" id="civil-status" name="bene_civil_status" value="Single" required> Single    
+                                    <input type="radio" id="civil-status" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
+                                    <input type="radio" id="civil-status" name="bene_civil_status" value="Married" required> Married
+                                    <input type="radio" id="civil-status" class="ms-3" name="bene_civil_status" value="Other" required> Other
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-3">  
-                            <label for="extensionname" class="form-label">Extension Name</label>
-                            <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="bene_exname">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4">  
-                            <label for="birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
-                            <input type="date" class="form-control" id="birthdate" name="bene_birthdate" required>
-                        </div>
-                        <div class="col-md-4">  
-                            <label for="age" class="form-label">Edad (Age)<span class="required">*</span></label>
-                            <input type="number" class="form-control" id="age " name="bene_age" required>
-                        </div>
-                        <div class="col-md-4">  
-                            <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
-                            <div class="form-control">
-                                <input type="radio" id="sex" name="bene_sex" value="Male" required> Male
-                                <input type="radio" id="sex" class="ms-3" name="bene_sex" value="Female" required> Female
+                        <div class="row">
+                            <div >
+                                <label for="address" class="form-label">Tirahan (Address)<span class="required">*</span></label>
+                            </div>
+                            <div class="col-md-3 mb-1">
+                                <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required>
+                            </div>
+                            <div class="col-md-3 mb-1">
+                                <!-- <input type="text" class="form-control" id="address" placeholder="Barangay" aria-label="Barangay"> -->
+                                <select class="form-control" id="barangay" aria-label="Barangay" name="bene_brgy" required>
+                                    <!-- <option value="" selected>-- Barangay --</option> -->
+                                    <option value="" disabled selected>-- Barangay --</option>
+                                    <option value="Aguado">Aguado</option>
+                                    <option value="Cabezas">Cabezas</option>
+                                    <option value="Cabuco">Cabuco</option>
+                                    <option value="Conchu">Conchu</option>
+                                    <option value="de Ocampo">de Ocampo</option>
+                                    <option value="Gregorio">Gregorio</option>
+                                    <option value="Inocencio">Inocencio</option>
+                                    <option value="Lallana">Lallana</option>
+                                    <option value="Lapidario">Lapidario</option>
+                                    <option value="Luciano">Luciano</option>
+                                    <option value="Osorio">Osorio</option>
+                                    <option value="Perez">Perez</option>
+                                    <option value="San Agustin">San Agustin</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-1">
+                                <!-- <input type="text" class="form-control" id="address" placeholder="Municipality/City" aria-label="Municipality/City"> -->
+                                <select class="form-control" id="municipality" aria-label="Municipality/City" name="bene_municipal">
+                                    <option value="Trece Martires City" selected>Trece Martires City</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <!-- <input type="text" class="form-control" id="address" placeholder="Province" aria-label="Province"> -->
+                                <select class="form-control" id="province" aria-label="Province" name="bene_province">
+                                    <option value="Cavite" selected>Cavite</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">  
-                            <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
-                            <div class="input-group">
-                                <span class="input-group-text">+63</span>
-                                <input type="tel" class="form-control" id="contact-number " name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">  
-                            <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
-                            <div class="form-control">
-                                <input type="radio" id="civil-status" name="bene_civil_status" value="Single" required> Single    
-                                <input type="radio" id="civil-status" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
-                                <input type="radio" id="civil-status" name="bene_civil_status" value="Married" required> Married
-                                <input type="radio" id="civil-status" class="ms-3" name="bene_civil_status" value="Other" required> Other
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div >
-                            <label for="address" class="form-label">Tirahan (Address)<span class="required">*</span></label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required>
-                        </div>
-                        <div class="col-md-3">
-                            <!-- <input type="text" class="form-control" id="address" placeholder="Barangay" aria-label="Barangay"> -->
-                            <select class="form-control" id="barangay" aria-label="Barangay" name="bene_brgy" required>
-                                <!-- <option value="" selected>-- Barangay --</option> -->
-                                <option value="" disabled selected>-- Barangay --</option>
-                                <option value="Aguado">Aguado</option>
-                                <option value="Cabezas">Cabezas</option>
-                                <option value="Cabuco">Cabuco</option>
-                                <option value="Conchu">Conchu</option>
-                                <option value="de Ocampo">de Ocampo</option>
-                                <option value="Gregorio">Gregorio</option>
-                                <option value="Inocencio">Inocencio</option>
-                                <option value="Lallana">Lallana</option>
-                                <option value="Lapidario">Lapidario</option>
-                                <option value="Luciano">Luciano</option>
-                                <option value="Osorio">Osorio</option>
-                                <option value="Perez">Perez</option>
-                                <option value="San Agustin">San Agustin</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <!-- <input type="text" class="form-control" id="address" placeholder="Municipality/City" aria-label="Municipality/City"> -->
-                            <select class="form-control" id="municipality" aria-label="Municipality/City" name="bene_municipal">
-                                <option value="Trece Martires City" selected>Trece Martires City</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <!-- <input type="text" class="form-control" id="address" placeholder="Province" aria-label="Province"> -->
-                            <select class="form-control" id="province" aria-label="Province" name="bene_province">
-                                <option value="Cavite" selected>Cavite</option>
-                            </select>
-                        </div>
-                    </div>
-                    <br><br>
-                    <h4>KOMPOSISYON NG PAMILYA</h4>
+                    <h4 class="mt-1">KOMPOSISYON NG PAMILYA</h4>
                     <div>
                         <label for="">Family Members</label>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <label for="">I.</label>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-1">  
                             <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
                         </div>
-                        <div class="col-md-2">  
+                        <div class="col-md-2 mb-1">  
                             <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <label for="">II.</label>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-1">  
                             <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
                         </div>
-                        <div class="col-md-2">  
+                        <div class="col-md-2 mb-1">  
                             <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <label for="">III.</label>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-1">  
                             <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
                         </div>
-                        <div class="col-md-2">  
+                        <div class="col-md-2 mb-1">  
                             <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <label for="">IV.</label>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-1">  
                             <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
                         </div>
-                        <div class="col-md-2">  
+                        <div class="col-md-2 mb-1">  
                             <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <label for="">V.</label>
-                        <div class="col-md-4">  
+                        <div class="col-md-4 mb-1">  
                             <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
                         </div>
-                        <div class="col-md-2">  
+                        <div class="col-md-2 mb-1">  
                             <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
                         </div>
-                        <div class="col-md-3"> 
+                        <div class="col-md-3 mb-1"> 
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
                         </div>
                     </div>
@@ -358,7 +362,7 @@
                           </div>
                         </div>
                     </div>
-                    <button type="submit" class="form-control btn btn-success">Submit</button>
+                    <button type="submit" class="form-control btn btn-success" onclick="showLoading()">Submit</button>
                 </form>
                 <div class="loader">
                     <div id="loading" class="loading" style="display: none;"></div>
@@ -368,34 +372,8 @@
     </main>
     <!-- form validation -->
     <%- include('../../include/footer') %>
-    <script>
-        (() => {
-        'use strict'
-        const forms = document.querySelectorAll('.needs-validation')
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-                alert("Please fill out all the required information.");
-            }
-            else{
-                alert("Are you sure you want to submit this form?");
-            }
-            form.classList.add('was-validated')
-            }, false)
-        })
-        })()
-    </script>
-    <!-- loading script -->
-    <script>
-        function showLoading() {
-            document.getElementById("loading").style.display = "block";
-            // document.getElementById('form').style.filter = "blur(10px);"
-        }
-        function hideLoading() {
-            document.getElementById("loading").style.display = "none";
-        }
-    </script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/input-query.js"></script>
+    <script src="/js/form_validation.js"></script>
 </body>
 </html>

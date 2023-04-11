@@ -683,7 +683,7 @@ module.exports.burial_assistance = (req, res) => {
     res.render('user/aics/burial', {response})
 }
 module.exports.burial_assistance_form_get = (req, res) => {
-    res.render('user/aics/form/burial_form')
+    res.render('user/aics/form/burial_form', {response})
 }
 module.exports.burial_assistance_form_post = async(req, res) => {
     const body = req.body;

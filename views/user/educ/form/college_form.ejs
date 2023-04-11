@@ -16,30 +16,30 @@
             <h1 class="text-center">College Educational Assistance</h1>
             <form class="container-xl bg-light p-2 needs-validation" id="form" onload="hideLoading()" novalidate action="/college-assistance/form" method="POST">
                 <h4>I. PERSONAL INFORMATION</h4>
-                <div class="row mb-3 g-1">
-                    <div class="col-md-3">  
+                <div class="row">
+                    <div class="col-md-3 mb-2">  
                         <label for="lastname" class="form-label">Last Name<span class="required">*</span></label>
                         <input type="text" class="form-control textOnly" id="lastname" placeholder="eg. Dela Cruz" name="lastname" required>
                         <div class="invalid-feedback">
                             Please enter your last name.
                         </div>
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3 mb-2">  
                         <label for="firstname" class="form-label">First Name<span class="required">*</span></label>
                         <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" name="firstname" required>
                         <div class="invalid-feedback">
                             Please enter your first name.
                         </div>
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3 mb-2">  
                         <label for="middlename" class="form-label">Middle Name</label>
                         <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g Santos"  name="middlename">
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3 mb-2">  
                         <label for="extensionname" class="form-label">Extension Name</label>
                         <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." name="exname">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-2">
                         <label for="" class="form-label">Email Address<span class="required">*</span></label>
                         <input type="email" class="form-control" placeholder="e.g. juandelacruz@gmail.com" name="email" required>
                         <div class="invalid-feedback">
@@ -50,7 +50,7 @@
                         <label for="appointment_date" class="form-label">Select Date of Appointment</label>
                         <input type="date" id="appointment_data" class="form-control" placeholder="Appointment Date" name="appointment_date" required>
                     </div> -->
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-2">
                         <label for="appointment_date" class="form-label">Select Date of Appointment<span class="required">*</span></label>
                         <select name="event_date" id="" class="form-control" required>
                             <option value="" disabled selected>Please Select Date</option>
@@ -68,14 +68,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="residential-address" class="form-label">Residential Address<span class="required">*</span></label>
                     </div>
                     <div class="col-md-3 mb-1">
-                        <input type="text" class="form-control" id="residential-address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="r_street" required>
+                        <input type="text" class="form-control" id="residential-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="r_street" required>
                         <div class="invalid-feedback">
-                            Please enter your No./Street/Purok.
+                            Please enter your No./Street/Purok/Subdivision.
                         </div>
                     </div>
                     <div class="col-md-3 mb-1">
@@ -110,64 +110,70 @@
                         </select>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="present-address" class="form-label">Present Address<span class="required">*</span></label>
                     </div>
-                    <div class="col-md-3 mb-1">
-                        <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="p_street" required>
-                        <div class="invalid-feedback">
-                            Please enter your No./Street/Purok.
+                    <div class="mb-2">
+                        <input type="checkbox" id="myCheck" onclick="myFunction()" name="same">
+                        <label for="same">Same as Residential Address.</label> 
+                    </div>
+                    <div id="show" style="display:block">
+                        <div class="col-md-3 mb-1">
+                            <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="p_street" required>
+                            <div class="invalid-feedback">
+                                Please enter your No./Street/Purok/Subdivision.
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 mb-1">
-                        <select class="form-control" id="present-address" aria-label="Barangay" name="p_brgy" required>
-                            <option value="" disabled selected>-- Barangay --</option>
-                            <option value="Aguado">Aguado</option>
-                            <option value="Cabezas">Cabezas</option>
-                            <option value="Cabuco">Cabuco</option>
-                            <option value="Conchu">Conchu</option>
-                            <option value="de Ocampo">de Ocampo</option>
-                            <option value="Gregorio">Gregorio</option>
-                            <option value="Inocencio">Inocencio</option>
-                            <option value="Lallana">Lallana</option>
-                            <option value="Lapidario">Lapidario</option>
-                            <option value="Luciano">Luciano</option>
-                            <option value="Osorio">Osorio</option>
-                            <option value="Perez">Perez</option>
-                            <option value="San Agustin">San Agustin</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select your barangay.
+                        <div class="col-md-3 mb-1">
+                            <select class="form-control" id="present-address" aria-label="Barangay" name="p_brgy" required>
+                                <option value="" disabled selected>-- Barangay --</option>
+                                <option value="Aguado">Aguado</option>
+                                <option value="Cabezas">Cabezas</option>
+                                <option value="Cabuco">Cabuco</option>
+                                <option value="Conchu">Conchu</option>
+                                <option value="de Ocampo">de Ocampo</option>
+                                <option value="Gregorio">Gregorio</option>
+                                <option value="Inocencio">Inocencio</option>
+                                <option value="Lallana">Lallana</option>
+                                <option value="Lapidario">Lapidario</option>
+                                <option value="Luciano">Luciano</option>
+                                <option value="Osorio">Osorio</option>
+                                <option value="Perez">Perez</option>
+                                <option value="San Agustin">San Agustin</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select your barangay.
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 mb-1">
-                        <select class="form-control" id="present-address" aria-label="Municipality/City" name="p_municipal">
-                            <option value="Trece Martires City">Trece Martires City</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control" id="present-address" aria-label="Province" name="p_province">
-                            <option value="Cavite">Cavite</option>
-                        </select>
+                        <div class="col-md-3 mb-1">
+                            <select class="form-control" id="present-address" aria-label="Municipality/City" name="p_municipal">
+                                <option value="Trece Martires City">Trece Martires City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="present-address" aria-label="Province" name="p_province">
+                                <option value="Cavite">Cavite</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-4">  
+                <div class="row ">
+                    <div class="col-md-4 mb-2">  
                         <label for="birthdate" class="form-label">Birthdate<span class="required">*</span></label>
                         <input type="date" class="form-control" id="birthdate " name="date_of_birth" required>
                         <div class="invalid-feedback">
                             Please select your birthdate.
                         </div>
                     </div>
-                    <div class="col-md-5">  
+                    <div class="col-md-5 mb-2">  
                         <label for="birthplace" class="form-label">Place of Birthdate<span class="required">*</span></label>
                         <input type="text" class="form-control" id="birthplace" name="place_of_birth" required>
                         <div class="invalid-feedback">
                             Please enter your place of birth.
                         </div>
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3 mb-2">  
                         <label for="citizenship" class="form-label">Citizenship<span class="required">*</span></label>
                         <input type="text" class="form-control textOnly" id="citizenship" name="citizenship" required>
                         <div class="invalid-feedback">
@@ -175,15 +181,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-3">  
+                <div class="row">
+                    <div class="col-md-3 mb-2">  
                         <label for="age" class="form-label">Age<span class="required">*</span></label>
                         <input type="number" class="form-control" min="0" id="age" name="age" required>
                         <div class="invalid-feedback">
                             Please enter your age.
                         </div>
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3 mb-2">  
                         <label for="select_sex" class="form-label">Sex<span class="required">*</span></label>
                         <div class="form-control" id="select_sex" required>
                             <input type="radio" id="male" name="sex" value="Male" required>
@@ -195,7 +201,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3 mb-2">  
                         <label for="civil-status" class="form-label">Civil Status<span class="required">*</span></label>
                         <div class="form-control">
                             <div class="form">
@@ -213,7 +219,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-4">
                         <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text">+63</span>
@@ -224,7 +230,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <h4>II. FAMILY BACKGROUND</h4>
                 <div class="row mb-3">
                     <div >
@@ -286,15 +291,14 @@
                         <input type="text" class="form-control textOnly" id="father-extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="father_exname">
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-4">
                     <div class="col-md-13"> 
                         <label for="father-occupation" class="form-label">Occupation</label>
                         <input type="text" id="father-occupation" class="form-control textOnly" name="father_occupation">
                     </div>
                 </div>
-                <br>
                 <h4>III. EDUCATIONAL BACKGROUND</h4>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="elementary" class="form-label">Elementary<span class="required">*</span></label>
                     </div>
@@ -311,7 +315,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="secondary" class="form-label">Secondary<span class="required">*</span></label>
                     </div>
@@ -328,7 +332,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="vocational" class="form-label">Vocational</label>
                     </div>
@@ -339,7 +343,7 @@
                         <input type="text" class="form-control" id="v-school-year" placeholder="School Year" aria-label="School Year" name="v_school_year">
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="college" class="form-label">College<span class="required">*</span></label>
                     </div>
@@ -356,7 +360,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div class="col-md-12"> 
                         <label for="degree-course" class="form-label">Degree/Course<span class="required">*</span></label>
                         <input type="text" id="degree-course" class="form-control textOnly" name="course" required>
@@ -365,8 +369,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-7"> 
+                <div class="row ">
+                    <div class="col-md-7 mb-2"> 
                         <label for="yearlevel" class="form-label">Year Level<span class="required">*</span></label>
                         <div class="form-control">
                             <input type="radio" id="1st" name="year_level" value="1st" required>
@@ -384,7 +388,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5"> 
+                    <div class="col-md-5 mb-4"> 
                         <label for="degree-course" class="form-label">Semester<span class="required">*</span></label>
                         <div class="form-control">
                             <input type="radio" id="1st_sem" name="sem" value="1st" required>
@@ -399,9 +403,8 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <h4>IV. CHARACTER REFERENCE</h4>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="cr-name" class="form-label">Character Reference no. 1</label>
                     </div>
@@ -418,7 +421,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div >
                         <label for="cr-name" class="form-label">Character Reference no. 2</label>
                     </div>
@@ -453,36 +456,10 @@
             </div>
         </div>
     </main>
-
-    <!-- form validation -->
-    <script>
-        (() => {
-            'use strict'
-            const forms = document.querySelectorAll('.needs-validation')
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                        alert("Please fill out all the required information.");
-                    }
-                    else{
-                        alert("Are you sure you want to submit this form?");
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
-    <!-- loading script -->
     <%- include('../../include/footer') %>
-    <script>
-        function showLoading() {
-            document.getElementById("loading").style.display = "block";
-        }
-        function hideLoading() {
-            document.getElementById("loading").style.display = "none";
-        }
-    </script>
+    <!-- form validation -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/input-query.js"></script>
+    <script src="/js/form_validation.js"></script>
 </body>
 </html>
