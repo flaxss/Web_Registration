@@ -73,13 +73,13 @@
                         <label for="residential-address" class="form-label">Residential Address<span class="required">*</span></label>
                     </div>
                     <div class="col-md-3 mb-1">
-                        <input type="text" class="form-control" id="residential-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="r_street" required>
+                        <input type="text" class="form-control residential1" id="residential-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="r_street" required>
                         <div class="invalid-feedback">
                             Please enter your No./Street/Purok/Subdivision.
                         </div>
                     </div>
                     <div class="col-md-3 mb-1">
-                        <select class="form-control" id="residentialaddress" aria-label="Barangay" name="r_brgy" required>
+                        <select class="form-control barangay1" id="residentialaddress" aria-label="Barangay" name="r_brgy" required>
                             <option value="" disabled selected>-- Barangay --</option>
                             <option value="Aguado">Aguado</option>
                             <option value="Cabezas">Cabezas</option>
@@ -118,16 +118,16 @@
                         <input type="checkbox" id="myCheck" onclick="myFunction()" name="same">
                         <label for="same">Same as Residential Address.</label> 
                     </div>
-                    <div id="show" style="display: block">
-                        <div class="d-flex row">
+                    <div id="show" style="display:block">
+                        <div class="row d-flex">
                             <div class="col-md-3 mb-1">
-                                <input type="text" class="form-control" id="present-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="p_street" required>
+                                <input type="text" class="form-control toDisableRequired residential2" id="present-address" placeholder="No./Street/Purok/Subdivision" aria-label="No./Street/Purok" name="p_street" required>
                                 <div class="invalid-feedback">
                                     Please enter your No./Street/Purok/Subdivision.
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-2">
-                                <select class="form-control" id="present-address" aria-label="Barangay" name="p_brgy" required>
+                            <div class="col-md-3 mb-1 ">
+                                <select class="form-control toDisableRequired barangay2" id="present-address" aria-label="Barangay" name="p_brgy" required>
                                     <option value="" disabled selected>-- Barangay --</option>
                                     <option value="Aguado">Aguado</option>
                                     <option value="Cabezas">Cabezas</option>
@@ -158,26 +158,27 @@
                                 </select>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-md-4 mb-2">  
                         <label for="birthdate" class="form-label">Birthdate<span class="required">*</span></label>
-                        <input type="date" class="form-control" id="birthdate " name="date_of_birth" required>
+                        <input type="date" class="form-control toDisableRequired" id="birthdate " name="date_of_birth" required>
                         <div class="invalid-feedback">
                             Please select your birthdate.
                         </div>
                     </div>
                     <div class="col-md-5 mb-2">  
                         <label for="birthplace" class="form-label">Place of Birthdate<span class="required">*</span></label>
-                        <input type="text" class="form-control" id="birthplace" name="place_of_birth" required>
+                        <input type="text" class="form-control toDisableRequired" id="birthplace" name="place_of_birth" required>
                         <div class="invalid-feedback">
                             Please enter your place of birth.
                         </div>
                     </div>
                     <div class="col-md-3 mb-2">  
                         <label for="citizenship" class="form-label">Citizenship<span class="required">*</span></label>
-                        <input type="text" class="form-control textOnly" id="citizenship" name="citizenship" required>
+                        <input type="text" class="form-control textOnly toDisableRequired" id="citizenship" name="citizenship" required>
                         <div class="invalid-feedback">
                             Please enter your citizenship.
                         </div>
@@ -186,7 +187,7 @@
                 <div class="row">
                     <div class="col-md-3 mb-2">  
                         <label for="age" class="form-label">Age<span class="required">*</span></label>
-                        <input type="number" class="form-control" min="0" id="age" name="age" required>
+                        <input type="number" class="form-control toDisableRequired" min="0" id="age" name="age" required>
                         <div class="invalid-feedback">
                             Please enter your age.
                         </div>
@@ -196,7 +197,7 @@
                         <div class="form-control" id="select_sex" required>
                             <input type="radio" id="male" name="sex" value="Male" required>
                             <label for="male">Male</label>
-                            <input type="radio" id="female" class="ms-3" name="sex" value="Female" required>
+                            <input type="radio" id="female" class="ms-3 toDisableRequired" name="sex" value="Female" required>
                             <label for="female">Female</label> 
                             <div class="invalid-feedback">
                                 Please select your sex.
@@ -207,14 +208,14 @@
                         <label for="civil-status" class="form-label">Civil Status<span class="required">*</span></label>
                         <div class="form-control">
                             <div class="form">
-                                <input type="radio" id="single" name="civil_status" value="single" required>
+                                <input type="radio" class="toDisableRequired" id="single" name="civil_status" value="single" required>
                                 <label for="single">Single</label>    
-                                <input type="radio" id="widow/er" class="ms-4" name="civil_status" value="widow/er" required>
+                                <input type="radio" class="toDisableRequired" id="widow/er" class="ms-4" name="civil_status" value="widow/er" required>
                                 <label for="widow/er">Widow/er</label>
                             </div>
-                            <input type="radio" id="married" name="civil_status" value="married" required>
+                            <input type="radio" class="toDisableRequired" id="married" name="civil_status" value="married" required>
                             <label for="married">Married</label>
-                            <input type="radio" id="other" class="ms-3" name="civil_status" value="other" required>
+                            <input type="radio" class="toDisableRequired" id="other" class="ms-3" name="civil_status" value="other" required>
                             <label for="other">Other</label>
                             <div class="invalid-feedback">
                                 Please select your civil status.
@@ -225,7 +226,7 @@
                         <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text">+63</span>
-                            <input type="tel" class="form-control" id="contact-number " minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" name="contact_number" required>
+                            <input type="tel" class="form-control toDisableRequired" id="contact-number " minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" name="contact_number" required>
                             <div class="invalid-feedback">
                                 Please enter your valid contact number.
                             </div>

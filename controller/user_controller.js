@@ -151,15 +151,18 @@ module.exports.college_assistance_form_post = async(req, res) => {
     if(isConfirmed){
         console.log(`already registered in ${isConfirmed.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/college-assistance')
+        // res.redirect('/college-assistance')
+        res.redirect(`/college-assistance/${isConfirmed.id}/existing`)
     }else if(isAppointed){
         console.log(`already registered in ${isAppointed.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/college-assistance')
+        // res.redirect('/college-assistance')
+        res.redirect(`/college-assistance/${isAppointed.id}/existing`)
     }else if(isRegistered){
         console.log(`already registered in ${isRegistered.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/college-assistance')
+        // res.redirect('/college-assistance')
+        res.redirect(`/college-assistance/${isRegistered.id}/existing`)
     }else{
         response = ''
         const slot = await Event.findOne({event_date: req.body.event_date})
@@ -256,6 +259,27 @@ module.exports.college_assistance_form_post = async(req, res) => {
         })
     }
 }
+
+module.exports.college_assistance_exist = async(req, res) => {
+    const id = req.params.id
+    try {
+        let respond = await Educ_Confirmation.findById(id)
+        if(!respond){
+            respond = await Educ_Appointment.findById(id)
+            if(!respond){
+                respond = await Educ_Registration.findById(id)
+                if(!respond){
+                    return res.status(404).render('err/notfound')
+                }
+            }
+        }
+        res.render('user/respond', {respond})
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
+    }
+}
+
 // summary ng form
 module.exports.college_assistance_summary_get = async(req, res) => {
     if(formData){
@@ -530,11 +554,13 @@ module.exports.medical_assistance_form_post = async(req, res) => {
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/medical-assistance')
+        // res.redirect('/medical-assistance')
+        res.redirect(`/medical-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/medical-assistance')
+        // res.redirect('/medical-assistance')
+        res.redirect(`/medical-assistance/${isRegistered.id}/existing`)
     }else{
         response = ''
         const create = await AICS_Confirmation(body)
@@ -554,6 +580,23 @@ module.exports.medical_assistance_form_post = async(req, res) => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.medical_assistance_exist = async(req, res) => {
+    const id = req.params.id
+    try {
+        let respond = await AICS_Confirmation.findById(id)
+        if(!respond){
+            respond = await AICS_Registration.findById(id)
+            if(!respond){
+                return res.status(404).render('err/notfound')
+            }
+        }
+        res.render('user/respond', {respond})
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
@@ -695,11 +738,13 @@ module.exports.burial_assistance_form_post = async(req, res) => {
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/burial-assistance')
+        // res.redirect('/burial-assistance')
+        res.redirect(`/burial-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/burial-assistance')
+        // res.redirect('/burial-assistance')
+        res.redirect(`/burial-assistance/${isRegistered.id}/existing`)
     }else{
         const create = await AICS_Confirmation(body)
         create.save()
@@ -718,6 +763,23 @@ module.exports.burial_assistance_form_post = async(req, res) => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.burial_assistance_exist = async(req, res) => {
+    const id = req.params.id
+    try {
+        let respond = await AICS_Confirmation.findById(id)
+        if(!respond){
+            respond = await AICS_Registration.findById(id)
+            if(!respond){
+                return res.status(404).render('err/notfound')
+            }
+        }
+        res.render('user/respond', {respond})
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
@@ -860,11 +922,13 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/transportation-assistance')
+        // res.redirect('/transportation-assistance')
+        res.redirect(`/transportation-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/transportation-assistance')
+        // res.redirect('/transportation-assistance')
+        res.redirect(`/transportation-assistance/${isRegistered.id}/existing`)
     }else{
         const create = await AICS_Confirmation(body)
         create.save()
@@ -883,6 +947,23 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.transportation_assistance_exist = async(req, res) => {
+    const id = req.params.id
+    try {
+        let respond = await AICS_Confirmation.findById(id)
+        if(!respond){
+            respond = await AICS_Registration.findById(id)
+            if(!respond){
+                return res.status(404).render('err/notfound')
+            }
+        }
+        res.render('user/respond', {respond})
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
@@ -1013,18 +1094,22 @@ module.exports.emergency_shelter_assistance_form_get = (req, res) => {
 }
 module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
     const body = req.body;
-    let isConfirmed = await AICS_Confirmation.findOne({bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
+    let isConfirmed = await AICS_Confirmation.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
-    let isRegistered = await AICS_Registration.findOne({bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
+    let isRegistered = await AICS_Registration.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/emergency-shelter-assistance')
+        // res.redirect('/emergency-shelter-assistance')
+        res.redirect(`/emergency-shelter-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
         response = 'already submitted, please check your email'
-        res.redirect('/emergency-shelter-assistance')
+        // res.redirect('/emergency-shelter-assistance')
+        res.redirect(`/emergency-shelter-assistance/${isRegistered.id}/existing`)
     }else{
         const create = await AICS_Confirmation(body)
         create.save()
@@ -1043,6 +1128,23 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
             console.log(err.message)
             res.status(404).render('err/notfound')
         })
+    }
+}
+
+module.exports.emergency_shelter_assistance_exist = async(req, res) => {
+    const id = req.params.id
+    try {
+        let respond = await AICS_Confirmation.findById(id)
+        if(!respond){
+            respond = await AICS_Registration.findById(id)
+            if(!respond){
+                return res.status(404).render('err/notfound')
+            }
+        }
+        res.render('user/respond', {respond})
+    } catch (err) {
+        console.log(err.message)
+            res.status(404).render('err/notfound')
     }
 }
 
