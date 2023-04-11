@@ -27,4 +27,9 @@ function myFunction() {
     } else {
         content.style.display = "block";
     }
+    // if (document.getElementById('myCheck').checked){
+    //     document.getElementById('bene_lastname').value = document.getElementById('lastname').value;
+    // }else{
+    //     document.getElementById('mailingAddress1').value = ''
+    // }
 }

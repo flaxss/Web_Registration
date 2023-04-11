@@ -5,13 +5,15 @@
 <body>
     <%- include('include/nav') %>
     <main>
-        <div class="content d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-            <div class="card text-bg-light mb-3" style="min-width: 40%; height: 300px;">
-                <div class="card-header text-bg-success">Important Notice!</div>
-                <div class="card-body d-flex justify-content-center align-items-center" style="display: flex; flex-direction: column;">
-                    <h5 class="card-title">Hello! <%- register.firstname %></h5>
-                  <p class="card-text text-center">Your Information is successfully submitted. Please check your email to confirm your registration (Please wait a few minutes for the email to receive)</p>
-                  <p class="card-text"><b>Note!</b> If you did not confirm your registration. It will not count as registered</p>
+        <div class="content " style="min-height: 100vh;">
+            <div class="d-flex justify-content-center align-items-center" style="background-color: rgba(0, 0, 0, 0.5); height: 100vh;">
+                <div class="card text-bg-light mb-3" style="min-width: 40%; height: 300px;">
+                    <div class="card-header text-bg-success">Important Notice!</div>
+                    <div class="card-body d-flex justify-content-center align-items-center" style="display: flex; flex-direction: column;">
+                        <h5 class="card-title">Hello! <%- register.firstname %></h5>
+                      <p class="card-text text-center">Your Information is successfully submitted. Please check your email to confirm your registration (Please wait a few minutes for the email to receive)</p>
+                      <p class="card-text"><b>Note!</b> If you did not confirm your registration. It will not count as registered</p>
+                    </div>
                 </div>
             </div>
         </div>

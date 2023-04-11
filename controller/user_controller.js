@@ -150,15 +150,15 @@ module.exports.college_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`already registered in ${isConfirmed.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/college-assistance')
     }else if(isAppointed){
         console.log(`already registered in ${isAppointed.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/college-assistance')
     }else if(isRegistered){
         console.log(`already registered in ${isRegistered.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/college-assistance')
     }else{
         response = ''
@@ -529,11 +529,11 @@ module.exports.medical_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/medical-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/medical-assistance')
     }else{
         response = ''
@@ -694,11 +694,11 @@ module.exports.burial_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/burial-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/burial-assistance')
     }else{
         const create = await AICS_Confirmation(body)
@@ -859,11 +859,11 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/transportation-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/transportation-assistance')
     }else{
         const create = await AICS_Confirmation(body)
@@ -1019,11 +1019,11 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/emergency-shelter-assistance')
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'registered'
+        response = 'already submitted, please check your email'
         res.redirect('/emergency-shelter-assistance')
     }else{
         const create = await AICS_Confirmation(body)
