@@ -150,21 +150,14 @@ module.exports.college_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`already registered in ${isConfirmed.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/college-assistance')
         res.redirect(`/college-assistance/${isConfirmed.id}/existing`)
     }else if(isAppointed){
         console.log(`already registered in ${isAppointed.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/college-assistance')
         res.redirect(`/college-assistance/${isAppointed.id}/existing`)
     }else if(isRegistered){
         console.log(`already registered in ${isRegistered.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/college-assistance')
         res.redirect(`/college-assistance/${isRegistered.id}/existing`)
     }else{
-        response = ''
         const slot = await Event.findOne({event_date: req.body.event_date})
         if(!slot){
             return res.send("<p>We're sorry, but the remaining slot is already occupied. Please try again later.</p>")
@@ -553,16 +546,11 @@ module.exports.medical_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/medical-assistance')
         res.redirect(`/medical-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/medical-assistance')
         res.redirect(`/medical-assistance/${isRegistered.id}/existing`)
     }else{
-        response = ''
         const create = await AICS_Confirmation(body)
         create.save()
         .then(async() => {
@@ -686,7 +674,6 @@ module.exports.medical_assistance_preview = async(req, res) => {
             const formatted = moment(find.birthdate).format('MMMM DD, YYYY')
             const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
             return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
-            // return res.send('successfully registered')
         }
         res.status(404).render('err/notfound')
     }catch(err){
@@ -733,17 +720,14 @@ module.exports.burial_assistance_form_post = async(req, res) => {
     let isConfirmed = await AICS_Confirmation.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
-    let isRegistered = await AICS_Registration.findOne({bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
+    let isRegistered = await AICS_Registration.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/burial-assistance')
         res.redirect(`/burial-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/burial-assistance')
         res.redirect(`/burial-assistance/${isRegistered.id}/existing`)
     }else{
         const create = await AICS_Confirmation(body)
@@ -917,17 +901,14 @@ module.exports.transportation_assistance_form_post = async(req, res) => {
     let isConfirmed = await AICS_Confirmation.findOne({
         bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
-    let isRegistered = await AICS_Registration.findOne({bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
+    let isRegistered = await AICS_Registration.findOne({
+        bene_firstname: req.body.bene_firstname.toUpperCase(), bene_middlename: req.body.bene_middlename.toUpperCase(), bene_lastname: req.body.bene_lastname.toUpperCase(), bene_exname: req.body.bene_exname.toUpperCase()
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/transportation-assistance')
         res.redirect(`/transportation-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/transportation-assistance')
         res.redirect(`/transportation-assistance/${isRegistered.id}/existing`)
     }else{
         const create = await AICS_Confirmation(body)
@@ -1102,13 +1083,9 @@ module.exports.emergency_shelter_assistance_form_post = async(req, res) => {
     })
     if(isConfirmed){
         console.log(`is already registered in ${isConfirmed.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/emergency-shelter-assistance')
         res.redirect(`/emergency-shelter-assistance/${isConfirmed.id}/existing`)
     }else if(isRegistered){
         console.log(`is already registered in ${isRegistered.service}`)
-        response = 'already submitted, please check your email'
-        // res.redirect('/emergency-shelter-assistance')
         res.redirect(`/emergency-shelter-assistance/${isRegistered.id}/existing`)
     }else{
         const create = await AICS_Confirmation(body)

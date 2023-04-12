@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-3 mb-2">  
                             <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
-                            <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="firstname" required>
+                            <input type="text" class="form-control textOnly" id="firstname" placeholder="e.g. Juan" aria-label="First name" name="firstname" required>
                             <div class="invalid-feedback">
                                 Please enter your first name.
                             </div>
@@ -60,9 +60,9 @@
                         <div class="col-md-4 mb-2">  
                             <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
                             <div class="form-control">
-                                <input type="radio" id="male" value="male" name="sex" required>
+                                <input type="radio" id="male" value="Male" name="sex" required>
                                 <label for="male">Male</label> 
-                                <input type="radio" id="female" class="ms-3" value="female" name="sex" required>
+                                <input type="radio" id="female" class="ms-3" value="Female" name="sex" required>
                                 <label for="female">Female</label>
                                 <div class="invalid-feedback">
                                     Please select your sex.
@@ -93,10 +93,10 @@
                         <div class="col-md-6 mb-2">
                             <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
                             <div class="form-control">
-                                <input type="radio" id="civil-status" name="civil_status" value="Single" required> Single    
-                                <input type="radio" id="civil-status" class="ms-4" name="civil_status" value="Widow/er" required> Widow/er<br>
-                                <input type="radio" id="civil-status" name="civil_status" value="Married" required> Married
-                                <input type="radio" id="civil-status" class="ms-3" name="civil_status" value="Other" required> Other
+                                <input type="radio" id="civil_status_single" class="civil_status" name="civil_status" value="Single" required> Single    
+                                <input type="radio" id="civil_status_widow" class="ms-4 civil_status" name="civil_status" value="Widow/er" required> Widow/er<br>
+                                <input type="radio" id="civil_status_married" class="civil_status" name="civil_status" value="Married" required> Married
+                                <input type="radio" id="civil_status_other" class="ms-3 civil_status" name="civil_status" value="Other" required> Other
                                 <div class="invalid-feedback">
                                     Please select your civil status.
                                 </div>
@@ -119,7 +119,6 @@
                         </div>
                         <div class="col-md-3 mb-1">
                             <select class="form-control" id="barangay" aria-label="Barangay" name="brgy" required>
-                                <!-- <option value="" selected>-- Barangay --</option> -->
                                 <option value="" disabled selected>-- Barangay --</option>
                                 <option value="Aguado">Aguado</option>
                                 <option value="Cabezas">Cabezas</option>
@@ -172,77 +171,75 @@
                     </div>
                     <h4>IMPORMASYON UKOL SA BENEPISYARYO (Beneficiary's Identifying Information)</h4>
                     <div class="mb-3">
-                        <input type="checkbox" name="same" id="myCheck" onclick="myFunction()">
+                        <input type="checkbox" name="same" id="myCheck" onclick="copyInfo()">
                         <label for="same">Parehas ng sa Kliyente (Same as Client).</label> 
                     </div>
                     <div id="show" style="display:block">
                         <div class="row">
                             <div class="col-md-3 mb-2">  
-                                <label for="lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
-                                <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required>
+                                <label for="bene_lastname" class="form-label">Apelyido (Last Name)<span class="required">*</span></label>
+                                <input type="text" class="form-control textOnly toDisableRequired" id="bene_lastname" placeholder="e.g. Dela Cruz" aria-label="Last name" name="bene_lastname" required>
                                 <div class="invalid-feedback">
                                     Please enter Beneficiary's last name.
                                 </div>
                             </div>
                             <div class="col-md-3 mb-2">  
-                                <label for="firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
-                                <input type="text" class="form-control textOnly" id="lastname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required>
+                                <label for="bene_firstname" class="form-label">Unang Pangalan (First Name)<span class="required">*</span></label>
+                                <input type="text" class="form-control textOnly toDisableRequired" id="bene_firstname" placeholder="e.g. Juan" aria-label="First name" name="bene_firstname" required>
                             </div>
                             <div class="col-md-3 mb-2">  
-                                <label for="middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
-                                <input type="text" class="form-control textOnly" id="middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename">
+                                <label for="bene_middlename" class="form-label">Gitnang Pangalan (Middle Name)</label>
+                                <input type="text" class="form-control textOnly toDisableRequired" id="bene_middlename" placeholder="e.g. Santos" aria-label="Middle name" name="bene_middlename">
                             </div>
                             <div class="col-md-3 mb-2">  
-                                <label for="extensionname" class="form-label">Extension Name</label>
-                                <input type="text" class="form-control textOnly" id="extensionname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="bene_exname">
+                                <label for="bene_exname" class="form-label">Extension Name</label>
+                                <input type="text" class="form-control textOnly" id="bene_exname" placeholder="Jr./Sr." aria-label="Jr./Sr." name="bene_exname">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 mb-2">  
-                                <label for="birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
-                                <input type="date" class="form-control" id="birthdate" name="bene_birthdate" required>
+                                <label for="bene_birthdate" class="form-label">Petsa ng Kapanganakan (Birthdate)<span class="required">*</span></label>
+                                <input type="date" class="form-control toDisableRequired" id="bene_birthdate" name="bene_birthdate" required>
                             </div>
                             <div class="col-md-4 mb-2">  
-                                <label for="age" class="form-label">Edad (Age)<span class="required">*</span></label>
-                                <input type="number" class="form-control" id="age " name="bene_age" required>
+                                <label for="bene_age" class="form-label">Edad (Age)<span class="required">*</span></label>
+                                <input type="number" class="form-control toDisableRequired" id="bene_age" name="bene_age" required>
                             </div>
                             <div class="col-md-4 mb-2">  
-                                <label for="sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
+                                <label for="bene_sex" class="form-label">Kasarian (Sex)<span class="required">*</span></label>
                                 <div class="form-control">
-                                    <input type="radio" id="sex" name="bene_sex" value="Male" required> Male
-                                    <input type="radio" id="sex" class="ms-3" name="bene_sex" value="Female" required> Female
+                                    <input type="radio" id="bene_male" name="bene_sex" value="Male" required class="toDisableRequired"> Male
+                                    <input type="radio" id="bene_female" class="ms-3" name="bene_sex" value="Female" required class="toDisableRequired"> Female
                                 </div>
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-6 mb-2">  
-                                <label for="contact-number" class="form-label">Contact Number<span class="required">*</span></label>
+                                <label for="bene_contact_number" class="form-label">Contact Number<span class="required">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">+63</span>
-                                    <input type="tel" class="form-control" id="contact-number " name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required>
+                                    <input type="tel" class="form-control toDisableRequired" id="bene_contact_number" name="bene_contact_number" minlength=10 maxlength="10" onkeypress="return isNumberKey(event)" required>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-2">  
-                                <label for="civil-status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
+                                <label for="bene_civil_status" class="form-label">Status Sibil (Civil Status)<span class="required">*</span></label>
                                 <div class="form-control">
-                                    <input type="radio" id="civil-status" name="bene_civil_status" value="Single" required> Single    
-                                    <input type="radio" id="civil-status" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
-                                    <input type="radio" id="civil-status" name="bene_civil_status" value="Married" required> Married
-                                    <input type="radio" id="civil-status" class="ms-3" name="bene_civil_status" value="Other" required> Other
+                                    <input class="toDisableRequired" type="radio" id="bene_civil_status_single" name="bene_civil_status" value="Single" required> Single    
+                                    <input class="toDisableRequired" type="radio" id="bene_civil_status_widow" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
+                                    <input class="toDisableRequired" type="radio" id="bene_civil_status_married" name="bene_civil_status" value="Married" required> Married
+                                    <input class="toDisableRequired" type="radio" id="bene_civil_status_other" class="ms-3" name="bene_civil_status" value="Other" required> Other
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div >
-                                <label for="address" class="form-label">Tirahan (Address)<span class="required">*</span></label>
+                                <label for="bene_street" class="form-label">Tirahan (Address)<span class="required">*</span></label>
                             </div>
                             <div class="col-md-3 mb-1">
-                                <input type="text" class="form-control" id="address" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required>
+                                <input type="text" class="form-control toDisableRequired" id="bene_street" placeholder="No./Street/Purok" aria-label="No./Street/Purok" name="bene_street" required>
                             </div>
                             <div class="col-md-3 mb-1">
-                                <!-- <input type="text" class="form-control" id="address" placeholder="Barangay" aria-label="Barangay"> -->
-                                <select class="form-control" id="barangay" aria-label="Barangay" name="bene_brgy" required>
-                                    <!-- <option value="" selected>-- Barangay --</option> -->
+                                <select class="form-control toDisableRequired" id="bene_brgy" aria-label="Barangay" name="bene_brgy" required>
                                     <option value="" disabled selected>-- Barangay --</option>
                                     <option value="Aguado">Aguado</option>
                                     <option value="Cabezas">Cabezas</option>
@@ -260,14 +257,12 @@
                                 </select>
                             </div>
                             <div class="col-md-3 mb-1">
-                                <!-- <input type="text" class="form-control" id="address" placeholder="Municipality/City" aria-label="Municipality/City"> -->
-                                <select class="form-control" id="municipality" aria-label="Municipality/City" name="bene_municipal">
+                                <select class="form-control toDisableRequired" id="bene_municipal" aria-label="Municipality/City" name="bene_municipal">
                                     <option value="Trece Martires City" selected>Trece Martires City</option>
                                 </select>
                             </div>
                             <div class="col-md-3 mb-4">
-                                <!-- <input type="text" class="form-control" id="address" placeholder="Province" aria-label="Province"> -->
-                                <select class="form-control" id="province" aria-label="Province" name="bene_province">
+                                <select class="form-control toDisableRequired" id="bene_province" aria-label="Province" name="bene_province">
                                     <option value="Cavite" selected>Cavite</option>
                                 </select>
                             </div>
