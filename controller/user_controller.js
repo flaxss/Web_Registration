@@ -340,8 +340,7 @@ module.exports.college_assistance_landing = async(req, res) => {
 
 module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
-    const confirm = await Educ_Confirmation.findByIdAndDelete(id)
-    console.log(confirm)
+    const confirm = await Educ_Confirmation.findById(id)
     const create = await Educ_Appointment({
         service: confirm.service,
         reference: confirm.reference,
@@ -408,6 +407,7 @@ module.exports.college_assistance_confirm = async(req, res) => {
     })
     create.save()
     .then(async() => {
+        await Educ_Confirmation.findByIdAndDelete(id)
         console.log(`${create} is created`)
         const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
         const service = create.service
@@ -418,9 +418,8 @@ module.exports.college_assistance_confirm = async(req, res) => {
         await transporter.sendMail(message)
         .then((info) => {
             console.log('email is successfully generated',info.messageId)
-            return res.redirect(`/college-assistance/${create.id}/preview`)
         })
-        // return res.redirect(`/college-assistance/${create.id}/preview`)
+        return res.redirect(`/college-assistance/${create.id}/preview`)
     })
     .catch(err => {
         console.log(err.message)
