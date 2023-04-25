@@ -430,7 +430,7 @@ module.exports.college_assistance_confirm = async(req, res) => {
     } catch (err) {
         console.log(err.message)
         // res.status(404).render('err/notfound')
-        res.status(404).render('user/nolonger_access')
+        res.render('user/nolonger_access')
     }
 }
 
@@ -438,6 +438,7 @@ module.exports.college_assistance_preview = async(req, res) => {
     const id = req.params.id;
     try {
         const find = await Educ_Appointment.findById(id);
+        console.log(find)
         if(find){
             let date_of_birth = moment(find.date_of_birth).format('MMMM DD, YYYY')
             res.render('user/educ/form/college_preview', {find, date_of_birth})
