@@ -342,90 +342,94 @@ module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
     const confirm = await Educ_Confirmation.findById(id)
     console.log(confirm)
-    const create = await Educ_Appointment({
-        service: confirm.service,
-        reference: confirm.reference,
-        lastname: confirm.lastname,
-        firstname: confirm.firstname,
-        middlename: confirm.middlename,
-        exname: confirm.exname,
-        email: confirm.email,
-        // appointment_date: confirm.appointment_date,
-        event_date: confirm.event_date,
-        r_street: confirm.r_street,
-        r_brgy: confirm.r_brgy,
-        r_municipal: confirm.r_municipal,
-        r_province: confirm.r_province,
-        r_full_address: config.r_full_address,
-        p_street: confirm.p_street,
-        p_brgy: confirm.p_brgy,
-        p_municipal: confirm.p_municipal,
-        p_province: confirm.p_province,
-        p_full_address: config.p_full_address,
-        date_of_birth: confirm.date_of_birth,
-        place_of_birth: confirm.place_of_birth,
-        citizenship: confirm.citizenship,
-        age: confirm.age,
-        sex: confirm.sex,
-        civil_status: confirm.civil_status,
-        contact_number : confirm.contact_number,
-        spouse_lname: confirm.spouse_lname,
-        spouse_fname: confirm.spouse_fname,
-        spouse_mname: confirm.spouse_mname,
-        spouse_exname: confirm.spouse_exname,
-        spouse_occupation: confirm.spouse_occupation,
-        mother_lname: confirm.mother_lname,
-        mother_fname: confirm.mother_fname,
-        mother_mname: confirm.mother_mname,
-        mother_occupation: confirm.mother_occupation,
-        father_lname: confirm.father_lname,
-        father_fname: confirm.father_fname,
-        father_mname: confirm.father_mname,
-        father_exname: confirm.father_exname,
-        father_occupation: confirm.father_occupation,
-        elementary: {
-            name_of_school: confirm.elementary.name_of_school,
-            school_year: confirm.elementary.school_year,
-        },
-        secondary: {
-            name_of_school: confirm.secondary.name_of_school,
-            school_year: confirm.secondary.school_year,
-        },
-        vocational: {
-            name_of_school: confirm.vocational.name_of_school,
-            school_year: confirm.vocational.school_year,
-        },
-        college: {
-            name_of_school: confirm.college.name_of_school,
-            school_year: confirm.college.school_year,
-        },
-        course: confirm.course,
-        year_level: confirm.year_level,
-        sem: confirm.sem,
-        char_ref_name: confirm.char_ref_name,
-        char_ref_add: confirm.char_ref_add,
-        char_ref_num: confirm.char_ref_num,
-    })
-    create.save()
-    .then(async() => {
-        await Educ_Confirmation.findByIdAndDelete(id)
-        console.log(`${create} is created`)
-        const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
-        const service = create.service
-        const reference = create.reference
-        const prev_link = `${http_localhost}/college-assistance/${create.id}/preview`
-        const up_link = `${http_localhost}/college-assistance/${create.id}/update-response`
-        const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
-        await transporter.sendMail(message)
-        .then((info) => {
-            console.log('email is successfully generated',info.messageId)
+    try {
+        console.log(confirm)
+        const create = await Educ_Appointment({
+            service: confirm.service,
+            reference: confirm.reference,
+            lastname: confirm.lastname,
+            firstname: confirm.firstname,
+            middlename: confirm.middlename,
+            exname: confirm.exname,
+            email: confirm.email,
+            event_date: confirm.event_date,
+            r_street: confirm.r_street,
+            r_brgy: confirm.r_brgy,
+            r_municipal: confirm.r_municipal,
+            r_province: confirm.r_province,
+            r_full_address: config.r_full_address,
+            p_street: confirm.p_street,
+            p_brgy: confirm.p_brgy,
+            p_municipal: confirm.p_municipal,
+            p_province: confirm.p_province,
+            p_full_address: config.p_full_address,
+            date_of_birth: confirm.date_of_birth,
+            place_of_birth: confirm.place_of_birth,
+            citizenship: confirm.citizenship,
+            age: confirm.age,
+            sex: confirm.sex,
+            civil_status: confirm.civil_status,
+            contact_number : confirm.contact_number,
+            spouse_lname: confirm.spouse_lname,
+            spouse_fname: confirm.spouse_fname,
+            spouse_mname: confirm.spouse_mname,
+            spouse_exname: confirm.spouse_exname,
+            spouse_occupation: confirm.spouse_occupation,
+            mother_lname: confirm.mother_lname,
+            mother_fname: confirm.mother_fname,
+            mother_mname: confirm.mother_mname,
+            mother_occupation: confirm.mother_occupation,
+            father_lname: confirm.father_lname,
+            father_fname: confirm.father_fname,
+            father_mname: confirm.father_mname,
+            father_exname: confirm.father_exname,
+            father_occupation: confirm.father_occupation,
+            elementary: {
+                name_of_school: confirm.elementary.name_of_school,
+                school_year: confirm.elementary.school_year,
+            },
+            secondary: {
+                name_of_school: confirm.secondary.name_of_school,
+                school_year: confirm.secondary.school_year,
+            },
+            vocational: {
+                name_of_school: confirm.vocational.name_of_school,
+                school_year: confirm.vocational.school_year,
+            },
+            college: {
+                name_of_school: confirm.college.name_of_school,
+                school_year: confirm.college.school_year,
+            },
+            course: confirm.course,
+            year_level: confirm.year_level,
+            sem: confirm.sem,
+            char_ref_name: confirm.char_ref_name,
+            char_ref_add: confirm.char_ref_add,
+            char_ref_num: confirm.char_ref_num,
         })
-        return res.redirect(`/college-assistance/${create.id}/preview`)
-    })
-    .catch(err => {
+        create.save()
+        .then(async() => {
+            await Educ_Confirmation.findByIdAndDelete(id)
+            console.log(`${create} is created`)
+            const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
+            const service = create.service
+            const reference = create.reference
+            const prev_link = `${http_localhost}/college-assistance/${create.id}/preview`
+            const up_link = `${http_localhost}/college-assistance/${create.id}/update-response`
+            const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
+            await transporter.sendMail(message)
+            .then((info) => {
+                console.log('email is successfully generated',info.messageId)
+            })
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+        res.redirect(`/college-assistance/${create.id}/preview`)
+    } catch (err) {
         console.log(err.message)
-        return res.status(404).render('err/notfound')
-    })
+        res.status(404).render('err/notfound')
+    }
 }
 
 module.exports.college_assistance_preview = async(req, res) => {
