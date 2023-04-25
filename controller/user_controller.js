@@ -341,6 +341,7 @@ module.exports.college_assistance_landing = async(req, res) => {
 module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
     const confirm = await Educ_Confirmation.findById(id)
+    console.log(confirm)
     const create = await Educ_Appointment({
         service: confirm.service,
         reference: confirm.reference,
