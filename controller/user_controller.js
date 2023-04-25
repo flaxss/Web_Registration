@@ -193,7 +193,6 @@ module.exports.college_assistance_form_post = async(req, res) => {
             place_of_birth: req.body.place_of_birth,
             citizenship: req.body.citizenship,
             // age: req.body.age,
-            // age: `${birthdate(req.body.date_of_birth)}`,
             sex: req.body.sex,
             civil_status: req.body.civil_status,
             contact_number: req.body.contact_number,
@@ -342,7 +341,7 @@ module.exports.college_assistance_landing = async(req, res) => {
 module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
     try {
-        const confirm = await Educ_Confirmation.findByIdAndDelete(id)
+        const confirm = await Educ_Confirmation.findByIdAndRemove(id)
         console.log(confirm)
         const create = await Educ_Appointment({
             service: confirm.service,
@@ -421,11 +420,11 @@ module.exports.college_assistance_confirm = async(req, res) => {
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
             })
-            res.redirect(`/college-assistance/${create.id}/preview`)
+            return res.redirect(`/college-assistance/${create.id}/preview`)
         })
         .catch(err => {
             console.log(err.message)
-            res.status(404).render('err/notfound')
+            return res.status(404).render('err/notfound')
         })
     } catch (err) {
         console.log(err.message)
