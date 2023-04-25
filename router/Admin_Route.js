@@ -21,6 +21,17 @@ const upload = multer({
     storage: Storage,
 });
 
+
+const session = require('express-session');
+router.use(session({
+    secret: 'mysecretkey',
+    resave: false,
+    saveUninitialized: true,
+}));
+
+const flash = require('express-flash');
+router.use(flash());
+
 const admin_controller = require('../controller/admin_controller')
 const { requireAuth, checkUser } = require('../middleware/auth')
 
@@ -116,6 +127,8 @@ router.get('/settings', admin_controller.settings)
 router.patch('/settings/:id', upload.single('image'), admin_controller.settings_id)
 
 router.get('/search-appointment', admin_controller.search_appointment)
-router.get('/search-application', admin_controller.search_application)
+router.get('/search-application-educ', admin_controller.search_application_educ)
+router.get('/search-application-aics', admin_controller.search_application_aics)
+// router.get('/search-application-burial', admin_controller.search_application_burial)
 
 module.exports = router;

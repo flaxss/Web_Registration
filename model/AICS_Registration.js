@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2')
 const aicsRegistrationSchema = new mongoose.Schema({
     status: {
         type: String,
@@ -44,6 +44,12 @@ const aicsRegistrationSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
+        default: function(){
+            const birthdate = new Date(this.birthdate);
+            const differenceMs = Date.now() - birthdate.getTime();
+            const age = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 365));
+            return age
+        }
     },
     sex: {
         type: String,
@@ -110,6 +116,12 @@ const aicsRegistrationSchema = new mongoose.Schema({
     },
     bene_age: {
         type: Number,
+        default: function(){
+            const birthdate = new Date(this.bene_birthdate);
+            const differenceMs = Date.now() - birthdate.getTime();
+            const age = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 365));
+            return age
+        }
     },
     bene_sex: {
         type: String,
@@ -153,6 +165,8 @@ const aicsRegistrationSchema = new mongoose.Schema({
         default: false
     }
 });
+
+aicsRegistrationSchema.plugin(mongoosePaginate)
 
 const AICS_Registration = mongoose.model('AICS_Registration', aicsRegistrationSchema)
 module.exports = AICS_Registration;

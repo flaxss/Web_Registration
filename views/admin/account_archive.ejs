@@ -1,53 +1,59 @@
-<%- include('include/head') %> 
+    <%- include('include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Archive</title>
 </head>
 <body>
+    <%- include('include/main_sidebar') %>
     <main class="main">
-        <%- include('include/nav_link') %> 
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <button type="button" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#createAccount">Add Account</button>
+            <%- include('include/account_form') %> 
+            <a href="/a/accounts" class="btn btn-outline-success mx-2">accounts</a>
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Account</li>
+                <li class="breadcrumb-item active" aria-current="page">Archive</li>
+            </ol>
+        </div>
         <div class="main-content">
-            <div class="content-table">
-                <nav class="navbar bg-body-tertiary p-0">
-                    <a href="/a/create-account" class="btn btn-outline-success mx-2">create account</a>
-                    <a href="/a/accounts" class="btn btn-outline-success mx-2">accounts</a>
-                </nav>
-                <div class="table-responsive">
-                    <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
-                        <thead style="background-color: #EEF1F6;">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
+                    <thead style="background-color: #EEF1F6;">
+                        <tr>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Account Type</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% viewAccounts.forEach(accounts => { %>
                             <tr>
-                                <th scope="col">Owner</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Contact No.</th>
-                                <th scope="col">Account Type</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% viewAccounts.forEach(accounts => { %>
-                                <tr>
-                                    <td scope="row"><%- accounts.firstname %> <%- accounts.middlename %> <%- accounts.lastname %></td>
-                                    <td scope="row"><%- accounts.email %></td>
-                                    <td scope="row"><%- accounts.contact %></td>
-                                    <td scope="row"><%- accounts.accountType %></td>
-                                    <td scope="row"><%- accounts.status %> </td>
-                                    <td scope="row" class="d-flex align-items-center justify-content-center gap-2">
-                                        <form action="/a/accounts/<%- accounts._id %>/restore?_method=PATCH" method="POST">
-                                            <button type="submit" class="btn btn-warning">restore</button>
-                                        </form>
-                                        <form action="/a/accounts/<%- accounts._id %>/delete?_method=DELETE" method="POST">
-                                            <button type="submit" onclick="deleteAccount()" class="btn btn-outline-danger">remove</button>
-                                        </form>
-                                    </td>
-                                </tr> 
-                            <% }) %>
-                        </tbody>
-                    </table>
-                    <% if(viewAccounts == '') { %>
-                        <p class="text-center">Currently no Account</p>
-                    <% }%> 
-                </div>
+                                <td scope="row"><%- accounts.firstname %> <%- accounts.middlename %> <%- accounts.lastname %></td>
+                                <td scope="row"><%- accounts.email %></td>
+                                <td scope="row"><%- accounts.contact %></td>
+                                <td scope="row"><%- accounts.accountType %></td>
+                                <td scope="row"><%- accounts.status %> </td>
+                                <td scope="row" class="d-flex align-items-center justify-content-center gap-2">
+                                    <form action="/a/accounts/<%- accounts._id %>/restore?_method=PATCH" method="POST">
+                                        <button type="submit" class="btn btn-warning">restore</button>
+                                    </form>
+                                    <form action="/a/accounts/<%- accounts._id %>/delete?_method=DELETE" method="POST">
+                                        <button type="submit" onclick="deleteAccount()" class="btn btn-outline-danger">remove</button>
+                                    </form>
+                                </td>
+                            </tr> 
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% if(viewAccounts == '') { %>
+                    <p class="text-center">Currently no Account</p>
+                <% }%> 
             </div>
-            <!-- footer -->
         </div>
     </main>
 </body>

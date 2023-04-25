@@ -17,42 +17,13 @@ const AICS_Compile = require('../model/AICS_Compile')
 const Event = require('../model/Event')
 const Option = require('../model/Option');
 
-async function expiryDate(){
-    let today = new Date();
-    let expired = await AICS_Record.find({expiredAt: {$lt: today}})
-    if(expired != ''){
-        expired.forEach(async(data) => {
-            const list = new AICS_Compile({
-                service: data.service,
-                client_name: `${data.firstname} ${data.middlename} ${data.lastname} ${data.exname}`,
-                beneficiary_name: `${data.bene_firstname} ${data.bene_middlename} ${data.bene_lastname} ${data.bene_exname}`,
-                sex: data.bene_sex,
-                address: data.bene_full_address,
-                contact_number: data.bene_contact_number,
-                email: data.email,
-            })
-            list.save()
-            await AICS_Record.deleteMany({expiredAt: {$lt: today}})
-            console.log(list)
-        })
-    }
+// calculate age
+function birthdate(birth){
+    const birthdate = new Date(birth);
+    const differenceMs = Date.now() - birthdate.getTime();
+    const age = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 365));
+    return age
 }
-expiryDate()
-
-
-// auto-create option 
-async function option(){
-    const option = await Option.find()
-    if(option == ''){
-        const isActivte = await Option({
-            option: 'activate'
-        })
-        isActivte.save()
-        .then(() => console.log(`${isActivte}`,'created'))
-        .catch(err => console.log(err.message))
-    }
-}
-option()
 
 // parse date
 const {dateFormat} = require('../middleware/parseDate')
@@ -78,7 +49,7 @@ let MailGenerator = new Mailgen({
     theme: 'default',
     product: {
         name: 'CSWD OFFICE',
-        link: 'https://mailgen.js'
+        link: 'tmc-assistance.cyclic.app'
     }
 })
 
@@ -86,7 +57,7 @@ let MailGenerator = new Mailgen({
 module.exports.admin_home = async(req, res) => {
     const events = await Event.find().sort({nonFormat: 1})
     const renderPost = await Announcement.find().sort({createdAt: -1})
-    res.render('admin/home', {renderPost, events})
+    res.render('admin/home', {renderPost, events, messages: req.flash('info')})
 }
 
 // home create post
@@ -99,6 +70,7 @@ module.exports.create_post = async(req, res) => {
     })
     create.save()
     .then(() => {
+        req.flash('info', 'This is a flash message');
         console.log(`${create} is posted`)
         res.redirect('/a')
     })
@@ -154,12 +126,34 @@ module.exports.add_event = async(req, res) => {
 // appointment page
 
 module.exports.appointment = async(req, res) => {
-    const renderAppointment = await Educ_Appointment.find().sort({fullname: 1})
+    // const renderAppointment = await Educ_Appointment.find().sort({fullname: 1})
+    let renderAppointment = [];
+    let totalPage = 1;
+    let currentPage = 1
+    let page = parseInt(req.query.page)
+    if(page){
+        await Educ_Appointment.paginate({}, {page: page, limit: 8})
+        .then((result) => {
+            result.docs.forEach(data => {
+                renderAppointment.push(data)
+            })
+            currentPage = page
+            totalPage = result.totalPages
+        })
+    }else{
+        await Educ_Appointment.paginate({}, {page: 1, limit: 8})
+        .then((result) => {
+            result.docs.forEach(data => {
+                renderAppointment.push(data)
+            })
+            totalPage = result.totalPages
+        })
+    }
     let formatted = dateFormat(renderAppointment.appointment_date)
     // console.log(formatted)
     let opt = await Option.findOne()
     opt = opt.option
-    res.render('admin/appointment', {renderAppointment, formatted, opt})
+    res.render('admin/appointment', {renderAppointment, formatted, opt, currentPage, totalPage})
 }
 
 module.exports.appointment_activate = async(req, res) => {
@@ -357,8 +351,31 @@ module.exports.appointment_accept = async(req, res) => {
 // application page
 
 module.exports.application_educ_assistance = async(req, res) => {
-    const render = await Educ_Registration.find({service: 'College Educational Assistance', isArchive: false}).sort({fullname: 1})
-    res.render('admin/application', {render})
+    // const render = await Educ_Registration.find({service: 'College Educational Assistance', isArchive: false}).sort({fullname: 1})
+
+    let render = [];
+    let totalPage = 1;
+    let currentPage = 1
+    let page = parseInt(req.query.page)
+    if(page){
+        await Educ_Registration.paginate({service: 'College Educational Assistance', isArchive: false}, {page: page, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            currentPage = page
+            totalPage = result.totalPages
+        })
+    }else{
+        await Educ_Registration.paginate({service: 'College Educational Assistance', isArchive: false}, {page: 1, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            totalPage = result.totalPages
+        })
+    }
+    res.render('admin/application_educ', {render, currentPage, totalPage})
 }
 
 module.exports.application_educ_assistance_accept = async(req, res) => {
@@ -537,23 +554,115 @@ module.exports.application_educ_assistance_archive = async (req, res) => {
 }
 
 module.exports.application_medical_assistance = async(req, res) => {
-    const render = await AICS_Registration.find({service: 'Medical Assistance', isArchive: false}).sort({fullname: 1})
-    res.render('admin/application', {render})
+    // const render = await AICS_Registration.find({service: 'Medical Assistance', isArchive: false}).sort({fullname: 1})
+
+    let render = [];
+    let totalPage = 1;
+    let currentPage = 1
+    let page = parseInt(req.query.page)
+    if(page){
+        await AICS_Registration.paginate({service: 'Medical Assistance', isArchive: false}, {page: page, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            currentPage = page
+            totalPage = result.totalPages
+        })
+    }else{
+        await AICS_Registration.paginate({service: 'Medical Assistance', isArchive: false}, {page: 1, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            totalPage = result.totalPages
+        })
+    }
+    res.render('admin/application_aics', {render, service: 'Medical Assistance', totalPage, currentPage})
 }
 
 module.exports.application_burial_assistance = async(req, res) => {
-    const render = await AICS_Registration.find({service: 'Burial Assistance', isArchive: false}).sort({fullname: 1})
-    res.render('admin/application', {render})
+    // const render = await AICS_Registration.find({service: 'Burial Assistance', isArchive: false}).sort({fullname: 1})
+
+    let render = [];
+    let totalPage = 1;
+    let currentPage = 1
+    let page = parseInt(req.query.page)
+    if(page){
+        await AICS_Registration.paginate({service: 'Burial Assistance', isArchive: false}, {page: page, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            currentPage = page
+            totalPage = result.totalPages
+        })
+    }else{
+        await AICS_Registration.paginate({service: 'Burial Assistance', isArchive: false}, {page: 1, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            totalPage = result.totalPages
+        })
+    }
+    res.render('admin/application_aics', {render, service: 'Burial Assistance', totalPage, currentPage})
 }
 
 module.exports.application_transportation_assistance = async(req, res) => {
-    const render = await AICS_Registration.find({service: 'Transportation Assistance', isArchive: false}).sort({fullname: 1})
-    res.render('admin/application', {render})
+    // const render = await AICS_Registration.find({service: 'Transportation Assistance', isArchive: false}).sort({fullname: 1})
+
+    let render = [];
+    let totalPage = 1;
+    let currentPage = 1
+    let page = parseInt(req.query.page)
+    if(page){
+        await AICS_Registration.paginate({service: 'Transportation Assistance', isArchive: false}, {page: page, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            currentPage = page
+            totalPage = result.totalPages
+        })
+    }else{
+        await AICS_Registration.paginate({service: 'Transportation Assistance', isArchive: false}, {page: 1, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            totalPage = result.totalPages
+        })
+    }
+    res.render('admin/application_aics', {render, service: 'Transportation Assistance', totalPage, currentPage})
 }
 
 module.exports.application_emergency_assistance = async(req, res) => {
-    const render = await AICS_Registration.find({service: 'Emergency Shelter Assistance', isArchive: false}).sort({fullname: 1})
-    res.render('admin/application', {render})
+    // const render = await AICS_Registration.find({service: 'Emergency Shelter Assistance', isArchive: false}).sort({fullname: 1})
+
+    let render = [];
+    let totalPage = 1;
+    let currentPage = 1
+    let page = parseInt(req.query.page)
+    if(page){
+        await AICS_Registration.paginate({service: 'Emergency Shelter Assistance', isArchive: false}, {page: page, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            currentPage = page
+            totalPage = result.totalPages
+        })
+    }else{
+        await AICS_Registration.paginate({service: 'Emergency Shelter Assistance', isArchive: false}, {page: 1, limit: 6})
+        .then((result) => {
+            result.docs.forEach(data => {
+                render.push(data)
+            })
+            totalPage = result.totalPages
+        })
+    }
+    res.render('admin/application_aics', {render, service: 'Emergency Shelter Assistance', totalPage, currentPage})
 }
 
 module.exports.application_aics_assistance_accept = async(req, res) => {
@@ -646,7 +755,10 @@ module.exports.application_aics_assistance_get = async(req, res) => {
         // let bene_formatted = dateFormat(find.bene_birthdate)
         let formatted = find.birthdate
         let bene_formatted = find.bene_birthdate
-        res.render('admin/form/update_form/burial_form', {find, formatted, bene_formatted})
+        find.family_name.forEach(data => {
+            console.log(data)
+        })
+        res.render('admin/form/update_form/aics_update_form', {find, formatted, bene_formatted})
     } catch (err) {
         console.log(err.message)
         res.status(404).render('err/notfound')
@@ -725,7 +837,7 @@ module.exports.application_aics_archives_delete = async (req, res) => {
 
 // register
 module.exports.register_burial_get = (req, res) => {
-    res.render('admin/form/burial_reg_form')
+    res.render('admin/form/burial_reg_form', {messages: req.flash('message')})
 }
 
 module.exports.register_burial_post = async(req, res) => {
@@ -744,6 +856,7 @@ module.exports.register_burial_post = async(req, res) => {
     })
     if(!isRegistered && !isConfirmed){
         const create = await AICS_Registration(body)
+        console.log(create)
         create.save()
         .then(() => {
             console.log(`${create} is created`)
@@ -753,12 +866,13 @@ module.exports.register_burial_post = async(req, res) => {
             console.log(err.message)
         })
     }else{
-        res.send('already registered')
+        req.flash('message', 'Already Registered')
+        res.redirect('/a/register/burial-assistance/form')
     }
 }
 
 module.exports.register_medical_get = (req, res) => {
-    res.render('admin/form/medical_reg_form')
+    res.render('admin/form/medical_reg_form', {messages: req.flash('message')})
 }
 
 module.exports.register_medical_post = async(req, res) => {
@@ -786,12 +900,13 @@ module.exports.register_medical_post = async(req, res) => {
             console.log(err.message)
         })
     }else{
-        res.send('already registered')
+        req.flash('message', 'Already Registered')
+        res.redirect('/a/register/medical-assistance/form')
     }
 }
 
 module.exports.register_emergency_get = (req, res) => {
-    res.render('admin/form/emergency_reg_form')
+    res.render('admin/form/emergency_reg_form', {messages: req.flash('message')})
 }
 
 module.exports.register_emergency_post = async(req, res) => {
@@ -819,12 +934,13 @@ module.exports.register_emergency_post = async(req, res) => {
             console.log(err.message)
         })
     }else{
-        res.send('already registered')
+        req.flash('message', 'Already Registered')
+        res.redirect('/a/register/emergency-shelter-assistance/form')
     }
 }
 
 module.exports.register_transportation_get = (req, res) => {
-    res.render('admin/form/transportation_reg_form')
+    res.render('admin/form/transportation_reg_form', {messages: req.flash('message')})
 }
 
 module.exports.register_transportation_post = async(req, res) => {
@@ -852,7 +968,8 @@ module.exports.register_transportation_post = async(req, res) => {
             console.log(err.message)
         })
     }else{
-        res.send('already registered')
+        req.flash('message', 'Already Registered')
+        res.redirect('/a/register/transportation-assistance/form')
     }
 }
 
@@ -893,7 +1010,8 @@ module.exports.records_compile = async(req, res) => {
                 let response = {
                     body: {
                         name: `${data.firstname} ${data.middlename} ${data.lastname}`,
-                        intro: `You may claim your cash assistance`,
+                        // intro: `You may claim your cash assistance`,
+                        intro: `If you receive this message just ignore it, this is just a testing of a system being develop`,
                     }
                 }
                 let mail = MailGenerator.generate(response)
@@ -1089,13 +1207,14 @@ module.exports.accounts_delete = async(req, res) => {
 // create account
 module.exports.create_account_post = async(req, res) => {
     const {firstname, middlename, lastname, contact, email, password} = req.body;
+    const hashed = await bcrypt.hash(password, 10)
     const create = await Account({
         firstname,
         middlename,
         lastname,
         contact,
         email,
-        password,
+        password: hashed,
         accountType: 'staff',
         name: 'dp.png',
         image: {
@@ -1167,12 +1286,35 @@ module.exports.search_appointment = async(req, res) => {
     }
 }
 
-module.exports.search_application = async(req, res) => {
+module.exports.search_application_educ = async(req, res) => {
     try{
         let searchField = (req.query.result).split('-').join('');
         searchField = searchField.toUpperCase();
         console.log(searchField)
         let find = await Educ_Registration.find(
+            {
+                $or: [
+                    {reference: {$regex: searchField}},
+                    {lastname: {$regex: searchField}},
+                    {firstname: {$regex: searchField}},
+                ]
+            }
+        )
+        console.log(find)
+        res.render('admin/application_educ_search', {find})
+    }
+    catch(err){
+        console.log(err.message)
+        res.status(404).render('err/notfound')
+    }
+}
+
+module.exports.search_application_aics = async(req, res) => {
+    try{
+        let searchField = (req.query.result).split('-').join('');
+        searchField = searchField.toUpperCase();
+        console.log(searchField)
+        let find = await AICS_Registration.find(
             {
                 $or: [
                     {reference: {$regex: searchField}},
@@ -1182,26 +1324,38 @@ module.exports.search_application = async(req, res) => {
             }
         )
         if(find == false){
-            console.log('not found')
-            find = await AICS_Registration.find(
-                {
-                    $or: [
-                        {reference: {$regex: searchField}},
-                        {bene_lastname: {$regex: searchField}},
-                        {bene_firstname: {$regex: searchField}},
-                    ]
-                }
-            )
-            if(find == false){
-                console.log('again! not found')
-            }
-        }else{
-            console.log(find)
+            console.log('again! not found')
         }
-        res.render('admin/application_search', {find})
+        res.render('admin/application_aics_search', {find})
     }
     catch(err){
         console.log(err.message)
         res.status(404).render('err/notfound')
     }
 }
+
+// module.exports.search_application_burial = async(req, res) => {
+//     try{
+//         let searchField = (req.query.result).split('-').join('');
+//         searchField = searchField.toUpperCase();
+//         console.log(searchField)
+//         let find = await AICS_Registration.find(
+//             {
+//                 $or: [
+//                     {reference: {$regex: searchField}},
+//                     {bene_lastname: {$regex: searchField}},
+//                     {bene_firstname: {$regex: searchField}},
+//                 ],
+//                 service: 'Burial Assistance'
+//             }
+//         )
+//         if(find == false){
+//             console.log('again! not found')
+//         }
+//         res.render('admin/application_search', {find})
+//     }
+//     catch(err){
+//         console.log(err.message)
+//         res.status(404).render('err/notfound')
+//     }
+// }

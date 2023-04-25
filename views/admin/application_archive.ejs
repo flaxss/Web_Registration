@@ -1,82 +1,93 @@
-<%- include('include/head') %> 
+    <%- include('include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Application</title>
 </head>
 <body>
+    <%- include('include/main_sidebar') %>
     <main class="main">
-        <%- include('include/nav_link') %> 
-        <div class="main-content">
-            <div class="content-table">
-                <%- include('include/application_search') %>
-                <div class="table-responsive">
-                    <div class="table-div">
-                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
-                            <thead style="background-color: #EEF1F6;">
-                                <tr class="table-responsive align-middle">
-                                    <th>Social Service</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Reference</th>
-                                    <th>Contact Number</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody style="background-color: #FAFBFC;">
-                                <% educ_archive.forEach(data => { %>
-                                    <tr>
-                                        <td><%- data.service %></td>
-                                        <td>
-                                            <% if(data.service == 'College Educational Assistance') { %>
-                                                <%- data.firstname %> <%- data.middlename %> <%- data.lastname %>
-                                            <% }else{ %>
-                                                <%- data.bene_firstname %> <%- data.bene_middlename %> <%- data.bene_lastname %>
-                                            <% } %>
-                                        </td>
-                                        <td><%- data.status %></td>
-                                        <td><%- data.reference %></td>
-                                        <td><%- data.contact_number %></td>
-                                        <td><%- data.email %></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <form action="/a/application-educ-archive/<%- data.id %>?_method=PATCH" method="POST" class="btn-group">
-                                                    <button class="btn btn-outline-success">restore</button>
-                                                </form>
-                                                <form action="/a/application-educ-archive/<%- data.id %>?_method=DELETE" method="POST" class="btn-group">
-                                                    <button class="btn btn-outline-danger">delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <% }) %>
-                                <% aics_archive.forEach(data => { %>
-                                    <tr>
-                                        <td><%- data.service %></td>
-                                        <td><%- data.fullname %></td>
-                                        <td><%- data.status %></td>
-                                        <td><%- data.reference %></td>
-                                        <td><%- data.contact_number %></td>
-                                        <td><%- data.email %></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <form action="/a/application-aics-archive/<%- data.id %>?_method=PATCH" method="POST" class="btn-group">
-                                                    <button class="btn btn-outline-success">restore</button>
-                                                </form>
-                                                <form action="/a/application-aics-archive/<%- data.id %>?_method=DELETE" method="POST" class="btn-group">
-                                                    <button class="btn btn-outline-danger">delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <% }) %>
-                            </tbody>
-                        </table>
-                        <% if(educ_archive == false && aics_archive == false) { %>
-                            <p class="text-center">No Archive</p>
-                        <% } %>
-                    </div>
-                </div>
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <div class="container-fluid form-control-lg p-2" style="width: 100%;">
+                <form class="d-flex" role="search" action="/a/search-application-educ" method="GET">
+                    <input required class="form-control col-md-8" type="search" placeholder="search name or reference number" aria-label="Search" name="result">
+                    <button class="btn btn-outline-success me-2 ms-2" type="submit">Search</button>
+                </form>
+                <a href="/a/application-archive" class="btn btn-outline-success">Archives</a>
             </div>
-            <!-- footer -->
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Application</li>
+                <li class="breadcrumb-item active" aria-current="page">Archives</li>
+              </ol>
+        </div>
+        <div class="main-content">
+            <div class="container col-md-12">
+                <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
+                    <thead style="background-color: #EEF1F6;">
+                        <tr class="table-responsive align-middle">
+                            <th>Social Service</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Reference</th>
+                            <th>Contact Number</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #FAFBFC;">
+                        <% educ_archive.forEach(data => { %>
+                            <tr>
+                                <td><%- data.service %></td>
+                                <td>
+                                    <% if(data.service == 'College Educational Assistance') { %>
+                                        <%- data.firstname %> <%- data.middlename %> <%- data.lastname %>
+                                    <% }else{ %>
+                                        <%- data.bene_firstname %> <%- data.bene_middlename %> <%- data.bene_lastname %>
+                                    <% } %>
+                                </td>
+                                <td><%- data.status %></td>
+                                <td><%- data.reference %></td>
+                                <td><%- data.contact_number %></td>
+                                <td><%- data.email %></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <form action="/a/application-educ-archive/<%- data.id %>?_method=PATCH" method="POST" class="btn-group">
+                                            <button class="btn btn-outline-success">restore</button>
+                                        </form>
+                                        <form action="/a/application-educ-archive/<%- data.id %>?_method=DELETE" method="POST" class="btn-group">
+                                            <button class="btn btn-outline-danger">delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                        <% aics_archive.forEach(data => { %>
+                            <tr>
+                                <td><%- data.service %></td>
+                                <td><%- data.fullname %></td>
+                                <td><%- data.status %></td>
+                                <td><%- data.reference %></td>
+                                <td><%- data.contact_number %></td>
+                                <td><%- data.email %></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <form action="/a/application-aics-archive/<%- data.id %>?_method=PATCH" method="POST" class="btn-group">
+                                            <button class="btn btn-outline-success">restore</button>
+                                        </form>
+                                        <form action="/a/application-aics-archive/<%- data.id %>?_method=DELETE" method="POST" class="btn-group">
+                                            <button class="btn btn-outline-danger">delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% if(educ_archive == false && aics_archive == false) { %>
+                    <p class="text-center">No Archive</p>
+                <% } %>
+            </div>
         </div>
     </main>
 </body>

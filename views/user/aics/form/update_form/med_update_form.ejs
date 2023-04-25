@@ -40,20 +40,17 @@
                         </div>
                         <div class="col-md-4">  
                             <label for="sex" class="form-label">Sex</label>
-                            <div class="form-control">
-                                <input type="radio" id="male" value="male" name="sex" required>
-                                <label for="male">Male</label> 
-                                <input type="radio" id="female" class="ms-3" value="female" name="sex" required>
-                                <label for="female">Female</label>
-                            </div>
+                            <select class="form-control" id="sex" aria-label="Sex" name="sex" required>
+                                <option value="" disabled selected>Please Select</option>
+                                <option id="male" value="Male">Male</option>
+                                <option id="female" value="Female">Female</option>
+                            </select>
                             <script>
                                 let sex = '<%- find.sex %>'
                                 if(sex == 'MALE'){
-                                    document.getElementById('male').checked = true;
-                                    document.getElementById('female').checked = false;
-                                }else{
-                                    document.getElementById('female').checked = true;
-                                    document.getElementById('male').checked = false;
+                                    document.getElementById('male').selected = true;
+                                }else if(sex == 'FEMALE'){
+                                    document.getElementById('female').selected = true;
                                 }
                             </script>
                         </div>
@@ -74,23 +71,25 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="civil-status" class="form-label">Civil Status</label>
-                            <div class="form-control">
-                                <input type="radio" id="Single" name="civil_status" value="Single" required> Single    
-                                <input type="radio" id="Widow/er" class="ms-4" name="civil_status" value="Widow/er" required> Widow/er<br>
-                                <input type="radio" id="Married" name="civil_status" value="Married" required> Married
-                                <input type="radio" id="Other" class="ms-3" name="civil_status" value="Other" required> Other
-                            </div>
+                            <select class="form-control" id="civil_status" aria-label="civil_status" name="civil_status" required>
+                                <option value="" disabled selected>Please Select</option>
+                                <option id="Single" value="Single">Single</option>
+                                <option id="Married" value="Married">Married</option>
+                                <option id="Widow/er" value="Widow/er">Widow/er</option>
+                                <option id="Other" value="Other">Other</option>
+                            </select>
                         </div>
                         <script>
                             let status = '<%- find.civil_status %>'
+                            console.log(status)
                             if(status == 'Single'){
-                                document.getElementById('Single').checked = true
+                                document.getElementById('Single').selected = true
                             }else if(status == 'Widow/er'){
-                                document.getElementById('Widow/er').checked = true
+                                document.getElementById('Widow/er').selected = true
                             }else if(status == 'Married'){
-                                document.getElementById('Married').checked = true
+                                document.getElementById('Married').selected = true
                             }else if(status == 'Other'){
-                                document.getElementById('Other').checked = true
+                                document.getElementById('Other').selected = true
                             }
                         </script>
                         <div class="col-md-6"> 
@@ -235,16 +234,17 @@
                         </div>
                         <div class="col-md-4">  
                             <label for="sex" class="form-label">Sex</label>
-                            <div class="form-control">
-                                <input type="radio" id="bene_male" name="bene_sex" value="Male" required> Male
-                                <input type="radio" id="bene_female" class="ms-3" name="bene_sex" value="Female" required> Female
-                            </div>
+                            <select class="form-control toDisableRequired" name="bene_sex" id="bene_sex" required>
+                                <option value="" disabled selected>Please Select</option>
+                                <option id="bene_male" value="Male">Male</option>
+                                <option id="bene_female" value="Female">Female</option>
+                            </select>
                             <script>
                                 let bene_sex = '<%- find.bene_sex %>'
                                 if(bene_sex == 'MALE'){
-                                    document.getElementById('bene_male').checked = true
-                                }else{
-                                    document.getElementById('bene_female').checked = true
+                                    document.getElementById('bene_male').selected = true
+                                }else if(bene_sex == 'FEMALE'){
+                                    document.getElementById('bene_female').selected = true
                                 }
                             </script>
                         </div>
@@ -259,22 +259,23 @@
                         </div>
                         <div class="col-md-6">  
                             <label for="civil-status" class="form-label">Civil Status</label>
-                            <div class="form-control">
-                                <input type="radio" id="bene_Single" name="bene_civil_status" value="Single" required> Single    
-                                <input type="radio" id="bene_Widow/er" class="ms-4" name="bene_civil_status" value="Widow/er" required> Widow/er<br>
-                                <input type="radio" id="bene_Married" name="bene_civil_status" value="Married" required> Married
-                                <input type="radio" id="bene_Other" class="ms-3" name="bene_civil_status" value="Other" required> Other
-                            </div>
+                            <select class="form-control toDisableRequired" id="bene_civil_status" aria-label="bene_civil_status" name="bene_civil_status" required>
+                                <option value="" disabled selected>Please Select</option>
+                                <option id="bene_Single" value="Single">Single</option>
+                                <option id="bene_Married" value="Married">Married</option>
+                                <option id="bene_Widow/er" value="Widow/er">Widow/er</option>
+                                <option id="bene_Other" value="Other">Other</option>
+                            </select>
                             <script>
                                 let bene_status = '<%- find.bene_civil_status %>'
                                 if(bene_status == 'Single'){
-                                    document.getElementById('bene_Single').checked = true
+                                    document.getElementById('bene_Single').selected = true
                                 }else if(bene_status == 'Widow/er'){
-                                    document.getElementById('bene_Widow/er').checked = true
+                                    document.getElementById('bene_Widow/er').selected = true
                                 }else if(bene_status == 'Married'){
-                                    document.getElementById('bene_Married').checked = true
+                                    document.getElementById('bene_Married').selected = true
                                 }else if(bene_status == 'Other'){
-                                    document.getElementById('bene_Other').checked = true
+                                    document.getElementById('bene_Other').selected = true
                                 }
                             </script>
                         </div>

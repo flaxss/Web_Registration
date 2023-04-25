@@ -1,20 +1,47 @@
-<%- include('include/head') %> 
+    <%- include('include/header') %>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/admin_home.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Edit</title>
 </head>
 <body>
+    <%- include('include/main_sidebar') %>
     <main class="main">
-        <%- include('include/nav_link') %>
         <div class="main-content">
-            <div class="content-home">
+            <!-- modal para sa post announcement -->
+            <div class="create_post form form col-lg">
+                <div class="modal fade" id="create-post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/a/post-announcement" method="POST">
+                                    <input class="form-control" type="text" name="header" placeholder="Header" required>
+                                    <textarea class="form-control" name="post" id="" cols="30" rows="3" placeholder="Content" required></textarea>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-outline-success">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%- include('include/main_top_nav') %>
+            <div class="edit-post">
+                <!-- update form nung post / hindi ito modal -->
                 <div class="create_post form form col-lg">
                     <form action="/a/<%- findPost.id %>/edit-post?_method=PATCH" method="POST" class="form">
                         <div class="form-control">
                             <textarea class="form-control" type="text" name="header" placeholder="Header" required><%- findPost.header %></textarea>
                         </div>
                         <div class="form-control">
-                            <textarea class="form-control" name="post" id="" cols="50" rows="10" placeholder="Content" required><%- findPost.post %></textarea>
+                            <textarea class="form-control" name="post" id="" cols="50" rows="15" placeholder="Content" required><%- findPost.post %></textarea>
                         </div>
-                        <button type="submit" class="form-control btn btn-light">update post</button>
+                        <button type="submit" class="form-control btn btn-success m-1">update post</button>
                     </form>
                 </div>
             </div>

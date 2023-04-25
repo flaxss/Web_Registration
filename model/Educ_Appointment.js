@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+const mongoosePaginate = require('mongoose-paginate-v2')
 const educationAppointmentSchema = new mongoose.Schema({
     status: {
         type: String,
@@ -206,6 +207,7 @@ const educationAppointmentSchema = new mongoose.Schema({
     }
 });
 
+educationAppointmentSchema.plugin(mongoosePaginate)
 // module.exports = mongoose.model('Appointment', appointmentSchema)
 
 const Educ_Appointment = mongoose.model('Educ_Appointment', educationAppointmentSchema)

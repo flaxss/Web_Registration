@@ -1,0 +1,38 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+main{
+    width: 80vw;
+    height: 100vh;
+}
+nav{
+    /* background-color: #2B7858; */
+    height: 10vh;
+    width: 100%;
+}
+.main-content{
+    display: flex;
+}
+.view-post{
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 70%;
+    padding: 8px;
+}
+.edit-post{
+    height: 100vh;
+    width: 70%;
+    padding: 8px;
+}
+.side-bar{
+    width: 30%;
+    height: 100vh;
+}
+.even-list{
+    height: 70vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}

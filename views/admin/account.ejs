@@ -1,60 +1,62 @@
-<%- include('include/head') %> 
+    <%- include('include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Accounts</title>
 </head>
 <body>
+    <%- include('include/main_sidebar') %>
     <main class="main">
-        <%- include('include/nav_link') %> 
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <button type="button" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#createAccount">Add Account</button>
+            <%- include('include/account_form') %> 
+            <a href="/a/account-archive" class="btn btn-outline-danger mx-2">account archive</a>
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Account</li>
+            </ol>
+        </div>
         <div class="main-content">
-            <div class="content-table">
-                <nav class="navbar bg-body-tertiary p-0">
-                    <button type="button" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#createAccount">Create Account</button>
-                    <%- include('include/account_form') %> 
-                    <a href="/a/account-archive" class="btn btn-outline-danger mx-2">account archive</a>
-                </nav>
-                <div class="table-responsive">
-                    <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
-                        <thead style="background-color: #EEF1F6;">
-                            <tr>
-                                <th scope="col">Owner</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Contact No.</th>
-                                <th scope="col">Account Type</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% viewAccounts.forEach(accounts => { %>
-                                <tr>
-                                    <td scope="row"><%- accounts.firstname %> <%- accounts.middlename %> <%- accounts.lastname %></td>
-                                    <td scope="row"><%- accounts.email %></td>
-                                    <td scope="row"><%- accounts.contact %></td>
-                                    <td scope="row"><%- accounts.accountType %></td>
-                                    <td scope="row"><%- accounts.status %> </td>
-                                    <td scope="row" class="d-flex align-items-center justify-content-center gap-2">
-                                        <% if(accounts.status == 'inactive') { %>
-                                            <form action="/a/accounts/<%- accounts._id %>/enable?_method=PATCH" method="POST">
-                                                <button type="submit" onclick="enable()" class="btn btn-success">enable</button>
-                                            </form>
-                                        <% }else{ %>
-                                            <form action="/a/accounts/<%- accounts._id %>/disable?_method=PATCH" method="POST">
-                                                <button type="submit" onclick="disable()" class="btn btn-warning">disable</button>
-                                            </form>
-                                        <% } %> 
-                                        <form action="/a/accounts/<%- accounts._id %>/archive?_method=PATCH" method="POST">
-                                            <button type="submit" class="btn btn-danger">remove</button>
-                                        </form>
-                                    </td>
-                                </tr> 
-                            <% }) %>
-                        </tbody>
-                    </table>
-                    <% if(viewAccounts == '') { %>
-                        <p class="text-center">Currently no Account</p>
-                    <% }%> 
-                </div>
-            </div>
-            <!-- footer -->
+            <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
+                <thead style="background-color: #EEF1F6;">
+                    <tr>
+                        <th scope="col">Owner</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Contact No.</th>
+                        <th scope="col">Account Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% viewAccounts.forEach(accounts => { %>
+                        <tr>
+                            <td scope="row"><%- accounts.firstname %> <%- accounts.middlename %> <%- accounts.lastname %></td>
+                            <td scope="row"><%- accounts.email %></td>
+                            <td scope="row"><%- accounts.contact %></td>
+                            <td scope="row"><%- accounts.accountType %></td>
+                            <td scope="row"><%- accounts.status %> </td>
+                            <td scope="row" class="d-flex align-items-center justify-content-center gap-2">
+                                <% if(accounts.status == 'inactive') { %>
+                                    <form action="/a/accounts/<%- accounts._id %>/enable?_method=PATCH" method="POST">
+                                        <button type="submit" onclick="enable()" class="btn btn-success">enable</button>
+                                    </form>
+                                <% }else{ %>
+                                    <form action="/a/accounts/<%- accounts._id %>/disable?_method=PATCH" method="POST">
+                                        <button type="submit" onclick="disable()" class="btn btn-warning">disable</button>
+                                    </form>
+                                <% } %> 
+                                <form action="/a/accounts/<%- accounts._id %>/archive?_method=PATCH" method="POST">
+                                    <button type="submit" class="btn btn-danger">remove</button>
+                                </form>
+                            </td>
+                        </tr> 
+                    <% }) %>
+                </tbody>
+            </table>
+            <% if(viewAccounts == '') { %>
+                <p class="text-center">Currently no Account</p>
+            <% }%> 
         </div>
     </main>
 </body>

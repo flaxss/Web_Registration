@@ -10,7 +10,6 @@ const educationConfirmSchema = new mongoose.Schema({
         default: function(){
             return new Date().getFullYear().toString() + new Date().getTime().toString()
         },
-        unique: true,
     },
     service: {
         type: String,
@@ -37,7 +36,7 @@ const educationConfirmSchema = new mongoose.Schema({
         default: function(){
             return `${this.firstname} ${this.middlename} ${this.lastname} ${this.exname}`
         },
-        unique: true,
+        // unique: true,
         uppercase: true
     },
     email: {
@@ -97,6 +96,12 @@ const educationConfirmSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
+        default: function(){
+            const birthdate = new Date(this.date_of_birth);
+            const differenceMs = Date.now() - birthdate.getTime();
+            const age = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 365));
+            return age
+        }
     },
     sex: {
         type: String,

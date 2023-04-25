@@ -1,87 +1,79 @@
-<%- include('include/head') %>
-<!-- <script src="/js/index.global.min.js"></script> -->
-    <title>Admin | Home</title>
+    <%- include('include/header') %>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/admin_home.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
+    <title>Home</title>
 </head>
 <body>
+    <%- include('include/main_sidebar') %>
     <main class="main">
-        <%- include('include/nav_link') %>
         <div class="main-content">
-            <div class="content-home">
-                <!-- <nav class="navbar bg-body-tertiary p-0">
-                </nav> -->
-                <div class="table-div">
-                    <div class="create_post form form col-lg">
-                        <!-- button for modal -->
-                        <!-- <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#create-post">Post</button> -->
-                        <!-- modal -->
-                        <div class="modal fade" id="create-post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- modal para sa post announcement -->
+            <div class="create_post form form col-lg">
+                <div class="modal fade" id="create-post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/a/post-announcement" method="POST">
+                                    <input class="form-control" type="text" name="header" placeholder="Header" required>
+                                    <textarea class="form-control" name="post" id="" cols="30" rows="3" placeholder="Content" required></textarea>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-outline-success">Post</button>
                                     </div>
-                                    <div class="modal-body">
-                                        <form action="/a/post-announcement" method="POST">
-                                            <input class="form-control" type="text" name="header" placeholder="Header" required>
-                                            <textarea class="form-control" name="post" id="" cols="30" rows="3" placeholder="Content" required></textarea>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-outline-success">Save changes</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
-                        <!-- <form action="/a/post-announcement" method="POST" class="form">
-                            <div class="form-control">
-                                <input class="form-control" type="text" name="header" placeholder="Header" required>
-                            </div>
-                            <div class="form-control">
-                                <textarea class="form-control" name="post" id="" cols="30" rows="3" placeholder="Content" required></textarea>
-                            </div>
-                            <button type="submit" class="form-control btn btn-light">create post</button>
-                        </form> -->
-                    </div>
-                    <div class="view-post">
-                        <% renderPost.forEach((post) => { %>
-                            <div class="content" style="background-color: rgb(137, 182, 139); margin-top: 10px; margin-bottom: 10px;  padding: 10px;">
-                                <p>posted at
-                                    <% const today = post.createdAt %>
-                                    <% const f = new Intl.DateTimeFormat('en-us', { dateStyle: 'full' }) %>
-                                    <%- f.format(today) %> 
-                                    by <%- post.author %>
-                                </p>
-                                <h2>ANNOUNCEMENT</h2>
-                                <div class="a">
-                                    <div class="b">
-                                        <h2><strong>Magandang Araw, Treceño!</strong></h2>
-                                        <p><strong><%- post.header %></strong></p>
-                                        <p><%- post.post %></p>
-                                    </div>
-                                </div>
-                                <div class="c">
-                                    <ul>
-                                        <li>
-                                            <span>last edit:
-                                                <%const eTime = post.updatedAt %>
-                                                <% const newTime = new Intl.DateTimeFormat('en-us', { dateStyle: 'full' }) %>
-                                                <%- newTime.format(eTime) %> 
-                                            </span>
-                                            <% if(post.editor != 'n/a') { %>
-                                                <span>edited by: <%- post.editor %> </span>
-                                            <% }%>
-                                            <a href="/a/<%- post.id %>/edit-post">edit post</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        <% }) %>
                     </div>
                 </div>
+            </div>
+            <%- include('include/main_top_nav') %>
+            <div class="view-post">
+                <% renderPost.forEach((post) => { %>
+                    <div class="content border border-dark-subtle p-4 rounded mb-2">
+                        <p style="font-size: .8rem;">posted at
+                            <% const today = post.createdAt %>
+                            <% const f = new Intl.DateTimeFormat('en-us', { dateStyle: 'full' }) %>
+                            <%- f.format(today) %> 
+                            by <%- post.author %>
+                        </p>
+                        <h5>ANNOUNCEMENT</h5>
+                        <div>
+                            <p style="margin-top: -10px; font-size: .8rem;">Magandang Araw, Treceño!</p>
+                            <p class="text-center mt-4 fw-bold" style="text-align: justify; font-size: .9rem; margin-bottom: 5px;"><%- post.header %></p>
+                            <p style="text-align: justify; font-size: .8rem;"><%- post.post %></p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <span style="font-size: .8rem;">last edit:
+                                        <%const eTime = post.updatedAt %>
+                                        <% const newTime = new Intl.DateTimeFormat('en-us', { dateStyle: 'full' }) %>
+                                        <%- newTime.format(eTime) %> 
+                                    </span>
+                                    <% if(post.editor != 'n/a') { %>
+                                        <span>edited by: <%- post.editor %> </span>
+                                    <% }%>
+                                    <a href="/a/<%- post.id %>/edit-post"  style="font-size: .8rem;">edit post</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
             <%- include('include/side_bar') %>
         </div>
     </main>
 </body>
 </html>
+
+<% let message =  messages %>
+<script>
+    let message = '<%- message %>'
+    if(message.length > 0){
+        alert(message)
+    }
+</script>

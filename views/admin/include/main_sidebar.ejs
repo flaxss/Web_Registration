@@ -1,0 +1,64 @@
+<div class="sidebar" style="display: block; font-family: sans-serif;">
+    <div class="menu mt-4">
+        <div class="d-flex justify-content-center align-items-center" style="flex-direction: column;">
+            <img src="/<%- user.img_name %>" alt="" style="background-color: azure; border-radius: 50%; width: 120px; height: 120px; padding: 10px;">
+            <span class="mt-2 text-white fs-4"><%- user.firstname[0] %><%- user.lastname[0] %></span>
+        </div>
+        <div class="item"><a href="/a">HOME</a></div>
+        <div class="item" onmouseover="hoverAppointment()" onmouseleave="unhoverAppointment()">
+            <span class="dropdown" >APPOINTMENT &RightArrow;</span>
+            <div class="sub-menu" id="appointment" onmouseover="hoverAppointment()" onmouseleave="unhoverAppointment()">
+                <a href="/a/appointment" class="sub-item">EDUCATIONAL ASSISTANCE</a>
+            </div>
+        </div>
+        <div class="item" onmouseover="hoverApplication()" onmouseleave="unhoverApplication()">
+            <span class="dropdown" >APPLICATION &RightArrow;</span>
+            <div class="sub-menu" id="application" onmouseover="hoverApplication()" onmouseleave="unhoverApplication()">
+                <a href="/a/application-educ-assistance" class="sub-item">EDUCATIONAL ASSISTANCE</a>
+                <a href="/a/application-burial-assistance" class="sub-item">BURIAL ASSISTANCE</a>
+                <a href="/a/application-emergency-assistance" class="sub-item">EMERGENCY ASSISTANCE</a>
+                <a href="/a/application-medical-assistance" class="sub-item">MEDICAL ASSISTANCE</a>
+                <a href="/a/application-transportation-assistance" class="sub-item">TRANSPORTATION ASSISTANCE</a>
+            </div>
+        </div>
+        <div class="item" onmouseover="hoverRegistration()" onmouseleave="unhoverRegistration()">
+            <span class="dropdown">OFFLINE REGISTRATION &RightArrow;</span>
+            <div class="sub-menu" id="registration" onmouseover="hoverRegistration()" onmouseleave="unhoverRegistration()">
+                <a href="/a/register/burial-assistance/form" class="sub-item">BURIAL ASSISTANCE</a>
+                <a href="/a/register/emergency-shelter-assistance/form" class="sub-item">EMERGENCY ASSISTANCE</a>
+                <a href="/a/register/medical-assistance/form" class="sub-item">MEDICAL ASSISTANCE</a>
+                <a href="/a/register/transportation-assistance/form" class="sub-item">TRANSPORTATION ASSISTANCE</a>
+            </div>
+        </div>
+        <div class="item" onmouseover="hoverRecords()" onmouseleave="unhoverRecords()">
+            <span class="dropdown">RECORDS &RightArrow;</span>
+            <div class="sub-menu" id="records" onmouseover="hoverRecords()" onmouseleave="unhoverRecords()">
+                <a href="/a/records/educational-assistance" class="sub-item">EDUCATIONAL ASSISTANCE</a>
+                <a href="/a/records/burial-assistance" class="sub-item">BURIAL ASSISTANCE</a>
+                <a href="/a/records/emergency-shelter-assistance" class="sub-item">EMERGENCY ASSISTANCE</a>
+                <a href="/a/records/medical-assistance" class="sub-item">MEDICAL ASSISTANCE</a>
+                <a href="/a/records/transportation-assistance" class="sub-item">TRANSPORTATION ASSISTANCE</a>
+            </div>
+        </div>
+        <% if(user.accountType != 'staff') { %>
+            <div class="item"><a href="/a/accounts">ACCOUNTS</a></div>
+        <% } %>
+        <!-- <div class="item mt-5">
+            <div class="sub-menu" style="height: fit-content; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <a class="sub-item text-center" href="/a/settings">My Profile</a>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="sub-item text-white btn btn-outline-light">Logout</button>
+                </form>
+            </div>
+        </div> -->
+    </div>
+    <div class="mt-2">
+        <div style="height: fit-content; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <a class="btn text-white" href="/a/settings">My Profile</a>
+            <form action="/logout" method="POST">
+                <button type="submit" class="text-white btn btn-outline-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/hover.js"></script>

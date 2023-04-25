@@ -1,0 +1,38 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+main{
+    width: 80vw;
+    height: 100vh;
+}
+nav{
+    background-color: #2B7858;
+    height: 10vh;
+    width: 100%;
+}
+.main-content{
+    height: 85vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-size: .9rem;
+}
+
+/* para sa lahat ng content ng admin maliban sa content ng home admin */
+.container{
+    width: 80vw;
+    overflow-x:auto;
+}
+/* para sa lahat ng content ng admin maliban sa content ng home admin */
+
+.actions{
+    display: flex;
+    flex-direction: row;
+}
+.actions button, .actions a{
+    padding: 4px;
+    width: fit-content;
+    
+    font-size: .9rem;
+}

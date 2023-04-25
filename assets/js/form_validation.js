@@ -61,7 +61,7 @@ function copyInfo(){
         document.querySelector("[name='bene_middlename']").removeAttribute("required")
         document.querySelector("[name='bene_exname']").removeAttribute("required")
         document.querySelector("[name='bene_birthdate']").removeAttribute("required")
-        document.querySelector("[name='bene_age']").removeAttribute("required")
+        // document.querySelector("[name='bene_age']").removeAttribute("required")
         document.querySelector("[name='bene_sex']").removeAttribute("required")
         document.querySelector("[name='bene_contact_number']").removeAttribute("required")
         document.querySelector("[name='bene_civil_status']").removeAttribute("required")
@@ -75,25 +75,10 @@ function copyInfo(){
         document.querySelector("[name='bene_middlename']").value = document.querySelector("[name='middlename']").value
         document.querySelector("[name='bene_exname']").value = document.querySelector("[name='exname']").value
         document.querySelector("[name='bene_birthdate']").value = document.querySelector("[name='birthdate']").value
-        document.querySelector("[name='bene_age']").value = document.querySelector("[name='age']").value
-
-        if(document.getElementById('male').checked){
-            document.getElementById('bene_male').checked = true
-        }else if(document.getElementById('female').checked){
-            document.getElementById('bene_female').checked = true
-        }
+        // document.querySelector("[name='bene_age']").value = document.querySelector("[name='age']").value
+        document.querySelector("[name='bene_sex']").value = document.querySelector("[name='sex']").value
         document.querySelector("[name='bene_contact_number']").value = document.querySelector("[name='contact_number']").value
-
-        if(document.getElementById('civil_status_single').checked){
-            document.getElementById('bene_civil_status_single').checked = true
-        }else if(document.getElementById('civil_status_widow').checked){
-            document.getElementById('bene_civil_status_widow').checked = true
-        }else if(document.getElementById('civil_status_married').checked){
-            document.getElementById('bene_civil_status_married').checked = true
-        }else if(document.getElementById('civil_status_other').checked){
-            document.getElementById('bene_civil_status_other').checked = true
-        }
-
+        document.querySelector("[name='bene_civil_status']").value = document.querySelector("[name='civil_status']").value
         document.querySelector("[name='bene_street']").value = document.querySelector("[name='street']").value
         document.querySelector("[name='bene_brgy']").value = document.querySelector("[name='brgy']").value
         document.querySelector("[name='bene_municipal']").value = document.querySelector("[name='municipal']").value

@@ -1,4 +1,6 @@
-<%- include('../include/head') %>
+<%- include('../include/header') %>
+<link rel="stylesheet" href="/css/admin_view_form.css">
+<link rel="stylesheet" href="/css/side_bar.css">
 <title>Preview</title>
 <link rel="stylesheet" href="/css/educ-temp.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
@@ -22,10 +24,11 @@
 </script>
 </head>
 <body>
+    <%- include('../include/main_sidebar') %>
     <main class="main">
-        <%- include('../include/nav_link') %>
+        <%- include('../include/main_top_nav') %>
         <div class="main-content">
-            <div class="container">
+            <div class="container col-md-12 view-form">
                 <div style="text-align: center;">
                     <button id="download" class="btn btn-success">Download PDF</button>
                 </div>
@@ -103,18 +106,10 @@
                                     <% } %>
                                 </td>
                                 <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
-                                    <% if (find.spouse_fname !== '') { %>
-                                        <%- find.spouse_fname %>
-                                    <% }else { %>
-                                        -
-                                    <% } %>
+                                    <%- find.spouse_fname %>
                                 </td>
                                 <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
-                                    <% if (find.spouse_mname !== '') { %>
-                                        <%- find.spouse_mname %>
-                                    <% }else { %>
-                                        -
-                                    <% } %>
+                                    <%- find.spouse_mname %>
                                 </td>
                                 <td rowspan="2"  style="width:25%; border-bottom: 1px solid #000; ">OCCUPATION</td>
                             </tr>
@@ -125,9 +120,19 @@
                             </tr>
                             <tr>
                                 <td rowspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">MOTHER'S NAME</td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.mother_lname %></td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.mother_fname %></td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;"><%- find.mother_mname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <% if (find.mother_lname !== '') { %>
+                                        <%- find.mother_lname %>
+                                    <% }else { %>
+                                        -
+                                    <% } %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <%- find.mother_fname %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;">
+                                    <%- find.mother_mname %>
+                                </td>
                                 <td rowspan="2"  style="border-bottom: 1px solid #000; ">OCCUPATION</td>
                             </tr>
                             <tr style="text-align: center;">
@@ -137,9 +142,19 @@
                             </tr>
                             <tr>
                                 <td rowspan="2" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">FATHER'S NAME</td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.father_lname %> <%- find.father_exname %></td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;"><%- find.father_fname %></td>
-                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;"><%- find.father_mname %></td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <% if (find.father_lname !== '') { %>
+                                        <%- find.father_lname %>
+                                    <% }else { %>
+                                        -
+                                    <% } %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align:center;">
+                                    <%- find.father_fname %>
+                                </td>
+                                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; text-align: center;">
+                                    <%- find.father_mname %>
+                                </td>
                                 <td rowspan="2"  style=" border-bottom: 1px solid #000;">OCCUPATION</td>
                             </tr>
                             <tr style="text-align:center">
@@ -315,7 +330,6 @@
                     </div>
                 </form>
             </div>
-            <!-- side-bar -->
         </div>
     </main>
   </body>

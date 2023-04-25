@@ -14,6 +14,14 @@ const Mailgen = require('mailgen')
 const nodemailer = require('nodemailer')
 const Educ_Registration = require('../model/Educ_Registration')
 
+// calculate age
+function birthdate(birth){
+    const birthdate = new Date(birth);
+    const differenceMs = Date.now() - birthdate.getTime();
+    const age = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 365));
+    return age
+}
+
 // parse date
 function dateFormat(date){
     let day = moment(date).format('DD')
@@ -184,7 +192,8 @@ module.exports.college_assistance_form_post = async(req, res) => {
             date_of_birth: req.body.date_of_birth,
             place_of_birth: req.body.place_of_birth,
             citizenship: req.body.citizenship,
-            age: req.body.age,
+            // age: req.body.age,
+            // age: `${birthdate(req.body.date_of_birth)}`,
             sex: req.body.sex,
             civil_status: req.body.civil_status,
             contact_number: req.body.contact_number,
@@ -420,7 +429,8 @@ module.exports.college_assistance_confirm = async(req, res) => {
         })
     } catch (err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 
@@ -432,16 +442,19 @@ module.exports.college_assistance_preview = async(req, res) => {
             let date_of_birth = moment(find.date_of_birth).format('MMMM DD, YYYY')
             res.render('user/educ/form/college_preview', {find, date_of_birth})
         }else{
-            res.status(404).render('err/notfound')
+            // res.status(404).render('err/notfound')
+            res.status(404).render('user/nolonger_access')
         }
     } catch (err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 
 module.exports.college_assistance_update_get = async(req, res) => {
     const id = req.params.id
+    console.log('dito')
     try {
         const appointment = await Educ_Appointment.findById(id)
         let formatted = dateFormat(appointment.appointment_date)
@@ -451,12 +464,14 @@ module.exports.college_assistance_update_get = async(req, res) => {
         res.render('user/educ/form/update_form/college_form', {events, appointment, formatted})
     } catch (err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 module.exports.college_assistance_update_post = async(req, res) => {
     const id = req.params.id
     console.log(req.body)
+    await Educ_Appointment.findByIdAndDelete(id)
     try {
         const create = await Educ_Appointment({
             service: req.body.service,
@@ -466,6 +481,7 @@ module.exports.college_assistance_update_post = async(req, res) => {
             middlename: req.body.middlename,
             exname: req.body.exname,
             email: req.body.email,
+            event_date: req.body.event_date,
             r_street: req.body.r_street,
             r_brgy: req.body.r_brgy,
             r_municipal: req.body.r_municipal,
@@ -584,7 +600,7 @@ module.exports.medical_assistance_exist = async(req, res) => {
         res.render('user/respond', {respond})
     } catch (err) {
         console.log(err.message)
-            res.status(404).render('err/notfound')
+        res.status(404).render('err/notfound')
     }
 }
 
@@ -593,7 +609,8 @@ module.exports.medical_assistance_landing = async(req, res) => {
     try {
         const register = await AICS_Confirmation.findById(id)
         if(!register){
-            return res.status(404).render('err/notfound')
+            // return res.status(404).render('err/notfound')
+            return res.status(404).render('user/nolonger_access')
         }
         res.render('user/warning', {register})
     } catch (err) {
@@ -661,7 +678,8 @@ module.exports.medical_assistance_confirm = async(req, res) => {
         })
     } catch (err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 // preview the submitted form
@@ -675,7 +693,8 @@ module.exports.medical_assistance_preview = async(req, res) => {
             const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
             return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
         }
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }catch(err){
         res.status(404).render('err/notfound')
     }
@@ -691,7 +710,8 @@ module.exports.medical_assistance_update_get = async(req, res) => {
             let bene_formatted = dateFormat(find.bene_birthdate)
             return res.render('user/aics/form/update_form/med_update_form', {find, formatted, bene_formatted})
         }else{
-            return res.status(404).render('err/notfound')
+            // return res.status(404).render('err/notfound')
+            return res.status(404).render('user/nolonger_access')
         }
     }catch(err){
         console.log(err.message)
@@ -772,12 +792,13 @@ module.exports.burial_assistance_landing = async(req, res) => {
     try {
         const register = await AICS_Confirmation.findById(id)
         if(!register){
-            return res.status(404).render('err/notfound')
+            // return res.status(404).render('err/notfound')
+            return res.status(404).render('user/nolonger_access')
         }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
-            res.status(404).render('err/notfound')
+        res.status(404).render('err/notfound')
     }
 }
 
@@ -840,7 +861,8 @@ module.exports.burial_assistance_confirm = async(req, res) => {
         })
     }catch(err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 
@@ -853,11 +875,12 @@ module.exports.burial_assistance_preview = async(req, res) => {
             const formatted = moment(find.birthdate).format('MMMM DD, YYYY')
             const bene_formatted = moment(find.bene_birthdate).format('MMMM DD, YYYY')
             return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
-            // return res.send('successfully registered')
         }
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }catch(err){
         res.status(404).render('err/notfound')
+        // res.status(404).render('user/nolonger_access')
     }
 }
 // get the old data then update
@@ -953,7 +976,8 @@ module.exports.transportation_assistance_landing = async(req, res) => {
     try {
         const register = await AICS_Confirmation.findById(id)
         if(!register){
-            return res.status(404).render('err/notfound')
+            // return res.status(404).render('err/notfound')
+            return res.status(404).render('user/nolonger_access')
         }
         res.render('user/warning', {register})
     } catch (err) {
@@ -1021,7 +1045,8 @@ module.exports.transportation_assistance_confirm = async(req, res) => {
         })
     }catch(err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 
@@ -1035,7 +1060,8 @@ module.exports.transportation_assistance_preview = async(req, res) => {
             return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
             // return res.send('successfully registered')
         }
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }catch(err){
         res.status(404).render('err/notfound')
     }
@@ -1121,7 +1147,7 @@ module.exports.emergency_shelter_assistance_exist = async(req, res) => {
         res.render('user/respond', {respond})
     } catch (err) {
         console.log(err.message)
-            res.status(404).render('err/notfound')
+        res.status(404).render('err/notfound')
     }
 }
 
@@ -1130,7 +1156,8 @@ module.exports.emergency_shelter_assistance_landing = async(req, res) => {
     try {
         const register = await AICS_Confirmation.findById(id)
         if(!register){
-            return res.status(404).render('err/notfound')
+            // return res.status(404).render('err/notfound')
+            return res.status(404).render('user/nolonger_access')
         }
         res.render('user/warning', {register})
     } catch (err) {
@@ -1198,7 +1225,8 @@ module.exports.emergency_shelter_assistance_confirm = async(req, res) => {
         })
     }catch(err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }
 }
 
@@ -1212,7 +1240,8 @@ module.exports.emergency_shelter_assistance_preview = async(req, res) => {
             return res.render('user/aics/aics_preview', {find, formatted, bene_formatted})
             // return res.send('successfully registered')
         }
-        res.status(404).render('err/notfound')
+        // res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
     }catch(err){
         res.status(404).render('err/notfound')
     }

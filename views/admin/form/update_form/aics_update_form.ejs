@@ -1,13 +1,24 @@
-<%- include('../../../include/header') %>
-    <title>Burial Assistance</title>
+<%- include('../../include/header') %>
+<link rel="stylesheet" href="/css/admin_app.css">
+<link rel="stylesheet" href="/css/side_bar.css">
+    <title>Burial Reg Form</title>
 </head>
 <body>
-    <%- include('../../../include/nav') %>
-    <main>
-        <div class="container my-2 p-2">
-            <h1 class="text-center">Update Response</h1>
-            <div class="main-content">
-                <form class="container-xl bg-light p-2" action="/transportation-assistance/<%- find.id %>/update-response" method="POST">
+    <%- include('../../include/main_sidebar') %>
+    <main class="main">
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <h1 class="text-center w-100">Registration Form</h1>
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Application</li>
+                <li class="breadcrumb-item active"><%- find.service %></li>
+                <li class="breadcrumb-item active" aria-current="page">Update Form</li>
+            </ol>
+        </div>
+        <div class="main-content">
+            <div class="pt-2 py-2 p-5 mb-3">
+                <form action="/a/application/aics-assistance/<%- find.id %>/update?_method=PATCH" method="POST" class="container-xl col-md-12 bg-light shadow pt-3 pb-3 mt-3">
                     <h4>IMPORMASYON UKOL SA KLIYENTE (Client's Identifying Information)</h4>
                     <div class="row mb-3 g-1">
                         <input type="text" name="service" value="<%- find.service %>" hidden>
@@ -74,14 +85,13 @@
                             <select class="form-control" id="civil_status" aria-label="civil_status" name="civil_status" required>
                                 <option value="" disabled selected>Please Select</option>
                                 <option id="Single" value="Single">Single</option>
-                                <option id="Married" value="Married">Married</option>
-                                <option id="Widow/er" value="Widow/er">Widow/er</option>
+                                <option id="Widow/er" value="Married">Married</option>
+                                <option id="Married" value="Widow/er">Widow/er</option>
                                 <option id="Other" value="Other">Other</option>
                             </select>
                         </div>
                         <script>
                             let status = '<%- find.civil_status %>'
-                            console.log(status)
                             if(status == 'Single'){
                                 document.getElementById('Single').selected = true
                             }else if(status == 'Widow/er'){
@@ -262,8 +272,8 @@
                             <select class="form-control toDisableRequired" id="bene_civil_status" aria-label="bene_civil_status" name="bene_civil_status" required>
                                 <option value="" disabled selected>Please Select</option>
                                 <option id="bene_Single" value="Single">Single</option>
-                                <option id="bene_Married" value="Married">Married</option>
-                                <option id="bene_Widow/er" value="Widow/er">Widow/er</option>
+                                <option id="bene_Widow/er" value="Married">Married</option>
+                                <option id="bene_Married" value="Widow/er">Widow/er</option>
                                 <option id="bene_Other" value="Other">Other</option>
                             </select>
                             <script>
@@ -348,9 +358,32 @@
                             </select>
                         </div>
                     </div>
-                    <br><br>
                     <h4>KOMPOSISYON NG PAMILYA</h4>
-                    <div class="row mb-3 text-center">
+                    <div>
+                        <label for="">Family Members</label>
+                    </div>
+                    <% find.family_name.forEach((data, index) => { %>
+                        <div>
+                            <label><%- index + 1 %>.</label>
+                        </div>
+                        <div id="familyMember" >
+                            <div class="row mb-2">
+                                <div class="col-md-4 mb-1">  
+                                    <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)" value="<%- find.family_name[index] %>">
+                                </div>
+                                <div class="col-md-2 mb-1">  
+                                    <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)" value="<%- find.family_age[index] %>">
+                                </div>
+                                <div class="col-md-3 mb-1"> 
+                                    <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)" value="<%- find.family_occupation[index] %>">
+                                </div>
+                                <div class="col-md-3 mb-1"> 
+                                    <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod" value="<%- find.family_salary[index] %>">
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                    <!-- <div class="row mb-3 text-center">
                         <div class="col-md-4">  
                             <label for="c-name" class="form-label">Name</label>
                             <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="1" value="<%- find.family_name[0] %>">
@@ -383,12 +416,59 @@
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="4" value="<%- find.family_salary[3] %>">
                             <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="5" value="<%- find.family_salary[4] %>">
                         </div>
+                    </div> -->
+                    
+                    <!-- <h4 class="mt-1">KOMPOSISYON NG PAMILYA</h4>
+                    <div>
+                        <label for="">Family Members</label>
+                    </div>
+                    <div>
+                        <label>1.</label>
+                    </div>
+                    <div id="familyMember" >
+                        <div class="row mb-2">
+                            <div id="addNum"></div>
+                            <div class="col-md-4 mb-1">  
+                                <input type="text" class="form-control textOnly" id="c-name" name="family_name" placeholder="Buong Pangalan (Full Name)">
+                            </div>
+                            <div class="col-md-2 mb-1">  
+                                <input type="number" class="form-control" id="c-age" name="family_age" placeholder="Edad (Age)">
+                            </div>
+                            <div class="col-md-3 mb-1"> 
+                                <input type="text" class="form-control textOnly" id="c-occupation" name="family_occupation" placeholder="Trabaho (Occupation)">
+                            </div>
+                            <div class="col-md-3 mb-1"> 
+                                <input type="number" class="form-control" id="c-salary" name="family_salary" placeholder="Buwanang Sahod">
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div id="additionalFamilyMember"></div>
+                    <div class="row">
+                        <div id="add" class="col-md-3 mb-1" >
+                            <a class="btn btn-outline-success w-100" onclick="addFamMem()">+ add family member</a>
+                        </div>
+                        <div id="del" class="col-md-3 mb-3" style="display: none;">
+                            <a class="btn btn-outline-success  w-100" onclick="delFamMem()">- reduce family member</a>
+                        </div>
+                    </div> -->
+                    <div class="mb-2">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions.
+                          </label>
+                          <div class="invalid-feedback">
+                            You must agree before submitting.
+                          </div>
+                        </div>
                     </div>
                     <button type="submit" class="form-control btn btn-success">submit</button>
                 </form>
             </div>
         </div>
     </main>
-    <%- include('../../../include/footer') %>
-</body>
+  </body>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/input-query.js"></script>
+  <!-- <script src="/js/add-delete.js"></script> -->
 </html>

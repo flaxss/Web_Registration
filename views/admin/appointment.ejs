@@ -1,57 +1,97 @@
-<%- include('include/head') %> 
+    <%- include('include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Appointment</title>
 </head>
 <body>
+    <%- include('include/main_sidebar') %>
     <main class="main">
-        <%- include('include/nav_link') %>
-        <div class="main-content">
-            <div class="content-table">
-                <%- include('include/appointment_search') %>
-                <div class="table-div">
-                    <div class="table-responsive">
-                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
-                            <thead style="background-color: #EEF1F6;">
-                                <tr class="table-responsive align-middle">
-                                    <th scope="col">Social Service</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Date of Appointment</th>
-                                    <th scope="col">Reference</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody style="background-color: #FAFBFC;">
-                                <% renderAppointment.forEach((info) => { %>
-                                    <tr class="table-responsive align-middle">
-                                        <td scope="row"><%- info.service %></td>
-                                        <td scope="row"><%- info.firstname %> <%- info.middlename %> <%- info.lastname %></td>
-                                        <td scope="row"><%- info.status %> </td>
-                                        <td scope="row"><%- info.event_date %></td>
-                                        <td scope="row"><%- info.reference %> </td>
-                                        <td scope="row">
-                                            <div class="btn-group" role="group">
-                                                <form action="/a/appointment/<%- info._id %>/accept" method="POST" class="btn-group">
-                                                    <button type="submit" onclick="accept()" class="btn btn-outline-success">accept</button>
-                                                </form>
-                                                <a href="/a/appointment/<%- info._id %>/view" class="btn btn-outline-primary">view</a>
-                                                <a href="/a/appointment/<%- info._id %>/update" class="btn btn-outline-warning">update</a>
-                                                <form action="/a/appointment/<%- info._id %>/reject?_method=DELETE" method="POST" class="btn-group">
-                                                    <button type="submit" onclick="reject()" class="btn btn-outline-danger">reject</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <% }); %>
-                            </tbody>
-                        </table>
-                        <% if(renderAppointment == false) { %>
-                            <p class="text-center">No Appointment</p>
-                        <% } %> 
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <div class="container-fluid form-control-lg p-2" style="width: 100%;">
+                <form class="d-flex" role="search" action="/a/search-appointment" method="GET">
+                    <input required class="form-control col-md-8" type="search" placeholder="search name or reference number" aria-label="Search" name="result">
+                    <button class="btn btn-outline-success me-2 ms-2" type="submit">Search</button>
+                </form>
+                
+                <% if(opt == 'activate') { %>
+                    <div>
+                        <label for="">Appointment Status</label>
+                        <button class="btn btn-outline-success" disabled>active</button>
                     </div>
-                </div>
+                <% }else if(opt == 'deactivate') { %>
+                    <div>
+                        <form action="/a/appointment-activate" method="POST">
+                            <label for="">Appointment is not active</label>
+                            <button class="btn btn-outline-success">activate</button>
+                        </form>
+                    </div>
+                <% } %>
             </div>
-            <!-- sideba=r -->
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Appointment</li>
+                <li class="breadcrumb-item active" aria-current="page">Educational Assistance</li>
+            </ol>
+        </div>
+        <div class="main-content">
+            <div class="container col-md-12">
+                <table class="table table-responsive table-hover col-sm-12" style="text-align: center;">
+                    <thead style="background-color: #EEF1F6;">
+                        <tr class="table-responsive align-middle">
+                            <th scope="col">Social Service</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date of Appointment</th>
+                            <th scope="col">Reference</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #FAFBFC;">
+                        <% renderAppointment.forEach((info) => { %>
+                            <tr class="table-responsive align-middle">
+                                <td scope="row"><%- info.service %></td>
+                                <td scope="row"><%- info.firstname %> <%- info.middlename %> <%- info.lastname %></td>
+                                <td scope="row"><%- info.status %> </td>
+                                <td scope="row"><%- info.event_date %></td>
+                                <td scope="row"><%- info.reference %> </td>
+                                <td scope="row">
+                                    <div class="actions btn-group" role="group">
+                                        <form action="/a/appointment/<%- info._id %>/accept" method="POST" class="btn-group">
+                                            <button type="submit" onclick="accept()" class="btn btn-outline-success">accept</button>
+                                        </form>
+                                        <a href="/a/appointment/<%- info._id %>/view" class="btn btn-outline-primary">view</a>
+                                        <a href="/a/appointment/<%- info._id %>/update" class="btn btn-outline-warning">update</a>
+                                        <form action="/a/appointment/<%- info._id %>/reject?_method=DELETE" method="POST" class="btn-group">
+                                            <button type="submit" onclick="reject()" class="btn btn-outline-danger">reject</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+                <% if(renderAppointment == false) { %>
+                    <p class="text-center">No Appointment</p>
+                <% }else{ %>
+                    <div aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <% if(currentPage > 1) { %>
+                                <li class="page-item"><a class="page-link" href="/a/appointment?page=<%- parseInt(currentPage - 1) %>">Previous</a></li>
+                            <% }else{ %>
+                                <li class="page-item disabled"><a class="page-link" href="/a/appointment?page=<%- parseInt(currentPage - 1) %>">Previous</a></li>
+                            <% } %>
+                            <li class="page-item"><a class="page-link" href="/a/appointment?page=<%- currentPage %>"><%- currentPage %></a></li>
+                            <% if(totalPage > currentPage) { %>
+                                <li class="page-item"><a class="page-link" href="/a/appointment?page=<%- currentPage + 1 %>">Next</a></li>
+                            <% }else{ %>
+                                <li class="page-item disabled"><a class="page-link" href="/a/appointment?page=<%- currentPage + 1 %>">Next</a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% } %> 
+            </div>
         </div>
     </main>
-  </body>
+</body>
 </html>

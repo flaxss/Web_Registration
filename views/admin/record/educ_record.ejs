@@ -1,4 +1,6 @@
-<%- include('../include/head') %> 
+    <%- include('../include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Application</title>
     <style>
         @media print{
@@ -21,83 +23,82 @@
     </style>
 </head>
 <body>
+    <%- include('../include/main_sidebar') %>
     <main class="main">
-        <%- include('../include/nav_link') %> 
-        <div class="main-content">
-            <div class="content-table">
-                <nav class="navbar bg-body-tertiary p-0">
-                    <div class="container-fluid row form-control-lg pe-0" style="width: 100%;">
-                        <div class="col-md-6 d-flex ">
-                            <a href="/a/records/educ-list" class="btn btn-outline-success">List</a>
-
-                            <button type="button" id="compile_btn" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#compile">Compile</button>
-                            <div class="modal fade" id="compile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to compile?</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <div class="container-fluid row form-control-lg pe-0" style="width: 100%;">
+                <div class="col-md-6 d-flex ">
+                    <a href="/a/records/educ-list" class="btn btn-outline-success">List</a>
+                    <button type="button" id="compile_btn" class="btn btn-outline-dark mx-2" data-bs-toggle="modal" data-bs-target="#compile">Compile</button>
+                    <div class="modal fade" id="compile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to compile?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/a/records/compile" method="POST">
+                                        <div class="form">
+                                            <label class="form-label" for="password">Confirm Password</label>
+                                            <input type="password" id="password" class="form-control mb-2" name="password" required>
                                         </div>
-                                        <div class="modal-body">
-                                            <form action="/a/records/compile" method="POST">
-                                                <div class="form">
-                                                    <label class="form-label" for="password">Confirm Password</label>
-                                                    <input type="password" id="password" class="form-control mb-2" name="password" required>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-outline-dark">Proceed</button>
-                                                </div>
-                                            </form>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-dark">Proceed</button>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex justify-content-end">
-                            <span>Current Record/s: <%- counter %></span>
-                        </div>
                     </div>
-                </nav>
-                <div class="table-div">
-                    <div class="table-responsive" id="printDiv">
-                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
-                            <thead style="background-color: #EEF1F6;">
-                                <tr class="table-responsive align-middle">
-                                    <th>#</th>
-                                    <th>Social Service</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Contact Number</th>
-                                    <th>Age</th>
-                                    <th>Sex</th>
-                                </tr>
-                            </thead>
-                            <tbody style="background-color: #FAFBFC;">
-                                <% let count = 1 %>
-                                <% render.forEach(info => { %>
-                                    <tr>
-                                        <th>#<%- count++ %></th>
-                                        <td><%- info.service %></td>
-                                        <td><%- info.firstname %> <%- info.middlename %> <%- info.lastname %></td>
-                                        <td><%- info.p_street %> <%- info.p_brgy %> <%- info.p_municipal %> <%- info.p_province %></td>
-                                        <td>+63<%- info.contact_number %></td>
-                                        <td><%- info.age %></td>
-                                        <td><%- info.sex %></td>
-                                        <!-- <td>
-                                            <input type="checkbox" name="list" value="<%- info.id %>">
-                                        </td> -->
-                                    </tr>
-                                <% }) %>
-                            </tbody>
-                        </table>
-                        <% if(render == false) { %>
-                            <p class="text-center">No Record</p>
-                        <% } %> 
-                    </div>
-                    <!-- </form> -->
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <span>Current Record/s: <%- counter %></span>
                 </div>
             </div>
-            <!-- footer -->
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Records</li>
+                <li class="breadcrumb-item active" aria-current="page">Educational Assistance</li>
+            </ol>
+        </div>
+        <div class="main-content">
+            <div class="container col-md-12">
+                <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
+                    <thead style="background-color: #EEF1F6;">
+                        <tr class="table-responsive align-middle">
+                            <th>#</th>
+                            <th>Social Service</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact Number</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #FAFBFC;">
+                        <% let count = 1 %>
+                        <% render.forEach(info => { %>
+                            <tr>
+                                <th>#<%- count++ %></th>
+                                <td><%- info.service %></td>
+                                <td><%- info.firstname %> <%- info.middlename %> <%- info.lastname %></td>
+                                <td><%- info.p_street %> <%- info.p_brgy %> <%- info.p_municipal %> <%- info.p_province %></td>
+                                <td>+63<%- info.contact_number %></td>
+                                <td><%- info.age %></td>
+                                <td><%- info.sex %></td>
+                                <!-- <td>
+                                    <input type="checkbox" name="list" value="<%- info.id %>">
+                                </td> -->
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% if(render == false) { %>
+                    <p class="text-center">No Record</p>
+                <% } %> 
+            </div>
         </div>
     </main>
 </body>

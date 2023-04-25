@@ -12,23 +12,70 @@ dotenv.config({path: 'config.env'});
 const PORT = process.env.PORT || 8080;
 // -- credentials --
 
-// -- connect to database --
-// const mongoUri = `mongodb://localhost:27017/cswdo_db`
-// mongoose.connect(mongoUri)
-//     .then((result) => {
-//         console.log('Successfully Connected To The Database');
-//         app.listen(PORT, () => {
-//             console.log(`The server is running on http://localhost:${PORT}`);
-//         })
+const AICS_Record = require('./model/AICS_Record')
+const Option = require('./model/Option');
+
+async function expiryDate(){
+    let today = new Date();
+    let expired = await AICS_Record.find({expiredAt: {$lt: today}})
+    if(expired != ''){
+        expired.forEach(async(data) => {
+            const list = new AICS_Compile({
+                service: data.service,
+                client_name: `${data.firstname} ${data.middlename} ${data.lastname} ${data.exname}`,
+                beneficiary_name: `${data.bene_firstname} ${data.bene_middlename} ${data.bene_lastname} ${data.bene_exname}`,
+                sex: data.bene_sex,
+                address: data.bene_full_address,
+                contact_number: data.bene_contact_number,
+                email: data.email,
+            })
+            list.save()
+            await AICS_Record.deleteMany({expiredAt: {$lt: today}})
+            console.log(list)
+        })
+    }
+}
+
+// auto-create option 
+async function option(){
+    const option = await Option.find()
+    if(option == ''){
+        const isActivte = await Option({
+            option: 'activate'
+        })
+        isActivte.save()
+        .then(() => console.log(`${isActivte}`,'created'))
+        .catch(err => console.log(err.message))
+    }
+}
+
+// const connectDB = async () => {
+//     try {
+//         const conn = await mongoose.connect('mongodb://localhost:27017/cswdo_db')
+//         console.log(`Successfully Connected To The Database ${conn.connection.host}`)
+//         console.log(`Successfully Connected To The Database`)
+//         expiryDate()
+//         option()
+//     } catch (err) {
+//         console.log(err.message)
+//         process.exit(1)
+//     }
+// }
+// connectDB()
+// .then(() => {
+//     app.listen(PORT, () => {
+//         console.log(`The server is running on http://localhost:${PORT}`);
 //     })
-//     .catch((err) => console.log(err));
-// -- connect to database --
+// })
+
 
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI)
         console.log(`Successfully Connected To The Database ${conn.connection.host}`)
         console.log(`Successfully Connected To The Database`)
+        expiryDate()
+        option()
     } catch (err) {
         console.log(err.message)
         process.exit(1)
@@ -40,6 +87,7 @@ connectDB()
         console.log(`The server is running on http://localhost:${PORT}`);
     })
 })
+
 
 // parse request
 app.use(express.urlencoded({extended: false}));

@@ -1,4 +1,6 @@
-<%- include('../include/head') %> 
+    <%- include('../include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>List</title>
     <style>
         @media print{
@@ -22,72 +24,77 @@
     </style>
 </head>
 <body>
+    <%- include('../include/main_sidebar') %>
     <main class="main">
-        <%- include('../include/nav_link') %> 
-        <div class="main-content">
-            <div class="content-table">
-                <nav class="navbar bg-body-tertiary p-0">
-                    <div class="container-fluid row d-flex justify-content-between flex-md-row form-control-lg pe-0" style="width: 100%;">
-                        <div class="col-md-12 d-flex ">
-                            <button class="btn btn-outline-success" onclick="printDiv('printDiv')">Create PDF</button>
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <div class="container-fluid row d-flex justify-content-between flex-md-row form-control-lg pe-0" style="width: 100%;">
+                <div class="col-md-6 d-flex ">
+                    <button class="btn btn-outline-success" onclick="printDiv('printDiv')">Create PDF</button>
 
-                            <div class="dropdown mx-2">
-                                <span class="btn btn-outline-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Date</span>
-                                <% if(date == '') { %>
-                                    <li>No list</li>
-                                <% }else{ %>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/a/records/educ-list/">All</a></li>
-                                        <% date.forEach(data => { %>
-                                            <li><a class="dropdown-item" href="/a/records/educ-list/<%- data.id %>"><%- data.createdAt %></a></li>
-                                        <% }) %>
-                                    </ul>
-                                <% } %>
-                            </div>
-
-                        </div>
-                    </div>
-                </nav>
-                <div class="table-div">
-                    <div class="table-responsive" id="printDiv">
-                        <h1 class="text-center">COLLEGE EDUCATIONAL ASSISTANCE</h1>
-                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
-                            <thead style="background-color: #EEF1F6;">
-                                <tr class="table-responsive align-middle">
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Contact Number</th>
-                                    <th>Parent Name</th>
-                                    <th>Age</th>
-                                    <th>Sex</th>
-                                    <th>Claimed</th>
-                                </tr>
-                            </thead>
-                            <tbody style="background-color: #FAFBFC;">
-                                <% let counter = 1 %>
-                                <% info.list.forEach(data => { %>
-                                    <tr>
-                                        <td><%- counter++ %></td>
-                                        <td><%- data.firstname %> <%- data.middlename %> <%- data.lastname %></td>
-                                        <td><%- data.address %></td>
-                                        <td>+63<%- data.contact_number %></td>
-                                        <td>
-                                            <p><%- data.parent_name.mother_name %></p>
-                                            <p><%- data.parent_name.father_name %></p>
-                                        </td>
-                                        <td><%- data.age %></td>
-                                        <td><%- data.sex %></td>
-                                        <td><input type="checkbox" disabled></td>
-                                    </tr>
+                    <div class="dropdown mx-2">
+                        <span class="btn btn-outline-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Date</span>
+                        <% if(date == '') { %>
+                            <li>No list</li>
+                        <% }else{ %>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/a/records/educ-list/">All</a></li>
+                                <% date.forEach(data => { %>
+                                    <li><a class="dropdown-item" href="/a/records/educ-list/<%- data.id %>"><%- data.createdAt %></a></li>
                                 <% }) %>
-                            </tbody>
-                        </table>
+                            </ul>
+                        <% } %>
                     </div>
-                    <!-- </form> -->
+                </div>
+                <div class="col-md-6 d-flex ">
+                    
                 </div>
             </div>
-            <!-- footer -->
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Records</li>
+                <li class="breadcrumb-item">Educational Assistance</li>
+                <li class="breadcrumb-item active" aria-current="page">List</li>
+            </ol>
+        </div>
+        <div class="main-content">
+            <div class="container col-md-12">
+                <div class="table-responsive" id="printDiv">
+                    <!-- <h1 class="text-center">COLLEGE EDUCATIONAL ASSISTANCE</h1> -->
+                    <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
+                        <thead style="background-color: #EEF1F6;">
+                            <tr class="table-responsive align-middle">
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Contact Number</th>
+                                <th>Parent Name</th>
+                                <th>Age</th>
+                                <th>Sex</th>
+                                <!-- <th>Claimed</th> -->
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: #FAFBFC;">
+                            <% let counter = 1 %>
+                            <% info.list.forEach(data => { %>
+                                <tr>
+                                    <td><%- counter++ %></td>
+                                    <td><%- data.firstname %> <%- data.middlename %> <%- data.lastname %></td>
+                                    <td><%- data.address %></td>
+                                    <td>+63<%- data.contact_number %></td>
+                                    <td>
+                                        <p><%- data.parent_name.mother_name %></p>
+                                        <p><%- data.parent_name.father_name %></p>
+                                    </td>
+                                    <td><%- data.age %></td>
+                                    <td><%- data.sex %></td>
+                                    <!-- <td><input type="checkbox" disabled></td> -->
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </main>
 </body>

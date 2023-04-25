@@ -1,0 +1,70 @@
+<%- include('include/header') %>
+<link rel="stylesheet" href="/css/admin_app.css">
+<link rel="stylesheet" href="/css/side_bar.css">
+    <title>AICS Assistance Application</title>
+</head>
+<body>
+    <%- include('include/main_sidebar') %>
+    <main class="main">
+        <nav class="navbar bg-body-tertiary p-0">
+            <div class="container-fluid form-control-lg p-2" style="width: 100%;">
+                <form class="d-flex" role="search" action="/a/search-application-aics" method="GET">
+                    <input required class="form-control col-md-8" type="search" placeholder="search name or reference number" aria-label="Search" name="result">
+                    <button class="btn btn-outline-success me-2 ms-2" type="submit">Search</button>
+                </form>
+                <a href="/a/application-archive" class="btn btn-outline-success">Archives</a>
+            </div>
+        </nav>
+        <div class="p-1" style="--bs-breadcrumb-divider: '>'; height: 5vh;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Application</li>
+                <li class="breadcrumb-item active" aria-current="page">Result</li>
+              </ol>
+        </div>
+        <div class="main-content">
+            <div class="container col-md-12">
+                <table class="table table-responsive table-hover col-lg-12" style="text-align: center;">
+                    <thead style="background-color: #EEF1F6;">
+                        <tr class="table-responsive align-middle">
+                            <th>Social Service</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Reference</th>
+                            <th>Contact Number</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #FAFBFC;">
+                        <% find.forEach(info => { %>
+                            <tr>
+                                <td><%- info.service %></td>
+                                <td>
+                                    <%- info.bene_firstname %> <%- info.bene_middlename %> <%- info.bene_lastname %>
+                                </td>
+                                <td><%- info.status %></td>
+                                <td><%- info.reference %></td>
+                                <td>+63<%- info.contact_number %></td>
+                                <td><%- info.email %></td>
+                                <td scope="row">
+                                    <div class="actions btn-group" role="group">
+                                        <a onclick="accept()" href="/a/application/aics-assistance/<%- info.id %>/accept" class="btn btn-outline-success">accept</a>
+                                        <a href="/a/application/aics-assistance/<%- info.id %>/view" class="btn btn-outline-primary">view</a>
+                                        <a href="/a/application/aics-assistance/<%- info.id %>/update" class="btn btn-outline-warning">update</a>
+                                        <form action="/a/application/aics-assistance/<%- info.id %>/archive?_method=PATCH" method="POST" class="btn-group">
+                                            <button class="btn btn-outline-danger">archive</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% if(find == false) { %>
+                    <p class="text-center">Not Found</p>
+                <% } %> 
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,7 +1,8 @@
 <div class="side-bar">
     <div class="create-event">
-        <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#create-post">Post Announcement</button>
-        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#add-event">
+        <button type="button" class="btn btn-outline-success m-2" style="font-size: .9rem;" data-bs-toggle="modal" data-bs-target="#create-post">Post Announcement</button>
+
+        <button type="button" class="btn btn-outline-success" style="font-size: .9rem;" data-bs-toggle="modal" data-bs-target="#add-event">
             Create Event
         </button>
         <!-- Modal -->
@@ -30,9 +31,9 @@
             </div>
         </div>
     </div>
-    <div class="even-list">
-        <table class="table table-dark table-striped" border="1px">
-            <thead>
+    <div class="even-list m-1">
+        <table class="table table-striped text-center" border="1px">
+            <thead class="table-dark" style="font-size: .8rem;">
                 <tr>
                     <th>#</th>
                     <th>Date</th>
@@ -40,7 +41,7 @@
                     <th>Remarks</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-size: .8rem;">
                 <% let counter = 1; let quota = 0 %>
                 <% events.forEach(data => { %>
                     <tr>
@@ -57,7 +58,7 @@
             <p>No Available Quota</p>
         <% } %>
     </div>
-    <h3>Remaining Quota: <%- quota %></h3>
+    <p class="m-1 fw-medium mt-2" style="font-size: 1rem;">Remaining Quota: <%- quota %></p>
 </div>
 <script>
     var today = new Date().toISOString().split('T')[0];

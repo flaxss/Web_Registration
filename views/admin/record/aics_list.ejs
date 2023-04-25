@@ -1,4 +1,6 @@
-<%- include('../include/head') %> 
+    <%- include('../include/header') %>
+    <link rel="stylesheet" href="/css/admin_app.css">
+    <link rel="stylesheet" href="/css/side_bar.css">
     <title>Application</title>
     <style>
         @media print{
@@ -14,6 +16,7 @@
             }
             #table tr{
                 text-align: center;
+                background-color: red;
             }#table td{
                 font-size: 0.6rem;
             }
@@ -21,94 +24,89 @@
     </style>
 </head>
 <body>
+    <%- include('../include/main_sidebar') %>
     <main class="main">
-        <%- include('../include/nav_link') %> 
-        <div class="main-content">
-            <div class="content-table">
-                <nav class="navbar bg-body-tertiary p-0">
-                    <div class="container-fluid row flex-md-row form-control-lg pe-0" style="width: 100%;">
-                        <div class="col-md-6 d-flex">
-                            <button class="btn btn-outline-success" onclick="printDiv('printDiv')">Create PDF</button>
-                        </div>
-                        <div class="col-md-6 d-flex justify-content-end">
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-                            
-                            <form action="" class="d-flex">
-                                <select name="month" id="" class="form-select " required>
-                                    <option value="" disabled selected>Month</option>
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                                <select name="year" id="year" class="form-select mx-1" required>
-                                    <option value="" disabled selected>Year</option>
-                                </select>
-                                <button class="btn btn-outline-success">submit</button>
-                            </form>
-                            <!-- <button class="btn btn-outline-success" onclick="printDiv('printDiv')">generate</button> -->
-                        </div>
-                    </div>
-                </nav>
-                <script>
-                    $(function() {
-                        var start_year = new Date().getFullYear();
-                        for (var i = start_year; i > start_year - 10; i--) {
-                            $('#year').append('<option value="' + i + '">' + i + '</option>');
-                        }
-                    });
-                </script>
-                <div class="table-div">
-                    <div class="table-responsive" id="printDiv">
-                        <h1 class="text-center">AICS</h1>
-                        <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
-                            <thead style="background-color: #EEF1F6;">
-                                <tr class="table-responsive align-middle">
-                                    <th>#</th>
-                                    <th>Date</th>
-                                    <th>Client Name</th>
-                                    <th>Beneficiary</th>
-                                    <th>Sex</th>
-                                    <th>Address</th>
-                                    <th>Contact Number</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody style="background-color: #FAFBFC;">
-                                <% let count = 1 %>
-                                <% render.forEach(info => { %>
-                                    <tr>
-                                        <th><%- count++ %></th>
-                                        <td><%- info.createdAt %></td>
-                                        <td><%- info.client_name %></td>
-                                        <td><%- info.beneficiary_name %></td>
-                                        <td><%- info.sex %></td>
-                                        <td><%- info.address %></td>
-                                        <td>+63<%- info.contact_number %></td>
-                                        <td><%- info.email %></td>
-                                    </tr>
-                                <% }) %>
-                            </tbody>
-                        </table>
-                        <% if(render == false) { %>
-                            <p class="text-center">No Record</p>
-                        <% } %> 
-                    </div>
+        <nav class="navbar bg-body-tertiary p-0 shadow">
+            <div class="container-fluid row flex-md-row form-control-lg pe-0" style="width: 100%;">
+                <div class="col-md-6 d-flex">
+                    <button class="btn btn-outline-success" onclick="printDiv('printDiv')">Create PDF</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <form action="" class="d-flex">
+                        <select name="month" id="" class="form-select " required>
+                            <option value="" disabled selected>Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <select name="year" id="year" class="form-select mx-1" required>
+                            <option value="" disabled selected>Year</option>
+                        </select>
+                        <button class="btn btn-outline-success">submit</button>
+                    </form>
+                    <!-- <button class="btn btn-outline-success" onclick="printDiv('printDiv')">generate</button> -->
                 </div>
             </div>
-            <!-- footer -->
+        </nav>
+        <div class="main-content">
+            <div class="container col-md-12">
+                <div class="table-responsive" id="printDiv">
+                    <!-- <h1 class="text-center">AICS</h1> -->
+                    <table class="table table-responsive table-hover col-lg-12" style="text-align: center;" id="table">
+                        <thead style="background-color: #EEF1F6;">
+                            <tr class="table-responsive align-middle">
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Client Name</th>
+                                <th>Beneficiary</th>
+                                <th>Sex</th>
+                                <th>Address</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: #FAFBFC;">
+                            <% let count = 1 %>
+                            <% render.forEach(info => { %>
+                                <tr>
+                                    <th><%- count++ %></th>
+                                    <td><%- info.createdAt %></td>
+                                    <td><%- info.client_name %></td>
+                                    <td><%- info.beneficiary_name %></td>
+                                    <td><%- info.sex %></td>
+                                    <td><%- info.address %></td>
+                                    <td>+63<%- info.contact_number %></td>
+                                    <td><%- info.email %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                    <% if(render == false) { %>
+                        <p class="text-center">No Record</p>
+                    <% } %> 
+                </div>
+            </div>
         </div>
     </main>
 </body>
+<script>
+    $(function() {
+        var start_year = new Date().getFullYear();
+        for (var i = start_year; i > start_year - 10; i--) {
+            $('#year').append('<option value="' + i + '">' + i + '</option>');
+        }
+    });
+</script>
 <script>
     function printDiv(divTable) {
         var printContents = document.getElementById(divTable).innerHTML;

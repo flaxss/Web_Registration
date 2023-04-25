@@ -43,7 +43,7 @@
                     </div> -->
                     <div class="col-md-6">
                         <label for="appointment_data" class="form-label">Date of Appointment</label>
-                        <input type="date" id="appointment_data" class="form-control" placeholder="Appointment Date" name="appointment_date" required readonly value="<%- appointment.event_date %>">
+                        <input type="date" id="appointment_data" class="form-control" placeholder="Appointment Date" name="event_date" required readonly value="<%- appointment.event_date %>">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -101,46 +101,40 @@
                     </div>
                     <div class="col-md-3">  
                         <label for="select_sex" class="form-label">Sex</label>
-                        <div class="form-control" id="select_sex">
-                            <input type="radio" id="male" name="sex" value="Male" required>
-                            <label for="male">Male</label>
-                            <input type="radio" id="female" class="ms-3" name="sex" value="Female" required>
-                            <label for="female">Female</label> 
-                        </div>
+                        <select class="form-control" name="sex" id="sex"s required>
+                            <option value="" disabled selected>Please Select</option>
+                            <option id="male" value="Male">Male</option>
+                            <option id="female" value="Female">Female</option>
+                        </select>
                         <script>
                             let sex = '<%- appointment.sex %>'
                             if(sex === 'MALE'){
-                                document.getElementById('male').checked = true
-                            }else{
-                                document.getElementById('female').checked = true
+                                document.getElementById('male').selected = true
+                            }else if(sex === 'FEMALE'){
+                                document.getElementById('female').selected = true
                             }
                         </script>
                     </div>
                     <div class="col-md-3">  
                         <label for="civil-status" class="form-label">Civil Status</label>
-                        <div class="form-control">
-                            <div class="form">
-                                <input type="radio" id="single" name="civil_status" value="single" required>
-                                <label for="single">Single</label>    
-                                <input type="radio" id="widow/er" class="ms-4" name="civil_status" value="widow/er" required>
-                                <label for="widow/er">Widow/er</label>
-                            </div>
-                            <input type="radio" id="married" name="civil_status" value="married" required>
-                            <label for="married">Married</label>
-                            <input type="radio" id="other" class="ms-3" name="civil_status" value="other" required>
-                            <label for="other">Other</label>
-                        </div>
+                        <select class="form-control" name="civil_status" id="civil_status" required>
+                            <option value="" disabled selected>Please Select</option>
+                            <option id="single" value="single">Single</option>
+                            <option id="married" value="married">Married</option>
+                            <option id="widow/er" value="widow/er">Widow/er</option>
+                            <option id="other" value="other">Other</option>
+                        </select>
                     </div>
                     <script>
                         let civil_status = '<%- appointment.civil_status %>'
                         if(civil_status == 'single'){
-                            document.getElementById('single').checked = true
+                            document.getElementById('single').selected = true
                         }else if(civil_status == 'widow/er'){
-                            document.getElementById('widow/er').checked = true
+                            document.getElementById('widow/er').selected = true
                         }else if(civil_status == 'married'){
-                            document.getElementById('married').checked = true
+                            document.getElementById('married').selected = true
                         }else if(civil_status == 'other'){
-                            document.getElementById('other').checked = true
+                            document.getElementById('other').selected = true
                         }
                     </script>
                     <div class="col-md-3">
@@ -272,53 +266,47 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-7"> 
+                    <div class="col-md-6"> 
                         <label for="yearlevel" class="form-label">Year Level</label>
-                        <div class="form-control">
-                            <input type="radio" id="1st" name="year_level" value="1st" required>
-                            <label for="1st">1st</label>
-                            <input type="radio" id="2nd" class="ms-5" name="year_level" value="2nd" required>
-                            <label for="2nd">2nd</label>
-                            <input type="radio" id="3rd" class="ms-5" name="year_level" value="3rd" required>
-                            <label for="3rd">3rd</label>
-                            <input type="radio" id="4th" class="ms-5" name="year_level" value="4th" required> 
-                            <label for="4th">4th</label>
-                            <input type="radio" id="5th" class="ms-5" name="year_level" value="5th" required>
-                            <label for="5th">5th</label>
-                        </div>
+                        <select class="form-control" name="year_level" required>
+                            <option value="" disabled selected>Please Select</option>
+                            <option id="1st" value="1st">1st</option>
+                            <option id="2nd" value="2nd">2nd</option>
+                            <option id="3rd" value="3rd">3rd</option>
+                            <option id="4th" value="4th">4th</option>
+                            <option id="5th" value="5th">5th</option>
+                        </select>
                         <script>
                             let year_level = '<%- appointment.year_level %>'
                             if(year_level == '1st'){
-                                document.getElementById('1st').checked = true
+                                document.getElementById('1st').selected = true
                             }else if(year_level == '2nd'){
-                                document.getElementById('2nd').checked = true
+                                document.getElementById('2nd').selected = true
                             }else if(year_level == '3rd'){
-                                document.getElementById('3rd').checked = true
+                                document.getElementById('3rd').selected = true
                             }else if(year_level == '4th'){
-                                document.getElementById('4th').checked = true
+                                document.getElementById('4th').selected = true
                             }else if(year_level == '5th'){
-                                document.getElementById('5th').checked = true
+                                document.getElementById('5th').selected = true
                             }
                         </script>
                     </div>
-                    <div class="col-md-5"> 
+                    <div class="col-md-6"> 
                         <label for="degree-course" class="form-label">Semester</label>
-                        <div class="form-control">
-                            <input type="radio" id="1st_sem" name="sem" value="1st" required>
-                            <label for="1st_sem">1st</label>    
-                            <input type="radio" id="2nd_sem" class="ms-5" name="sem"value="2nd" required>
-                            <label for="2nd_sem">2nd</label>
-                            <input type="radio" id="3rd_sem" class="ms-5" name="sem" value="3rd" required>
-                            <label for="3rd_sem">3rd</label>
-                        </div>
+                        <select class="form-control" name="sem" required>
+                            <option value=""disabled selected>Please Select</option>
+                            <option id="1st_sem" value="1st">1st</option>
+                            <option id="2nd_sem" value="2nd">2nd</option>
+                            <option id="3rd_sem" value="3rd">3rd</option>
+                        </select>
                         <script>
                             let sem = '<%- appointment.sem %>'
                             if(sem == '1st'){
-                                document.getElementById('1st_sem').checked = true
+                                document.getElementById('1st_sem').selected = true
                             }else if(sem == '2nd'){
-                                document.getElementById('2nd_sem').checked = true
+                                document.getElementById('2nd_sem').selected = true
                             }else if(sem == '3rd'){
-                                document.getElementById('3rd_sem').checked = true
+                                document.getElementById('3rd_sem').selected = true
                             }
                         </script>
                     </div>
