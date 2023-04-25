@@ -72,7 +72,7 @@ async function option(){
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI)
-        console.log(`Successfully Connected To The Database ${conn.connection.host}`)
+        // console.log(`Successfully Connected To The Database ${conn.connection.host}`)
         console.log(`Successfully Connected To The Database`)
         expiryDate()
         option()

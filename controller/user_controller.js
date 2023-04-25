@@ -131,11 +131,11 @@ module.exports.home = async(req, res) => {
     res.render('user/home', {renderPost, formatted})
 }
 
-module.exports.college_assistance = (req, res) => {
-    res.render('user/educ/college', {response})
-}
-
 let response = ''
+
+module.exports.college_assistance = (req, res) => {
+    res.render('user/educ/college')
+}
 
 module.exports.college_assistance_form_get = async(req, res) => {
     const list = await Event.find().sort({nonFormat: 1})
@@ -341,7 +341,7 @@ module.exports.college_assistance_landing = async(req, res) => {
 module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
     try {
-        const confirm = await Educ_Confirmation.findByIdAndRemove(id)
+        const confirm = await Educ_Confirmation.findByIdAndDelete(id)
         console.log(confirm)
         const create = await Educ_Appointment({
             service: confirm.service,
@@ -419,8 +419,9 @@ module.exports.college_assistance_confirm = async(req, res) => {
             await transporter.sendMail(message)
             .then((info) => {
                 console.log('email is successfully generated',info.messageId)
+                return res.redirect(`/college-assistance/${create.id}/preview`)
             })
-            return res.redirect(`/college-assistance/${create.id}/preview`)
+            // return res.redirect(`/college-assistance/${create.id}/preview`)
         })
         .catch(err => {
             console.log(err.message)
