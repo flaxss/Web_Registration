@@ -57,7 +57,7 @@ let MailGenerator = new Mailgen({
 module.exports.admin_home = async(req, res) => {
     const events = await Event.find().sort({nonFormat: 1})
     const renderPost = await Announcement.find().sort({createdAt: -1})
-    res.render('admin/home', {renderPost, events, messages: req.flash('info')})
+    res.render('admin/home', {renderPost, events})
 }
 
 // home create post
@@ -70,7 +70,6 @@ module.exports.create_post = async(req, res) => {
     })
     create.save()
     .then(() => {
-        req.flash('info', 'This is a flash message');
         console.log(`${create} is posted`)
         res.redirect('/a')
     })

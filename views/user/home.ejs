@@ -1,5 +1,23 @@
-<%- include('include/header') %>
-<title>Home</title>
+    <%- include('include/header') %>
+    <style>
+        .announcements{
+        display: none;
+        }
+        .announcements:nth-child(1),
+        .announcements:nth-child(2),
+        .announcements:nth-child(3),
+        .announcements:nth-child(4),
+        .announcements:nth-child(5){
+            display: inline-block;
+        }
+        .post{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical ;
+            overflow: hidden;
+        }
+    </style>
+    <title>Home</title>
 </head>
 <body>
     <!-- <div style="position: fixed; width: 100%;"> -->
@@ -176,51 +194,48 @@
         </div>
         
         <!-- annnouncement -->
-        <div class="main-content mb-3" style=" padding: 10px; height: fit-content;">
-            <!-- announcement -->
-            <h4 style="text-align: center; font-size: 1.5rem;" class="mt-3 mb-4">Announcement</h4>
-            <div class="ann-row" >
-            <% let counter = 0 %>
-            <% renderPost.forEach(data => { %>
-                <div class="row d-flex" style="width: 98%; margin: auto; margin: 1%;">
-                    <div class="time col-md-4" style="background-color: #269c4c;;">
-                        <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-                            <h2 style="color: white; font-size: 1.5rem; font-weight: bold; "><%- formatted[counter].day %></h2> 
-                            <h2 style="color: white; font-size: 1.5rem; font-weight: bold; "><%- formatted[counter].month %></h2> 
-                            <!-- <span>01 </span> <span>January</span>  -->
+        <div class="main-content mb-3" style=" padding: 10px; min-height: 100vh; height: fit-content; width:100%; background-color: rgb(238, 236, 236);">
+            <div style="height:15vh; width: 100%;">
+                <hr>
+                <h1 class="text-center fw-bold py-3 mdisplay-5">Announcements</h1>
+            </div>
+            <div style="min-height: 85vh; height: fit-content; width: 100%;">
+                <% renderPost.forEach((post) => { %>
+                    <div class="announcements">
+                        <div class=" border border-dark-subtle p-4 rounded mb-2" style="background-color: #fff;">
+                            <p style="font-size: .8rem;">posted at
+                                <% const today = post.createdAt %>
+                                <% const f = new Intl.DateTimeFormat('en-us', { dateStyle: 'full' }) %>
+                                <%- f.format(today) %> 
+                            </p>
+                            <h5>ANNOUNCEMENT</h5>
+                            <div>
+                                <p style="margin-top: -10px; font-size: .8rem;">Magandang Araw, Treceño!</p>
+                                <p class=" mt-4 fw-bold" style="text-align: justify; font-size: .98rem; margin-bottom: 5px;"><%- post.header %></p>
+                                <p class="post" style="text-align: justify; font-size: .87rem;"><%- post.post %></p>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <div style="display: flex; justify-content: space-between">
+                                            <div>
+                                                <span style="font-size: .8rem;">last edit:
+                                                    <%const eTime = post.updatedAt %>
+                                                    <% const newTime = new Intl.DateTimeFormat('en-us', { dateStyle: 'full' }) %>
+                                                    <%- newTime.format(eTime) %> 
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <!-- <a class="btn btn-success m-0 p-1" href="">view post</a> -->
+                                            </div>
+                                        </div>                                     
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div id="details" class="details col-md-8">
-                        <h3 style="font-size: 1rem;"><strong>Magandang Araw, Treceño!</strong>
-                            <p style="font-size: .8rem;">
-                                <%- data.header %>
-
-                                <%- data.post %>
-                                <!-- Sa mga Solo Parent ng Trece Martires City na nagnanais na magparehistro, narito po ang mga kategorya at kinakailangang dokumento.
-    
-                                *Maaari po kayong magtungo sa inyong Barangay Hall at hanapin ang inyong Solo Parent President, para sa pagsusumite ng application form at dokumento at karagdagan impormasyon o klaripikasyon ukol sa Updates on the Implementation of RA 11861 o ang "Expanded Solo Parents Welfare Act of 2022".
-    
-                                Solo Parent Application Form link:
-                                http://bitly.ws/Ah6Z
-    
-                                Sa mga Solo Parent ng Trece Martires City na nagnanais na magparehistro, narito po ang mga kategorya at kinakailangang dokumento.
-    
-                                *Maaari po kayong magtungo sa inyong Barangay Hall at hanapin ang inyong Solo Parent President, para sa pagsusumite ng application form at dokumento at karagdagan impormasyon o klaripikasyon ukol sa Updates on the Implementation of RA 11861 o ang "Expanded Solo Parents Welfare Act of 2022".
-    
-                                Solo Parent Application Form link:
-                                http://bitly.ws/Ah6Z -->
-                            </p>
-                        </h3>
-                        <!-- <a href="/announcement/<%- data.id %>" style="width: 100%; text-align: end; text-decoration: none; color: black;">see more</a> -->
-                    </div>
-                </div>
-                <% counter++ %>
-            <% }) %>
-            <% if(renderPost == false) { %>
-                <div>
-                    <p class="text-center">No Post Available</p>
-                </div>
-            <% } %>
+                <% }) %>
+            </div>
         </div>
         
     </main>

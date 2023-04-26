@@ -118,7 +118,7 @@ function messageUpdate(fullname, service, reference, prev_link, up_link, email){
 }
 
 module.exports.home = async(req, res) => {
-    const renderPost = await Announcement.find({})
+    const renderPost = await Announcement.find({}).sort({createdAt: -1})
     let formatted = []
     renderPost.forEach(data => {
         // parse date into readable
