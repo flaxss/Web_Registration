@@ -341,7 +341,7 @@ module.exports.college_assistance_landing = async(req, res) => {
 module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
     try {
-        const confirm = await Educ_Confirmation.findById(id)
+        const confirm = await Educ_Confirmation.findByIdAndDelete(id)
         console.log(confirm)
         if(!confirm){
             console.log(1)
