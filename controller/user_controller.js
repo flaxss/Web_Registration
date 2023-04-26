@@ -46,7 +46,8 @@ function format(list){
 }
 
 // let http_localhost = 'http://localhost:3000'
-let http_localhost = 'https://tmc-assistance.cyclic.app'
+// let http_localhost = 'https://tmc-assistance.cyclic.app'
+let http_localhost = 'tmc-assistance.cyclic.app'
 
 // user and generate a template for the email
 const config = {
@@ -54,7 +55,8 @@ const config = {
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
-    }
+    },
+    // proxy: http_localhost,
 }
 let transporter = nodemailer.createTransport(config)
 let MailGenerator = new Mailgen({
@@ -69,15 +71,15 @@ function messageResponse(fullname, link, email){
     let response = {
         body: {
             name: fullname.toUpperCase(),
-            intro: 'Please confirm your registration by clicking the <b>Confirm</b> button',
-            action: {
-                instruction: ``,
-                button: {
-                    color: '#22BC66', // Optional action button color
-                    text: 'CONFIRM',
-                    link: link
-                },
-            },
+            intro: `Please confirm your registration by clicking the <a href="${link}"><b>Confirm</b></a> button`,
+            // action: {
+            //     instruction: ``,
+            //     button: {
+            //         color: '#22BC66',
+            //         text: 'CONFIRM',
+            //         link: link
+            //     },
+            // },
             outro: '<b>Important Note!</b> After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon).'
         }
     }
@@ -168,7 +170,7 @@ module.exports.college_assistance_form_post = async(req, res) => {
     }else{
         const slot = await Event.findOne({event_date: req.body.event_date})
         if(!slot){
-            return res.send("<p>We're sorry, but the remaining slot is already occupied. Please try again later.</p>")
+            return res.send("<h3>We're sorry, but the remaining slot is already occupied. Please try again later.</h3>")
         }
         const create = await Educ_Confirmation({
             service: 'College Educational Assistance',
@@ -329,12 +331,14 @@ module.exports.college_assistance_landing = async(req, res) => {
     try {
         const register = await Educ_Confirmation.findById(id)
         if(!register){
-            return res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
+        // return res.status(404).render('err/notfound')
         }
         res.render('user/warning', {register})
     } catch (err) {
         console.log(err.message)
-        res.status(404).render('err/notfound')
+        res.status(404).render('user/nolonger_access')
+        // res.status(404).render('err/notfound')
     }
 }
 
