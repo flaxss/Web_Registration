@@ -349,7 +349,8 @@ module.exports.college_assistance_confirm = async(req, res) => {
         console.log(confirm)
         if(!confirm){
             console.log(1)
-            return res.status(404).render('err/notfound')
+            // return res.status(404).render('err/notfound')
+            res.status(404).render('user/nolonger_access')
         }
         const create = await Educ_Appointment({
             service: confirm.service,
