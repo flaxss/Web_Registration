@@ -340,10 +340,13 @@ module.exports.college_assistance_landing = async(req, res) => {
 
 module.exports.college_assistance_confirm = async(req, res) => {
     const id = req.params.id
-    const confirm = await Educ_Confirmation.findById(id)
-    console.log(confirm)
     try {
+        const confirm = await Educ_Confirmation.findById(id)
         console.log(confirm)
+        if(!confirm){
+            console.log(1)
+            return res.status(404).render('err/notfound')
+        }
         const create = await Educ_Appointment({
             service: confirm.service,
             reference: confirm.reference,
@@ -409,7 +412,7 @@ module.exports.college_assistance_confirm = async(req, res) => {
         })
         create.save()
         .then(async() => {
-            await Educ_Confirmation.findByIdAndDelete(id)
+            console.log(2)
             console.log(`${create} is created`)
             const fullname = `${create.firstname} ${create.middlename} ${create.lastname}`
             const service = create.service
@@ -419,14 +422,14 @@ module.exports.college_assistance_confirm = async(req, res) => {
             const message = messageUpdate(fullname, service, reference, prev_link, up_link, create.email)
             await transporter.sendMail(message)
             .then((info) => {
+                console.log(3)
                 console.log('email is successfully generated',info.messageId)
             })
+            console.log(4)
+            res.redirect(`/college-assistance/${create.id}/preview`)
         })
-        .catch(err => {
-            console.log(err.message)
-        })
-        res.redirect(`/college-assistance/${create.id}/preview`)
     } catch (err) {
+        console.log(5)
         console.log(err.message)
         res.status(404).render('err/notfound')
     }
@@ -446,8 +449,8 @@ module.exports.college_assistance_preview = async(req, res) => {
         }
     } catch (err) {
         console.log(err.message)
-        // res.status(404).render('err/notfound')
-        res.status(404).render('user/nolonger_access')
+        res.status(404).render('err/notfound')
+        // res.status(404).render('user/nolonger_access')
     }
 }
 
