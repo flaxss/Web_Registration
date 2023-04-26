@@ -72,14 +72,14 @@ function messageResponse(fullname, link, email){
         body: {
             name: fullname.toUpperCase(),
             intro: `Please confirm your registration by clicking the <a href="${link}"><b>Confirm</b></a> button`,
-            // action: {
-            //     instruction: ``,
-            //     button: {
-            //         color: '#22BC66',
-            //         text: 'CONFIRM',
-            //         link: link
-            //     },
-            // },
+            action: {
+                instruction: ``,
+                button: {
+                    color: '#22BC66',
+                    text: 'CONFIRM',
+                    link: link
+                },
+            },
             outro: '<b>Important Note!</b> After cliking the Confirm button, you will receive another email. The email contains your Downloadable Intake Sheet and response. You can update your response if you notice typographical error(maling pagkakalagay ng impormasyon).'
         }
     }
