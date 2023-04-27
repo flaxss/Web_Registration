@@ -1,15 +1,15 @@
 (() => {
     'use strict'
+    document.getElementById("loading").style.display = "none";
+    document.getElementById('nav').style.filter = 'none';
+    document.getElementById('form').style.filter = 'none';
+    document.getElementById('footer').style.filter = 'none';
     const forms = document.querySelectorAll('.needs-validation')
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
         if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
-            document.getElementById("loading").style.display = "none";
-            document.getElementById('nav').style.filter = 'none';
-            document.getElementById('form').style.filter = 'none';
-            document.getElementById('footer').style.filter = 'none';
             alert("Please fill out all the required information.");
         }
         else{
