@@ -6,6 +6,10 @@
         if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
+            document.getElementById("loading").style.display = "none";
+            document.getElementById('nav').style.filter = 'none';
+            document.getElementById('form').style.filter = 'none';
+            document.getElementById('footer').style.filter = 'none';
             alert("Please fill out all the required information.");
         }
         else{
