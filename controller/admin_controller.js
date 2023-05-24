@@ -36,6 +36,10 @@ dotenv.config({path: 'config.env'});
 const Mailgen = require('mailgen')
 const nodemailer = require('nodemailer')
 
+// let http_localhost = 'http://localhost:3000'
+// let http_localhost = 'https://tmc-assistance.cyclic.app'
+let http_localhost = 'tmc-assistance.cyclic.app'
+
 let config = {
     service: 'gmail',
     auth: {
@@ -48,8 +52,8 @@ let transporter = nodemailer.createTransport(config)
 let MailGenerator = new Mailgen({
     theme: 'default',
     product: {
-        name: 'CSWD OFFICE',
-        link: 'tmc-assistance.cyclic.app'
+        name: 'CSWD',
+        link: `${http_localhost}`,
     }
 })
 
@@ -1015,7 +1019,7 @@ module.exports.records_compile = async(req, res) => {
                 }
                 let mail = MailGenerator.generate(response)
                 let message = {
-                    from: 'support@email.com',
+                    from: 'TMC-CSDWO <support@email.com>',
                     to: data.email,
                     subject: 'social service',
                     html: mail
